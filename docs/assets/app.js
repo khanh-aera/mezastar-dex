@@ -111,7 +111,10 @@ $("#scrim")?.addEventListener?.("click", e => { if (e.target.id === "scrim") clo
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
 /* ---------------- boss counter ---------------- */
-function bossList(){ return BOSSES; }
+/* Vietnam machines only run Stardust Version 2, so the boss list defaults to VN tags.
+   The other sets stay in the database for reference and are revealed by the VN only button. */
+let ALLSETS = false;
+function bossList(){ return ALLSETS ? BOSSES : BOSSES.filter(b => b.vn); }
 function lev(a, b){
   const m = a.length, n = b.length;
   if (Math.abs(m - n) > 3) return 99;
@@ -127,7 +130,8 @@ function lev(a, b){
 }
 function resolveBoss(q){
   const s = (q||"").trim().toLowerCase(); if (!s) return null;
-  const L = bossList();
+  /* search every set so a name still resolves if he types one that is not on VN machines yet */
+  const L = BOSSES;
   return L.find(b => b.name.toLowerCase() === s)
       || L.find(b => b.name.toLowerCase().startsWith(s))
       || L.find(b => b.name.toLowerCase().includes(s))
@@ -182,16 +186,23 @@ function renderBossResult(){
         ${b.img ? `<div class="pickart bossart" style="background:radial-gradient(circle at 50% 80%,${(TYPE_COLOR[b.types[0]]||"#7aa2ff")}33,transparent 72%),rgba(255,255,255,.04)">
           <img src="${b.img}" alt="${esc(b.name)}"><span class="lbl">Boss</span></div>` : ""}
       </div>
+      ${!b.vn ? `<div class="note warn"><b>Heads up:</b> ${esc(b.name)} is from ${esc(b.version || "another set")}. Vietnam machines only run Stardust Version 2 right now, so you cannot meet it yet. The counters below still show what would work.</div>` : ""}
       ${r.alts.length ? `<div class="sect"><h3>Also works</h3>${r.alts.map(a => routeRow(a.t, a.o, `PE ${a.t.pe} · ${a.why.join(", ") || a.t.types.join(" / ")}`)).join("")}</div>` : ""}
       ${r.avoid.length ? `<div class="note bad"><b>Leave in the bag:</b> ${r.avoid.map(x => esc(x.name)).join(", ")} (this boss hits them for double damage).</div>` : ""}
     </div>`;
 }
 function renderBossGrid(){
   const q = state.bfilter.trim().toLowerCase();
-  const list = bossList().filter(b => !q || b.name.toLowerCase().includes(q)).slice(0, 90);
+  const pool = bossList();
+  const list = pool.filter(b => !q || b.name.toLowerCase().includes(q)).slice(0, 90);
+  const pc = $("#poolCount");
+  if (pc) pc.innerHTML = ALLSETS
+    ? `${BOSSES.length} bosses, all sets · <b>${BOSSES.filter(b=>b.vn).length}</b> are on VN machines`
+    : `<b>${pool.length}</b> bosses in play in Vietnam`;
+  const tg = $("#setToggle"); if (tg) tg.classList.toggle("act", ALLSETS);
   $("#bossGrid").innerHTML = list.map(b => `<div class="bcard ${state.boss&&state.boss.name===b.name?"on":""}" data-n="${esc(b.name)}">
       ${b.img ? `<img src="${b.img}" alt="" loading="lazy">` : ""}<div class="bn">${esc(b.name)}</div>
-      <div class="pn" style="font-size:10px;color:var(--dim)">${esc(b.types.join("/"))}${b.vn?'<span style="color:#9dff6a"> · VN</span>':""}</div></div>`).join("")
+      <div class="pn" style="font-size:10px;color:var(--dim)">${esc(b.types.join("/"))}${b.vn?'<span style="color:#9dff6a"> · VN</span>':'<span style="color:#ff9aad"> · '+esc(b.version||"")+'</span>'}</div></div>`).join("")
       || `<div class="empty">No boss with that name in the database.</div>`;
   $("#bossGrid").querySelectorAll(".bcard").forEach(c => c.onclick = () => { selectBoss(c.dataset.n); });
 }
@@ -286,6 +297,7 @@ $("#clearBoss").onclick = () => { state.bfilter = ""; state.boss = null; $("#bq"
     const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
     $("#bossChips").innerHTML = quick.map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
     $("#bossChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
+    $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
     renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
   }catch(err){
     document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);
