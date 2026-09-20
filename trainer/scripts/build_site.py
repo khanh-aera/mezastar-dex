@@ -100,18 +100,47 @@ OUT = os.path.join(HERE, "..", "..", "docs")
 os.makedirs(os.path.join(OUT, "data"), exist_ok=True)
 os.makedirs(os.path.join(OUT, "img"), exist_ok=True)
 
+def strip_white_bg(im, tol=18):
+    """The official tag art is flat RGB on a white page. Remove that white (only where it
+    connects to the border, so white inside the art survives) and crop to the tag itself."""
+    try:
+        import numpy as np
+        from scipy import ndimage
+        from PIL import Image
+    except Exception:
+        return im.convert("RGBA")
+    a = np.array(im.convert("RGB"))
+    white = (a >= 255 - tol).all(axis=2)
+    lab, _ = ndimage.label(white, structure=np.ones((3, 3), int))
+    border_ids = np.unique(np.concatenate([lab[0, :], lab[-1, :], lab[:, 0], lab[:, -1]]))
+    border_ids = border_ids[border_ids > 0]
+    bg = np.isin(lab, border_ids)
+    alpha = np.full(bg.shape, 255, np.uint8)
+    alpha[bg] = 0
+    ring = ndimage.binary_dilation(bg, iterations=2) & ~bg
+    mn = a.min(axis=2).astype(np.float32)
+    calc = np.clip((1.0 - mn / 255.0) * 255.0, 0, 255).astype(np.uint8)
+    alpha[ring] = np.minimum(alpha[ring], calc[ring])
+    out = np.dstack([a, alpha])
+    ys, xs = np.nonzero(alpha > 0)
+    if len(ys):
+        pad = 2
+        out = out[max(0, ys.min() - pad):ys.max() + 1 + pad, max(0, xs.min() - pad):xs.max() + 1 + pad]
+    return Image.fromarray(out, "RGBA")
+
 def save_art(src):
-    """Convert a tag PNG to a phone friendly WebP and return its site path."""
+    """Convert a tag PNG to a phone friendly WebP (white page removed) and return its site path."""
     base = os.path.splitext(os.path.basename(src))[0]
     tgt = os.path.join(OUT, "img", base + ".webp")
     if not os.path.exists(tgt):
         try:
             from PIL import Image
-            im = Image.open(src).convert("RGBA")
+            im = strip_white_bg(Image.open(src))
             if im.width > 640:
                 im = im.resize((640, max(1, round(im.height * 640 / im.width))), Image.LANCZOS)
             im.save(tgt, "WEBP", quality=82, method=5)
-        except Exception:
+        except Exception as e:
+            print(f"   ! art fallback for {base}: {type(e).__name__}: {e}")
             shutil.copy2(src, tgt.replace(".webp", ".png"))
             return "img/" + base + ".png"
     return "img/" + base + ".webp"

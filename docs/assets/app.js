@@ -305,3 +305,8 @@ $("#clearBoss").onclick = () => { state.bfilter = ""; state.boss = null; $("#bq"
     document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);
   }
 })();
+
+/* Installable on the phone home screen, and works offline once opened (art is cached). */
+if ("serviceWorker" in navigator){
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}

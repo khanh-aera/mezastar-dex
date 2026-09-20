@@ -1,0 +1,36 @@
+{
+ "name": "Mezastar Binder \u00b7 Khanh",
+ "short_name": "Mezastar",
+ "description": "Personal Pokemon Mezastar binder and boss counter for Vietnam machines (Stardust Version 2).",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#080b17",
+ "theme_color": "#080b17",
+ "lang": "en",
+ "categories": [
+  "games",
+  "utilities"
+ ],
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
