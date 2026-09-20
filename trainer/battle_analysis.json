@@ -1,0 +1,328 @@
+{
+ "counter": {
+  "Normal": [
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   }
+  ],
+  "Fire": [
+   {
+    "name": "Empoleon",
+    "pe": 114,
+    "mult": 2.0,
+    "id": "1-2-018"
+   },
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   },
+   {
+    "name": "Drednaw",
+    "pe": 104,
+    "mult": 2.0,
+    "id": "1-2-025"
+   }
+  ],
+  "Water": [
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   },
+   {
+    "name": "Flapple",
+    "pe": 110,
+    "mult": 2.0,
+    "id": "1-2-022"
+   },
+   {
+    "name": "Appletun",
+    "pe": 110,
+    "mult": 2.0,
+    "id": "1-2-023"
+   }
+  ],
+  "Electric": [
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   },
+   {
+    "name": "Onix",
+    "pe": 64,
+    "mult": 2.0,
+    "id": "1-2-070"
+   }
+  ],
+  "Grass": [
+   {
+    "name": "Kyurem",
+    "pe": 156,
+    "mult": 2.0,
+    "id": "1-2-010"
+   },
+   {
+    "name": "Pidgeot",
+    "pe": 82,
+    "mult": 2.0,
+    "id": "1-2-049"
+   },
+   {
+    "name": "Alolan Sandslash",
+    "pe": 78,
+    "mult": 2.0,
+    "id": "1-2-051"
+   }
+  ],
+  "Ice": [
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   },
+   {
+    "name": "Empoleon",
+    "pe": 114,
+    "mult": 2.0,
+    "id": "1-2-018"
+   },
+   {
+    "name": "Drednaw",
+    "pe": 104,
+    "mult": 2.0,
+    "id": "1-2-025"
+   }
+  ],
+  "Fighting": [
+   {
+    "name": "Gardevoir",
+    "pe": 124,
+    "mult": 2.0,
+    "id": "1-2-007"
+   },
+   {
+    "name": "Sylveon",
+    "pe": 116,
+    "mult": 2.0,
+    "id": "1-2-014"
+   },
+   {
+    "name": "Espeon",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-012"
+   }
+  ],
+  "Poison": [
+   {
+    "name": "Gardevoir",
+    "pe": 124,
+    "mult": 2.0,
+    "id": "1-2-007"
+   },
+   {
+    "name": "Espeon",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-012"
+   },
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   }
+  ],
+  "Ground": [
+   {
+    "name": "Kyurem",
+    "pe": 156,
+    "mult": 2.0,
+    "id": "1-2-010"
+   },
+   {
+    "name": "Empoleon",
+    "pe": 114,
+    "mult": 2.0,
+    "id": "1-2-018"
+   },
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   }
+  ],
+  "Flying": [
+   {
+    "name": "Kyurem",
+    "pe": 156,
+    "mult": 2.0,
+    "id": "1-2-010"
+   },
+   {
+    "name": "Drednaw",
+    "pe": 104,
+    "mult": 2.0,
+    "id": "1-2-025"
+   },
+   {
+    "name": "Alolan Sandslash",
+    "pe": 78,
+    "mult": 2.0,
+    "id": "1-2-051"
+   }
+  ],
+  "Psychic": [
+   {
+    "name": "Meowscarada",
+    "pe": 92,
+    "mult": 2.0,
+    "id": "1-2-026"
+   }
+  ],
+  "Bug": [
+   {
+    "name": "Drednaw",
+    "pe": 104,
+    "mult": 2.0,
+    "id": "1-2-025"
+   },
+   {
+    "name": "Pidgeot",
+    "pe": 82,
+    "mult": 2.0,
+    "id": "1-2-049"
+   },
+   {
+    "name": "Onix",
+    "pe": 64,
+    "mult": 2.0,
+    "id": "1-2-070"
+   }
+  ],
+  "Rock": [
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   },
+   {
+    "name": "Empoleon",
+    "pe": 114,
+    "mult": 2.0,
+    "id": "1-2-018"
+   },
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   }
+  ],
+  "Ghost": [
+   {
+    "name": "Meowscarada",
+    "pe": 92,
+    "mult": 2.0,
+    "id": "1-2-026"
+   }
+  ],
+  "Dragon": [
+   {
+    "name": "Kyurem",
+    "pe": 156,
+    "mult": 2.0,
+    "id": "1-2-010"
+   },
+   {
+    "name": "Gardevoir",
+    "pe": 124,
+    "mult": 2.0,
+    "id": "1-2-007"
+   },
+   {
+    "name": "Sylveon",
+    "pe": 116,
+    "mult": 2.0,
+    "id": "1-2-014"
+   }
+  ],
+  "Dark": [
+   {
+    "name": "Gardevoir",
+    "pe": 124,
+    "mult": 2.0,
+    "id": "1-2-007"
+   },
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   },
+   {
+    "name": "Sylveon",
+    "pe": 116,
+    "mult": 2.0,
+    "id": "1-2-014"
+   }
+  ],
+  "Steel": [
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   },
+   {
+    "name": "Torterra",
+    "pe": 112,
+    "mult": 2.0,
+    "id": "1-2-016"
+   },
+   {
+    "name": "Onix",
+    "pe": 64,
+    "mult": 2.0,
+    "id": "1-2-070"
+   }
+  ],
+  "Fairy": [
+   {
+    "name": "Lucario",
+    "pe": 118,
+    "mult": 2.0,
+    "id": "1-2-015"
+   },
+   {
+    "name": "Empoleon",
+    "pe": 114,
+    "mult": 2.0,
+    "id": "1-2-018"
+   },
+   {
+    "name": "Alolan Sandslash",
+    "pe": 78,
+    "mult": 2.0,
+    "id": "1-2-051"
+   }
+  ]
+ },
+ "missing": [
+  "Fire",
+  "Poison",
+  "Bug",
+  "Ghost"
+ ]
+}
