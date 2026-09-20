@@ -33,7 +33,9 @@ body{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- shell ---------- */
-.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 90px;position:relative}
+/* iPhone Dynamic Island / notch: every top edge gets the safe area inset on top of its base padding */
+.wrap{max-width:1180px;margin:0 auto;position:relative;
+  padding:calc(20px + env(safe-area-inset-top,0px)) calc(16px + env(safe-area-inset-right,0px)) 90px calc(16px + env(safe-area-inset-left,0px))}
 .glass{background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius);
   backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);box-shadow:var(--shadow)}
 
@@ -61,7 +63,7 @@ h1{margin:0;font-family:"Chakra Petch",sans-serif;font-size:clamp(19px,3.4vw,28p
 .stat span{font-size:10px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
 
 /* ---------- tabs ---------- */
-nav.tabs{display:flex;gap:8px;padding:8px;margin-bottom:18px;position:sticky;top:10px;z-index:40;
+nav.tabs{display:flex;gap:8px;padding:8px;margin-bottom:18px;position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:40;
   background:rgba(10,14,32,.55);border:1px solid var(--stroke-soft);border-radius:18px;
   backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
 nav.tabs button{flex:1;padding:12px 10px;border:0;border-radius:13px;background:transparent;color:var(--muted);
@@ -117,7 +119,7 @@ input.search:focus{border-color:rgba(143,233,255,.55);box-shadow:0 0 0 4px rgba(
 
 /* ---------- modal ---------- */
 .scrim{position:fixed;inset:0;z-index:90;background:rgba(4,6,15,.62);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
-  display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+  display:none;align-items:flex-start;justify-content:center;padding:calc(20px + env(safe-area-inset-top,0px)) 20px 20px;overflow-y:auto}
 .scrim.on{display:flex}
 .modal{width:100%;max-width:720px;border-radius:26px;padding:20px;position:relative;
   background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.04));
@@ -164,7 +166,8 @@ input.search:focus{border-color:rgba(143,233,255,.55);box-shadow:0 0 0 4px rgba(
   transform:translateX(-102%);transition:transform .32s cubic-bezier(.22,.9,.3,1);
   background:linear-gradient(165deg,rgba(16,21,42,.92),rgba(8,11,23,.96));
   border-right:1px solid var(--stroke-soft);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
-  display:flex;flex-direction:column;padding:18px 16px calc(18px + env(safe-area-inset-bottom));overflow-y:auto}
+  display:flex;flex-direction:column;
+  padding:calc(18px + env(safe-area-inset-top,0px)) 16px calc(18px + env(safe-area-inset-bottom,0px));overflow-y:auto}
 .drawer.open{transform:translateX(0)}
 .navscrim{display:block;position:fixed;inset:0;width:100vw;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:94}
 .navscrim.open{opacity:1;pointer-events:auto}
@@ -186,7 +189,7 @@ input.search:focus{border-color:rgba(143,233,255,.55);box-shadow:0 0 0 4px rgba(
 
 @media (max-width:760px){
   .burger{display:flex}
-  nav.tabs{top:6px}
+  nav.tabs{top:calc(6px + env(safe-area-inset-top,0px))}
 }
 
 /* ---------- boss list header ---------- */
@@ -236,5 +239,5 @@ footer a{color:var(--cyan);text-decoration:none}
   .pickart img{height:138px}
   .pickrow{gap:12px}
   .hname{font-size:26px}
-  .wrap{padding:14px 12px 80px}
+  .wrap{padding:calc(14px + env(safe-area-inset-top,0px)) calc(12px + env(safe-area-inset-right,0px)) 80px calc(12px + env(safe-area-inset-left,0px))}
 }
