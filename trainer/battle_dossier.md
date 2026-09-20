@@ -1,17 +1,17 @@
 # Khanh's Mezastar Battle Dossier
-_Private working document. Rebuilt 2026-09-20 from the official tag database cross referenced with your logged binder._
+_Private working document. Rebuilt 2026-09-20. Scope: Vietnam machines run Stardust Version 2 only._
 
 ## 0. Vietnam scope (important)
-Vietnam machines currently run **Stardust Version 1 and Stardust Version 2 only**. Stardust 3, Stardust 4, Galaxy 1 and Galaxy 2 are **not released here yet**, so every target in this document is restricted to the 143 tags available in Stardust 1 and 2. Galaxy era advice does not apply until the machines update.
+Vietnam machines currently run **Stardust Version 2 ONLY**. Stardust 1, Stardust 3, Stardust 4, Galaxy 1 and Galaxy 2 are **not released in Vietnam**, so every target in this document is restricted to the **73 tags in Stardust Version 2**.
 
-Confirmed by Khanh 2026-09-20.
+Confirmed by Khanh 2026-09-20. For the operator picture see `vn_operations.md`.
 
 ## 1. Your binder at a glance
 - **19 unique tags** (20 physical, Meowscarada 1-2-026 is a duplicate)
 - **3 Superstars (6★)**: Kyurem 156 PE, Snorlax 144 PE, Gardevoir 124 PE
 - **8 Stars (5★)**: Lucario 118, Sylveon 116, Empoleon 114, Espeon 112, Torterra 112, Flapple 110, Appletun 110, Drednaw 104
 - **8 standards (3★-4★)**: Gardevoir 96, Meowscarada 92, Pidgeot 82, Alolan Sandslash 78, Jynx 68, Togedemaru 68, Onix 64, Kadabra 62
-- All currently from Stardust Version 2
+- All from Stardust Version 2
 
 ## 2. Power ranking (top 10 by Poké Energy)
 1. 1-2-010 Kyurem 156 (Dragon/Ice)
@@ -71,40 +71,41 @@ Only one of these per battle, choose deliberately:
 - **Empoleon**: Electric, Fighting, Fire, Grass, Ground 2x.
 - **Grass core (Torterra, Flapple, Appletun)**: Bug, Fire, Flying, Ice, Poison, Water.
 
-## 8. Hunt list: Vietnam obtainable only
-### Your four missing attack types, best available in Stardust 1 and 2
-- **Fire**: Reshiram 1-2-008 **PE162** (Dragon/Fire, Fusion Flare, Superstar), then Charizard 1-1-009 PE124, Infernape 1-2-017 PE114, Arcanine 1-1-017 PE114, Flareon 1-1-012 PE108, Cinderace 1-1-022 PE108
-- **Poison**: Venusaur 1-1-008 **PE122** (Grass/Poison, Leaf Storm, Superstar), then Gengar 1-1-016 PE108
-- **Bug**: Vikavolt 1-1-062 PE88, Frosmoth 1-1-070 PE86, Charjabug 1-1-061 PE62 (Bug is the weakest type in the VN pool, so treat it as a low priority)
-- **Ghost**: Gengar 1-1-016 PE108 (Shadow Ball), Skeledirge 1-2-027 PE92 (Fire/Ghost, Hex), Drifblim 1-2-064 PE88
+## 8. Hunt list: Stardust Version 2 only (the 73 tags you can actually pull)
+### Your four missing attack types, best available in Stardust 2
+- **Fire**: Reshiram 1-2-008 **PE162 Superstar** (Dragon/Fire, Fusion Flare) then Infernape 1-2-017 PE114 (Z-Move), Skeledirge 1-2-027 PE92, Infernape 1-2-037 PE92, Flareon 1-2-042 PE90, Monferno 1-2-036 PE64
+- **Poison**: only **Mareanie 1-2-065 PE54** (Poison/Water). Stardust 2 has no strong Poison tag, so this gap stays unfillable for now
+- **Bug**: **nothing at all in Stardust 2**. No Bug type tag exists in this set, so this gap cannot be filled until Vietnam gets another version
+- **Ghost**: **Skeledirge 1-2-027 PE92** (Fire/Ghost, Hex) then Drifblim 1-2-064 PE88 (Hex), Drifloon 1-2-063 PE56
 
-**Efficiency pick**: Gengar 1-1-016 fixes **two** gaps at once (Poison and Ghost) at PE108. Skeledirge 1-2-027 also covers Fire and Ghost together.
+**Efficiency pick: Skeledirge 1-2-027.** One tag covers Fire AND Ghost, the only card in Stardust 2 that does. It is a 4-star so it is realistically obtainable, unlike the Superstars.
 
-### Best Superstars (6★) obtainable in Vietnam, ranked by PE
-| PE | ID | Name | Types | Set | Status |
-| --- | --- | --- | --- | --- | --- |
-| 162 | 1-2-003 | Koraidon | Fighting/Dragon | Stardust V2 | |
-| 162 | 1-2-008 | Reshiram | Dragon/Fire | Stardust V2 | fills Fire gap |
-| 162 | 1-2-009 | Zekrom | Dragon/Electric | Stardust V2 | |
-| 162 | 1-1-003 | Zacian | Fairy/Steel | Stardust V1 | |
-| 162 | 1-1-004 | Zamazenta | Fighting/Steel | Stardust V1 | |
-| 162 | 1-1-007 | Miraidon | Electric/Dragon | Stardust V1 | |
-| 158 | 1-2-006 | Kommo-o | Dragon/Fighting | Stardust V2 | |
-| 158 | 1-1-001 | Mewtwo | Psychic | Stardust V1 | |
-| 156 | 1-2-010 | Kyurem | Dragon/Ice | Stardust V2 | OWNED |
-| 152 | 1-2-001 | Kyogre | Water | Stardust V2 | |
-| 152 | 1-2-002 | Groudon | Ground | Stardust V2 | |
-| 144 | 1-2-005 | Snorlax | Normal | Stardust V2 | OWNED |
-| 144 | 1-1-005 | Tyranitar | Rock/Dark | Stardust V1 | |
-| 144 | 1-1-006 | Metagross | Steel/Psychic | Stardust V1 | |
-| 142 | 1-1-002 | Mew | Psychic | Stardust V1 | |
-| 124 | 1-2-007 | Gardevoir | Psychic/Fairy | Stardust V2 | OWNED |
-| 124 | 1-1-009 | Charizard | Fire/Flying | Stardust V1 | fills Fire gap |
-| 124 | 1-1-010 | Blastoise | Water | Stardust V1 | |
-| 122 | 1-1-008 | Venusaur | Grass/Poison | Stardust V1 | fills Poison gap |
-| 102 | 1-2-004 | Pikachu | Electric | Stardust V2 | |
+**Priority: Reshiram 1-2-008** if you can catch a Superstar (162 PE and your Fire gap closed permanently), otherwise Skeledirge.
 
-Priority order for you: **Reshiram** (Fire gap at 162 PE) then **Gengar** (double gap filler) then **Zacian or Zamazenta** (162 PE, new types Steel/Fairy and Fighting/Steel).
+### Stardust Version 2 Superstars (6★), ranked by PE
+| PE | ID | Name | Types | Status |
+| --- | --- | --- | --- | --- |
+| 162 | 1-2-003 | Koraidon | Fighting/Dragon | |
+| 162 | 1-2-008 | Reshiram | Dragon/Fire | fills Fire gap |
+| 162 | 1-2-009 | Zekrom | Dragon/Electric | |
+| 158 | 1-2-006 | Kommo-o | Dragon/Fighting | |
+| 156 | 1-2-010 | Kyurem | Dragon/Ice | OWNED |
+| 152 | 1-2-001 | Kyogre | Water | |
+| 152 | 1-2-002 | Groudon | Ground | |
+| 144 | 1-2-005 | Snorlax | Normal | OWNED |
+| 124 | 1-2-007 | Gardevoir | Psychic/Fairy | OWNED |
+| 102 | 1-2-004 | Pikachu | Electric | |
+
+### Best 5★ (Stars) you do not own yet, ranked by PE
+| PE | ID | Name | Types | Ability |
+| --- | --- | --- | --- | --- |
+| 132 | 1-2-020 | Tyranitar | Rock/Dark | Dynamax |
+| 132 | 1-2-021 | Metagross | Steel/Psychic | Dynamax |
+| 122 | 1-2-019 | Alolan Ninetales | Ice/Fairy | Z-Move |
+| 114 | 1-2-013 | Leafeon | Grass | |
+| 114 | 1-2-017 | Infernape | Fire/Fighting | Z-Move |
+| 112 | 1-2-024 | Alcremie | Fairy | |
+| 108 | 1-2-011 | Jolteon | Electric | |
 
 ## 9. Play tactics
 - Mash during the attack window; attack power builds to a cap, so late taps are wasted
@@ -115,6 +116,9 @@ Priority order for you: **Reshiram** (Fire gap at 162 PE) then **Gengar** (doubl
 - Co-op: both players catch, both get the tag, so agree targets before the battle
 - Carry only one Z-Move tag; a second one is dead weight for that session
 
-## 10. Open questions
+## 10. Events to enter
+Vietnam runs the official **TAG BATTLE CHALLENGE** tournament series, played in duos and scored, at the MEZASTAR STADIUM in SC VivoCity (HCMC). Registration is now combined online plus offline. Details in `vn_operations.md`.
+
+## 11. Open questions
 - Do you play solo or co-op, and are you usually fighting bosses or farming tags?
-- Does your local arcade have both Stardust 1 and Stardust 2 cabinets, or only one of them?
+- Do you play at the SC VivoCity stadium, and do you enter the Tag Battle Challenge events?
