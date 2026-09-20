@@ -43,7 +43,9 @@
   <nav class="tabs">
     <button class="on" data-tab="binder">My Binder</button>
     <button data-tab="boss">Boss Counter</button>
-    <button data-tab="load">Loadout</button>
+    <button data-tab="load">Team Lab</button>
+    <button data-tab="hunt">Hunt List</button>
+    <button data-tab="stats">Stats</button>
   </nav>
 
   <div class="scrim navscrim" id="navScrim"></div>
@@ -53,8 +55,10 @@
       <div><div class="dname">Mezastar Binder</div><div class="dsub">Stardust V2 · Vietnam</div></div>
     </div>
     <button class="dlink on" data-tab="binder"><span class="di">📇</span> My Binder</button>
-    <button class="dlink on-sep" data-tab="boss"><span class="di">⚔️</span> Boss Counter</button>
-    <button class="dlink" data-tab="load"><span class="di">🎯</span> Loadout</button>
+    <button class="dlink" data-tab="boss"><span class="di">⚔️</span> Boss Counter</button>
+    <button class="dlink" data-tab="load"><span class="di">🎯</span> Team Lab</button>
+    <button class="dlink" data-tab="hunt"><span class="di">🧭</span> Hunt List</button>
+    <button class="dlink" data-tab="stats"><span class="di">📊</span> Stats</button>
     <div class="dsect">Quick bosses</div>
     <div class="dchips" id="drawerChips"></div>
     <div class="dfoot">Personal binder · data on <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">GitHub</a><br>Stardust V2 only · built by Hermes</div>
@@ -66,8 +70,15 @@
       <input class="search" id="q" placeholder="Search my tags by name, id or type…" autocomplete="off">
       <button class="btn act" id="sortBtn" data-sort="pe">PE ↓</button>
       <button class="btn" id="sortName" data-sort="name">A to Z</button>
+      <button class="btn" id="sortDense" data-sort="dense">⚡ Density</button>
     </div>
+    <div class="chips" id="gradeChips"></div>
     <div class="chips" id="typeChips"></div>
+    <div class="cmpbar glass" id="cmpBar">
+      <span id="cmpCount">0</span> selected
+      <button class="btn act" id="cmpGo">⚖ Compare</button>
+      <button class="btn" id="cmpClear">✕</button>
+    </div>
     <div class="grid" id="grid"><div class="spin"></div></div>
   </section>
 
@@ -75,10 +86,14 @@
   <section class="panel" id="p-boss">
     <div class="tools glass">
       <input class="search" id="bq" placeholder="Type the boss you just met… (kyurem, koraidon, skele)" autocomplete="off">
+      <button class="btn" id="drillBtn">🎲 Drill</button>
+      <button class="btn" id="safeBtn" title="Prefer tags this boss cannot punish">🛡 Safe</button>
       <button class="btn" id="clearBoss">Reset</button>
     </div>
     <div class="chips" id="bossChips"></div>
     <div id="bossResult"></div>
+    <div id="trioBox"></div>
+    <div id="compareBox"></div>
     <div class="listhead">
       <h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase">Or pick from the boss list</h3>
       <div class="poolbox">
@@ -89,9 +104,32 @@
     <div class="glass" style="padding:10px"><div class="bossgrid" id="bossGrid"></div></div>
   </section>
 
-  <!-- ============ LOADOUT ============ -->
+  <!-- ============ TEAM LAB ============ -->
   <section class="panel" id="p-load">
     <div id="loadout"><div class="spin"></div></div>
+  </section>
+
+  <!-- ============ HUNT LIST ============ -->
+  <section class="panel" id="p-hunt">
+    <div class="tools glass">
+      <input class="search" id="pq" placeholder="Search the 66 tag Stardust V2 pool…" autocomplete="off">
+      <div class="btn-group" id="huntModes">
+        <button class="btn act" data-m="missing">🎯 Missing</button>
+        <button class="btn" data-m="wish">♥ Wishlist</button>
+        <button class="btn" data-m="dupes">⧉ Dupes</button>
+        <button class="btn" data-m="all">All</button>
+      </div>
+    </div>
+    <div class="chips" id="poolTypeChips"></div>
+    <div class="hint" style="margin:4px 0 10px" id="huntCount"></div>
+    <div id="huntSummary"></div>
+    <div class="grid" id="pgrid"><div class="spin"></div></div>
+  </section>
+
+  <!-- ============ STATS & TOOLS ============ -->
+  <section class="panel" id="p-stats">
+    <div class="hint" id="tipLine" style="margin-bottom:12px"></div>
+    <div id="statsBox"></div>
   </section>
 
   <footer>

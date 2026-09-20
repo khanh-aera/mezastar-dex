@@ -192,6 +192,32 @@ bosses.sort(key=lambda b: b["name"])
 json.dump({"owner": RAW.get("owner", "Khanh Ngo An"), "built": "2026-09-20",
            "count": len(roster), "tags": roster}, open(os.path.join(OUT, "data", "roster.json"), "w", encoding="utf-8"),
           ensure_ascii=False, indent=1)
+
+# ---------- Stardust V2 pool (everything obtainable on VN machines) ----------
+pool, pdone = [], set()
+for e in DB:
+    if not str(e.get("version", "")).startswith("Stardust V2"): continue
+    n = e.get("name")
+    if not n or n in pdone: continue
+    pdone.add(n)
+    ts = tlist(e.get("types"))
+    if not ts: continue
+    src = find_png(e.get("id"), n)
+    img = save_art(src) if src else ""
+    beats = [bt for bt in T if max((CH[at][bt] for at in ts), default=1.0) >= 2]
+    weak = [bt for bt in T if max((CH[bt][d] for d in ts), default=1.0) >= 2]
+    resist = [bt for bt in T if ts and max((CH[bt][d] for d in ts), default=1.0) <= 0.5]
+    try: pe = int(e.get("pe") or 0)
+    except Exception: pe = 0
+    pool.append({"id": e.get("id"), "name": n, "types": ts, "pe": pe,
+                 "grade": str(e.get("grade") or ""), "tier": e.get("tier") or "",
+                 "ability": e.get("ability") or "", "moves": e.get("moves") or "",
+                 "beats": beats, "weak": weak, "resist": resist, "img": img})
+pool.sort(key=lambda x: -x["pe"])
+json.dump({"version": "Stardust V2", "built": "2026-09-20", "count": len(pool), "tags": pool},
+          open(os.path.join(OUT, "data", "pool.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+print(f"pool (Stardust V2): {len(pool)} tags")
+
 json.dump({"count": len(bosses), "bosses": bosses}, open(os.path.join(OUT, "data", "bosses.json"), "w", encoding="utf-8"),
           ensure_ascii=False, indent=1)
 json.dump({"types": T, "chart": CH}, open(os.path.join(OUT, "data", "typechart.json"), "w", encoding="utf-8"))

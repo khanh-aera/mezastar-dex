@@ -1,7 +1,7 @@
 /* Mezastar Binder service worker. Bump VERSION whenever the site changes. */
-const VERSION = "mezastar-v2";
+const VERSION = "mezastar-v3";
 const SHELL = ["./", "index.html", "assets/style.css", "assets/app.js",
-  "data/roster.json", "data/bosses.json", "data/typechart.json",
+  "data/roster.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
   "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", e => {
