@@ -1,116 +1,135 @@
 {
  "1-2-005": {
-  "pe": 144,
+  "pe": "144",
   "types": "Normal",
-  "ability": null,
-  "grade_group": "Superstar Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Superstar Pokémon"
  },
  "1-2-026": {
-  "pe": 92,
-  "types": "Grass, Dark Move(s) Night Slash",
-  "ability": null,
-  "grade_group": "4 Star"
+  "pe": "92",
+  "types": "Grass, Dark",
+  "ability": "",
+  "moves": "Night Slash",
+  "group": "4 Star"
  },
  "1-2-049": {
-  "pe": 82,
+  "pe": "82",
   "types": "Normal, Flying",
-  "ability": null,
-  "grade_group": "4 Star"
+  "ability": "",
+  "moves": "",
+  "group": "4 Star"
  },
  "1-2-051": {
-  "pe": 78,
+  "pe": "78",
   "types": "Ice, Steel",
-  "ability": null,
-  "grade_group": "4 Star"
+  "ability": "",
+  "moves": "",
+  "group": "4 Star"
  },
  "1-2-059": {
-  "pe": 68,
-  "types": "Ice, Psychic Move(s) Avalanche",
-  "ability": null,
-  "grade_group": "3 Star"
+  "pe": "68",
+  "types": "Ice, Psychic",
+  "ability": "",
+  "moves": "Avalanche",
+  "group": "3 Star"
  },
  "1-2-061": {
-  "pe": 62,
-  "types": "Psychic Move(s) Psybeam",
-  "ability": null,
-  "grade_group": "3 Star"
+  "pe": "62",
+  "types": "Psychic",
+  "ability": "",
+  "moves": "Psybeam",
+  "group": "3 Star"
  },
  "1-2-066": {
-  "pe": 68,
-  "types": "Electric, Steel Move(s) Spark",
-  "ability": null,
-  "grade_group": "3 Star"
+  "pe": "68",
+  "types": "Electric, Steel",
+  "ability": "",
+  "moves": "Spark",
+  "group": "3 Star"
  },
  "1-2-069": {
-  "pe": 96,
+  "pe": "96",
   "types": "Psychic, Fairy",
-  "ability": null,
-  "grade_group": "4 Star"
+  "ability": "",
+  "moves": "",
+  "group": "4 Star"
  },
  "1-2-070": {
-  "pe": 64,
+  "pe": "64",
   "types": "Rock, Ground",
-  "ability": null,
-  "grade_group": "3 Star"
+  "ability": "",
+  "moves": "",
+  "group": "3 Star"
  },
  "1-2-007": {
-  "pe": 124,
+  "pe": "124",
   "types": "Psychic, Fairy",
-  "ability": null,
-  "grade_group": "Superstar Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Superstar Pokémon"
  },
  "1-2-010": {
-  "pe": 156,
+  "pe": "156",
   "types": "Dragon, Ice",
-  "ability": null,
-  "grade_group": "Superstar Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Superstar Pokémon"
  },
  "1-2-012": {
-  "pe": 112,
+  "pe": "112",
   "types": "Psychic",
-  "ability": null,
-  "grade_group": "Star Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Star Pokémon"
  },
  "1-2-014": {
-  "pe": 116,
-  "types": "Fairy Move(s) Moonblast",
-  "ability": null,
-  "grade_group": "Star Pok\u00e9mon"
+  "pe": "116",
+  "types": "Fairy",
+  "ability": "",
+  "moves": "Moonblast",
+  "group": "Star Pokémon"
  },
  "1-2-015": {
-  "pe": 118,
+  "pe": "118",
   "types": "Fighting, Steel",
-  "ability": "Mega Evolution Move(s) Aura Sphere",
-  "grade_group": "Star Pok\u00e9mon"
+  "ability": "Mega Evolution",
+  "moves": "Aura Sphere",
+  "group": "Star Pokémon"
  },
  "1-2-016": {
-  "pe": 112,
+  "pe": "112",
   "types": "Grass, Ground",
   "ability": "Z-Move",
-  "grade_group": "Star Pok\u00e9mon"
+  "moves": "",
+  "group": "Star Pokémon"
  },
  "1-2-018": {
-  "pe": 114,
+  "pe": "114",
   "types": "Water, Steel",
-  "ability": "Z-Move Move(s) Flash Cannon, Corkscrew Crash",
-  "grade_group": "Star Pok\u00e9mon"
+  "ability": "Z-Move",
+  "moves": "Flash Cannon, Corkscrew Crash",
+  "group": "Star Pokémon"
  },
  "1-2-022": {
-  "pe": 110,
-  "types": "Grass, Dragon Move(s) Dragon Rush",
-  "ability": null,
-  "grade_group": "Star Pok\u00e9mon"
+  "pe": "110",
+  "types": "Grass, Dragon",
+  "ability": "",
+  "moves": "Dragon Rush",
+  "group": "Star Pokémon"
  },
  "1-2-023": {
-  "pe": 110,
+  "pe": "110",
   "types": "Grass, Dragon",
-  "ability": null,
-  "grade_group": "Star Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Star Pokémon"
  },
  "1-2-025": {
-  "pe": 104,
+  "pe": "104",
   "types": "Water, Rock",
-  "ability": null,
-  "grade_group": "Star Pok\u00e9mon"
+  "ability": "",
+  "moves": "",
+  "group": "Star Pokémon"
  }
 }

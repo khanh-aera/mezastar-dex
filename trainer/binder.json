@@ -1,7 +1,7 @@
 {
  "owner": "Khanh Ngo An (khanh-aera)",
  "last_updated": "2026-09-20",
- "note": "Physical Meza Tag binder. 20 physical tags, 19 unique IDs (1-2-026 Meowscarada duplicated).",
+ "note": "Physical Meza Tag binder. 20 physical tags, 19 unique IDs. Vietnam machines currently run Stardust Version 1 and 2 only.",
  "count_unique": 19,
  "tags": [
   {
@@ -9,10 +9,11 @@
    "name": "Kyurem",
    "version": "Stardust V2",
    "tier": "Superstar Pokémon",
-   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-   "pe": 156,
+   "grade": "6",
+   "pe": "156",
    "types": "Dragon, Ice",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-010_Kyurem.png"
   },
   {
@@ -20,10 +21,11 @@
    "name": "Snorlax",
    "version": "Stardust V2",
    "tier": "Superstar Pokémon",
-   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-   "pe": 144,
+   "grade": "6",
+   "pe": "144",
    "types": "Normal",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-005_Snorlax.png"
   },
   {
@@ -31,10 +33,11 @@
    "name": "Gardevoir",
    "version": "Stardust V2",
    "tier": "Superstar Pokémon",
-   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-   "pe": 124,
+   "grade": "6",
+   "pe": "124",
    "types": "Psychic, Fairy",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-007_Gardevoir.png"
   },
   {
@@ -42,10 +45,11 @@
    "name": "Lucario",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 118,
+   "grade": "5",
+   "pe": "118",
    "types": "Fighting, Steel",
-   "ability": "Mega Evolution Move(s) Aura Sphere",
+   "ability": "Mega Evolution",
+   "moves": "Aura Sphere",
    "image": "images/Stardust_V2/1-2-015_Lucario.png"
   },
   {
@@ -53,10 +57,11 @@
    "name": "Sylveon",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 116,
-   "types": "Fairy Move(s) Moonblast",
-   "ability": null,
+   "grade": "5",
+   "pe": "116",
+   "types": "Fairy",
+   "ability": "",
+   "moves": "Moonblast",
    "image": "images/Stardust_V2/1-2-014_Sylveon.png"
   },
   {
@@ -64,10 +69,11 @@
    "name": "Empoleon",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 114,
+   "grade": "5",
+   "pe": "114",
    "types": "Water, Steel",
-   "ability": "Z-Move Move(s) Flash Cannon, Corkscrew Crash",
+   "ability": "Z-Move",
+   "moves": "Flash Cannon, Corkscrew Crash",
    "image": "images/Stardust_V2/1-2-018_Empoleon.png"
   },
   {
@@ -75,10 +81,11 @@
    "name": "Espeon",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 112,
+   "grade": "5",
+   "pe": "112",
    "types": "Psychic",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-012_Espeon.png"
   },
   {
@@ -86,10 +93,11 @@
    "name": "Torterra",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 112,
+   "grade": "5",
+   "pe": "112",
    "types": "Grass, Ground",
    "ability": "Z-Move",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-016_Torterra.png"
   },
   {
@@ -97,10 +105,11 @@
    "name": "Flapple",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 110,
-   "types": "Grass, Dragon Move(s) Dragon Rush",
-   "ability": null,
+   "grade": "5",
+   "pe": "110",
+   "types": "Grass, Dragon",
+   "ability": "",
+   "moves": "Dragon Rush",
    "image": "images/Stardust_V2/1-2-022_Flapple.png"
   },
   {
@@ -108,10 +117,11 @@
    "name": "Appletun",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 110,
+   "grade": "5",
+   "pe": "110",
    "types": "Grass, Dragon",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-023_Appletun.png"
   },
   {
@@ -119,10 +129,11 @@
    "name": "Drednaw",
    "version": "Stardust V2",
    "tier": "Star Pokémon",
-   "rarity": "5★ Star (holofoil)",
-   "pe": 104,
+   "grade": "5",
+   "pe": "104",
    "types": "Water, Rock",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-025_Drednaw.png"
   },
   {
@@ -130,10 +141,11 @@
    "name": "Gardevoir",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 96,
+   "grade": "4",
+   "pe": "96",
    "types": "Psychic, Fairy",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-069_Gardevoir.png"
   },
   {
@@ -141,10 +153,11 @@
    "name": "Meowscarada",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 92,
-   "types": "Grass, Dark Move(s) Night Slash",
-   "ability": null,
+   "grade": "4",
+   "pe": "92",
+   "types": "Grass, Dark",
+   "ability": "",
+   "moves": "Night Slash",
    "image": "images/Stardust_V2/1-2-026_Meowscarada.png"
   },
   {
@@ -152,10 +165,11 @@
    "name": "Pidgeot",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 82,
+   "grade": "4",
+   "pe": "82",
    "types": "Normal, Flying",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-049_Pidgeot.png"
   },
   {
@@ -163,10 +177,11 @@
    "name": "Alolan Sandslash",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 78,
+   "grade": "4",
+   "pe": "78",
    "types": "Ice, Steel",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-051_Alolan_Sandslash.png"
   },
   {
@@ -174,10 +189,11 @@
    "name": "Jynx",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 68,
-   "types": "Ice, Psychic Move(s) Avalanche",
-   "ability": null,
+   "grade": "3",
+   "pe": "68",
+   "types": "Ice, Psychic",
+   "ability": "",
+   "moves": "Avalanche",
    "image": "images/Stardust_V2/1-2-059_Jynx.png"
   },
   {
@@ -185,10 +201,11 @@
    "name": "Togedemaru",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 68,
-   "types": "Electric, Steel Move(s) Spark",
-   "ability": null,
+   "grade": "3",
+   "pe": "68",
+   "types": "Electric, Steel",
+   "ability": "",
+   "moves": "Spark",
    "image": "images/Stardust_V2/1-2-066_Togedemaru.png"
   },
   {
@@ -196,10 +213,11 @@
    "name": "Onix",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 64,
+   "grade": "3",
+   "pe": "64",
    "types": "Rock, Ground",
-   "ability": null,
+   "ability": "",
+   "moves": "",
    "image": "images/Stardust_V2/1-2-070_Onix.png"
   },
   {
@@ -207,10 +225,11 @@
    "name": "Kadabra",
    "version": "Stardust V2",
    "tier": "★2~4 Pokémon",
-   "rarity": "2★-4★ standard pool",
-   "pe": 62,
-   "types": "Psychic Move(s) Psybeam",
-   "ability": null,
+   "grade": "3",
+   "pe": "62",
+   "types": "Psychic",
+   "ability": "",
+   "moves": "Psybeam",
    "image": "images/Stardust_V2/1-2-061_Kadabra.png"
   }
  ]

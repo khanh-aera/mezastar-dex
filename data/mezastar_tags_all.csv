@@ -1,436 +1,436 @@
-﻿version,id,name,tier,rarity,types,ability,pe,img
-Galaxy V2,2-2-001,Zacian,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Fairy",Double Move,206,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-002_f.png
-Galaxy V2,2-2-002,Zamazenta,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Fighting",Double Move,206,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-003_f.png
-Galaxy V2,2-2-003,Duraludon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Dragon",Gigantamax,158,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-004_f.png
-Galaxy V2,2-2-004,Charizard,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fire, Flying",Gigantamax,150,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-005_f.png
-Galaxy V2,2-2-005,Zarude,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dark, Grass",Dynamax,166,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-006_f.png
-Galaxy V2,2-2-006,Lucario,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fighting, Steel",Dynamax,146,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-007_f.png
-Galaxy V2,2-2-007,Rayquaza,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Flying",Mega Evolution,184,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-008_f.png
-Galaxy V2,2-2-008,Latias,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Psychic",,164,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-009_f.png
-Galaxy V2,2-2-009,Latios,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Psychic",,164,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-010_f.png
-Galaxy V2,2-2-010,Naganadel,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Poison, Dragon",,150,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-011_f.png
-Galaxy V2,2-2-011,Metagross,Star Pokémon,5★ Star (holofoil),"Steel, Psychic",Mega Evolution,144,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-012_f.png
-Galaxy V2,2-2-012,Haxorus,Star Pokémon,5★ Star (holofoil),Dragon,Z-Move,132,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-013_f.png
-Galaxy V2,2-2-013,Aerodactyl,Star Pokémon,5★ Star (holofoil),"Rock, Flying",Z-Move,128,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-014_f.png
-Galaxy V2,2-2-014,Dracozolt,Star Pokémon,5★ Star (holofoil),"Electric, Dragon",Dynamax,138,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-015_f.png
-Galaxy V2,2-2-015,Dracovish,Star Pokémon,5★ Star (holofoil),"Water, Dragon",Dynamax,138,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-016_f.png
-Galaxy V2,2-2-016,Alakazam,Star Pokémon,5★ Star (holofoil),Psychic,Dynamax,128,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-017_f.png
-Galaxy V2,2-2-017,Arctozolt,Star Pokémon,5★ Star (holofoil),"Ice, Electric",,136,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-018_f.png
-Galaxy V2,2-2-018,Golisopod,Star Pokémon,5★ Star (holofoil),"Bug, Water",,132,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-019_f.png
-Galaxy V2,2-2-019,Serperior,Star Pokémon,5★ Star (holofoil),Grass,Chain Tag,144,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-020_f.png
-Galaxy V2,2-2-020,Emboar,Star Pokémon,5★ Star (holofoil),"Fire, Fighting",Chain Tag,144,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-021_f.png
-Galaxy V2,2-2-021,Samurott,Star Pokémon,5★ Star (holofoil),Water,Chain Tag,144,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-022_f.png
-Galaxy V2,2-2-022,Iron Treads,Star Pokémon,5★ Star (holofoil),Ground,,148,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-023_f.png
-Galaxy V2,2-2-023,Poipole,Star Pokémon,5★ Star (holofoil),Poison,,110,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-024_f.png
-Galaxy V2,2-2-024,Hatterene,Star Pokémon,5★ Star (holofoil),"Psychic, Fairy",,128,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-025_f.png
-Galaxy V2,2-2-025,Absol,Star Pokémon,5★ Star (holofoil),Dark,,130,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-026_f.png
-Galaxy V2,2-2-026,Floragato,★2~4 Pokémon,2★-4★ standard pool,Grass,,84,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-027_f.png
-Galaxy V2,2-2-027,Meowscarada,★2~4 Pokémon,2★-4★ standard pool,"Grass, Dark",,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-028_f.png
-Galaxy V2,2-2-028,Crocalor,★2~4 Pokémon,2★-4★ standard pool,Fire,,84,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-029_f.png
-Galaxy V2,2-2-029,Skeledirge,★2~4 Pokémon,2★-4★ standard pool,"Fire, Ghost",,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-030_f.png
-Galaxy V2,2-2-030,Quaxwell,★2~4 Pokémon,2★-4★ standard pool,Water,,84,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-031_f.png
-Galaxy V2,2-2-031,Quaquaval,★2~4 Pokémon,2★-4★ standard pool,"Water, Fighting",,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-032_f.png
-Galaxy V2,2-2-032,Snivy,★2~4 Pokémon,2★-4★ standard pool,Grass,,46,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-033_f.png
-Galaxy V2,2-2-033,Servine,★2~4 Pokémon,2★-4★ standard pool,Grass,,84,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-034_f.png
-Galaxy V2,2-2-034,Serperior,★2~4 Pokémon,2★-4★ standard pool,Grass,,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-035_f.png
-Galaxy V2,2-2-035,Tepig,★2~4 Pokémon,2★-4★ standard pool,Fire,,46,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-036_f.png
-Galaxy V2,2-2-036,Pignite,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",,86,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-037_f.png
-Galaxy V2,2-2-037,Emboar,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-038_f.png
-Galaxy V2,2-2-038,Oshawott,★2~4 Pokémon,2★-4★ standard pool,Water,,46,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-039_f.png
-Galaxy V2,2-2-039,Dewott,★2~4 Pokémon,2★-4★ standard pool,Water,,84,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-040_f.png
-Galaxy V2,2-2-040,Samurott,★2~4 Pokémon,2★-4★ standard pool,Water,,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-041_f.png
-Galaxy V2,2-2-041,Poliwag,★2~4 Pokémon,2★-4★ standard pool,Water,,42,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-042_f.png
-Galaxy V2,2-2-042,Poliwhirl,★2~4 Pokémon,2★-4★ standard pool,Water,,74,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-043_f.png
-Galaxy V2,2-2-043,Poliwrath,★2~4 Pokémon,2★-4★ standard pool,"Water, Fighting",,108,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-044_f.png
-Galaxy V2,2-2-044,Feebas,★2~4 Pokémon,2★-4★ standard pool,Water,,32,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-045_f.png
-Galaxy V2,2-2-045,Milotic,★2~4 Pokémon,2★-4★ standard pool,Water,,112,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-046_f.png
-Galaxy V2,2-2-046,Tynamo,★2~4 Pokémon,2★-4★ standard pool,Electric,,42,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-047_f.png
-Galaxy V2,2-2-047,Eelektrik,★2~4 Pokémon,2★-4★ standard pool,Electric,,82,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-048_f.png
-Galaxy V2,2-2-048,Eelektross,★2~4 Pokémon,2★-4★ standard pool,Electric,,112,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-049_f.png
-Galaxy V2,2-2-049,Ralts,★2~4 Pokémon,2★-4★ standard pool,Psychic,,34,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-050_f.png
-Galaxy V2,2-2-050,Kirlia,★2~4 Pokémon,2★-4★ standard pool,Psychic,,60,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-051_f.png
-Galaxy V2,2-2-051,Gardevoir,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fairy",,114,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-052_f.png
-Galaxy V2,2-2-052,Gallade,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fighting",,114,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-053_f.png
-Galaxy V2,2-2-053,Venipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",,40,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-054_f.png
-Galaxy V2,2-2-054,Whirlipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",,76,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-055_f.png
-Galaxy V2,2-2-055,Scolipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",,110,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-056_f.png
-Galaxy V2,2-2-056,Skwovet,★2~4 Pokémon,2★-4★ standard pool,Normal,,40,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-057_f.png
-Galaxy V2,2-2-057,Greedent,★2~4 Pokémon,2★-4★ standard pool,Normal,,98,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-058_f.png
-Galaxy V2,2-2-058,Spheal,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",,44,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-059_f.png
-Galaxy V2,2-2-059,Sealeo,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",,82,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-060_f.png
-Galaxy V2,2-2-060,Walrein,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",,116,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-061_f.png
-Galaxy V2,2-2-061,Budew,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",,40,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-062_f.png
-Galaxy V2,2-2-062,Roselia,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",,76,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-063_f.png
-Galaxy V2,2-2-063,Roserade,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",,108,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-064_f.png
-Galaxy V2,2-2-064,Milcery,★2~4 Pokémon,2★-4★ standard pool,Fairy,,42,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-065_f.png
-Galaxy V2,2-2-065,Alcremie,★2~4 Pokémon,2★-4★ standard pool,Fairy,,112,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-066_f.png
-Galaxy V2,2-2-066,Elekid,★2~4 Pokémon,2★-4★ standard pool,Electric,,50,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-067_f.png
-Galaxy V2,2-2-067,Electabuzz,★2~4 Pokémon,2★-4★ standard pool,Electric,,96,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-068_f.png
-Galaxy V2,2-2-068,Electivire,★2~4 Pokémon,2★-4★ standard pool,Electric,,118,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-069_f.png
-Galaxy V2,2-2-069,Galarian Meowth,★2~4 Pokémon,2★-4★ standard pool,Steel,,42,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-070_f.png
-Galaxy V2,2-2-070,Perrserker,★2~4 Pokémon,2★-4★ standard pool,Steel,,82,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-1_f.png
-Galaxy V2,R-2-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-2_f.png
-Galaxy V2,R-2-2,Charizard,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-3_f.png
-Galaxy V2,R-2-3,Gengar,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/A5-01.jpg
-Galaxy V1,2-1-001,Rillaboom,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-002_f.jpg
-Galaxy V1,2-1-002,Cinderace,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-003_f.jpg
-Galaxy V1,2-1-003,Inteleon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-004_f.jpg
-Galaxy V1,2-1-004,Pikachu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-005_f.jpg
-Galaxy V1,2-1-005,Raikou,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-006_f.jpg
-Galaxy V1,2-1-006,Entei,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-007_f.jpg
-Galaxy V1,2-1-007,Suicune,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-008_f.jpg
-Galaxy V1,2-1-008,Mewtwo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-009_f.jpg
-Galaxy V1,2-1-009,Arceus,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-010_f.jpg
-Galaxy V1,2-1-010,Hisuian Zoroark,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-011_f.jpg
-Galaxy V1,2-1-011,Pinsir,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-012_f.jpg
-Galaxy V1,2-1-012,Heracross,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-013_f.jpg
-Galaxy V1,2-1-013,Keldeo,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-014_f.jpg
-Galaxy V1,2-1-014,Weavile,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-015_f.jpg
-Galaxy V1,2-1-015,Sirfetch'd,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-016_f.jpg
-Galaxy V1,2-1-016,Nidoking,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-017_f.jpg
-Galaxy V1,2-1-017,Flygon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-018_f.jpg
-Galaxy V1,2-1-018,Arctovish,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-019_f.jpg
-Galaxy V1,2-1-019,Electivire,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-020_f.jpg
-Galaxy V1,2-1-020,Magmortar,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-021_f.jpg
-Galaxy V1,2-1-021,Toxtricity,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-022_f.jpg
-Galaxy V1,2-1-022,Toxtricity,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-023_f.jpg
-Galaxy V1,2-1-023,Great Tusk,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-024_f.jpg
-Galaxy V1,2-1-024,Vikavolt,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-025_f.jpg
-Galaxy V1,2-1-025,Abomasnow,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-026_f.jpg
-Galaxy V1,2-1-026,Sprigatito,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-027_f.jpg
-Galaxy V1,2-1-027,Fuecoco,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-028_f.jpg
-Galaxy V1,2-1-028,Quaxly,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-029_f.jpg
-Galaxy V1,2-1-029,Charcadet,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-030_f.jpg
-Galaxy V1,2-1-030,Frigibax,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-031_f.jpg
-Galaxy V1,2-1-031,Pawmi,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-032_f.jpg
-Galaxy V1,2-1-032,Grookey,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-033_f.jpg
-Galaxy V1,2-1-033,Thwackey,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-034_f.jpg
-Galaxy V1,2-1-034,Rillaboom,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-035_f.jpg
-Galaxy V1,2-1-035,Scorbunny,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-036_f.jpg
-Galaxy V1,2-1-036,Raboot,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-037_f.jpg
-Galaxy V1,2-1-037,Cinderace,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-038_f.jpg
-Galaxy V1,2-1-038,Sobble,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-039_f.jpg
-Galaxy V1,2-1-039,Drizzile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-040_f.jpg
-Galaxy V1,2-1-040,Inteleon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-041_f.jpg
-Galaxy V1,2-1-041,Snover,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-042_f.jpg
-Galaxy V1,2-1-042,Abomasnow,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-043_f.jpg
-Galaxy V1,2-1-043,Drifloon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-044_f.jpg
-Galaxy V1,2-1-044,Drifblim,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-045_f.jpg
-Galaxy V1,2-1-045,Hisuian Zorua,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-046_f.jpg
-Galaxy V1,2-1-046,Hisuian Zoroark,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-047_f.jpg
-Galaxy V1,2-1-047,Lileep,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-048_f.jpg
-Galaxy V1,2-1-048,Cradily,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-049_f.jpg
-Galaxy V1,2-1-049,Galarian Farfetch'd,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-050_f.jpg
-Galaxy V1,2-1-050,Sirfetch'd,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-051_f.jpg
-Galaxy V1,2-1-051,Drilbur,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-052_f.jpg
-Galaxy V1,2-1-052,Excadrill,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-053_f.jpg
-Galaxy V1,2-1-053,Magby,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-054_f.jpg
-Galaxy V1,2-1-054,Magmar,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-055_f.jpg
-Galaxy V1,2-1-055,Magmortar,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-056_f.jpg
-Galaxy V1,2-1-056,Growlithe,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-057_f.jpg
-Galaxy V1,2-1-057,Arcanine,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-058_f.jpg
-Galaxy V1,2-1-058,Toxel,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-059_f.jpg
-Galaxy V1,2-1-059,Toxtricity,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-060_f.jpg
-Galaxy V1,2-1-060,Toxtricity,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-061_f.jpg
-Galaxy V1,2-1-061,Gossifleur,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-062_f.jpg
-Galaxy V1,2-1-062,Eldegoss,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-063_f.jpg
-Galaxy V1,2-1-063,Sneasel,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-064_f.jpg
-Galaxy V1,2-1-064,Weavile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-065_f.jpg
-Galaxy V1,2-1-065,Nidoran♀,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-066_f.jpg
-Galaxy V1,2-1-066,Nidorina,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-067_f.jpg
-Galaxy V1,2-1-067,Nidoqueen,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-068_f.jpg
-Galaxy V1,2-1-068,Nidoran♂,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-069_f.jpg
-Galaxy V1,2-1-069,Nidorino,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-070_f.jpg
-Galaxy V1,2-1-070,Nidoking,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-1_f.jpg
-Galaxy V1,R-2-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-2_f.jpg
-Galaxy V1,R-2-2,Charizard,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-3_f.jpg
-Galaxy V1,R-2-3,Gengar,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/A5-01.jpg
-Stardust V4,1-4-001,Dialga,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-002_f.jpg
-Stardust V4,1-4-002,Palkia,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-003_f.jpg
-Stardust V4,1-4-003,Xerneas,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-004_f.jpg
-Stardust V4,1-4-004,Yveltal,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-005_f.jpg
-Stardust V4,1-4-005,Calyrex,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-006_f.jpg
-Stardust V4,1-4-006,Calyrex,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-007_f.jpg
-Stardust V4,1-4-007,Mimikyu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-008_f.jpg
-Stardust V4,1-4-008,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-009_f.jpg
-Stardust V4,1-4-009,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-010_f.jpg
-Stardust V4,1-4-010,Rayquaza,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-011_f.jpg
-Stardust V4,1-4-011,Aggron,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-012_f.jpg
-Stardust V4,1-4-012,Meganium,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-013_f.jpg
-Stardust V4,1-4-013,Typhlosion,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-014_f.jpg
-Stardust V4,1-4-014,Feraligatr,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-015_f.jpg
-Stardust V4,1-4-015,Goodra,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-016_f.jpg
-Stardust V4,1-4-016,Corviknight,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-017_f.jpg
-Stardust V4,1-4-017,Runerigus,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-018_f.jpg
-Stardust V4,1-4-018,Machamp,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-019_f.jpg
-Stardust V4,1-4-019,Gardevoir,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-020_f.jpg
-Stardust V4,1-4-020,Obstagoon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-021_f.jpg
-Stardust V4,1-4-021,Regieleki,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-022_f.jpg
-Stardust V4,1-4-022,Regidrago,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-023_f.jpg
-Stardust V4,1-4-023,Iron Treads,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-024_f.jpg
-Stardust V4,1-4-024,Copperajah,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-025_f.jpg
-Stardust V4,1-4-025,Talonflame,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-026_f.jpg
-Stardust V4,1-4-026,Ceruledge,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-027_f.jpg
-Stardust V4,1-4-027,Baxcalibur,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-028_f.jpg
-Stardust V4,1-4-028,Chikorita,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-029_f.jpg
-Stardust V4,1-4-029,Bayleef,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-030_f.jpg
-Stardust V4,1-4-030,Meganium,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-031_f.jpg
-Stardust V4,1-4-031,Cyndaquil,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-032_f.jpg
-Stardust V4,1-4-032,Quilava,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-033_f.jpg
-Stardust V4,1-4-033,Typhlosion,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-034_f.jpg
-Stardust V4,1-4-034,Totodile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-035_f.jpg
-Stardust V4,1-4-035,Croconaw,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-036_f.jpg
-Stardust V4,1-4-036,Feraligatr,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-037_f.jpg
-Stardust V4,1-4-037,Dreepy,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-038_f.jpg
-Stardust V4,1-4-038,Drakloak,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-039_f.jpg
-Stardust V4,1-4-039,Dragapult,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-040_f.jpg
-Stardust V4,1-4-040,Sinistea,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-041_f.jpg
-Stardust V4,1-4-041,Polteageist,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-042_f.jpg
-Stardust V4,1-4-042,Drampa,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-043_f.jpg
-Stardust V4,1-4-043,Elekid,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-044_f.jpg
-Stardust V4,1-4-044,Electabuzz,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-045_f.jpg
-Stardust V4,1-4-045,Electivire,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-046_f.jpg
-Stardust V4,1-4-046,Alolan Vulpix,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-047_f.jpg
-Stardust V4,1-4-047,Alolan Ninetales,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-048_f.jpg
-Stardust V4,1-4-048,Wooloo,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-049_f.jpg
-Stardust V4,1-4-049,Dubwool,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-050_f.jpg
-Stardust V4,1-4-050,Deino,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-051_f.jpg
-Stardust V4,1-4-051,Zweilous,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-052_f.jpg
-Stardust V4,1-4-052,Hydreigon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-053_f.jpg
-Stardust V4,1-4-053,Woobat,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-054_f.jpg
-Stardust V4,1-4-054,Swoobat,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-055_f.jpg
-Stardust V4,1-4-055,Machop,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-056_f.jpg
-Stardust V4,1-4-056,Machoke,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-057_f.jpg
-Stardust V4,1-4-057,Machamp,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-058_f.jpg
-Stardust V4,1-4-058,Murkrow,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-059_f.jpg
-Stardust V4,1-4-059,Honchkrow,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-060_f.jpg
-Stardust V4,1-4-060,Hatenna,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-061_f.jpg
-Stardust V4,1-4-061,Hattrem,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-062_f.jpg
-Stardust V4,1-4-062,Hatterene,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-063_f.jpg
-Stardust V4,1-4-063,Swinub,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-064_f.jpg
-Stardust V4,1-4-064,Piloswine,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-065_f.jpg
-Stardust V4,1-4-065,Mamoswine,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-066_f.jpg
-Stardust V4,1-4-066,Fletchling,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-067_f.jpg
-Stardust V4,1-4-067,Fletchinder,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-068_f.jpg
-Stardust V4,1-4-068,Talonflame,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-069_f.jpg
-Stardust V4,1-4-069,Noibat,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-070_f.jpg
-Stardust V4,1-4-070,Noivern,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-1_f.jpg
-Stardust V4,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-2_f.jpg
-Stardust V4,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-3_f.jpg
-Stardust V4,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/A5_EN-01.jpg
-Stardust V3,1-3-001,Lugia,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-002_f.jpg
-Stardust V3,1-3-002,Ho-Oh,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-003_f.jpg
-Stardust V3,1-3-003,Solgaleo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-004_f.jpg
-Stardust V3,1-3-004,Lunala,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-005_f.jpg
-Stardust V3,1-3-005,Greninja,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-006_f.jpg
-Stardust V3,1-3-006,Zeraora,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-007_f.jpg
-Stardust V3,1-3-007,Eternatus,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-008_f.jpg
-Stardust V3,1-3-008,Keldeo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-009_f.jpg
-Stardust V3,1-3-009,Grimmsnarl,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-010_f.jpg
-Stardust V3,1-3-010,Zygarde,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-011_f.jpg
-Stardust V3,1-3-011,Sceptile,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-012_f.jpg
-Stardust V3,1-3-012,Blaziken,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-013_f.jpg
-Stardust V3,1-3-013,Swampert,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-014_f.jpg
-Stardust V3,1-3-014,Chandelure,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-015_f.jpg
-Stardust V3,1-3-015,Grimmsnarl,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-016_f.jpg
-Stardust V3,1-3-016,Nidoqueen,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-017_f.jpg
-Stardust V3,1-3-017,Pidgeot,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-018_f.jpg
-Stardust V3,1-3-018,Coalossal,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-019_f.jpg
-Stardust V3,1-3-019,Pikachu,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-020_f.jpg
-Stardust V3,1-3-020,Alakazam,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-021_f.jpg
-Stardust V3,1-3-021,Regirock,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-022_f.jpg
-Stardust V3,1-3-022,Regice,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-023_f.jpg
-Stardust V3,1-3-023,Registeel,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-024_f.jpg
-Stardust V3,1-3-024,Great Tusk,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-025_f.jpg
-Stardust V3,1-3-025,Haxorus,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-026_f.jpg
-Stardust V3,1-3-026,Armarouge,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-027_f.jpg
-Stardust V3,1-3-027,Arctibax,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-028_f.jpg
-Stardust V3,1-3-028,Pawmo,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-029_f.jpg
-Stardust V3,1-3-029,Treecko,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-030_f.jpg
-Stardust V3,1-3-030,Grovyle,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-031_f.jpg
-Stardust V3,1-3-031,Sceptile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-032_f.jpg
-Stardust V3,1-3-032,Torchic,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-033_f.jpg
-Stardust V3,1-3-033,Combusken,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-034_f.jpg
-Stardust V3,1-3-034,Blaziken,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-035_f.jpg
-Stardust V3,1-3-035,Mudkip,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-036_f.jpg
-Stardust V3,1-3-036,Marshtomp,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-037_f.jpg
-Stardust V3,1-3-037,Swampert,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-038_f.jpg
-Stardust V3,1-3-038,Magby,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-039_f.jpg
-Stardust V3,1-3-039,Magmar,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-040_f.jpg
-Stardust V3,1-3-040,Magmortar,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-041_f.jpg
-Stardust V3,1-3-041,Koffing,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-042_f.jpg
-Stardust V3,1-3-042,Galarian Weezing,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-043_f.jpg
-Stardust V3,1-3-043,Beldum,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-044_f.jpg
-Stardust V3,1-3-044,Metang,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-045_f.jpg
-Stardust V3,1-3-045,Metagross,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-046_f.jpg
-Stardust V3,1-3-046,Shinx,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-047_f.jpg
-Stardust V3,1-3-047,Luxio,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-048_f.jpg
-Stardust V3,1-3-048,Luxray,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-049_f.jpg
-Stardust V3,1-3-049,Blipbug,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-050_f.jpg
-Stardust V3,1-3-050,Dottler,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-051_f.jpg
-Stardust V3,1-3-051,Orbeetle,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-052_f.jpg
-Stardust V3,1-3-052,Silicobra,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-053_f.jpg
-Stardust V3,1-3-053,Sandaconda,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-054_f.jpg
-Stardust V3,1-3-054,Rolycoly,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-055_f.jpg
-Stardust V3,1-3-055,Carkol,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-056_f.jpg
-Stardust V3,1-3-056,Coalossal,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-057_f.jpg
-Stardust V3,1-3-057,Mudbray,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-058_f.jpg
-Stardust V3,1-3-058,Mudsdale,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-059_f.jpg
-Stardust V3,1-3-059,Impidimp,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-060_f.jpg
-Stardust V3,1-3-060,Morgrem,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-061_f.jpg
-Stardust V3,1-3-061,Grimmsnarl,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-062_f.jpg
-Stardust V3,1-3-062,Turtonator,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-063_f.jpg
-Stardust V3,1-3-063,Nickit,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-064_f.jpg
-Stardust V3,1-3-064,Thievul,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-065_f.jpg
-Stardust V3,1-3-065,Duskull,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-066_f.jpg
-Stardust V3,1-3-066,Dusclops,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-067_f.jpg
-Stardust V3,1-3-067,Dusknoir,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-068_f.jpg
-Stardust V3,1-3-068,Axew,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-069_f.jpg
-Stardust V3,1-3-069,Fraxure,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-070_f.jpg
-Stardust V3,1-3-070,Haxorus,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-1_f.jpg
-Stardust V3,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-2_f.jpg
-Stardust V3,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-3_f.jpg
-Stardust V3,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3_1.jpg
-Stardust V2,1-2-001,Kyogre,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-002_f.jpg
-Stardust V2,1-2-002,Groudon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-003_f.jpg
-Stardust V2,1-2-003,Koraidon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-004_f.jpg
-Stardust V2,1-2-004,Pikachu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-005_f.jpg
-Stardust V2,1-2-005,Snorlax,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-006_f.jpg
-Stardust V2,1-2-006,Kommo-o,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-007_f.jpg
-Stardust V2,1-2-007,Gardevoir,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-008_f.jpg
-Stardust V2,1-2-008,Reshiram,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-009_f.jpg
-Stardust V2,1-2-009,Zekrom,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-010_f.jpg
-Stardust V2,1-2-010,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-011_f.jpg
-Stardust V2,1-2-011,Jolteon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-012_f.jpg
-Stardust V2,1-2-012,Espeon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-013_f.jpg
-Stardust V2,1-2-013,Leafeon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-014_f.jpg
-Stardust V2,1-2-014,Sylveon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-015_f.jpg
-Stardust V2,1-2-015,Lucario,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-016_f.jpg
-Stardust V2,1-2-016,Torterra,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-017_f.jpg
-Stardust V2,1-2-017,Infernape,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-018_f.jpg
-Stardust V2,1-2-018,Empoleon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-019_f.jpg
-Stardust V2,1-2-019,Alolan Ninetales,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-020_f.jpg
-Stardust V2,1-2-020,Tyranitar,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-021_f.jpg
-Stardust V2,1-2-021,Metagross,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-022_f.jpg
-Stardust V2,1-2-022,Flapple,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-023_f.jpg
-Stardust V2,1-2-023,Appletun,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-024_f.jpg
-Stardust V2,1-2-024,Alcremie,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-025_f.jpg
-Stardust V2,1-2-025,Drednaw,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-026_f.jpg
-Stardust V2,1-2-026,Meowscarada,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-027_f.jpg
-Stardust V2,1-2-027,Skeledirge,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-028_f.jpg
-Stardust V2,1-2-028,Quaquaval,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-029_f.jpg
-Stardust V2,1-2-029,Charcadet,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-030_f.jpg
-Stardust V2,1-2-030,Frigibax,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-031_f.jpg
-Stardust V2,1-2-031,Pawmi,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-032_f.jpg
-Stardust V2,1-2-032,Turtwig,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-033_f.jpg
-Stardust V2,1-2-033,Grotle,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-034_f.jpg
-Stardust V2,1-2-034,Torterra,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-035_f.jpg
-Stardust V2,1-2-035,Chimchar,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-036_f.jpg
-Stardust V2,1-2-036,Monferno,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-037_f.jpg
-Stardust V2,1-2-037,Infernape,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-038_f.jpg
-Stardust V2,1-2-038,Piplup,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-039_f.jpg
-Stardust V2,1-2-039,Prinplup,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-040_f.jpg
-Stardust V2,1-2-040,Empoleon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-041_f.jpg
-Stardust V2,1-2-041,Vaporeon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-042_f.jpg
-Stardust V2,1-2-042,Flareon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-043_f.jpg
-Stardust V2,1-2-043,Umbreon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-044_f.jpg
-Stardust V2,1-2-044,Glaceon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-045_f.jpg
-Stardust V2,1-2-045,Yamper,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-046_f.jpg
-Stardust V2,1-2-046,Boltund,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-047_f.jpg
-Stardust V2,1-2-047,Pidgey,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-048_f.jpg
-Stardust V2,1-2-048,Pidgeotto,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-049_f.jpg
-Stardust V2,1-2-049,Pidgeot,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-050_f.jpg
-Stardust V2,1-2-050,Alolan Sandshrew,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-051_f.jpg
-Stardust V2,1-2-051,Alolan Sandslash,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-052_f.jpg
-Stardust V2,1-2-052,Bronzor,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-053_f.jpg
-Stardust V2,1-2-053,Bronzong,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-054_f.jpg
-Stardust V2,1-2-054,Trapinch,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-055_f.jpg
-Stardust V2,1-2-055,Vibrava,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-056_f.jpg
-Stardust V2,1-2-056,Flygon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-057_f.jpg
-Stardust V2,1-2-057,Wingull,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-058_f.jpg
-Stardust V2,1-2-058,Pelipper,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-059_f.jpg
-Stardust V2,1-2-059,Jynx,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-060_f.jpg
-Stardust V2,1-2-060,Abra,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-061_f.jpg
-Stardust V2,1-2-061,Kadabra,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-062_f.jpg
-Stardust V2,1-2-062,Alakazam,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-063_f.jpg
-Stardust V2,1-2-063,Drifloon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-064_f.jpg
-Stardust V2,1-2-064,Drifblim,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-065_f.jpg
-Stardust V2,1-2-065,Mareanie,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-066_f.jpg
-Stardust V2,1-2-066,Togedemaru,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-067_f.jpg
-Stardust V2,1-2-067,Ralts,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-068_f.jpg
-Stardust V2,1-2-068,Kirlia,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-069_f.jpg
-Stardust V2,1-2-069,Gardevoir,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-070_f.jpg
-Stardust V2,1-2-070,Onix,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-1_f.jpg
-Stardust V2,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-2_f.jpg
-Stardust V2,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-3_f.jpg
-Stardust V2,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2_1.jpg
-Stardust V1,1-1-001,Mewtwo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-002_f.png
-Stardust V1,1-1-002,Mew,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-003_f.png
-Stardust V1,1-1-003,Zacian,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-004_f.png
-Stardust V1,1-1-004,Zamazenta,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-005_f.png
-Stardust V1,1-1-005,Tyranitar,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-006_f.png
-Stardust V1,1-1-006,Metagross,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-007_f.png
-Stardust V1,1-1-007,Miraidon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-008_f.png
-Stardust V1,1-1-008,Venusaur,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-009_f.png
-Stardust V1,1-1-009,Charizard,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-010_f.png
-Stardust V1,1-1-010,Blastoise,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-011_f.png
-Stardust V1,1-1-011,Vaporeon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-012_f.png
-Stardust V1,1-1-012,Flareon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-013_f.png
-Stardust V1,1-1-013,Umbreon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-014_f.png
-Stardust V1,1-1-014,Glaceon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-015_f.png
-Stardust V1,1-1-015,Pidgeot,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-016_f.png
-Stardust V1,1-1-016,Gengar,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-017_f.png
-Stardust V1,1-1-017,Arcanine,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-018_f.png
-Stardust V1,1-1-018,Rhyperior,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-019_f.png
-Stardust V1,1-1-019,Pikachu,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-020_f.png
-Stardust V1,1-1-020,Flygon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-021_f.png
-Stardust V1,1-1-021,Rillaboom,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-022_f.png
-Stardust V1,1-1-022,Cinderace,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-023_f.png
-Stardust V1,1-1-023,Inteleon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-024_f.png
-Stardust V1,1-1-024,Obstagoon,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-025_f.png
-Stardust V1,1-1-025,Keldeo,Star Pokémon,5★ Star (holofoil),,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-026_f.png
-Stardust V1,1-1-026,Sprigatito,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-027_f.png
-Stardust V1,1-1-027,Floragato,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-028_f.png
-Stardust V1,1-1-028,Fuecoco,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-029_f.png
-Stardust V1,1-1-029,Crocalor,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-030_f.png
-Stardust V1,1-1-030,Quaxly,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-031_f.png
-Stardust V1,1-1-031,Quaxwell,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-032_f.png
-Stardust V1,1-1-032,Grookey,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-033_f.png
-Stardust V1,1-1-033,Thwackey,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-034_f.png
-Stardust V1,1-1-034,Rillaboom,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-035_f.png
-Stardust V1,1-1-035,Scorbunny,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-036_f.png
-Stardust V1,1-1-036,Raboot,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-037_f.png
-Stardust V1,1-1-037,Cinderace,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-038_f.png
-Stardust V1,1-1-038,Sobble,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-039_f.png
-Stardust V1,1-1-039,Drizzile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-040_f.png
-Stardust V1,1-1-040,Inteleon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-041_f.png
-Stardust V1,1-1-041,Dedenne,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-042_f.png
-Stardust V1,1-1-042,Pikachu,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-043_f.png
-Stardust V1,1-1-043,Raichu,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-044_f.png
-Stardust V1,1-1-044,Eevee,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-045_f.png
-Stardust V1,1-1-045,Jolteon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-046_f.png
-Stardust V1,1-1-046,Espeon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-047_f.png
-Stardust V1,1-1-047,Leafeon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-048_f.png
-Stardust V1,1-1-048,Sylveon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-049_f.png
-Stardust V1,1-1-049,Sneasel,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-050_f.png
-Stardust V1,1-1-050,Weavile,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-051_f.png
-Stardust V1,1-1-051,Golett,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-052_f.png
-Stardust V1,1-1-052,Golurk,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-053_f.png
-Stardust V1,1-1-053,Slowpoke,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-054_f.png
-Stardust V1,1-1-054,Slowbro,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-055_f.png
-Stardust V1,1-1-055,Mudbray,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-056_f.png
-Stardust V1,1-1-056,Mudsdale,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-057_f.png
-Stardust V1,1-1-057,Galarian Zigzagoon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-058_f.png
-Stardust V1,1-1-058,Galarian Linoone,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-059_f.png
-Stardust V1,1-1-059,Obstagoon,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-060_f.png
-Stardust V1,1-1-060,Grubbin,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-061_f.png
-Stardust V1,1-1-061,Charjabug,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-062_f.png
-Stardust V1,1-1-062,Vikavolt,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-063_f.png
-Stardust V1,1-1-063,Doduo,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-064_f.png
-Stardust V1,1-1-064,Dodrio,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-065_f.png
-Stardust V1,1-1-065,Gossifleur,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-066_f.png
-Stardust V1,1-1-066,Eldegoss,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-067_f.png
-Stardust V1,1-1-067,Turtonator,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-068_f.png
-Stardust V1,1-1-068,Cramorant,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-069_f.png
-Stardust V1,1-1-069,Snom,★2~4 Pokémon,2★-4★ standard pool,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-070_f.png
-Stardust V1,1-1-070,Frosmoth,★2~4 Pokémon,2★-4★ standard pool,,,,../../../share/img/logo_takara.svg
+version,id,name,tier,rarity,types,pe,ability,moves,img
+Galaxy V2,2-2-001,Zacian,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Fairy",206,Double Move,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-001_f.png
+Galaxy V2,2-2-002,Zamazenta,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Fighting",206,Double Move,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-002_f.png
+Galaxy V2,2-2-003,Duraludon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Dragon",158,Gigantamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-003_f.png
+Galaxy V2,2-2-004,Charizard,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fire, Flying",150,Gigantamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-004_f.png
+Galaxy V2,2-2-005,Zarude,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dark, Grass",166,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-005_f.png
+Galaxy V2,2-2-006,Lucario,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fighting, Steel",146,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-006_f.png
+Galaxy V2,2-2-007,Rayquaza,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Flying",184,Mega Evolution,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-007_f.png
+Galaxy V2,2-2-008,Latias,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Psychic",164,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-008_f.png
+Galaxy V2,2-2-009,Latios,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Psychic",164,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-009_f.png
+Galaxy V2,2-2-010,Naganadel,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Poison, Dragon",150,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-010_f.png
+Galaxy V2,2-2-011,Metagross,Star Pokémon,5★ Star (holofoil),"Steel, Psychic",144,Mega Evolution,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-011_f.png
+Galaxy V2,2-2-012,Haxorus,Star Pokémon,5★ Star (holofoil),Dragon,132,Z-Move,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-012_f.png
+Galaxy V2,2-2-013,Aerodactyl,Star Pokémon,5★ Star (holofoil),"Rock, Flying",128,Z-Move,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-013_f.png
+Galaxy V2,2-2-014,Dracozolt,Star Pokémon,5★ Star (holofoil),"Electric, Dragon",138,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-014_f.png
+Galaxy V2,2-2-015,Dracovish,Star Pokémon,5★ Star (holofoil),"Water, Dragon",138,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-015_f.png
+Galaxy V2,2-2-016,Alakazam,Star Pokémon,5★ Star (holofoil),Psychic,128,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-016_f.png
+Galaxy V2,2-2-017,Arctozolt,Star Pokémon,5★ Star (holofoil),"Ice, Electric",136,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-017_f.png
+Galaxy V2,2-2-018,Golisopod,Star Pokémon,5★ Star (holofoil),"Bug, Water",132,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-018_f.png
+Galaxy V2,2-2-019,Serperior,Star Pokémon,5★ Star (holofoil),Grass,144,Chain Tag,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-019_f.png
+Galaxy V2,2-2-020,Emboar,Star Pokémon,5★ Star (holofoil),"Fire, Fighting",144,Chain Tag,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-020_f.png
+Galaxy V2,2-2-021,Samurott,Star Pokémon,5★ Star (holofoil),Water,144,Chain Tag,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-021_f.png
+Galaxy V2,2-2-022,Iron Treads,Star Pokémon,5★ Star (holofoil),Ground,148,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-022_f.png
+Galaxy V2,2-2-023,Poipole,Star Pokémon,5★ Star (holofoil),Poison,110,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-023_f.png
+Galaxy V2,2-2-024,Hatterene,Star Pokémon,5★ Star (holofoil),"Psychic, Fairy",128,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-024_f.png
+Galaxy V2,2-2-025,Absol,Star Pokémon,5★ Star (holofoil),Dark,130,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-025_f.png
+Galaxy V2,2-2-026,Floragato,★2~4 Pokémon,2★-4★ standard pool,Grass,84,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-026_f.png
+Galaxy V2,2-2-027,Meowscarada,★2~4 Pokémon,2★-4★ standard pool,"Grass, Dark",118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-027_f.png
+Galaxy V2,2-2-028,Crocalor,★2~4 Pokémon,2★-4★ standard pool,Fire,84,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-028_f.png
+Galaxy V2,2-2-029,Skeledirge,★2~4 Pokémon,2★-4★ standard pool,"Fire, Ghost",118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-029_f.png
+Galaxy V2,2-2-030,Quaxwell,★2~4 Pokémon,2★-4★ standard pool,Water,84,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-030_f.png
+Galaxy V2,2-2-031,Quaquaval,★2~4 Pokémon,2★-4★ standard pool,"Water, Fighting",118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-031_f.png
+Galaxy V2,2-2-032,Snivy,★2~4 Pokémon,2★-4★ standard pool,Grass,46,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-032_f.png
+Galaxy V2,2-2-033,Servine,★2~4 Pokémon,2★-4★ standard pool,Grass,84,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-033_f.png
+Galaxy V2,2-2-034,Serperior,★2~4 Pokémon,2★-4★ standard pool,Grass,118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-034_f.png
+Galaxy V2,2-2-035,Tepig,★2~4 Pokémon,2★-4★ standard pool,Fire,46,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-035_f.png
+Galaxy V2,2-2-036,Pignite,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",86,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-036_f.png
+Galaxy V2,2-2-037,Emboar,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-037_f.png
+Galaxy V2,2-2-038,Oshawott,★2~4 Pokémon,2★-4★ standard pool,Water,46,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-038_f.png
+Galaxy V2,2-2-039,Dewott,★2~4 Pokémon,2★-4★ standard pool,Water,84,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-039_f.png
+Galaxy V2,2-2-040,Samurott,★2~4 Pokémon,2★-4★ standard pool,Water,118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-040_f.png
+Galaxy V2,2-2-041,Poliwag,★2~4 Pokémon,2★-4★ standard pool,Water,42,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-041_f.png
+Galaxy V2,2-2-042,Poliwhirl,★2~4 Pokémon,2★-4★ standard pool,Water,74,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-042_f.png
+Galaxy V2,2-2-043,Poliwrath,★2~4 Pokémon,2★-4★ standard pool,"Water, Fighting",108,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-043_f.png
+Galaxy V2,2-2-044,Feebas,★2~4 Pokémon,2★-4★ standard pool,Water,32,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-044_f.png
+Galaxy V2,2-2-045,Milotic,★2~4 Pokémon,2★-4★ standard pool,Water,112,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-045_f.png
+Galaxy V2,2-2-046,Tynamo,★2~4 Pokémon,2★-4★ standard pool,Electric,42,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-046_f.png
+Galaxy V2,2-2-047,Eelektrik,★2~4 Pokémon,2★-4★ standard pool,Electric,82,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-047_f.png
+Galaxy V2,2-2-048,Eelektross,★2~4 Pokémon,2★-4★ standard pool,Electric,112,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-048_f.png
+Galaxy V2,2-2-049,Ralts,★2~4 Pokémon,2★-4★ standard pool,Psychic,34,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-049_f.png
+Galaxy V2,2-2-050,Kirlia,★2~4 Pokémon,2★-4★ standard pool,Psychic,60,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-050_f.png
+Galaxy V2,2-2-051,Gardevoir,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fairy",114,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-051_f.png
+Galaxy V2,2-2-052,Gallade,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fighting",114,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-052_f.png
+Galaxy V2,2-2-053,Venipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",40,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-053_f.png
+Galaxy V2,2-2-054,Whirlipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",76,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-054_f.png
+Galaxy V2,2-2-055,Scolipede,★2~4 Pokémon,2★-4★ standard pool,"Bug, Poison",110,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-055_f.png
+Galaxy V2,2-2-056,Skwovet,★2~4 Pokémon,2★-4★ standard pool,Normal,40,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-056_f.png
+Galaxy V2,2-2-057,Greedent,★2~4 Pokémon,2★-4★ standard pool,Normal,98,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-057_f.png
+Galaxy V2,2-2-058,Spheal,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",44,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-058_f.png
+Galaxy V2,2-2-059,Sealeo,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",82,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-059_f.png
+Galaxy V2,2-2-060,Walrein,★2~4 Pokémon,2★-4★ standard pool,"Ice, Water",116,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-060_f.png
+Galaxy V2,2-2-061,Budew,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",40,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-061_f.png
+Galaxy V2,2-2-062,Roselia,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",76,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-062_f.png
+Galaxy V2,2-2-063,Roserade,★2~4 Pokémon,2★-4★ standard pool,"Grass, Poison",108,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-063_f.png
+Galaxy V2,2-2-064,Milcery,★2~4 Pokémon,2★-4★ standard pool,Fairy,42,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-064_f.png
+Galaxy V2,2-2-065,Alcremie,★2~4 Pokémon,2★-4★ standard pool,Fairy,112,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-065_f.png
+Galaxy V2,2-2-066,Elekid,★2~4 Pokémon,2★-4★ standard pool,Electric,50,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-066_f.png
+Galaxy V2,2-2-067,Electabuzz,★2~4 Pokémon,2★-4★ standard pool,Electric,96,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-067_f.png
+Galaxy V2,2-2-068,Electivire,★2~4 Pokémon,2★-4★ standard pool,Electric,118,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-068_f.png
+Galaxy V2,2-2-069,Galarian Meowth,★2~4 Pokémon,2★-4★ standard pool,Steel,42,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-069_f.png
+Galaxy V2,2-2-070,Perrserker,★2~4 Pokémon,2★-4★ standard pool,Steel,82,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_2-2-070_f.png
+Galaxy V2,R-2-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-1_f.png
+Galaxy V2,R-2-2,Charizard,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-2_f.png
+Galaxy V2,R-2-3,Gengar,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260625110000/pm_en_R-2-3_f.png
+Galaxy V1,2-1-001,Rillaboom,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-001_f.jpg
+Galaxy V1,2-1-002,Cinderace,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-002_f.jpg
+Galaxy V1,2-1-003,Inteleon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-003_f.jpg
+Galaxy V1,2-1-004,Pikachu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-004_f.jpg
+Galaxy V1,2-1-005,Raikou,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-005_f.jpg
+Galaxy V1,2-1-006,Entei,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-006_f.jpg
+Galaxy V1,2-1-007,Suicune,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-007_f.jpg
+Galaxy V1,2-1-008,Mewtwo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-008_f.jpg
+Galaxy V1,2-1-009,Arceus,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-009_f.jpg
+Galaxy V1,2-1-010,Hisuian Zoroark,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-010_f.jpg
+Galaxy V1,2-1-011,Pinsir,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-011_f.jpg
+Galaxy V1,2-1-012,Heracross,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-012_f.jpg
+Galaxy V1,2-1-013,Keldeo,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-013_f.jpg
+Galaxy V1,2-1-014,Weavile,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-014_f.jpg
+Galaxy V1,2-1-015,Sirfetch'd,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-015_f.jpg
+Galaxy V1,2-1-016,Nidoking,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-016_f.jpg
+Galaxy V1,2-1-017,Flygon,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-017_f.jpg
+Galaxy V1,2-1-018,Arctovish,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-018_f.jpg
+Galaxy V1,2-1-019,Electivire,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-019_f.jpg
+Galaxy V1,2-1-020,Magmortar,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-020_f.jpg
+Galaxy V1,2-1-021,Toxtricity,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-021_f.jpg
+Galaxy V1,2-1-022,Toxtricity,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-022_f.jpg
+Galaxy V1,2-1-023,Great Tusk,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-023_f.jpg
+Galaxy V1,2-1-024,Vikavolt,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-024_f.jpg
+Galaxy V1,2-1-025,Abomasnow,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-025_f.jpg
+Galaxy V1,2-1-026,Sprigatito,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-026_f.jpg
+Galaxy V1,2-1-027,Fuecoco,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-027_f.jpg
+Galaxy V1,2-1-028,Quaxly,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-028_f.jpg
+Galaxy V1,2-1-029,Charcadet,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-029_f.jpg
+Galaxy V1,2-1-030,Frigibax,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-030_f.jpg
+Galaxy V1,2-1-031,Pawmi,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-031_f.jpg
+Galaxy V1,2-1-032,Grookey,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-032_f.jpg
+Galaxy V1,2-1-033,Thwackey,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-033_f.jpg
+Galaxy V1,2-1-034,Rillaboom,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-034_f.jpg
+Galaxy V1,2-1-035,Scorbunny,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-035_f.jpg
+Galaxy V1,2-1-036,Raboot,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-036_f.jpg
+Galaxy V1,2-1-037,Cinderace,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-037_f.jpg
+Galaxy V1,2-1-038,Sobble,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-038_f.jpg
+Galaxy V1,2-1-039,Drizzile,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-039_f.jpg
+Galaxy V1,2-1-040,Inteleon,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-040_f.jpg
+Galaxy V1,2-1-041,Snover,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-041_f.jpg
+Galaxy V1,2-1-042,Abomasnow,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-042_f.jpg
+Galaxy V1,2-1-043,Drifloon,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-043_f.jpg
+Galaxy V1,2-1-044,Drifblim,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-044_f.jpg
+Galaxy V1,2-1-045,Hisuian Zorua,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-045_f.jpg
+Galaxy V1,2-1-046,Hisuian Zoroark,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-046_f.jpg
+Galaxy V1,2-1-047,Lileep,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-047_f.jpg
+Galaxy V1,2-1-048,Cradily,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-048_f.jpg
+Galaxy V1,2-1-049,Galarian Farfetch'd,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-049_f.jpg
+Galaxy V1,2-1-050,Sirfetch'd,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-050_f.jpg
+Galaxy V1,2-1-051,Drilbur,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-051_f.jpg
+Galaxy V1,2-1-052,Excadrill,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-052_f.jpg
+Galaxy V1,2-1-053,Magby,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-053_f.jpg
+Galaxy V1,2-1-054,Magmar,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-054_f.jpg
+Galaxy V1,2-1-055,Magmortar,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-055_f.jpg
+Galaxy V1,2-1-056,Growlithe,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-056_f.jpg
+Galaxy V1,2-1-057,Arcanine,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-057_f.jpg
+Galaxy V1,2-1-058,Toxel,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-058_f.jpg
+Galaxy V1,2-1-059,Toxtricity,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-059_f.jpg
+Galaxy V1,2-1-060,Toxtricity,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-060_f.jpg
+Galaxy V1,2-1-061,Gossifleur,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-061_f.jpg
+Galaxy V1,2-1-062,Eldegoss,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-062_f.jpg
+Galaxy V1,2-1-063,Sneasel,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-063_f.jpg
+Galaxy V1,2-1-064,Weavile,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-064_f.jpg
+Galaxy V1,2-1-065,Nidoran♀,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-065_f.jpg
+Galaxy V1,2-1-066,Nidorina,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-066_f.jpg
+Galaxy V1,2-1-067,Nidoqueen,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-067_f.jpg
+Galaxy V1,2-1-068,Nidoran♂,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-068_f.jpg
+Galaxy V1,2-1-069,Nidorino,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-069_f.jpg
+Galaxy V1,2-1-070,Nidoking,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_2-1-070_f.jpg
+Galaxy V1,R-2-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-1_f.jpg
+Galaxy V1,R-2-2,Charizard,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-2_f.jpg
+Galaxy V1,R-2-3,Gengar,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/publish/20260330110000/pm_en_R-2-3_f.jpg
+Stardust V4,1-4-001,Dialga,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-001_f.jpg
+Stardust V4,1-4-002,Palkia,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-002_f.jpg
+Stardust V4,1-4-003,Xerneas,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-003_f.jpg
+Stardust V4,1-4-004,Yveltal,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-004_f.jpg
+Stardust V4,1-4-005,Calyrex,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-005_f.jpg
+Stardust V4,1-4-006,Calyrex,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-006_f.jpg
+Stardust V4,1-4-007,Mimikyu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-007_f.jpg
+Stardust V4,1-4-008,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-008_f.jpg
+Stardust V4,1-4-009,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-009_f.jpg
+Stardust V4,1-4-010,Rayquaza,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-010_f.jpg
+Stardust V4,1-4-011,Aggron,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-011_f.jpg
+Stardust V4,1-4-012,Meganium,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-012_f.jpg
+Stardust V4,1-4-013,Typhlosion,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-013_f.jpg
+Stardust V4,1-4-014,Feraligatr,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-014_f.jpg
+Stardust V4,1-4-015,Goodra,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-015_f.jpg
+Stardust V4,1-4-016,Corviknight,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-016_f.jpg
+Stardust V4,1-4-017,Runerigus,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-017_f.jpg
+Stardust V4,1-4-018,Machamp,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-018_f.jpg
+Stardust V4,1-4-019,Gardevoir,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-019_f.jpg
+Stardust V4,1-4-020,Obstagoon,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-020_f.jpg
+Stardust V4,1-4-021,Regieleki,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-021_f.jpg
+Stardust V4,1-4-022,Regidrago,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-022_f.jpg
+Stardust V4,1-4-023,Iron Treads,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-023_f.jpg
+Stardust V4,1-4-024,Copperajah,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-024_f.jpg
+Stardust V4,1-4-025,Talonflame,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-025_f.jpg
+Stardust V4,1-4-026,Ceruledge,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-026_f.jpg
+Stardust V4,1-4-027,Baxcalibur,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-027_f.jpg
+Stardust V4,1-4-028,Chikorita,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-028_f.jpg
+Stardust V4,1-4-029,Bayleef,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-029_f.jpg
+Stardust V4,1-4-030,Meganium,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-030_f.jpg
+Stardust V4,1-4-031,Cyndaquil,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-031_f.jpg
+Stardust V4,1-4-032,Quilava,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-032_f.jpg
+Stardust V4,1-4-033,Typhlosion,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-033_f.jpg
+Stardust V4,1-4-034,Totodile,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-034_f.jpg
+Stardust V4,1-4-035,Croconaw,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-035_f.jpg
+Stardust V4,1-4-036,Feraligatr,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-036_f.jpg
+Stardust V4,1-4-037,Dreepy,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-037_f.jpg
+Stardust V4,1-4-038,Drakloak,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-038_f.jpg
+Stardust V4,1-4-039,Dragapult,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-039_f.jpg
+Stardust V4,1-4-040,Sinistea,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-040_f.jpg
+Stardust V4,1-4-041,Polteageist,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-041_f.jpg
+Stardust V4,1-4-042,Drampa,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-042_f.jpg
+Stardust V4,1-4-043,Elekid,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-043_f.jpg
+Stardust V4,1-4-044,Electabuzz,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-044_f.jpg
+Stardust V4,1-4-045,Electivire,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-045_f.jpg
+Stardust V4,1-4-046,Alolan Vulpix,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-046_f.jpg
+Stardust V4,1-4-047,Alolan Ninetales,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-047_f.jpg
+Stardust V4,1-4-048,Wooloo,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-048_f.jpg
+Stardust V4,1-4-049,Dubwool,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-049_f.jpg
+Stardust V4,1-4-050,Deino,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-050_f.jpg
+Stardust V4,1-4-051,Zweilous,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-051_f.jpg
+Stardust V4,1-4-052,Hydreigon,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-052_f.jpg
+Stardust V4,1-4-053,Woobat,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-053_f.jpg
+Stardust V4,1-4-054,Swoobat,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-054_f.jpg
+Stardust V4,1-4-055,Machop,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-055_f.jpg
+Stardust V4,1-4-056,Machoke,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-056_f.jpg
+Stardust V4,1-4-057,Machamp,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-057_f.jpg
+Stardust V4,1-4-058,Murkrow,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-058_f.jpg
+Stardust V4,1-4-059,Honchkrow,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-059_f.jpg
+Stardust V4,1-4-060,Hatenna,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-060_f.jpg
+Stardust V4,1-4-061,Hattrem,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-061_f.jpg
+Stardust V4,1-4-062,Hatterene,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-062_f.jpg
+Stardust V4,1-4-063,Swinub,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-063_f.jpg
+Stardust V4,1-4-064,Piloswine,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-064_f.jpg
+Stardust V4,1-4-065,Mamoswine,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-065_f.jpg
+Stardust V4,1-4-066,Fletchling,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-066_f.jpg
+Stardust V4,1-4-067,Fletchinder,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-067_f.jpg
+Stardust V4,1-4-068,Talonflame,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-068_f.jpg
+Stardust V4,1-4-069,Noibat,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-069_f.jpg
+Stardust V4,1-4-070,Noivern,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver4/pm_en_1-4-070_f.jpg
+Stardust V4,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-1_f.jpg
+Stardust V4,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-2_f.jpg
+Stardust V4,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-3_f.jpg
+Stardust V3,1-3-001,Lugia,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-001_f.jpg
+Stardust V3,1-3-002,Ho-Oh,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-002_f.jpg
+Stardust V3,1-3-003,Solgaleo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-003_f.jpg
+Stardust V3,1-3-004,Lunala,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-004_f.jpg
+Stardust V3,1-3-005,Greninja,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-005_f.jpg
+Stardust V3,1-3-006,Zeraora,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-006_f.jpg
+Stardust V3,1-3-007,Eternatus,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-007_f.jpg
+Stardust V3,1-3-008,Keldeo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-008_f.jpg
+Stardust V3,1-3-009,Grimmsnarl,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-009_f.jpg
+Stardust V3,1-3-010,Zygarde,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-010_f.jpg
+Stardust V3,1-3-011,Sceptile,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-011_f.jpg
+Stardust V3,1-3-012,Blaziken,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-012_f.jpg
+Stardust V3,1-3-013,Swampert,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-013_f.jpg
+Stardust V3,1-3-014,Chandelure,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-014_f.jpg
+Stardust V3,1-3-015,Grimmsnarl,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-015_f.jpg
+Stardust V3,1-3-016,Nidoqueen,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-016_f.jpg
+Stardust V3,1-3-017,Pidgeot,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-017_f.jpg
+Stardust V3,1-3-018,Coalossal,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-018_f.jpg
+Stardust V3,1-3-019,Pikachu,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-019_f.jpg
+Stardust V3,1-3-020,Alakazam,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-020_f.jpg
+Stardust V3,1-3-021,Regirock,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-021_f.jpg
+Stardust V3,1-3-022,Regice,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-022_f.jpg
+Stardust V3,1-3-023,Registeel,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-023_f.jpg
+Stardust V3,1-3-024,Great Tusk,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-024_f.jpg
+Stardust V3,1-3-025,Haxorus,Star Pokémon,5★ Star (holofoil),,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-025_f.jpg
+Stardust V3,1-3-026,Armarouge,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-026_f.jpg
+Stardust V3,1-3-027,Arctibax,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-027_f.jpg
+Stardust V3,1-3-028,Pawmo,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-028_f.jpg
+Stardust V3,1-3-029,Treecko,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-029_f.jpg
+Stardust V3,1-3-030,Grovyle,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-030_f.jpg
+Stardust V3,1-3-031,Sceptile,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-031_f.jpg
+Stardust V3,1-3-032,Torchic,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-032_f.jpg
+Stardust V3,1-3-033,Combusken,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-033_f.jpg
+Stardust V3,1-3-034,Blaziken,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-034_f.jpg
+Stardust V3,1-3-035,Mudkip,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-035_f.jpg
+Stardust V3,1-3-036,Marshtomp,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-036_f.jpg
+Stardust V3,1-3-037,Swampert,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-037_f.jpg
+Stardust V3,1-3-038,Magby,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-038_f.jpg
+Stardust V3,1-3-039,Magmar,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-039_f.jpg
+Stardust V3,1-3-040,Magmortar,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-040_f.jpg
+Stardust V3,1-3-041,Koffing,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-041_f.jpg
+Stardust V3,1-3-042,Galarian Weezing,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-042_f.jpg
+Stardust V3,1-3-043,Beldum,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-043_f.jpg
+Stardust V3,1-3-044,Metang,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-044_f.jpg
+Stardust V3,1-3-045,Metagross,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-045_f.jpg
+Stardust V3,1-3-046,Shinx,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-046_f.jpg
+Stardust V3,1-3-047,Luxio,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-047_f.jpg
+Stardust V3,1-3-048,Luxray,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-048_f.jpg
+Stardust V3,1-3-049,Blipbug,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-049_f.jpg
+Stardust V3,1-3-050,Dottler,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-050_f.jpg
+Stardust V3,1-3-051,Orbeetle,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-051_f.jpg
+Stardust V3,1-3-052,Silicobra,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-052_f.jpg
+Stardust V3,1-3-053,Sandaconda,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-053_f.jpg
+Stardust V3,1-3-054,Rolycoly,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-054_f.jpg
+Stardust V3,1-3-055,Carkol,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-055_f.jpg
+Stardust V3,1-3-056,Coalossal,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-056_f.jpg
+Stardust V3,1-3-057,Mudbray,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-057_f.jpg
+Stardust V3,1-3-058,Mudsdale,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-058_f.jpg
+Stardust V3,1-3-059,Impidimp,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-059_f.jpg
+Stardust V3,1-3-060,Morgrem,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-060_f.jpg
+Stardust V3,1-3-061,Grimmsnarl,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-061_f.jpg
+Stardust V3,1-3-062,Turtonator,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-062_f.jpg
+Stardust V3,1-3-063,Nickit,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-063_f.jpg
+Stardust V3,1-3-064,Thievul,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-064_f.jpg
+Stardust V3,1-3-065,Duskull,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-065_f.jpg
+Stardust V3,1-3-066,Dusclops,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-066_f.jpg
+Stardust V3,1-3-067,Dusknoir,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-067_f.jpg
+Stardust V3,1-3-068,Axew,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-068_f.jpg
+Stardust V3,1-3-069,Fraxure,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-069_f.jpg
+Stardust V3,1-3-070,Haxorus,★2~4 Pokémon,2★-4★ standard pool,,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_1-3-070_f.jpg
+Stardust V3,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-1_f.jpg
+Stardust V3,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-2_f.jpg
+Stardust V3,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",,,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver3/pm_en_R-1-3_f.jpg
+Stardust V2,1-2-001,Kyogre,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Water,152,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-001_f.jpg
+Stardust V2,1-2-002,Groudon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Ground,152,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-002_f.jpg
+Stardust V2,1-2-003,Koraidon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fighting, Dragon",162,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-003_f.jpg
+Stardust V2,1-2-004,Pikachu,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Electric,102,,"Thunderbolt, Gigavolt Havoc",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-004_f.jpg
+Stardust V2,1-2-005,Snorlax,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Normal,144,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-005_f.jpg
+Stardust V2,1-2-006,Kommo-o,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Fighting",158,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-006_f.jpg
+Stardust V2,1-2-007,Gardevoir,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Psychic, Fairy",124,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-007_f.jpg
+Stardust V2,1-2-008,Reshiram,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Fire",162,,Fusion Flare,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-008_f.jpg
+Stardust V2,1-2-009,Zekrom,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Electric",162,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-009_f.jpg
+Stardust V2,1-2-010,Kyurem,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Dragon, Ice",156,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-010_f.jpg
+Stardust V2,1-2-011,Jolteon,Star Pokémon,5★ Star (holofoil),Electric,108,,Thunderbolt,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-011_f.jpg
+Stardust V2,1-2-012,Espeon,Star Pokémon,5★ Star (holofoil),Psychic,112,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-012_f.jpg
+Stardust V2,1-2-013,Leafeon,Star Pokémon,5★ Star (holofoil),Grass,114,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-013_f.jpg
+Stardust V2,1-2-014,Sylveon,Star Pokémon,5★ Star (holofoil),Fairy,116,,Moonblast,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-014_f.jpg
+Stardust V2,1-2-015,Lucario,Star Pokémon,5★ Star (holofoil),"Fighting, Steel",118,Mega Evolution,Aura Sphere,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-015_f.jpg
+Stardust V2,1-2-016,Torterra,Star Pokémon,5★ Star (holofoil),"Grass, Ground",112,Z-Move,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-016_f.jpg
+Stardust V2,1-2-017,Infernape,Star Pokémon,5★ Star (holofoil),"Fire, Fighting",114,Z-Move,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-017_f.jpg
+Stardust V2,1-2-018,Empoleon,Star Pokémon,5★ Star (holofoil),"Water, Steel",114,Z-Move,"Flash Cannon, Corkscrew Crash",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-018_f.jpg
+Stardust V2,1-2-019,Alolan Ninetales,Star Pokémon,5★ Star (holofoil),"Ice, Fairy",122,Z-Move,"Blizzard, Subzero Slammer",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-019_f.jpg
+Stardust V2,1-2-020,Tyranitar,Star Pokémon,5★ Star (holofoil),"Rock, Dark",132,Dynamax,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-020_f.jpg
+Stardust V2,1-2-021,Metagross,Star Pokémon,5★ Star (holofoil),"Steel, Psychic",132,Dynamax,Meteor Mash,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-021_f.jpg
+Stardust V2,1-2-022,Flapple,Star Pokémon,5★ Star (holofoil),"Grass, Dragon",110,,Dragon Rush,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-022_f.jpg
+Stardust V2,1-2-023,Appletun,Star Pokémon,5★ Star (holofoil),"Grass, Dragon",110,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-023_f.jpg
+Stardust V2,1-2-024,Alcremie,Star Pokémon,5★ Star (holofoil),Fairy,112,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-024_f.jpg
+Stardust V2,1-2-025,Drednaw,Star Pokémon,5★ Star (holofoil),"Water, Rock",104,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-025_f.jpg
+Stardust V2,1-2-026,Meowscarada,★2~4 Pokémon,2★-4★ standard pool,"Grass, Dark",92,,Night Slash,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-026_f.jpg
+Stardust V2,1-2-027,Skeledirge,★2~4 Pokémon,2★-4★ standard pool,"Fire, Ghost",92,,Hex,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-027_f.jpg
+Stardust V2,1-2-028,Quaquaval,★2~4 Pokémon,2★-4★ standard pool,"Water, Fighting",92,,Low Sweep,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-028_f.jpg
+Stardust V2,1-2-029,Charcadet,★2~4 Pokémon,2★-4★ standard pool,Fire,40,,Ember,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-029_f.jpg
+Stardust V2,1-2-030,Frigibax,★2~4 Pokémon,2★-4★ standard pool,"Dragon, Ice",48,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-030_f.jpg
+Stardust V2,1-2-031,Pawmi,★2~4 Pokémon,2★-4★ standard pool,Electric,40,,Scratch,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-031_f.jpg
+Stardust V2,1-2-032,Turtwig,★2~4 Pokémon,2★-4★ standard pool,Grass,44,,Absorb,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-032_f.jpg
+Stardust V2,1-2-033,Grotle,★2~4 Pokémon,2★-4★ standard pool,Grass,64,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-033_f.jpg
+Stardust V2,1-2-034,Torterra,★2~4 Pokémon,2★-4★ standard pool,"Grass, Ground",92,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-034_f.jpg
+Stardust V2,1-2-035,Chimchar,★2~4 Pokémon,2★-4★ standard pool,Fire,42,,Ember,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-035_f.jpg
+Stardust V2,1-2-036,Monferno,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",64,,Mach Punch,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-036_f.jpg
+Stardust V2,1-2-037,Infernape,★2~4 Pokémon,2★-4★ standard pool,"Fire, Fighting",92,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-037_f.jpg
+Stardust V2,1-2-038,Piplup,★2~4 Pokémon,2★-4★ standard pool,Water,44,,Bubble,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-038_f.jpg
+Stardust V2,1-2-039,Prinplup,★2~4 Pokémon,2★-4★ standard pool,Water,64,,Bubble Beam,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-039_f.jpg
+Stardust V2,1-2-040,Empoleon,★2~4 Pokémon,2★-4★ standard pool,"Water, Steel",92,,Steel Wing,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-040_f.jpg
+Stardust V2,1-2-041,Vaporeon,★2~4 Pokémon,2★-4★ standard pool,Water,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-041_f.jpg
+Stardust V2,1-2-042,Flareon,★2~4 Pokémon,2★-4★ standard pool,Fire,90,,Lava Plume,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-042_f.jpg
+Stardust V2,1-2-043,Umbreon,★2~4 Pokémon,2★-4★ standard pool,Dark,92,,Bite,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-043_f.jpg
+Stardust V2,1-2-044,Glaceon,★2~4 Pokémon,2★-4★ standard pool,Ice,94,,Freeze-Dry,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-044_f.jpg
+Stardust V2,1-2-045,Yamper,★2~4 Pokémon,2★-4★ standard pool,Electric,38,,Nuzzle,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-045_f.jpg
+Stardust V2,1-2-046,Boltund,★2~4 Pokémon,2★-4★ standard pool,Electric,84,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-046_f.jpg
+Stardust V2,1-2-047,Pidgey,★2~4 Pokémon,2★-4★ standard pool,"Normal, Flying",36,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-047_f.jpg
+Stardust V2,1-2-048,Pidgeotto,★2~4 Pokémon,2★-4★ standard pool,"Normal, Flying",54,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-048_f.jpg
+Stardust V2,1-2-049,Pidgeot,★2~4 Pokémon,2★-4★ standard pool,"Normal, Flying",82,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-049_f.jpg
+Stardust V2,1-2-050,Alolan Sandshrew,★2~4 Pokémon,2★-4★ standard pool,"Ice, Steel",40,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-050_f.jpg
+Stardust V2,1-2-051,Alolan Sandslash,★2~4 Pokémon,2★-4★ standard pool,"Ice, Steel",78,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-051_f.jpg
+Stardust V2,1-2-052,Bronzor,★2~4 Pokémon,2★-4★ standard pool,"Steel, Psychic",42,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-052_f.jpg
+Stardust V2,1-2-053,Bronzong,★2~4 Pokémon,2★-4★ standard pool,"Steel, Psychic",74,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-053_f.jpg
+Stardust V2,1-2-054,Trapinch,★2~4 Pokémon,2★-4★ standard pool,Ground,40,,Sand Tomb,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-054_f.jpg
+Stardust V2,1-2-055,Vibrava,★2~4 Pokémon,2★-4★ standard pool,"Ground, Dragon",58,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-055_f.jpg
+Stardust V2,1-2-056,Flygon,★2~4 Pokémon,2★-4★ standard pool,"Ground, Dragon",96,,Dragon Claw,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-056_f.jpg
+Stardust V2,1-2-057,Wingull,★2~4 Pokémon,2★-4★ standard pool,"Water, Flying",38,,Gust,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-057_f.jpg
+Stardust V2,1-2-058,Pelipper,★2~4 Pokémon,2★-4★ standard pool,"Water, Flying",70,,Air Slash,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-058_f.jpg
+Stardust V2,1-2-059,Jynx,★2~4 Pokémon,2★-4★ standard pool,"Ice, Psychic",68,,Avalanche,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-059_f.jpg
+Stardust V2,1-2-060,Abra,★2~4 Pokémon,2★-4★ standard pool,Psychic,42,,Hidden Power,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-060_f.jpg
+Stardust V2,1-2-061,Kadabra,★2~4 Pokémon,2★-4★ standard pool,Psychic,62,,Psybeam,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-061_f.jpg
+Stardust V2,1-2-062,Alakazam,★2~4 Pokémon,2★-4★ standard pool,Psychic,88,,Psychic,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-062_f.jpg
+Stardust V2,1-2-063,Drifloon,★2~4 Pokémon,2★-4★ standard pool,"Ghost, Flying",56,,Astonish,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-063_f.jpg
+Stardust V2,1-2-064,Drifblim,★2~4 Pokémon,2★-4★ standard pool,"Ghost, Flying",88,,Hex,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-064_f.jpg
+Stardust V2,1-2-065,Mareanie,★2~4 Pokémon,2★-4★ standard pool,"Poison, Water",54,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-065_f.jpg
+Stardust V2,1-2-066,Togedemaru,★2~4 Pokémon,2★-4★ standard pool,"Electric, Steel",68,,Spark,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-066_f.jpg
+Stardust V2,1-2-067,Ralts,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fairy",32,,Disarming Voice,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-067_f.jpg
+Stardust V2,1-2-068,Kirlia,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fairy",50,,Draining Kiss,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-068_f.jpg
+Stardust V2,1-2-069,Gardevoir,★2~4 Pokémon,2★-4★ standard pool,"Psychic, Fairy",96,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-069_f.jpg
+Stardust V2,1-2-070,Onix,★2~4 Pokémon,2★-4★ standard pool,"Rock, Ground",64,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-070_f.jpg
+Stardust V2,R-1-1,Pikachu,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",Electric,96,Dynamax,"Thunderbolt, Lightning",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-1_f.jpg
+Stardust V2,R-1-2,Lucario,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)","Fighting, Steel",102,Dynamax,"Focus Blast, Max Knuckle",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-2_f.jpg
+Stardust V2,R-1-3,Snorlax,Regular Tags,"Regular (series-wide reprint, incl. G-Max forms)",Normal,104,Dynamax,"Giga Impact, Max Strike",https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-3_f.jpg
+Stardust V1,1-1-001,Mewtwo,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Psychic,158,,Psystrike,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-001_f.png
+Stardust V1,1-1-002,Mew,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Psychic,142,,Psychic,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-002_f.png
+Stardust V1,1-1-003,Zacian,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fairy, Steel",162,,Behemoth Blade,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-003_f.png
+Stardust V1,1-1-004,Zamazenta,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fighting, Steel",162,,Behemoth Bash,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-004_f.png
+Stardust V1,1-1-005,Tyranitar,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Rock, Dark",144,,"Stone Edge, Rockfall",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-005_f.png
+Stardust V1,1-1-006,Metagross,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Steel, Psychic",144,,"Meteor Mash, Max Steelspike",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-006_f.png
+Stardust V1,1-1-007,Miraidon,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Electric, Dragon",162,,Electro Drift,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-007_f.png
+Stardust V1,1-1-008,Venusaur,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Grass, Poison",122,,Leaf Storm,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-008_f.png
+Stardust V1,1-1-009,Charizard,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)","Fire, Flying",124,,Flamethrower,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-009_f.png
+Stardust V1,1-1-010,Blastoise,Superstar Pokémon,"6★ Superstar (rarest, rainbow lamé)",Water,124,,Hydro Pump,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-010_f.png
+Stardust V1,1-1-011,Vaporeon,Star Pokémon,5★ Star (holofoil),Water,108,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-011_f.png
+Stardust V1,1-1-012,Flareon,Star Pokémon,5★ Star (holofoil),Fire,108,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-012_f.png
+Stardust V1,1-1-013,Umbreon,Star Pokémon,5★ Star (holofoil),Dark,112,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-013_f.png
+Stardust V1,1-1-014,Glaceon,Star Pokémon,5★ Star (holofoil),Ice,114,,Blizzard,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-014_f.png
+Stardust V1,1-1-015,Pidgeot,Star Pokémon,5★ Star (holofoil),"Normal, Flying",100,Mega Evolution,Hurricane,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-015_f.png
+Stardust V1,1-1-016,Gengar,Star Pokémon,5★ Star (holofoil),"Ghost, Poison",108,Mega Evolution,Shadow Ball,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-016_f.png
+Stardust V1,1-1-017,Arcanine,Star Pokémon,5★ Star (holofoil),Fire,114,Z-Move,"Fire Blast, Inferno Overdrive",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-017_f.png
+Stardust V1,1-1-018,Rhyperior,Star Pokémon,5★ Star (holofoil),"Ground, Rock",110,Z-Move,"Earthquake, Tectonic Rage",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-018_f.png
+Stardust V1,1-1-019,Pikachu,Star Pokémon,5★ Star (holofoil),Electric,96,Dynamax,"Thunderbolt, Max Lightning",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-019_f.png
+Stardust V1,1-1-020,Flygon,Star Pokémon,5★ Star (holofoil),"Ground, Dragon",114,Dynamax,"Earthquake, Max Quake",https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-020_f.png
+Stardust V1,1-1-021,Rillaboom,Star Pokémon,5★ Star (holofoil),Grass,108,,Drum beating,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-021_f.png
+Stardust V1,1-1-022,Cinderace,Star Pokémon,5★ Star (holofoil),Fire,108,,Pyro Ball,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-022_f.png
+Stardust V1,1-1-023,Inteleon,Star Pokémon,5★ Star (holofoil),Water,108,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-023_f.png
+Stardust V1,1-1-024,Obstagoon,Star Pokémon,5★ Star (holofoil),"Dark, Normal",112,,Throat Chop,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-024_f.png
+Stardust V1,1-1-025,Keldeo,Star Pokémon,5★ Star (holofoil),"Water, Fighting",122,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-025_f.png
+Stardust V1,1-1-026,Sprigatito,★2~4 Pokémon,2★-4★ standard pool,Grass,48,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-026_f.png
+Stardust V1,1-1-027,Floragato,★2~4 Pokémon,2★-4★ standard pool,Grass,84,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-027_f.png
+Stardust V1,1-1-028,Fuecoco,★2~4 Pokémon,2★-4★ standard pool,Fire,48,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-028_f.png
+Stardust V1,1-1-029,Crocalor,★2~4 Pokémon,2★-4★ standard pool,Fire,84,,Incinerate,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-029_f.png
+Stardust V1,1-1-030,Quaxly,★2~4 Pokémon,2★-4★ standard pool,Water,48,,Water Gun,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-030_f.png
+Stardust V1,1-1-031,Quaxwell,★2~4 Pokémon,2★-4★ standard pool,Water,84,,Water Pulse,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-031_f.png
+Stardust V1,1-1-032,Grookey,★2~4 Pokémon,2★-4★ standard pool,Grass,42,,Branch Poke,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-032_f.png
+Stardust V1,1-1-033,Thwackey,★2~4 Pokémon,2★-4★ standard pool,Grass,64,,Razor Leaf,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-033_f.png
+Stardust V1,1-1-034,Rillaboom,★2~4 Pokémon,2★-4★ standard pool,Grass,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-034_f.png
+Stardust V1,1-1-035,Scorbunny,★2~4 Pokémon,2★-4★ standard pool,Fire,42,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-035_f.png
+Stardust V1,1-1-036,Raboot,★2~4 Pokémon,2★-4★ standard pool,Fire,64,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-036_f.png
+Stardust V1,1-1-037,Cinderace,★2~4 Pokémon,2★-4★ standard pool,Fire,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-037_f.png
+Stardust V1,1-1-038,Sobble,★2~4 Pokémon,2★-4★ standard pool,Water,42,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-038_f.png
+Stardust V1,1-1-039,Drizzile,★2~4 Pokémon,2★-4★ standard pool,Water,64,,Water Pulse,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-039_f.png
+Stardust V1,1-1-040,Inteleon,★2~4 Pokémon,2★-4★ standard pool,Water,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-040_f.png
+Stardust V1,1-1-041,Dedenne,★2~4 Pokémon,2★-4★ standard pool,"Electric, Fairy",52,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-041_f.png
+Stardust V1,1-1-042,Pikachu,★2~4 Pokémon,2★-4★ standard pool,Electric,60,,Spark,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-042_f.png
+Stardust V1,1-1-043,Raichu,★2~4 Pokémon,2★-4★ standard pool,Electric,84,,Thunder,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-043_f.png
+Stardust V1,1-1-044,Eevee,★2~4 Pokémon,2★-4★ standard pool,Normal,60,,Swift,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-044_f.png
+Stardust V1,1-1-045,Jolteon,★2~4 Pokémon,2★-4★ standard pool,Electric,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-045_f.png
+Stardust V1,1-1-046,Espeon,★2~4 Pokémon,2★-4★ standard pool,Psychic,92,,Psybeam,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-046_f.png
+Stardust V1,1-1-047,Leafeon,★2~4 Pokémon,2★-4★ standard pool,Grass,94,,Razor Leaf,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-047_f.png
+Stardust V1,1-1-048,Sylveon,★2~4 Pokémon,2★-4★ standard pool,Fairy,96,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-048_f.png
+Stardust V1,1-1-049,Sneasel,★2~4 Pokémon,2★-4★ standard pool,"Dark, Ice",66,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-049_f.png
+Stardust V1,1-1-050,Weavile,★2~4 Pokémon,2★-4★ standard pool,"Dark, Ice",90,,Night Slash,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-050_f.png
+Stardust V1,1-1-051,Golett,★2~4 Pokémon,2★-4★ standard pool,"Ground, Ghost",42,,Astonish,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-051_f.png
+Stardust V1,1-1-052,Golurk,★2~4 Pokémon,2★-4★ standard pool,"Ground, Ghost",72,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-052_f.png
+Stardust V1,1-1-053,Slowpoke,★2~4 Pokémon,2★-4★ standard pool,"Water, Psychic",42,,Water Gun,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-053_f.png
+Stardust V1,1-1-054,Slowbro,★2~4 Pokémon,2★-4★ standard pool,"Water, Psychic",84,,Water Pulse,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-054_f.png
+Stardust V1,1-1-055,Mudbray,★2~4 Pokémon,2★-4★ standard pool,Ground,62,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-055_f.png
+Stardust V1,1-1-056,Mudsdale,★2~4 Pokémon,2★-4★ standard pool,Ground,90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-056_f.png
+Stardust V1,1-1-057,Galarian Zigzagoon,★2~4 Pokémon,2★-4★ standard pool,"Dark, Normal",36,,Payback,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-057_f.png
+Stardust V1,1-1-058,Galarian Linoone,★2~4 Pokémon,2★-4★ standard pool,"Dark, Normal",64,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-058_f.png
+Stardust V1,1-1-059,Obstagoon,★2~4 Pokémon,2★-4★ standard pool,"Dark, Normal",90,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-059_f.png
+Stardust V1,1-1-060,Grubbin,★2~4 Pokémon,2★-4★ standard pool,Bug,42,,Bug Bite,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-060_f.png
+Stardust V1,1-1-061,Charjabug,★2~4 Pokémon,2★-4★ standard pool,"Bug, Electric",62,,X-Scissor,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-061_f.png
+Stardust V1,1-1-062,Vikavolt,★2~4 Pokémon,2★-4★ standard pool,"Bug, Electric",88,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-062_f.png
+Stardust V1,1-1-063,Doduo,★2~4 Pokémon,2★-4★ standard pool,"Normal, Flying",40,,Peck,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-063_f.png
+Stardust V1,1-1-064,Dodrio,★2~4 Pokémon,2★-4★ standard pool,"Normal, Flying",82,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-064_f.png
+Stardust V1,1-1-065,Gossifleur,★2~4 Pokémon,2★-4★ standard pool,Grass,44,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-065_f.png
+Stardust V1,1-1-066,Eldegoss,★2~4 Pokémon,2★-4★ standard pool,Grass,80,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-066_f.png
+Stardust V1,1-1-067,Turtonator,★2~4 Pokémon,2★-4★ standard pool,"Fire, Dragon",84,,Incinerate,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-067_f.png
+Stardust V1,1-1-068,Cramorant,★2~4 Pokémon,2★-4★ standard pool,"Flying, Water",70,,Scald,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-068_f.png
+Stardust V1,1-1-069,Snom,★2~4 Pokémon,2★-4★ standard pool,"Ice, Bug",30,,Powder Snow,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-069_f.png
+Stardust V1,1-1-070,Frosmoth,★2~4 Pokémon,2★-4★ standard pool,"Ice, Bug",86,,,https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-070_f.png

@@ -3217,10 +3217,13 @@
   "name": "Kyogre",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-001_f.jpg"
+  "pe": "152",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-001_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3228,10 +3231,13 @@
   "name": "Groudon",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-002_f.jpg"
+  "pe": "152",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-002_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3239,10 +3245,13 @@
   "name": "Koraidon",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Fighting, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-003_f.jpg"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-003_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3250,10 +3259,13 @@
   "name": "Pikachu",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-004_f.jpg"
+  "pe": "102",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-004_f.jpg",
+  "moves": "Thunderbolt, Gigavolt Havoc",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3261,10 +3273,13 @@
   "name": "Snorlax",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-005_f.jpg"
+  "pe": "144",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-005_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3272,10 +3287,13 @@
   "name": "Kommo-o",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Dragon, Fighting",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-006_f.jpg"
+  "pe": "158",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-006_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3283,10 +3301,13 @@
   "name": "Gardevoir",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Psychic, Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-007_f.jpg"
+  "pe": "124",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-007_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3294,10 +3315,13 @@
   "name": "Reshiram",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Dragon, Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-008_f.jpg"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-008_f.jpg",
+  "moves": "Fusion Flare",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3305,10 +3329,13 @@
   "name": "Zekrom",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Dragon, Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-009_f.jpg"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-009_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3316,10 +3343,13 @@
   "name": "Kyurem",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Dragon, Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-010_f.jpg"
+  "pe": "156",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-010_f.jpg",
+  "moves": "",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3327,10 +3357,13 @@
   "name": "Jolteon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-011_f.jpg"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-011_f.jpg",
+  "moves": "Thunderbolt",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3338,10 +3371,13 @@
   "name": "Espeon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-012_f.jpg"
+  "pe": "112",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-012_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3349,10 +3385,13 @@
   "name": "Leafeon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-013_f.jpg"
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-013_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3360,10 +3399,13 @@
   "name": "Sylveon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-014_f.jpg"
+  "pe": "116",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-014_f.jpg",
+  "moves": "Moonblast",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3371,10 +3413,13 @@
   "name": "Lucario",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-015_f.jpg"
+  "types": "Fighting, Steel",
+  "ability": "Mega Evolution",
+  "pe": "118",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-015_f.jpg",
+  "moves": "Aura Sphere",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3382,10 +3427,13 @@
   "name": "Torterra",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-016_f.jpg"
+  "types": "Grass, Ground",
+  "ability": "Z-Move",
+  "pe": "112",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-016_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3393,10 +3441,13 @@
   "name": "Infernape",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-017_f.jpg"
+  "types": "Fire, Fighting",
+  "ability": "Z-Move",
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-017_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3404,10 +3455,13 @@
   "name": "Empoleon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-018_f.jpg"
+  "types": "Water, Steel",
+  "ability": "Z-Move",
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-018_f.jpg",
+  "moves": "Flash Cannon, Corkscrew Crash",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3415,10 +3469,13 @@
   "name": "Alolan Ninetales",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-019_f.jpg"
+  "types": "Ice, Fairy",
+  "ability": "Z-Move",
+  "pe": "122",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-019_f.jpg",
+  "moves": "Blizzard, Subzero Slammer",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3426,10 +3483,13 @@
   "name": "Tyranitar",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-020_f.jpg"
+  "types": "Rock, Dark",
+  "ability": "Dynamax",
+  "pe": "132",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-020_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3437,10 +3497,13 @@
   "name": "Metagross",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-021_f.jpg"
+  "types": "Steel, Psychic",
+  "ability": "Dynamax",
+  "pe": "132",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-021_f.jpg",
+  "moves": "Meteor Mash",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3448,10 +3511,13 @@
   "name": "Flapple",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Grass, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-022_f.jpg"
+  "pe": "110",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-022_f.jpg",
+  "moves": "Dragon Rush",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3459,10 +3525,13 @@
   "name": "Appletun",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Grass, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-023_f.jpg"
+  "pe": "110",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-023_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3470,10 +3539,13 @@
   "name": "Alcremie",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-024_f.jpg"
+  "pe": "112",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-024_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3481,10 +3553,13 @@
   "name": "Drednaw",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Water, Rock",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-025_f.jpg"
+  "pe": "104",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-025_f.jpg",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V2",
@@ -3492,10 +3567,13 @@
   "name": "Meowscarada",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass, Dark",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-026_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-026_f.jpg",
+  "moves": "Night Slash",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3503,10 +3581,13 @@
   "name": "Skeledirge",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire, Ghost",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-027_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-027_f.jpg",
+  "moves": "Hex",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3514,10 +3595,13 @@
   "name": "Quaquaval",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Fighting",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-028_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-028_f.jpg",
+  "moves": "Low Sweep",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3525,10 +3609,13 @@
   "name": "Charcadet",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-029_f.jpg"
+  "pe": "40",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-029_f.jpg",
+  "moves": "Ember",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3536,10 +3623,13 @@
   "name": "Frigibax",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dragon, Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-030_f.jpg"
+  "pe": "48",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-030_f.jpg",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3547,10 +3637,13 @@
   "name": "Pawmi",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-031_f.jpg"
+  "pe": "40",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-031_f.jpg",
+  "moves": "Scratch",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3558,10 +3651,13 @@
   "name": "Turtwig",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-032_f.jpg"
+  "pe": "44",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-032_f.jpg",
+  "moves": "Absorb",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3569,10 +3665,13 @@
   "name": "Grotle",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-033_f.jpg"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-033_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3580,10 +3679,13 @@
   "name": "Torterra",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass, Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-034_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-034_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3591,10 +3693,13 @@
   "name": "Chimchar",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-035_f.jpg"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-035_f.jpg",
+  "moves": "Ember",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3602,10 +3707,13 @@
   "name": "Monferno",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire, Fighting",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-036_f.jpg"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-036_f.jpg",
+  "moves": "Mach Punch",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3613,10 +3721,13 @@
   "name": "Infernape",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire, Fighting",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-037_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-037_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3624,10 +3735,13 @@
   "name": "Piplup",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-038_f.jpg"
+  "pe": "44",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-038_f.jpg",
+  "moves": "Bubble",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3635,10 +3749,13 @@
   "name": "Prinplup",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-039_f.jpg"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-039_f.jpg",
+  "moves": "Bubble Beam",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3646,10 +3763,13 @@
   "name": "Empoleon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-040_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-040_f.jpg",
+  "moves": "Steel Wing",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3657,10 +3777,13 @@
   "name": "Vaporeon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-041_f.jpg"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-041_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3668,10 +3791,13 @@
   "name": "Flareon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-042_f.jpg"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-042_f.jpg",
+  "moves": "Lava Plume",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3679,10 +3805,13 @@
   "name": "Umbreon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-043_f.jpg"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-043_f.jpg",
+  "moves": "Bite",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3690,10 +3819,13 @@
   "name": "Glaceon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-044_f.jpg"
+  "pe": "94",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-044_f.jpg",
+  "moves": "Freeze-Dry",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3701,10 +3833,13 @@
   "name": "Yamper",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-045_f.jpg"
+  "pe": "38",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-045_f.jpg",
+  "moves": "Nuzzle",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3712,10 +3847,13 @@
   "name": "Boltund",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-046_f.jpg"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-046_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3723,10 +3861,13 @@
   "name": "Pidgey",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-047_f.jpg"
+  "pe": "36",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-047_f.jpg",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3734,10 +3875,13 @@
   "name": "Pidgeotto",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-048_f.jpg"
+  "pe": "54",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-048_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3745,10 +3889,13 @@
   "name": "Pidgeot",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-049_f.jpg"
+  "pe": "82",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-049_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3756,10 +3903,13 @@
   "name": "Alolan Sandshrew",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-050_f.jpg"
+  "pe": "40",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-050_f.jpg",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3767,10 +3917,13 @@
   "name": "Alolan Sandslash",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-051_f.jpg"
+  "pe": "78",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-051_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3778,10 +3931,13 @@
   "name": "Bronzor",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Steel, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-052_f.jpg"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-052_f.jpg",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3789,10 +3945,13 @@
   "name": "Bronzong",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Steel, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-053_f.jpg"
+  "pe": "74",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-053_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3800,10 +3959,13 @@
   "name": "Trapinch",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-054_f.jpg"
+  "pe": "40",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-054_f.jpg",
+  "moves": "Sand Tomb",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3811,10 +3973,13 @@
   "name": "Vibrava",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-055_f.jpg"
+  "pe": "58",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-055_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3822,10 +3987,13 @@
   "name": "Flygon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-056_f.jpg"
+  "pe": "96",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-056_f.jpg",
+  "moves": "Dragon Claw",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3833,10 +4001,13 @@
   "name": "Wingull",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-057_f.jpg"
+  "pe": "38",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-057_f.jpg",
+  "moves": "Gust",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3844,10 +4015,13 @@
   "name": "Pelipper",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-058_f.jpg"
+  "pe": "70",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-058_f.jpg",
+  "moves": "Air Slash",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3855,10 +4029,13 @@
   "name": "Jynx",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-059_f.jpg"
+  "pe": "68",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-059_f.jpg",
+  "moves": "Avalanche",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3866,10 +4043,13 @@
   "name": "Abra",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-060_f.jpg"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-060_f.jpg",
+  "moves": "Hidden Power",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3877,10 +4057,13 @@
   "name": "Kadabra",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-061_f.jpg"
+  "pe": "62",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-061_f.jpg",
+  "moves": "Psybeam",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3888,10 +4071,13 @@
   "name": "Alakazam",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-062_f.jpg"
+  "pe": "88",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-062_f.jpg",
+  "moves": "Psychic",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3899,10 +4085,13 @@
   "name": "Drifloon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ghost, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-063_f.jpg"
+  "pe": "56",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-063_f.jpg",
+  "moves": "Astonish",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3910,10 +4099,13 @@
   "name": "Drifblim",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ghost, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-064_f.jpg"
+  "pe": "88",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-064_f.jpg",
+  "moves": "Hex",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3921,10 +4113,13 @@
   "name": "Mareanie",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Poison, Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-065_f.jpg"
+  "pe": "54",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-065_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3932,10 +4127,13 @@
   "name": "Togedemaru",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-066_f.jpg"
+  "pe": "68",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-066_f.jpg",
+  "moves": "Spark",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3943,10 +4141,13 @@
   "name": "Ralts",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic, Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-067_f.jpg"
+  "pe": "32",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-067_f.jpg",
+  "moves": "Disarming Voice",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V2",
@@ -3954,10 +4155,13 @@
   "name": "Kirlia",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic, Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-068_f.jpg"
+  "pe": "50",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-068_f.jpg",
+  "moves": "Draining Kiss",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3965,10 +4169,13 @@
   "name": "Gardevoir",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic, Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-069_f.jpg"
+  "pe": "96",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-069_f.jpg",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V2",
@@ -3976,10 +4183,13 @@
   "name": "Onix",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Rock, Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-070_f.jpg"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_1-2-070_f.jpg",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V2",
@@ -3987,10 +4197,13 @@
   "name": "Pikachu",
   "tier": "Regular Tags",
   "rarity": "Regular (series-wide reprint, incl. G-Max forms)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-1_f.jpg"
+  "types": "Electric",
+  "ability": "Dynamax",
+  "pe": "96",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-1_f.jpg",
+  "grade": "Regular",
+  "group": "Special",
+  "moves": "Thunderbolt, Lightning"
  },
  {
   "version": "Stardust V2",
@@ -3998,10 +4211,13 @@
   "name": "Lucario",
   "tier": "Regular Tags",
   "rarity": "Regular (series-wide reprint, incl. G-Max forms)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-2_f.jpg"
+  "types": "Fighting, Steel",
+  "ability": "Dynamax",
+  "pe": "102",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-2_f.jpg",
+  "grade": "Regular",
+  "group": "Special",
+  "moves": "Focus Blast, Max Knuckle"
  },
  {
   "version": "Stardust V2",
@@ -4009,10 +4225,13 @@
   "name": "Snorlax",
   "tier": "Regular Tags",
   "rarity": "Regular (series-wide reprint, incl. G-Max forms)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-3_f.jpg"
+  "types": "Normal",
+  "ability": "Dynamax",
+  "pe": "104",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver2/pm_en_R-1-3_f.jpg",
+  "grade": "Regular",
+  "group": "Special",
+  "moves": "Giga Impact, Max Strike"
  },
  {
   "version": "Stardust V1",
@@ -4020,10 +4239,13 @@
   "name": "Mewtwo",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-001_f.png"
+  "pe": "158",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-001_f.png",
+  "moves": "Psystrike",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4031,10 +4253,13 @@
   "name": "Mew",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-002_f.png"
+  "pe": "142",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-002_f.png",
+  "moves": "Psychic",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4042,10 +4267,13 @@
   "name": "Zacian",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Fairy, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-003_f.png"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-003_f.png",
+  "moves": "Behemoth Blade",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4053,10 +4281,13 @@
   "name": "Zamazenta",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Fighting, Steel",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-004_f.png"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-004_f.png",
+  "moves": "Behemoth Bash",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4064,10 +4295,13 @@
   "name": "Tyranitar",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Rock, Dark",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-005_f.png"
+  "pe": "144",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-005_f.png",
+  "moves": "Stone Edge, Rockfall",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4075,10 +4309,13 @@
   "name": "Metagross",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Steel, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-006_f.png"
+  "pe": "144",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-006_f.png",
+  "moves": "Meteor Mash, Max Steelspike",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4086,10 +4323,13 @@
   "name": "Miraidon",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Electric, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-007_f.png"
+  "pe": "162",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-007_f.png",
+  "moves": "Electro Drift",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4097,10 +4337,13 @@
   "name": "Venusaur",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Grass, Poison",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-008_f.png"
+  "pe": "122",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-008_f.png",
+  "moves": "Leaf Storm",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4108,10 +4351,13 @@
   "name": "Charizard",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Fire, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-009_f.png"
+  "pe": "124",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-009_f.png",
+  "moves": "Flamethrower",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4119,10 +4365,13 @@
   "name": "Blastoise",
   "tier": "Superstar Pokémon",
   "rarity": "6★ Superstar (rarest, rainbow lamé)",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-010_f.png"
+  "pe": "124",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-010_f.png",
+  "moves": "Hydro Pump",
+  "grade": "6",
+  "group": "Superstar Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4130,10 +4379,13 @@
   "name": "Vaporeon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-011_f.png"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-011_f.png",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4141,10 +4393,13 @@
   "name": "Flareon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-012_f.png"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-012_f.png",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4152,10 +4407,13 @@
   "name": "Umbreon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Dark",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-013_f.png"
+  "pe": "112",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-013_f.png",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4163,10 +4421,13 @@
   "name": "Glaceon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-014_f.png"
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-014_f.png",
+  "moves": "Blizzard",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4174,10 +4435,13 @@
   "name": "Pidgeot",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-015_f.png"
+  "types": "Normal, Flying",
+  "ability": "Mega Evolution",
+  "pe": "100",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-015_f.png",
+  "moves": "Hurricane",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4185,10 +4449,13 @@
   "name": "Gengar",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-016_f.png"
+  "types": "Ghost, Poison",
+  "ability": "Mega Evolution",
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-016_f.png",
+  "moves": "Shadow Ball",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4196,10 +4463,13 @@
   "name": "Arcanine",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-017_f.png"
+  "types": "Fire",
+  "ability": "Z-Move",
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-017_f.png",
+  "moves": "Fire Blast, Inferno Overdrive",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4207,10 +4477,13 @@
   "name": "Rhyperior",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-018_f.png"
+  "types": "Ground, Rock",
+  "ability": "Z-Move",
+  "pe": "110",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-018_f.png",
+  "moves": "Earthquake, Tectonic Rage",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4218,10 +4491,13 @@
   "name": "Pikachu",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-019_f.png"
+  "types": "Electric",
+  "ability": "Dynamax",
+  "pe": "96",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-019_f.png",
+  "moves": "Thunderbolt, Max Lightning",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4229,10 +4505,13 @@
   "name": "Flygon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
-  "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-020_f.png"
+  "types": "Ground, Dragon",
+  "ability": "Dynamax",
+  "pe": "114",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-020_f.png",
+  "moves": "Earthquake, Max Quake",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4240,10 +4519,13 @@
   "name": "Rillaboom",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-021_f.png"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-021_f.png",
+  "moves": "Drum beating",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4251,10 +4533,13 @@
   "name": "Cinderace",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-022_f.png"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-022_f.png",
+  "moves": "Pyro Ball",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4262,10 +4547,13 @@
   "name": "Inteleon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-023_f.png"
+  "pe": "108",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-023_f.png",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4273,10 +4561,13 @@
   "name": "Obstagoon",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Dark, Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-024_f.png"
+  "pe": "112",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-024_f.png",
+  "moves": "Throat Chop",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4284,10 +4575,13 @@
   "name": "Keldeo",
   "tier": "Star Pokémon",
   "rarity": "5★ Star (holofoil)",
-  "types": "",
+  "types": "Water, Fighting",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-025_f.png"
+  "pe": "122",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-025_f.png",
+  "moves": "",
+  "grade": "5",
+  "group": "Star Pokémon"
  },
  {
   "version": "Stardust V1",
@@ -4295,10 +4589,13 @@
   "name": "Sprigatito",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-026_f.png"
+  "pe": "48",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-026_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4306,10 +4603,13 @@
   "name": "Floragato",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-027_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-027_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4317,10 +4617,13 @@
   "name": "Fuecoco",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-028_f.png"
+  "pe": "48",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-028_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4328,10 +4631,13 @@
   "name": "Crocalor",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-029_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-029_f.png",
+  "moves": "Incinerate",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4339,10 +4645,13 @@
   "name": "Quaxly",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-030_f.png"
+  "pe": "48",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-030_f.png",
+  "moves": "Water Gun",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4350,10 +4659,13 @@
   "name": "Quaxwell",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-031_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-031_f.png",
+  "moves": "Water Pulse",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4361,10 +4673,13 @@
   "name": "Grookey",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-032_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-032_f.png",
+  "moves": "Branch Poke",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4372,10 +4687,13 @@
   "name": "Thwackey",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-033_f.png"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-033_f.png",
+  "moves": "Razor Leaf",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4383,10 +4701,13 @@
   "name": "Rillaboom",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-034_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-034_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4394,10 +4715,13 @@
   "name": "Scorbunny",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-035_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-035_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4405,10 +4729,13 @@
   "name": "Raboot",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-036_f.png"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-036_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4416,10 +4743,13 @@
   "name": "Cinderace",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-037_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-037_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4427,10 +4757,13 @@
   "name": "Sobble",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-038_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-038_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4438,10 +4771,13 @@
   "name": "Drizzile",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-039_f.png"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-039_f.png",
+  "moves": "Water Pulse",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4449,10 +4785,13 @@
   "name": "Inteleon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-040_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-040_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4460,10 +4799,13 @@
   "name": "Dedenne",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric, Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-041_f.png"
+  "pe": "52",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-041_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4471,10 +4813,13 @@
   "name": "Pikachu",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-042_f.png"
+  "pe": "60",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-042_f.png",
+  "moves": "Spark",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4482,10 +4827,13 @@
   "name": "Raichu",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-043_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-043_f.png",
+  "moves": "Thunder",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4493,10 +4841,13 @@
   "name": "Eevee",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-044_f.png"
+  "pe": "60",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-044_f.png",
+  "moves": "Swift",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4504,10 +4855,13 @@
   "name": "Jolteon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-045_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-045_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4515,10 +4869,13 @@
   "name": "Espeon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-046_f.png"
+  "pe": "92",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-046_f.png",
+  "moves": "Psybeam",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4526,10 +4883,13 @@
   "name": "Leafeon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-047_f.png"
+  "pe": "94",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-047_f.png",
+  "moves": "Razor Leaf",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4537,10 +4897,13 @@
   "name": "Sylveon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fairy",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-048_f.png"
+  "pe": "96",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-048_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4548,10 +4911,13 @@
   "name": "Sneasel",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark, Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-049_f.png"
+  "pe": "66",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-049_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4559,10 +4925,13 @@
   "name": "Weavile",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark, Ice",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-050_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-050_f.png",
+  "moves": "Night Slash",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4570,10 +4939,13 @@
   "name": "Golett",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground, Ghost",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-051_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-051_f.png",
+  "moves": "Astonish",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4581,10 +4953,13 @@
   "name": "Golurk",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground, Ghost",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-052_f.png"
+  "pe": "72",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-052_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4592,10 +4967,13 @@
   "name": "Slowpoke",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-053_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-053_f.png",
+  "moves": "Water Gun",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4603,10 +4981,13 @@
   "name": "Slowbro",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Water, Psychic",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-054_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-054_f.png",
+  "moves": "Water Pulse",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4614,10 +4995,13 @@
   "name": "Mudbray",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-055_f.png"
+  "pe": "62",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-055_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4625,10 +5009,13 @@
   "name": "Mudsdale",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ground",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-056_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-056_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4636,10 +5023,13 @@
   "name": "Galarian Zigzagoon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark, Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-057_f.png"
+  "pe": "36",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-057_f.png",
+  "moves": "Payback",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4647,10 +5037,13 @@
   "name": "Galarian Linoone",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark, Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-058_f.png"
+  "pe": "64",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-058_f.png",
+  "moves": "",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4658,10 +5051,13 @@
   "name": "Obstagoon",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Dark, Normal",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-059_f.png"
+  "pe": "90",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-059_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4669,10 +5065,13 @@
   "name": "Grubbin",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Bug",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-060_f.png"
+  "pe": "42",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-060_f.png",
+  "moves": "Bug Bite",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4680,10 +5079,13 @@
   "name": "Charjabug",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Bug, Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-061_f.png"
+  "pe": "62",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-061_f.png",
+  "moves": "X-Scissor",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4691,10 +5093,13 @@
   "name": "Vikavolt",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Bug, Electric",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-062_f.png"
+  "pe": "88",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-062_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4702,10 +5107,13 @@
   "name": "Doduo",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-063_f.png"
+  "pe": "40",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-063_f.png",
+  "moves": "Peck",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4713,10 +5121,13 @@
   "name": "Dodrio",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Normal, Flying",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-064_f.png"
+  "pe": "82",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-064_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4724,10 +5135,13 @@
   "name": "Gossifleur",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-065_f.png"
+  "pe": "44",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-065_f.png",
+  "moves": "",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4735,10 +5149,13 @@
   "name": "Eldegoss",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Grass",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-066_f.png"
+  "pe": "80",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-066_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4746,10 +5163,13 @@
   "name": "Turtonator",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Fire, Dragon",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-067_f.png"
+  "pe": "84",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-067_f.png",
+  "moves": "Incinerate",
+  "grade": "4",
+  "group": "4 Star"
  },
  {
   "version": "Stardust V1",
@@ -4757,10 +5177,13 @@
   "name": "Cramorant",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Flying, Water",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-068_f.png"
+  "pe": "70",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-068_f.png",
+  "moves": "Scald",
+  "grade": "3",
+  "group": "3 Star"
  },
  {
   "version": "Stardust V1",
@@ -4768,10 +5191,13 @@
   "name": "Snom",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice, Bug",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-069_f.png"
+  "pe": "30",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-069_f.png",
+  "moves": "Powder Snow",
+  "grade": "2",
+  "group": "2 Star"
  },
  {
   "version": "Stardust V1",
@@ -4779,9 +5205,12 @@
   "name": "Frosmoth",
   "tier": "★2~4 Pokémon",
   "rarity": "2★-4★ standard pool",
-  "types": "",
+  "types": "Ice, Bug",
   "ability": "",
-  "pe": "",
-  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-070_f.png"
+  "pe": "86",
+  "img": "https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_1-1-070_f.png",
+  "moves": "",
+  "grade": "4",
+  "group": "4 Star"
  }
 ]

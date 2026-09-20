@@ -324,5 +324,329 @@
   "Poison",
   "Bug",
   "Ghost"
+ ],
+ "vn_scope": {
+  "available_versions": [
+   "Stardust V1",
+   "Stardust V2"
+  ],
+  "available_tag_count": 143,
+  "note": "Vietnam only has Stardust Version 1 and 2; Galaxy and Stardust 3/4 are NOT released here."
+ },
+ "gap_fillers_vn": {
+  "Fire": [
+   {
+    "id": "1-2-008",
+    "name": "Reshiram",
+    "pe": "162",
+    "types": "Dragon, Fire",
+    "version": "Stardust V2",
+    "moves": "Fusion Flare"
+   },
+   {
+    "id": "1-1-009",
+    "name": "Charizard",
+    "pe": "124",
+    "types": "Fire, Flying",
+    "version": "Stardust V1",
+    "moves": "Flamethrower"
+   },
+   {
+    "id": "1-2-017",
+    "name": "Infernape",
+    "pe": "114",
+    "types": "Fire, Fighting",
+    "version": "Stardust V2",
+    "moves": ""
+   },
+   {
+    "id": "1-1-017",
+    "name": "Arcanine",
+    "pe": "114",
+    "types": "Fire",
+    "version": "Stardust V1",
+    "moves": "Fire Blast, Inferno Overdrive"
+   },
+   {
+    "id": "1-1-012",
+    "name": "Flareon",
+    "pe": "108",
+    "types": "Fire",
+    "version": "Stardust V1",
+    "moves": ""
+   }
+  ],
+  "Poison": [
+   {
+    "id": "1-1-008",
+    "name": "Venusaur",
+    "pe": "122",
+    "types": "Grass, Poison",
+    "version": "Stardust V1",
+    "moves": "Leaf Storm"
+   },
+   {
+    "id": "1-1-016",
+    "name": "Gengar",
+    "pe": "108",
+    "types": "Ghost, Poison",
+    "version": "Stardust V1",
+    "moves": "Shadow Ball"
+   },
+   {
+    "id": "1-2-065",
+    "name": "Mareanie",
+    "pe": "54",
+    "types": "Poison, Water",
+    "version": "Stardust V2",
+    "moves": ""
+   }
+  ],
+  "Bug": [
+   {
+    "id": "1-1-062",
+    "name": "Vikavolt",
+    "pe": "88",
+    "types": "Bug, Electric",
+    "version": "Stardust V1",
+    "moves": ""
+   },
+   {
+    "id": "1-1-070",
+    "name": "Frosmoth",
+    "pe": "86",
+    "types": "Ice, Bug",
+    "version": "Stardust V1",
+    "moves": ""
+   },
+   {
+    "id": "1-1-061",
+    "name": "Charjabug",
+    "pe": "62",
+    "types": "Bug, Electric",
+    "version": "Stardust V1",
+    "moves": "X-Scissor"
+   },
+   {
+    "id": "1-1-060",
+    "name": "Grubbin",
+    "pe": "42",
+    "types": "Bug",
+    "version": "Stardust V1",
+    "moves": "Bug Bite"
+   },
+   {
+    "id": "1-1-069",
+    "name": "Snom",
+    "pe": "30",
+    "types": "Ice, Bug",
+    "version": "Stardust V1",
+    "moves": "Powder Snow"
+   }
+  ],
+  "Ghost": [
+   {
+    "id": "1-1-016",
+    "name": "Gengar",
+    "pe": "108",
+    "types": "Ghost, Poison",
+    "version": "Stardust V1",
+    "moves": "Shadow Ball"
+   },
+   {
+    "id": "1-2-027",
+    "name": "Skeledirge",
+    "pe": "92",
+    "types": "Fire, Ghost",
+    "version": "Stardust V2",
+    "moves": "Hex"
+   },
+   {
+    "id": "1-2-064",
+    "name": "Drifblim",
+    "pe": "88",
+    "types": "Ghost, Flying",
+    "version": "Stardust V2",
+    "moves": "Hex"
+   },
+   {
+    "id": "1-1-052",
+    "name": "Golurk",
+    "pe": "72",
+    "types": "Ground, Ghost",
+    "version": "Stardust V1",
+    "moves": ""
+   },
+   {
+    "id": "1-2-063",
+    "name": "Drifloon",
+    "pe": "56",
+    "types": "Ghost, Flying",
+    "version": "Stardust V2",
+    "moves": "Astonish"
+   }
+  ]
+ },
+ "superstar_chase_list_vn": [
+  {
+   "id": "1-2-003",
+   "name": "Koraidon",
+   "pe": "162",
+   "types": "Fighting, Dragon",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-2-008",
+   "name": "Reshiram",
+   "pe": "162",
+   "types": "Dragon, Fire",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-2-009",
+   "name": "Zekrom",
+   "pe": "162",
+   "types": "Dragon, Electric",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-1-003",
+   "name": "Zacian",
+   "pe": "162",
+   "types": "Fairy, Steel",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-004",
+   "name": "Zamazenta",
+   "pe": "162",
+   "types": "Fighting, Steel",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-007",
+   "name": "Miraidon",
+   "pe": "162",
+   "types": "Electric, Dragon",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-2-006",
+   "name": "Kommo-o",
+   "pe": "158",
+   "types": "Dragon, Fighting",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-1-001",
+   "name": "Mewtwo",
+   "pe": "158",
+   "types": "Psychic",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-2-010",
+   "name": "Kyurem",
+   "pe": "156",
+   "types": "Dragon, Ice",
+   "version": "Stardust V2",
+   "owned": true
+  },
+  {
+   "id": "1-2-001",
+   "name": "Kyogre",
+   "pe": "152",
+   "types": "Water",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-2-002",
+   "name": "Groudon",
+   "pe": "152",
+   "types": "Ground",
+   "version": "Stardust V2",
+   "owned": false
+  },
+  {
+   "id": "1-2-005",
+   "name": "Snorlax",
+   "pe": "144",
+   "types": "Normal",
+   "version": "Stardust V2",
+   "owned": true
+  },
+  {
+   "id": "1-1-005",
+   "name": "Tyranitar",
+   "pe": "144",
+   "types": "Rock, Dark",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-006",
+   "name": "Metagross",
+   "pe": "144",
+   "types": "Steel, Psychic",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-002",
+   "name": "Mew",
+   "pe": "142",
+   "types": "Psychic",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-2-007",
+   "name": "Gardevoir",
+   "pe": "124",
+   "types": "Psychic, Fairy",
+   "version": "Stardust V2",
+   "owned": true
+  },
+  {
+   "id": "1-1-009",
+   "name": "Charizard",
+   "pe": "124",
+   "types": "Fire, Flying",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-010",
+   "name": "Blastoise",
+   "pe": "124",
+   "types": "Water",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-1-008",
+   "name": "Venusaur",
+   "pe": "122",
+   "types": "Grass, Poison",
+   "version": "Stardust V1",
+   "owned": false
+  },
+  {
+   "id": "1-2-004",
+   "name": "Pikachu",
+   "pe": "102",
+   "types": "Electric",
+   "version": "Stardust V2",
+   "owned": false
+  }
  ]
 }
