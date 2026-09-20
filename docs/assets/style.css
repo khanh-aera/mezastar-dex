@@ -151,6 +151,44 @@ input.search:focus{border-color:rgba(143,233,255,.55);box-shadow:0 0 0 4px rgba(
 .tagsin{display:flex;gap:6px;flex-wrap:wrap}
 .tin{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;color:#080b17}
 
+/* ---------- burger + drawer ---------- */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;flex:0 0 42px;
+  padding:0 10px;border-radius:13px;border:1px solid var(--stroke-soft);background:rgba(255,255,255,.05);cursor:pointer}
+.burger span{display:block;height:2px;border-radius:2px;background:#dfe6ff;transition:transform .3s ease,opacity .2s ease}
+.burger:hover{background:rgba(255,255,255,.09)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.drawer{position:fixed;top:0;left:0;bottom:0;width:min(84vw,320px);z-index:95;
+  transform:translateX(-102%);transition:transform .32s cubic-bezier(.22,.9,.3,1);
+  background:linear-gradient(165deg,rgba(16,21,42,.92),rgba(8,11,23,.96));
+  border-right:1px solid var(--stroke-soft);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  display:flex;flex-direction:column;padding:18px 16px calc(18px + env(safe-area-inset-bottom));overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.navscrim{display:block;position:fixed;inset:0;width:100vw;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:94}
+.navscrim.open{opacity:1;pointer-events:auto}
+.dhead{display:flex;align-items:center;gap:12px;padding:6px 6px 16px;border-bottom:1px solid var(--stroke-soft)}
+.dbolt{width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 4px 14px rgba(90,140,255,.45))}
+.dname{font-family:"Chakra Petch",sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em}
+.dsub{font-size:11px;color:var(--dim);letter-spacing:.08em;margin-top:2px}
+.dlink{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:12px 14px;border-radius:14px;
+  border:1px solid transparent;background:transparent;color:#dfe6ff;font:inherit;font-size:14.5px;font-weight:500;
+  cursor:pointer;text-align:left;transition:background .2s ease,border-color .2s ease}
+.dlink .di{font-size:17px;flex:0 0 24px;text-align:center}
+.dlink:hover{background:rgba(255,255,255,.06)}
+.dlink.on{background:linear-gradient(96deg,rgba(122,162,255,.16),rgba(122,162,255,.05));border-color:rgba(122,162,255,.35)}
+.dsect{margin:20px 8px 8px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-family:"Chakra Petch",sans-serif}
+.dchips{display:flex;flex-wrap:wrap;gap:7px;padding:0 6px}
+.dchips .chip{cursor:pointer}
+.dfoot{margin-top:auto;padding:16px 8px 2px;font-size:11px;line-height:1.7;color:var(--dim)}
+.dfoot a{color:#9db6ff;text-decoration:none}
+
+@media (max-width:760px){
+  .burger{display:flex}
+  nav.tabs{top:6px}
+}
+
 /* ---------- boss list header ---------- */
 .listhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 8px;flex-wrap:wrap}
 .poolbox{display:flex;align-items:center;gap:9px}

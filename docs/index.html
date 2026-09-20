@@ -24,7 +24,10 @@
 
 <div class="wrap">
 
-  <header class="top glass">
+  <header class="top glass" id="appbar">
+    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="ball"></div>
     <div class="titles">
       <h1>Mezastar Binder</h1>
@@ -41,6 +44,20 @@
     <button class="on" data-tab="binder">My Binder</button>
     <button data-tab="boss">Boss Counter</button>
     <button data-tab="load">Loadout</button>
+  </nav>
+
+  <div class="scrim navscrim" id="navScrim"></div>
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="dhead">
+      <img class="dbolt" src="icons/bolt-transparent.png" alt="">
+      <div><div class="dname">Mezastar Binder</div><div class="dsub">Stardust V2 · Vietnam</div></div>
+    </div>
+    <button class="dlink on" data-tab="binder"><span class="di">📇</span> My Binder</button>
+    <button class="dlink on-sep" data-tab="boss"><span class="di">⚔️</span> Boss Counter</button>
+    <button class="dlink" data-tab="load"><span class="di">🎯</span> Loadout</button>
+    <div class="dsect">Quick bosses</div>
+    <div class="dchips" id="drawerChips"></div>
+    <div class="dfoot">Personal binder · data on <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">GitHub</a><br>Stardust V2 only · built by Hermes</div>
   </nav>
 
   <!-- ============ BINDER ============ -->

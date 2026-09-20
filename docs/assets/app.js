@@ -266,12 +266,24 @@ function renderLoadout(){
 }
 
 /* ---------------- wiring ---------------- */
+function setDrawer(open){
+  $("#drawer").classList.toggle("open", open);
+  $("#navScrim").classList.toggle("open", open);
+  $("#burgerBtn").classList.toggle("open", open);
+  $("#burgerBtn").setAttribute("aria-expanded", open ? "true" : "false");
+  $("#drawer").setAttribute("aria-hidden", open ? "false" : "true");
+}
+$("#burgerBtn").onclick = () => setDrawer(!$("#drawer").classList.contains("open"));
+$("#navScrim").onclick = () => setDrawer(false);
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeModal(); setDrawer(false); } });
 function tab(name){
   state.tab = name;
   document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
+  document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
+document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.onclick = () => { tab(b.dataset.tab); setDrawer(false); });
 $("#q").oninput = e => { state.q = e.target.value; renderGrid(); };
 $("#sortBtn").onclick = () => { state.sort = "pe"; $("#sortBtn").classList.add("act"); $("#sortName").classList.remove("act"); renderGrid(); };
 $("#sortName").onclick = () => { state.sort = "name"; $("#sortName").classList.add("act"); $("#sortBtn").classList.remove("act"); renderGrid(); };
@@ -299,6 +311,8 @@ $("#clearBoss").onclick = () => { state.bfilter = ""; state.boss = null; $("#bq"
     const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
     $("#bossChips").innerHTML = quick.map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
     $("#bossChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
+    $("#drawerChips").innerHTML = quick.slice(0, 8).map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
+    $("#drawerChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { tab("boss"); setDrawer(false); $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
     $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
     renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
   }catch(err){
