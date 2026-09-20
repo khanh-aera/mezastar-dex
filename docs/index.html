@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MEZASTAR BINDER · Khanh</title>
+<meta name="description" content="Personal Pokemon Mezastar binder and boss counter, Stardust Version 2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23ff4d6d'/%3E%3Cpath d='M4 50h92' stroke='%230a0d1c' stroke-width='12'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23fff' stroke='%230a0d1c' stroke-width='10'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grain"></div>
+
+<div class="wrap">
+
+  <header class="top glass">
+    <div class="ball"></div>
+    <div class="titles">
+      <h1>Mezastar Binder</h1>
+      <div class="sub">Khanh Ngo An · Stardust Version 2 · Vietnam machines</div>
+    </div>
+    <div class="statrow">
+      <div class="stat"><b id="sCount">19</b><span>Tags</span></div>
+      <div class="stat"><b id="sPe">0</b><span>Total PE</span></div>
+      <div class="stat"><b id="sType">0</b><span>Types</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="on" data-tab="binder">My Binder</button>
+    <button data-tab="boss">Boss Counter</button>
+    <button data-tab="load">Loadout</button>
+  </nav>
+
+  <!-- ============ BINDER ============ -->
+  <section class="panel on" id="p-binder">
+    <div class="tools glass">
+      <input class="search" id="q" placeholder="Search my tags by name, id or type…" autocomplete="off">
+      <button class="btn act" id="sortBtn" data-sort="pe">PE ↓</button>
+      <button class="btn" id="sortName" data-sort="name">A to Z</button>
+    </div>
+    <div class="chips" id="typeChips"></div>
+    <div class="grid" id="grid"><div class="spin"></div></div>
+  </section>
+
+  <!-- ============ BOSS COUNTER ============ -->
+  <section class="panel" id="p-boss">
+    <div class="tools glass">
+      <input class="search" id="bq" placeholder="Type the boss you just met… (kyurem, koraidon, skele)" autocomplete="off">
+      <button class="btn" id="clearBoss">Reset</button>
+    </div>
+    <div class="chips" id="bossChips"></div>
+    <div id="bossResult"></div>
+    <h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase;margin:20px 0 8px">Or pick from the boss list</h3>
+    <div class="glass" style="padding:10px"><div class="bossgrid" id="bossGrid"></div></div>
+  </section>
+
+  <!-- ============ LOADOUT ============ -->
+  <section class="panel" id="p-load">
+    <div id="loadout"><div class="spin"></div></div>
+  </section>
+
+  <footer>
+    Personal binder build · Stardust Version 2 only · art from the official Mezastar tag sheets<br>
+    <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">mezastar-dex</a> · type chart: mainline multipliers
+  </footer>
+</div>
+
+<div class="scrim" id="scrim"><div class="modal" id="modal"></div></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
