@@ -151,8 +151,10 @@ function counterFor(boss){
   const alts = rows.filter(r => r.o === top.o && r.t.name !== top.t.name)
                    .filter(r => !seen.has(r.t.name) && seen.add(r.t.name))
                    .slice(0, 3);
+  const seenAvoid = new Set();
   const avoid = ROSTER.filter(t => incomingMult(boss.types, t.types) >= 2 && t.name !== top.t.name)
-                      .sort((a,b) => b.pe - a.pe).slice(0,4);
+                     .sort((a,b) => b.pe - a.pe)
+                     .filter(t => !seenAvoid.has(t.name) && seenAvoid.add(t.name)).slice(0,4);
   return { top, alts, avoid, rows };
 }
 function routeRow(t, mult, sub){
