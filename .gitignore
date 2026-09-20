@@ -1,0 +1,4 @@
+__pycache__/
+*.pkl
+Thumbs.db
+.DS_Store
