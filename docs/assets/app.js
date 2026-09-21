@@ -60,18 +60,18 @@ const STR = {
      sq:"Search my tags by name, id or type…", sbq:"Type the boss you just met… (kyurem, koraidon, skele)",
      pick:"Your pick", alts:"Also works", avoid:"Leave in the bag", plan:"Battle plan",
      logw:"Log win", logl:"Log loss", compare:"Compare", clear:"Reset", wish:"Wishlist",
-     missing:"Missing", dupes:"Dupes", all:"All", owned:"owned", want:"want",
+     missing:"Missing", dupes:"Dupes", all:"All", vn:"VN", club:"Club", mag:"Magazine", event:"Event", owned:"owned", want:"want",
      stats:"Collection stats", coverage:"Type coverage", grade:"Grade breakdown", triggers:"Triggers held",
      streak:"Current streak", winrate:"Win rate", budget:"Budget planner", guide:"Tactics guide",
      export:"Export data", imp:"Import", reset:"Reset all", tips:"Pro tip" },
- vi:{ tb:"Bộ Sưu Tập", tc:"Chống Boss", tl:"Xây Đội", th:"Danh Sách Săn", ts:"Thống Kê & Công Cụ",
-     sq:"Tìm tag theo tên, mã, hệ…", sbq:"Gõ tên boss vừa gặp… (kyurem, koraidon, skele)",
-     pick:"Tag nên dùng", alts:"Cũng dùng được", avoid:"Cất vào túi", plan:"Kế hoạch đấu",
-     logw:"Thắng", logl:"Thua", compare:"So sánh", clear:"Đặt lại", wish:"Muốn có",
-     missing:"Chưa có", dupes:"Trùng", all:"Tất cả", owned:"đã có", want:"muốn",
-     stats:"Thống kê bộ sưu tập", coverage:"Độ phủ hệ", grade:"Phân bố sao", triggers:"Triệu hồi đang có",
-     streak:"Chuỗi thắng", winrate:"Tỉ lệ thắng", budget:"Tính ngân sách", guide:"Cẩm nang chiến thuật",
-     export:"Xuất dữ liệu", imp:"Nhập", reset:"Xóa hết", tips:"Mẹo" }
+ vi:{ tb:"Bộ Sưu Tập", tc:"Chống Boss", tl:"Xây Đội", th:"Danh Sách Săn", ts:"Thống Kê & Công Cụ", tt:"Vé Hỗ Trợ",
+      sq:"Tìm tag theo tên, mã, hệ…", sbq:"Gõ tên boss vừa gặp… (kyurem, koraidon, skele)", tq:"Tìm vé hỗ trợ theo tên, chiêu thức, nguồn…",
+      pick:"Tag nên dùng", alts:"Cũng dùng được", avoid:"Cất vào túi", plan:"Kế hoạch đấu",
+      logw:"Thắng", logl:"Thua", compare:"So sánh", clear:"Đặt lại", wish:"Muốn có",
+      missing:"Chưa có", dupes:"Trùng", all:"Tất Cả", vn:"VN", club:"CLB", mag:"Tạp Chí", event:"Sự Kiện",
+      owned:"đã có", want:"muốn", stats:"Thống kê bộ sưu tập", coverage:"Độ phủ hệ", grade:"Phân bố sao", triggers:"Triệu hồi đang có",
+      streak:"Chuỗi thắng", winrate:"Tỉ lệ thắng", budget:"Tính ngân sách", guide:"Cẩm nang chiến thuật",
+      export:"Xuất dữ liệu", imp:"Nhập", reset:"Xóa hết", tips:"Mẹo" }
 };
 const t = k => (STR[SETTINGS.ve] && STR[SETTINGS.ve][k]) || STR.en[k] || k;
 
@@ -858,6 +858,74 @@ function applyLang(){
   renderBossResult(); if (state.boss) renderTrioSuggestion();
 }
 
+/* ================= SUPPORT TICKETS ================= */
+const TICKETS = [
+  { id:"t1", name:"Zygarde", form:"Complete Forme", move:"Thousand Arrows", type:["Ground","Dragon"], grade:5,
+    source:"Mezastar Club (digital)", period:"2020-09-17 to ~2021-01", set:"Set 1", vn:false, img:"img/1-1-025_Zygarde.webp" },
+  { id:"t2", name:"Flygon", move:"Earthquake", type:["Ground","Dragon"], grade:5,
+    source:"Mezastar Club (digital)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-050_Flygon.webp" },
+  { id:"t3", name:"Corviknight", move:"Brave Bird", type:["Flying","Steel"], grade:5,
+    source:"Pokémon Fan magazine issue 73 (physical QR)", period:"2021-04-28 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-046_Corviknight.webp" },
+  { id:"t4", name:"Mimikyu", move:"Shadow Claw", type:["Ghost","Fairy"], grade:5,
+    source:"Tournament prize (defeat Star Trainer Sakura)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-049_Mimikyu.webp" },
+  { id:"t5", name:"Tangrowth", move:"Power Whip", type:["Grass"], grade:5,
+    source:"Mezastar Club (digital)", period:"2022-09-15 to 2022-11-21", set:"Double Chain 2", vn:false, img:"img/dc2-030_Tangrowth.webp" },
+  { id:"t6", name:"Nidoking", move:"Earth Power", type:["Poison","Ground"], grade:5,
+    source:"Mezastar Club (digital) + pamphlet + Pokémon Fan", period:"2023-02-09 to 2023-08-31", set:"Double Chain 4", vn:true, img:"img/dc4-025_Nidoking.webp" },
+  { id:"t7", name:"Krookodile", move:"Earthquake", type:["Ground","Dark"], grade:5,
+    source:"Mezastar Club (digital) + pamphlet + event", period:"2024-02-08 to 2024-04-30", set:"Gorgeous Star 4", vn:true, img:"img/gs4-018_Krookodile.webp" },
+  { id:"t8", name:"Calyrex", form:"Ice Rider", move:"Glacial Lance", type:["Psychic","Ice"], grade:6,
+    source:"Mezastar Club (digital)", period:"Super Tag 1 launch period", set:"Super Tag 1", vn:false, img:"img/st1-005_Calyrex_Ice.webp" },
+  { id:"t9", name:"Calyrex", form:"Shadow Rider", move:"Astral Barrage", type:["Psychic","Ghost"], grade:6,
+    source:"Physical launch campaign ticket", period:"Super Tag 1 launch", set:"Super Tag 1", vn:false, img:"img/st1-006_Calyrex_Shadow.webp" },
+  { id:"t10", name:"Drifblim", move:"Shadow Ball", type:["Ghost","Flying"], grade:4,
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-064_Drifblim.webp" },
+  { id:"t11", name:"Skeledirge", move:"Torch Song", type:["Fire","Ghost"], grade:5,
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-027_Skeledirge.webp" },
+  { id:"t12", name:"Mareanie", move:"Toxic Spikes", type:["Poison","Water"], grade:2,
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-065_Mareanie.webp" },
+];
+
+function ticketSrc(t){
+  if (t.source.includes("Mezastar Club")) return "club";
+  if (t.source.includes("magazine") || t.source.includes("Pokémon Fan")) return "mag";
+  if (t.source.includes("Tournament")) return "event";
+  if (t.source.includes("launch") || t.source.includes("flyer")) return "event";
+  return "club";
+}
+function renderTickets(){
+  const q = ($("#tq")?.value || "").trim().toLowerCase();
+  const filter = (window.ticketFilter || "all");
+  let list = TICKETS.filter(t => {
+    const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
+    if (filter === "vn" && !t.vn) return false;
+    if (filter === "club" && ticketSrc(t) !== "club") return false;
+    if (filter === "mag" && ticketSrc(t) !== "mag") return false;
+    if (filter === "event" && ticketSrc(t) !== "event") return false;
+    if (!q) return true;
+    return (t.name + " " + t.move + " " + t.set + " " + types.join(" ") + " " + t.source).toLowerCase().includes(q);
+  });
+  $("#ticketCount").textContent = `${list.length} ticket${list.length===1?"":"s"} · ${list.filter(t=>t.vn).length} available in Vietnam`;
+  if (!list.length){ $("#tgrid").innerHTML = `<div class="empty">No tickets match that filter.</div>`; return; }
+  $("#tgrid").innerHTML = list.map((t,i) => {
+    const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
+    const firstType = types[0];
+    return `
+    <article class="card ticket" style="--glow:${(TYPE_COLOR[firstType]||"#7aa2ff")}44">
+      <div class="halo"></div>
+      <div class="stars">${stars(t.grade)}</div>
+      ${t.img ? `<img src="${t.img}" alt="${esc(t.name)}" loading="${i<6?'eager':'lazy'}">` : ""}
+      <div class="srcbadge ${ticketSrc(t)}">${ticketSrc(t).toUpperCase()}</div>
+      ${t.vn ? `<div class="srcbadge vn">VN ✔</div>` : `<div class="srcbadge no-vn">VN ✕</div>`}
+      <div class="cname">${esc(t.name)}${t.form?` ${t.form}`:""}</div>
+      <div class="cid">${esc(t.set)}</div>
+      <div class="pills">${types.map(pill).join("")}</div>
+      <div class="move">Move: ${esc(t.move)}</div>
+      <div class="hint" style="margin-top:4px">${esc(t.source)} · ${esc(t.period)}</div>
+    </article>`;
+  }).join("");
+}
+
 /* ================= wiring ================= */
 function setDrawer(open){
   $("#drawer").classList.toggle("open", open);
@@ -876,6 +944,7 @@ function tab(name){
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
   if (name === "hunt"){ renderPoolChips(); renderPoolGrid(); renderHuntSummary(); }
+  if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
 document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.onclick = () => { tab(b.dataset.tab); setDrawer(false); });
@@ -894,10 +963,15 @@ $("#bq").onkeydown = e => { if (e.key === "Enter"){ const m = resolveBoss(state.
 $("#clearBoss").onclick = () => { state.bfilter = ""; state.boss = null; $("#bq").value = ""; COMPARE = []; selectBoss("", true); };
 $("#drillBtn").onclick = () => randomDrill();
 $("#pq").oninput = e => { pstate.q = e.target.value; renderPoolGrid(); };
+$("#tq").oninput = e => { renderTickets(); };
 document.querySelectorAll("#huntModes .btn").forEach(b => b.onclick = () => {
   pstate.mode = b.dataset.m;
   document.querySelectorAll("#huntModes .btn").forEach(x => x.classList.toggle("act", x === b));
   renderPoolGrid(); });
+document.querySelectorAll("#ticketFilters .btn").forEach(b => b.onclick = () => {
+  window.ticketFilter = b.dataset.f;
+  document.querySelectorAll("#ticketFilters .btn").forEach(x => x.classList.toggle("act", x === b));
+  renderTickets(); });
 $("#cmpGo").onclick = () => openCompareModal();
 $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
@@ -921,13 +995,17 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#drawerChips").innerHTML = quick.slice(0, 8).map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
     $("#drawerChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { tab("boss"); setDrawer(false); $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
     $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
-    document.body.classList.toggle("dim", !!SETTINGS.dim);
-    renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
-    renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
-  }catch(err){
-    document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);
-  }
-})();
+        document.body.classList.toggle("dim", !!SETTINGS.dim);
+        renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
+        renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
+        // translate ticket filter buttons
+        document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
+          const key = b.dataset.f; b.textContent = t(key);
+        });
+      }catch(err){
+        document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);
+      }
+    })();
 
 /* Installable on the phone home screen, and works offline once opened (art is cached). */
 if ("serviceWorker" in navigator){

@@ -345,3 +345,14 @@ body.dim .card .halo{opacity:.3}
 /* misc */
 .btn-group{display:flex;gap:6px;flex-wrap:wrap}
 .hint b{color:#fff}
+
+/* ---------- ticket cards ---------- */
+.card.ticket{position:relative}
+.card.ticket .srcbadge{position:absolute;top:8px;right:8px;font-size:9px;letter-spacing:.08em;padding:2px 6px;border-radius:999px;z-index:3;text-transform:uppercase}
+.card.ticket .srcbadge.club{background:rgba(92,225,255,.18);border:1px solid rgba(92,225,255,.4);color:#b0f3ff}
+.card.ticket .srcbadge.mag{background:rgba(255,164,224,.18);border:1px solid rgba(255,164,224,.4);color:#ffd0f0}
+.card.ticket .srcbadge.event{background:rgba(255,215,106,.18);border:1px solid rgba(255,215,106,.4);color:#ffe9ad}
+.card.ticket .srcbadge.vn{top:34px;background:rgba(157,255,106,.18);border:1px solid rgba(157,255,106,.4);color:#c9ffb0}
+.card.ticket .srcbadge.no-vn{top:34px;background:rgba(255,92,138,.15);border:1px solid rgba(255,92,138,.3);color:#ffb3c6}
+.card.ticket .move{margin-top:6px;font-size:11.5px;color:var(--muted);font-family:"Chakra Petch",sans-serif}
+.card.ticket .move::before{content:"⚔ "}
