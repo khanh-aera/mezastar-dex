@@ -960,19 +960,11 @@ $("#q").oninput = e => { state.q = e.target.value; renderGrid(); };
 $("#sortBtn").onclick = () => { state.sort = "pe"; $("#sortBtn").classList.add("act"); $("#sortName").classList.remove("act"); $("#sortDense").classList.remove("act"); renderGrid(); };
 $("#sortName").onclick = () => { state.sort = "name"; $("#sortName").classList.add("act"); $("#sortBtn").classList.remove("act"); $("#sortDense").classList.remove("act"); renderGrid(); };
 $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classList.add("act"); $("#sortBtn").classList.remove("act"); $("#sortName").classList.remove("act"); renderGrid(); };
-$("#safeBtn").onclick = () => { state.safe = !state.safe; $("#safeBtn").classList.toggle("act", state.safe); renderBossResult(); };
-/* battle mode: simplified fast layout for mid-fight use (persisted) */
-let BATTLE = LS.get("battle", false);
-function applyBattle(){
-  $("#p-boss").classList.toggle("battle", !!BATTLE);
-  $("#battleBtn").classList.toggle("act", !!BATTLE);
-  $("#battleBtn").textContent = BATTLE ? "⚔ In battle" : "⚔ Battle";
-}
-$("#battleBtn").onclick = () => {
-  BATTLE = !BATTLE; LS.set("battle", BATTLE); applyBattle();
-  if (BATTLE){ $("#bq").focus(); if (state.boss) $("#bossResult").scrollIntoView({behavior:"smooth", block:"start"}); }
-};
-applyBattle();
+
+
+
+
+
 $("#bq").oninput = e => {
   state.bfilter = e.target.value;
   const m = resolveBoss(state.bfilter);
@@ -980,8 +972,7 @@ $("#bq").oninput = e => {
   renderBossResult(); renderTrioSuggestion(); renderBossGrid();
 };
 $("#bq").onkeydown = e => { if (e.key === "Enter"){ const m = resolveBoss(state.bfilter); if (m) selectBoss(m.name); } };
-$("#clearBoss").onclick = () => { state.bfilter = ""; state.boss = null; $("#bq").value = ""; COMPARE = []; selectBoss("", true); };
-$("#drillBtn").onclick = () => randomDrill();
+
 $("#pq").oninput = e => { pstate.q = e.target.value; renderPoolGrid(); };
 $("#tq").oninput = e => { renderTickets(); };
 document.querySelectorAll("#huntModes .btn").forEach(b => b.onclick = () => {
