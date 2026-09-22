@@ -363,3 +363,21 @@ body.dim .card .halo{opacity:.3}
 .card.ticket .cname{position:absolute;top:50%;left:4px;right:4px;font-size:10px;font-weight:bold;text-align:center;line-height:1.1;transform:translateY(-50%);z-index:2}
 .card.ticket .cid{position:absolute;top:58%;left:4px;right:4px;font-size:8px;text-align:center;color:rgba(255,255,255,0.8);z-index:2}
 .card.ticket .pills{position:absolute;top:64%;left:4px;right:4px;display:flex;gap:3px;z-index:2}
+
+/* ================= BATTLE MODE (fast in-fight layout) ================= */
+#p-boss.battle .battlebtn{background:linear-gradient(96deg,#ff6b6b,#ffb347);color:#140b1e;font-weight:800;border-color:transparent}
+#p-boss.battle #drillBtn, #p-boss.battle #safeBtn,
+#p-boss.battle #trioBox, #p-boss.battle #compareBox,
+#p-boss.battle .listhead, #p-boss.battle #bossGridWrap,
+#p-boss.battle .gdetails, #p-boss.battle .plan-keep{display:none !important}
+#p-boss.battle input.search{font-size:20px !important;padding:18px 20px !important;border-radius:18px;text-align:center}
+#p-boss.battle .chips .chip{font-size:17px;padding:13px 18px;border-radius:16px}
+#p-boss.battle .picktitle{font-size:clamp(28px,8vw,44px);line-height:1.05}
+#p-boss.battle .pickart .mult{font-size:34px;font-weight:900}
+#p-boss.battle .actrow{margin-top:14px}
+#p-boss.battle .actrow .btn{flex:1;min-height:56px;font-size:18px;padding:12px 10px;border-radius:16px}
+#p-boss.battle .pickrow{gap:14px}
+#p-boss.battle .pickart{width:120px;min-width:120px;height:120px}
+#p-boss.battle .hint{font-size:16px;line-height:1.45}
+#p-boss.battle .role{font-size:14px}
+#p-boss.battle .alts-keep .sect{display:block}

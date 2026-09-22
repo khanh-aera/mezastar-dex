@@ -329,9 +329,9 @@ function renderBossResult(){
           <img src="${b.img}" alt="${esc(b.name)}"><span class="lbl">Boss</span></div>` : ""}
       </div>
       ${!b.vn ? `<div class="note warn"><b>Heads up:</b> ${esc(b.name)} is from ${esc(b.version || "another set")}. Vietnam machines only run Stardust Version 2 right now. The counters below still show what would work.</div>` : ""}
-      ${r.alts.length ? `<div class="sect"><h3>${t("alts")}</h3>${r.alts.map(a => routeRow(a.t, a.o, `PE ${a.t.pe} · ${a.why.join(", ") || a.t.types.join(" / ")}`)).join("")}</div>` : ""}
+      ${r.alts.length ? `<div class="sect alts-keep"><h3>${t("alts")}</h3>${r.alts.map(a => routeRow(a.t, a.o, `PE ${a.t.pe} · ${a.why.join(", ") || a.t.types.join(" / ")}`)).join("")}</div>` : ""}
       ${r.avoid.length ? `<div class="note bad"><b>${t("avoid")}:</b> ${r.avoid.map(z => esc(z.name)).join(", ")} (this boss hits them for double damage).</div>` : ""}
-      <div class="sect"><h3>${t("plan")}</h3>${battlePlan(b, r)}</div>
+      <div class="sect plan-keep"><h3>${t("plan")}</h3>${battlePlan(b, r)}</div>
       <details class="gdetails"><summary>F${""}ull counter matrix</summary>
         <div class="mwrap"><table class="mtable stickyhead"><thead><tr><th>#</th><th>Tag</th><th>Deals</th><th>Takes</th><th>PE</th></tr></thead>
         <tbody>${r.rows.map((row,i) => `<tr class="${row.t.id===x.id?"hi":""}"><td>${i+1}</td><td>${esc(row.t.name)}</td>
@@ -438,6 +438,7 @@ function selectBoss(name, keepFilter){
   if (!keepFilter){ state.bfilter = ""; }
   document.querySelectorAll("#bossChips .chip").forEach(c => c.classList.toggle("on", c.dataset.n === name));
   renderBossResult(); renderTrioSuggestion(); renderCompareBox(); renderBossGrid();
+  if (BATTLE && state.boss) requestAnimationFrame(() => $("#bossResult").scrollIntoView({behavior:"smooth", block:"start"}));
   const el = $("#bossResult");
   if (el) el.scrollIntoView({behavior:"smooth", block:"nearest"});
 }
@@ -954,6 +955,18 @@ $("#sortBtn").onclick = () => { state.sort = "pe"; $("#sortBtn").classList.add("
 $("#sortName").onclick = () => { state.sort = "name"; $("#sortName").classList.add("act"); $("#sortBtn").classList.remove("act"); $("#sortDense").classList.remove("act"); renderGrid(); };
 $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classList.add("act"); $("#sortBtn").classList.remove("act"); $("#sortName").classList.remove("act"); renderGrid(); };
 $("#safeBtn").onclick = () => { state.safe = !state.safe; $("#safeBtn").classList.toggle("act", state.safe); renderBossResult(); };
+/* battle mode: simplified fast layout for mid-fight use (persisted) */
+let BATTLE = LS.get("battle", false);
+function applyBattle(){
+  $("#p-boss").classList.toggle("battle", !!BATTLE);
+  $("#battleBtn").classList.toggle("act", !!BATTLE);
+  $("#battleBtn").textContent = BATTLE ? "⚔ In battle" : "⚔ Battle";
+}
+$("#battleBtn").onclick = () => {
+  BATTLE = !BATTLE; LS.set("battle", BATTLE); applyBattle();
+  if (BATTLE){ $("#bq").focus(); if (state.boss) $("#bossResult").scrollIntoView({behavior:"smooth", block:"start"}); }
+};
+applyBattle();
 $("#bq").oninput = e => {
   state.bfilter = e.target.value;
   const m = resolveBoss(state.bfilter);
