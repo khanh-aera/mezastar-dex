@@ -1,7 +1,7 @@
 {
   "owner": "Khanh Ngo An (khanh-aera)",
   "last_updated": "2026-09-22",
-  "note": "Physical Meza Tag binder. 27 unique IDs; dupes seen in 2026-09-22 photo: Jynx x2, Meowscarada x2 (29+ physical, stack bottom may be cut off). 8 NEW tags added 2026-09-22. Vietnam machines run Stardust V2 only: V2 additions (Alolan Ninetales PE122 Z-Move, Bronzong PE74, Kirlia PE50) are playable; V1 tags (1-1-XXX: Mew PE142 6★, Inteleon PE108 5★, Fuecoco, Grookey, Sobble) are keepers not playable on VN machines.",
+  "note": "Physical Meza Tag binder. 27 unique IDs; dupes seen in 2026-09-22 photo: Jynx x2, Meowscarada x2 (29+ physical, stack bottom may be cut off). 8 NEW tags added 2026-09-22. Snorlax = Special reprint R-1-3 PE104 (Dynamax), NOT the 6-star 1-2-005 PE144. Vietnam machines run Stardust V2 only: V2 additions (Alolan Ninetales PE122 Z-Move, Bronzong PE74, Kirlia PE50) are playable; V1 tags (1-1-XXX: Mew PE142 6★, Inteleon PE108 5★, Fuecoco, Grookey, Sobble) are keepers not playable on VN machines.",
   "count_unique": 27,
   "tags": [
     {
@@ -15,18 +15,6 @@
       "ability": "",
       "moves": "",
       "image": "images/Stardust_V2/1-2-010_Kyurem.png"
-    },
-    {
-      "id": "1-2-005",
-      "name": "Snorlax",
-      "version": "Stardust V2",
-      "tier": "Superstar Pokémon",
-      "grade": "6",
-      "pe": "144",
-      "types": "Normal",
-      "ability": "",
-      "moves": "",
-      "image": "images/Stardust_V2/1-2-005_Snorlax.png"
     },
     {
       "id": "1-2-007",
@@ -343,6 +331,19 @@
       "image": "images/Stardust_V1/1-1-038_Sobble.png",
       "acquired": "2026-09-22",
       "source": "new collection photo 2026-09-22"
+    },
+    {
+      "id": "R-1-3",
+      "name": "Snorlax",
+      "version": "Stardust V2",
+      "tier": "Regular Tags (Special group)",
+      "grade": "1",
+      "pe": "104",
+      "types": "Normal",
+      "ability": "Dynamax",
+      "moves": "Giga Impact, Max Strike",
+      "image": "images/Stardust_V2/R-1-3_Snorlax.png",
+      "source": "correction 2026-09-22: user owns the Special reprint, not the 6-star"
     }
   ]
 }
