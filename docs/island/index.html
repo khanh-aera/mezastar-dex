@@ -15,11 +15,16 @@
 <section id="view-island" class="view active">
   <div class="island-sky">
     <div class="sky-stars"></div>
-    <div class="moon"></div>
+    <div class="sun-moon" id="sun-moon"></div>
+    <div class="clouds" id="clouds"></div>
+    <div class="hills hills-far"></div>
     <div class="treeline treeline-far"></div>
+    <div class="treeline treeline-mid"></div>
     <div class="treeline treeline-near"></div>
   </div>
   <div class="ground"></div>
+  <div class="pond" id="pond"></div>
+  <div class="fog"></div>
 
   <div class="campfire" id="campfire">
     <div class="flame">🔥</div>
@@ -54,6 +59,12 @@
 <!-- ============ GRID VIEW ============ -->
 <section id="view-grid" class="view">
   <header class="panel-title"><h2>📒 My Tags</h2></header>
+  <div id="grid-filters">
+    <button class="filter active" data-f="all">All</button>
+    <button class="filter" data-f="main">🏆 Main</button>
+    <button class="filter" data-f="star">⭐ Star</button>
+    <button class="filter" data-f="power">⚡ Power</button>
+  </div>
   <p class="sub" id="grid-count"></p>
   <div id="grid"></div>
 </section>

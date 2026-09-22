@@ -1,13 +1,12 @@
 :root{
-  --sky-hi:#0b2d4d; --sky-lo:#123a5a; --ground:#0d2415; --ground-dk:#08160d;
-  --cream:#2e1c0e; --gold:#f5c542; --fire:#ff7b2e;
+  --gold:#f5c542; --fire:#ff7b2e;
   --card:#1a2f45; --card-hi:#234056; --txt:#eaf2f8; --dim:#8fb3c8;
   --px-font:'Press Start 2P','Courier New',monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
 body{
-  font-family:'Courier New',monospace; background:var(--sky-hi); color:var(--txt);
+  font-family:'Courier New',monospace; background:#0b2d4d; color:var(--txt);
   -webkit-user-select:none;user-select:none; touch-action:manipulation;
   overscroll-behavior:none;
 }
@@ -19,42 +18,85 @@ img{image-rendering:pixelated;image-rendering:crisp-edges}
 .view.active{display:block}
 
 /* ============ ISLAND ============ */
-#view-island{background:linear-gradient(var(--sky-hi),var(--sky-lo) 55%,var(--ground) 55%)}
-.island-sky{position:absolute;inset:0;pointer-events:none}
-.moon{position:absolute;top:6%;right:10%;width:44px;height:44px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#fff7d6,#f5d97a);box-shadow:0 0 40px 12px rgba(245,220,150,.5)}
-.sky-stars{position:absolute;inset:0}
-.sky-stars span{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;
-  animation:twinkle 3s infinite}
+#view-island{transition:background 1s ease}
+body.day #view-island{background:linear-gradient(#7ec8e8,#a8ddf2 45%,#1f5a2f 45%)}
+body.noon #view-island{background:linear-gradient(#5fb6e0,#cfeaf7 45%,#2a6a38 45%)}
+body.night #view-island{background:linear-gradient(#0b2d4d,#123a5a 45%,#0d2415 45%)}
+body.dusk #view-island{background:linear-gradient(#4a3568,#8a4a5a 45%,#0f241a 45%)}
+
+.island-sky{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+
+/* sun / moon */
+.sun-moon{position:absolute;width:52px;height:52px;border-radius:50%;transition:all 1.5s ease}
+body.day .sun-moon,body.noon .sun-moon{top:8%;right:12%;background:radial-gradient(circle at 35% 35%,#fff7c9,#ffce4d);box-shadow:0 0 60px 20px rgba(255,210,90,.55)}
+body.night .sun-moon{top:8%;right:12%;background:radial-gradient(circle at 35% 35%,#fff7d6,#e9d28a);box-shadow:0 0 40px 12px rgba(240,215,150,.45)}
+body.dusk .sun-moon{top:14%;right:20%;background:radial-gradient(circle at 35% 35%,#ffd9a0,#f08040);box-shadow:0 0 50px 16px rgba(240,128,64,.4)}
+
+/* stars (night / dusk) */
+.sky-stars{position:absolute;inset:0;opacity:0;transition:opacity 1.5s}
+body.night .sky-stars,body.dusk .sky-stars{opacity:1}
+.sky-stars span{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 3s infinite}
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
-.treeline{position:absolute;left:0;right:0;bottom:45%}
-.treeline-far{height:120px;bottom:42%;
-  background:repeat-x bottom / 160px 120px url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120"><path d="M40 120 L80 40 L120 120 Z" fill="%23102b1d"/><path d="M120 120 L150 60 L180 120" fill="%230f261a"/></svg>');opacity:.7}
+
+/* clouds (day / noon) */
+.clouds{position:absolute;inset:0;opacity:0;transition:opacity 1.5s}
+body.day .clouds,body.noon .clouds{opacity:.7}
+.clouds span{position:absolute;background:rgba(255,255,255,.85);border-radius:30px;filter:blur(2px);animation:drift 45s linear infinite}
+.clouds span::after{content:'';position:absolute;top:-8px;left:16px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.8)}
+@keyframes drift{from{transform:translateX(-160px)}to{transform:translateX(110vw)}}
+
+/* hills (far depth) */
+.hills{position:absolute;left:0;right:0;height:140px;bottom:34%}
+.hills-far{background:radial-gradient(120% 100% at 50% 100%,#123a44 0%,#0d2a33 60%);clip-path:ellipse(75% 100% at 50% 100%);filter:blur(3px);opacity:.85}
+
+/* tree layers — increasing detail with depth */
+.treeline{position:absolute;left:0;right:0;bottom:42%}
+.treeline-far{height:110px;bottom:40%;opacity:.5;filter:blur(2px);
+  background:repeat-x bottom / 150px 110px url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="110"><path d="M38 110 L75 35 L112 110 Z" fill="%2318442b"/><path d="M100 110 L128 60 L156 110" fill="%23143c24"/></svg>')}
+.treeline-mid{height:120px;bottom:40%;opacity:.85;filter:blur(1px);
+  background:repeat-x bottom / 180px 120px url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="120"><path d="M45 120 L90 28 L135 120 Z" fill="%23123c22"/><path d="M120 120 L150 52 L180 120" fill="%230f351d"/></svg>')}
 .treeline-near{height:120px;bottom:40%;
-  background:repeat-x bottom / 200px 120px url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120"><path d="M50 120 L100 30 L150 120 Z" fill="%230d2415"/><path d="M0 120 L40 50 L80 120 Z" fill="%230d2415"/></svg>')}
-.ground{position:absolute;left:0;right:0;bottom:0;height:42%;background:var(--ground)}
+  background:repeat-x bottom / 210px 120px url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="210" height="120"><path d="M52 120 L105 26 L158 120 Z" fill="%230d2415"/><path d="M0 120 L42 46 L84 120 Z" fill="%230d2415"/></svg>')}
+
+.ground{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(var(--g,#0d2415),var(--gd,#08160d))}
+body.day .ground,body.noon .ground{--g:#1f5a2f;--gd:#143f20}
+body.night .ground{--g:#0d2415;--gd:#08160d}
+body.dusk .ground{--g:#0f241a;--gd:#0a1a12}
+
+/* pond (water types hang out here) */
+.pond{position:absolute;left:6%;bottom:26%;width:120px;height:36px;border-radius:50%;
+  background:radial-gradient(ellipse at center,#1d4a5f,#0f2a38 70%);opacity:.9;
+  box-shadow:inset 0 0 12px rgba(80,180,220,.35),0 0 8px rgba(120,200,240,.15)}
+.pond::after{content:'';position:absolute;left:20%;top:18%;width:30%;height:20%;border-radius:50%;background:rgba(160,220,250,.3)}
+
+/* fog (atmosphere depth) */
+.fog{position:absolute;left:0;right:0;bottom:0;height:30%;pointer-events:none;opacity:.5;
+  background:linear-gradient(transparent,rgba(150,200,230,.14))}
+body.night .fog{background:linear-gradient(transparent,rgba(70,110,150,.12))}
 
 /* campfire */
-.campfire{position:absolute;left:50%;bottom:40%;transform:translateX(-50%);text-align:center;pointer-events:none}
+.campfire{position:absolute;left:50%;bottom:40%;transform:translateX(-50%);text-align:center;pointer-events:none;z-index:4}
 .campfire .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,60,.35),transparent 70%)}
-.campfire .flame{font-size:44px;line-height:1;animation:flicker .4s infinite;filter:drop-shadow(0 0 14px #ff8c3a)}
+  width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,60,.35),transparent 70%)}
+.campfire .flame{font-size:46px;line-height:1;animation:flicker .4s infinite;filter:drop-shadow(0 0 16px #ff8c3a)}
 .campfire .logs{font-size:20px;margin-top:-6px}
 @keyframes flicker{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.12) rotate(3deg)}}
 
 /* sprites layer */
 #sprites-layer{position:absolute;inset:0;pointer-events:none}
-.sprite{position:absolute;pointer-events:auto;transition:left 4s linear,top 4s linear;filter:drop-shadow(0 3px 4px rgba(0,0,0,.5));cursor:pointer;z-index:5}
-.sprite img{width:100%;height:auto;display:block}
+.sprite{position:absolute;pointer-events:auto;left:0;top:0;filter:drop-shadow(0 3px 4px rgba(0,0,0,.5));cursor:pointer;z-index:5;
+  transition:opacity .8s ease}
+.sprite img{width:100%;height:100%;display:block;object-fit:contain}
 .sprite.still img{animation:bob 1.6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 .sprite.walk img{animation:hop .45s infinite}
 @keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.sprite.spawning{opacity:0}
 
 .island-title{position:absolute;top:0;left:0;right:0;padding:14px 16px 6px;text-align:center;z-index:10;pointer-events:none}
 .island-title h1{font-family:var(--px-font);font-size:16px;color:var(--gold);text-shadow:2px 2px 0 #000;letter-spacing:1px}
-.island-title h1 span{display:block;font-size:12px;color:var(--txt);margin-top:6px}
-.island-count{margin-top:8px;font-size:11px;color:var(--dim);background:rgba(0,0,0,.4);display:inline-block;padding:4px 10px;border-radius:10px}
+.island-title h1 span{display:block;font-size:12px;color:var(--txt);margin-top:6px;text-shadow:1px 1px 0 #000}
+.island-count{margin-top:8px;font-size:11px;color:var(--txt);background:rgba(0,0,0,.4);display:inline-block;padding:4px 10px;border-radius:10px}
 .island-hint{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);color:var(--dim);font-size:11px;opacity:.7;animation:pulse 2s infinite;pointer-events:none}
 @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
@@ -86,11 +128,18 @@ img{image-rendering:pixelated;image-rendering:crisp-edges}
 .rec-why{font-size:10px;color:var(--dim);margin-top:4px;line-height:1.4}
 
 /* ============ GRID ============ */
-#grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 14px 20px;overflow-y:auto;max-height:calc(100vh - 150px)}
-.grid-card{background:var(--card);border-radius:12px;padding:8px;text-align:center;cursor:pointer;border:1px solid #2d4a60}
+#grid-filters{display:flex;gap:8px;padding:0 14px 4px;justify-content:center}
+.filter{flex:1;max-width:120px;padding:9px 4px;border:1px solid #2d4a60;background:var(--card);color:var(--dim);
+  border-radius:22px;font-size:11px;font-family:inherit;cursor:pointer}
+.filter.active{background:var(--gold);color:#1a1608;border-color:var(--gold);font-weight:bold}
+#grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 14px 20px;overflow-y:auto;max-height:calc(100vh - 200px)}
+.gsection{grid-column:1/-1;font-family:var(--px-font);font-size:10px;color:var(--dim);padding:10px 0 2px;text-align:center}
+.grid-card{position:relative;background:var(--card);border-radius:12px;padding:8px;text-align:center;cursor:pointer;border:1px solid #2d4a60}
+.grid-card.superstar{box-shadow:inset 0 0 0 2px #f5c542}
 .grid-card img{width:58px;height:58px;object-fit:contain}
-.grid-card .g-name{font-size:10px;margin-top:4px;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grid-card .gname{font-size:10px;margin-top:4px;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .grid-card .g-pe{font-size:9px;color:var(--gold);margin-top:2px}
+.grid-card .g-rank{position:absolute;top:4px;left:6px;font-family:var(--px-font);font-size:8px;color:#8fb3c8}
 
 /* ============ TYPE BADGES ============ */
 .type{display:inline-block;padding:2px 8px;border-radius:8px;font-size:9px;font-weight:bold;color:#fff;margin:1px}

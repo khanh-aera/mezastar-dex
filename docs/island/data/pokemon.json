@@ -27,7 +27,8 @@
     "tier": "Superstar Pokémon",
     "sprite": "sprites/kyurem.gif",
     "animated": true,
-    "tag": "img/1-2-010_Kyurem.webp"
+    "tag": "img/1-2-010_Kyurem.webp",
+    "height": 3.0
   },
   {
     "name": "Mew",
@@ -50,7 +51,8 @@
     "tier": "Superstar Pokémon",
     "sprite": "sprites/mew.gif",
     "animated": true,
-    "tag": "img/1-1-002_Mew.webp"
+    "tag": "img/1-1-002_Mew.webp",
+    "height": 0.4
   },
   {
     "name": "Gardevoir",
@@ -78,7 +80,8 @@
     "tier": "Superstar Pokémon",
     "sprite": "sprites/gardevoir.gif",
     "animated": true,
-    "tag": "img/1-2-007_Gardevoir.webp"
+    "tag": "img/1-2-007_Gardevoir.webp",
+    "height": 1.6
   },
   {
     "name": "Alolan Ninetales",
@@ -108,7 +111,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/alolan_ninetales.png",
     "animated": false,
-    "tag": "img/1-2-019_Alolan_Ninetales.webp"
+    "tag": "img/1-2-019_Alolan_Ninetales.webp",
+    "height": 1.1
   },
   {
     "name": "Lucario",
@@ -139,7 +143,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/lucario.gif",
     "animated": true,
-    "tag": "img/1-2-015_Lucario.webp"
+    "tag": "img/1-2-015_Lucario.webp",
+    "height": 1.2
   },
   {
     "name": "Sylveon",
@@ -162,7 +167,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/sylveon.png",
     "animated": false,
-    "tag": "img/1-2-014_Sylveon.webp"
+    "tag": "img/1-2-014_Sylveon.webp",
+    "height": 1.0
   },
   {
     "name": "Empoleon",
@@ -191,7 +197,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/empoleon.gif",
     "animated": true,
-    "tag": "img/1-2-018_Empoleon.webp"
+    "tag": "img/1-2-018_Empoleon.webp",
+    "height": 1.7
   },
   {
     "name": "Espeon",
@@ -214,7 +221,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/espeon.gif",
     "animated": true,
-    "tag": "img/1-2-012_Espeon.webp"
+    "tag": "img/1-2-012_Espeon.webp",
+    "height": 0.9
   },
   {
     "name": "Torterra",
@@ -247,7 +255,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/torterra.gif",
     "animated": true,
-    "tag": "img/1-2-016_Torterra.webp"
+    "tag": "img/1-2-016_Torterra.webp",
+    "height": 2.2
   },
   {
     "name": "Flapple",
@@ -277,7 +286,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/flapple.png",
     "animated": false,
-    "tag": "img/1-2-022_Flapple.webp"
+    "tag": "img/1-2-022_Flapple.webp",
+    "height": 0.3
   },
   {
     "name": "Appletun",
@@ -307,7 +317,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/appletun.png",
     "animated": false,
-    "tag": "img/1-2-023_Appletun.webp"
+    "tag": "img/1-2-023_Appletun.webp",
+    "height": 0.4
   },
   {
     "name": "Inteleon",
@@ -330,7 +341,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/inteleon.png",
     "animated": false,
-    "tag": "img/1-1-023_Inteleon.webp"
+    "tag": "img/1-1-023_Inteleon.webp",
+    "height": 1.9
   },
   {
     "name": "Drednaw",
@@ -361,7 +373,8 @@
     "tier": "Star Pokémon",
     "sprite": "sprites/drednaw.png",
     "animated": false,
-    "tag": "img/1-2-025_Drednaw.webp"
+    "tag": "img/1-2-025_Drednaw.webp",
+    "height": 1.0
   },
   {
     "name": "Snorlax",
@@ -379,7 +392,8 @@
     "tier": "Regular Tags (Special group)",
     "sprite": "sprites/snorlax.gif",
     "animated": true,
-    "tag": "img/R-1-3_Snorlax.webp"
+    "tag": "img/R-1-3_Snorlax.webp",
+    "height": 2.1
   },
   {
     "name": "Gardevoir",
@@ -407,7 +421,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/gardevoir.gif",
     "animated": true,
-    "tag": "img/1-2-069_Gardevoir.webp"
+    "tag": "img/1-2-069_Gardevoir.webp",
+    "height": 1.6
   },
   {
     "name": "Meowscarada",
@@ -438,7 +453,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/meowscarada.png",
     "animated": false,
-    "tag": "img/1-2-026_Meowscarada.webp"
+    "tag": "img/1-2-026_Meowscarada.webp",
+    "height": 1.5
   },
   {
     "name": "Pidgeot",
@@ -464,7 +480,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/pidgeot.gif",
     "animated": true,
-    "tag": "img/1-2-049_Pidgeot.webp"
+    "tag": "img/1-2-049_Pidgeot.webp",
+    "height": 1.5
   },
   {
     "name": "Alolan Sandslash",
@@ -495,7 +512,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/alolan_sandslash.png",
     "animated": false,
-    "tag": "img/1-2-051_Alolan_Sandslash.webp"
+    "tag": "img/1-2-051_Alolan_Sandslash.webp",
+    "height": 1.2
   },
   {
     "name": "Bronzong",
@@ -525,7 +543,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/bronzong.gif",
     "animated": true,
-    "tag": "img/1-2-053_Bronzong.webp"
+    "tag": "img/1-2-053_Bronzong.webp",
+    "height": 1.3
   },
   {
     "name": "Jynx",
@@ -557,7 +576,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/jynx.gif",
     "animated": true,
-    "tag": "img/1-2-059_Jynx.webp"
+    "tag": "img/1-2-059_Jynx.webp",
+    "height": 1.4
   },
   {
     "name": "Togedemaru",
@@ -584,7 +604,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/togedemaru.png",
     "animated": false,
-    "tag": "img/1-2-066_Togedemaru.webp"
+    "tag": "img/1-2-066_Togedemaru.webp",
+    "height": 0.3
   },
   {
     "name": "Onix",
@@ -617,7 +638,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/onix.gif",
     "animated": true,
-    "tag": "img/1-2-070_Onix.webp"
+    "tag": "img/1-2-070_Onix.webp",
+    "height": 8.8
   },
   {
     "name": "Kadabra",
@@ -640,7 +662,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/kadabra.gif",
     "animated": true,
-    "tag": "img/1-2-061_Kadabra.webp"
+    "tag": "img/1-2-061_Kadabra.webp",
+    "height": 1.3
   },
   {
     "name": "Kirlia",
@@ -668,7 +691,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/kirlia.gif",
     "animated": true,
-    "tag": "img/1-2-068_Kirlia.webp"
+    "tag": "img/1-2-068_Kirlia.webp",
+    "height": 0.8
   },
   {
     "name": "Fuecoco",
@@ -693,7 +717,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/fuecoco.png",
     "animated": false,
-    "tag": "img/1-1-028_Fuecoco.webp"
+    "tag": "img/1-1-028_Fuecoco.webp",
+    "height": 0.4
   },
   {
     "name": "Grookey",
@@ -719,7 +744,8 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/grookey.png",
     "animated": false,
-    "tag": "img/1-1-032_Grookey.webp"
+    "tag": "img/1-1-032_Grookey.webp",
+    "height": 0.3
   },
   {
     "name": "Sobble",
@@ -742,6 +768,7 @@
     "tier": "★2~4 Pokémon",
     "sprite": "sprites/sobble.png",
     "animated": false,
-    "tag": "img/1-1-038_Sobble.webp"
+    "tag": "img/1-1-038_Sobble.webp",
+    "height": 0.3
   }
 ]

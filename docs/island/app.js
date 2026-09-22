@@ -8,82 +8,27 @@
   const enemies = env.enemies;
   window.__POKE = poke;
 
-  // ---- populate island count ----
-  document.getElementById('island-count').textContent = poke.length + ' Pokémon';
-
-  // ============ ISLAND: spawn sprites ============
   const layer = document.getElementById('sprites-layer');
-  const sprites = [];
+  document.getElementById('island-count').textContent = poke.length + ' Pokémon collected';
 
-  function spawnSprites(){
-    // subtle size by tier: superstars bigger
-    poke.forEach((p, i) => {
-      const el = document.createElement('div');
-      el.className = 'sprite ' + (p.animated ? 'walk' : 'still');
-      const scale = (p.tier && p.tier.includes('Superstar')) ? 1.35 : (p.grade >= 5 ? 1.15 : 1.0);
-      el.style.width = (60 * scale) + 'px';
-      el.style.height = (60 * scale) + 'px';
-      el.style.zIndex = 3 + p.pe; // stronger on top
-      const img = document.createElement('img');
-      img.src = p.sprite;
-      img.alt = p.name;
-      img.draggable = false;
-      el.appendChild(img);
-      el.addEventListener('click', () => openPopup(p));
-      layer.appendChild(el);
-      sprites.push({ el, p, x: 0, y: 0, tx: 0, ty: 0, dir: 1, t: Math.random()*4000 });
-    });
+  // ============ TIME OF DAY ============
+  function setTimeOfDay(){
+    const h = new Date().getHours();
+    const b = document.body;
+    b.classList.remove('day','noon','dusk','night');
+    if(h >= 18 || h < 5) b.classList.add('night');
+    else if(h >= 5 && h < 7) b.classList.add('dusk');
+    else if(h >= 11 && h < 15) b.classList.add('noon');
+    else if(h >= 7 && h < 18) b.classList.add('day');
+    return { isNight: h >= 18 || h < 5, h };
   }
+  let tod = setTimeOfDay();
+  setInterval(()=>{ tod = setTimeOfDay(); }, 60000);
 
-  function layout(){
-    const W = layer.clientWidth, H = layer.clientHeight;
-    // place around campfire (center-bottom), spread lower area
-    sprites.forEach(s => {
-      if(!s._init){
-        s._init = true;
-        const ang = Math.random()*Math.PI*2;
-        const r = (Math.random()*0.75 + 0.15) * Math.min(W,H);
-        s.x = W/2 + Math.cos(ang)*r*0.85 - 30;
-        s.y = H*0.5 + Math.sin(ang)*r*0.3 + H*0.08;
-        s.vx = (Math.random()-0.5)*28;
-        s.vy = (Math.random()-0.5)*20;
-        s._nextDir = 2000;
-        s._last = performance.now();
-      }
-      s.x = Math.max(8, Math.min(W-56, s.x));
-      s.y = Math.max(H*0.32, Math.min(H-40, s.y));
-    });
-  }
-
-  function step(now){
-    sprites.forEach(s => {
-      const W = layer.clientWidth, H = layer.clientHeight;
-      if(!s._last) s._last = now;
-      const dt = Math.min(0.05, (now - s._last)/1000); s._last = now;
-      // occasional direction change
-      s._nextDir -= dt*1000;
-      if(s._nextDir <= 0){
-        s.vx = (Math.random()-0.5)*32;
-        s.vy = (Math.random()-0.5)*22;
-        s._nextDir = 2500 + Math.random()*5000;
-      }
-      s.x += s.vx*dt;
-      s.y += s.vy*dt;
-      // keep inside island bounds
-      if(s.x < 8){ s.x=8; s.vx=Math.abs(s.vx); }
-      if(s.x > W-56){ s.x=W-56; s.vx=-Math.abs(s.vx); }
-      if(s.y < H*0.32){ s.y=H*0.32; s.vy=Math.abs(s.vy); }
-      if(s.y > H-40){ s.y=H-40; s.vy=-Math.abs(s.vy); }
-      const flip = s.vx < -1 ? -1 : (s.vx > 1 ? 1 : s.dir);
-      s.el.style.transform = `translate(${s.x}px,${s.y}px) scaleX(${flip})`;
-    });
-    requestAnimationFrame(step);
-  }
-
-  // stars
+  // ============ stars & clouds ============
   function stars(){
     const c = document.querySelector('.sky-stars');
-    for(let i=0;i<40;i++){
+    for(let i=0;i<46;i++){
       const s = document.createElement('span');
       s.style.left = Math.random()*100 + '%';
       s.style.top = Math.random()*45 + '%';
@@ -91,11 +36,160 @@
       c.appendChild(s);
     }
   }
+  function clouds(){
+    const c = document.getElementById('clouds');
+    for(let i=0;i<4;i++){
+      const s = document.createElement('span');
+      s.style.width = (70+Math.random()*60) + 'px';
+      s.style.height = '22px';
+      s.style.top = (6+Math.random()*24) + '%';
+      s.style.animationDelay = (Math.random()*40) + 's';
+      s.style.animationDuration = (35+Math.random()*40) + 's';
+      c.appendChild(s);
+    }
+  }
 
-  // ============ WRAPPER: use transform-only positioning ============
-  function wrapSprites(){
-    // reposition absolutely using translate on fixed base
-    sprites.forEach(s => { s.el.style.left='0'; s.el.style.top='0'; });
+  // ============ ISLAND SPAWN MANAGER ============
+  const active = new Map(); // name -> {el,p,x,y,vx,vy,rest}
+  const TARGET = 11;
+
+  function sizeFor(p){
+    const h = p.height || 1.0;
+    const s = Math.max(0.55, Math.min(1.7, 0.55 + h*0.3));
+    return Math.round(56 * s);
+  }
+
+  function anchorFor(p){
+    const W = layer.clientWidth, H = layer.clientHeight;
+    const types = p.types || [];
+    if(types.includes('Water')) {
+      return { x: W*0.06 + Math.random()*90, y: H*0.72 + Math.random()*20 };
+    }
+    if(types.includes('Fire')) {
+      return { x: W*0.5 + (Math.random()-0.5)*70, y: H*0.6 + Math.random()*24 };
+    }
+    const ang = Math.random()*Math.PI*2;
+    const r = (0.2 + Math.random()*0.6) * Math.min(W,H);
+    return { x: W/2 + Math.cos(ang)*r*0.85, y: H*0.55 + Math.sin(ang)*r*0.28 + H*0.05 };
+  }
+
+  function spawnPokemon(p){
+    if(active.has(p.name)) return;
+    const el = document.createElement('div');
+    el.className = 'sprite ' + (p.animated ? 'walk' : 'still') + ' spawning';
+    const sz = sizeFor(p);
+    el.style.width = sz + 'px';
+    el.style.height = sz + 'px';
+    el.style.zIndex = 3 + Math.round(p.pe/10);
+    const img = document.createElement('img');
+    img.src = p.sprite; img.alt = p.name; img.draggable = false;
+    el.appendChild(img);
+    el.addEventListener('click', ()=>openPopup(p));
+    layer.appendChild(el);
+
+    const a = anchorFor(p);
+    const state = {
+      el, p, x: a.x, y: a.y,
+      vx:(Math.random()-0.5)*18, vy:(Math.random()-0.5)*12,
+      rest: 0, _last: performance.now(), flip: 1,
+    };
+    el.style.transform = `translate(${a.x}px,${a.y}px) scaleX(1)`;
+    requestAnimationFrame(()=> el.classList.remove('spawning'));
+    active.set(p.name, state);
+  }
+
+  function despawnPokemon(name){
+    const s = active.get(name);
+    if(!s) return;
+    s.el.classList.add('spawning');
+    active.delete(name);
+    setTimeout(()=>{ s.el.remove(); }, 800);
+  }
+
+  // type-biased spawn weight by time of day
+  const NIGHT_TYPES = ['Psychic','Ghost','Dark','Fairy','Ice','Dragon'];
+  const DAY_TYPES = ['Grass','Fire','Bug','Flying','Electric','Normal'];
+  function spawnWeight(p){
+    const types = p.types || [];
+    let w = 1;
+    if(tod.isNight){
+      if(types.some(t=>NIGHT_TYPES.includes(t))) w += 1.6;
+    } else {
+      if(types.some(t=>DAY_TYPES.includes(t))) w += 1.6;
+    }
+    return w;
+  }
+
+  function pickWeighted(){
+    const avail = poke.filter(p => !active.has(p.name));
+    if(!avail.length) return null;
+    const weights = avail.map(spawnWeight);
+    const total = weights.reduce((a,b)=>a+b,0);
+    let r = Math.random()*total;
+    for(let i=0;i<avail.length;i++){ r -= weights[i]; if(r<=0) return avail[i]; }
+    return avail[avail.length-1];
+  }
+
+  // occasional "type wave": spawn a few of the same type together
+  let waveCooldown = 4;
+  function rotate(){
+    // spawn
+    let spawnCount = 1 + (Math.random()<0.3 ? 1 : 0);
+    if(waveCooldown-- <= 0){
+      waveCooldown = 5 + Math.floor(Math.random()*4);
+      // pick a random type present in roster
+      const typeSet = [...new Set(poke.flatMap(p=>p.types||[]))];
+      const type = typeSet[Math.floor(Math.random()*typeSet.length)];
+      const ofType = poke.filter(p => !active.has(p.name) && (p.types||[]).includes(type));
+      if(ofType.length){
+        ofType.slice(0,2).forEach(p=>spawnPokemon(p));
+        spawnCount = 0;
+      }
+    }
+    for(let i=0;i<spawnCount;i++){
+      const p = pickWeighted();
+      if(p) spawnPokemon(p);
+    }
+    // despawn extras to keep it calm
+    while(active.size > TARGET){
+      const names = [...active.keys()];
+      despawnPokemon(names[Math.floor(Math.random()*names.length)]);
+    }
+    // ensure minimum population
+    for(let i=active.size; i<Math.min(TARGET, 9); i++){
+      const p = pickWeighted();
+      if(p) spawnPokemon(p);
+    }
+  }
+
+  // ============ MOVEMENT ============
+  function step(now){
+    active.forEach(s => {
+      const W = layer.clientWidth, H = layer.clientHeight;
+      const dt = Math.min(0.05, (now - s._last)/1000); s._last = now;
+      // idle pauses
+      if(s.rest > 0){
+        s.rest -= dt*1000;
+        if(s.rest <= 0){
+          s.vx = (Math.random()-0.5)*18;
+          s.vy = (Math.random()-0.5)*12;
+        } else {
+          s.vx = 0; s.vy = 0;
+        }
+      } else if(Math.random() < 0.003){
+        s.rest = 1500 + Math.random()*3500;
+      }
+      s.x += s.vx*dt;
+      s.y += s.vy*dt;
+      const pad = 10;
+      if(s.x < pad){ s.x=pad; s.vx=Math.abs(s.vx); }
+      if(s.x > W-56){ s.x=W-56; s.vx=-Math.abs(s.vx); }
+      if(s.y < H*0.36){ s.y=H*0.36; s.vy=Math.abs(s.vy); }
+      if(s.y > H-46){ s.y=H-46; s.vy=-Math.abs(s.vy); }
+      if(s.vx > 1) s.flip = 1; else if(s.vx < -1) s.flip = -1;
+      s.el.style.transform = `translate(${s.x}px,${s.y}px) scaleX(${s.flip})`;
+    });
+    requestAnimationFrame(step);
   }
 
   // ============ POPUP ============
@@ -120,27 +214,65 @@
   // ============ NAV ============
   const navBtns = document.querySelectorAll('.nav-btn');
   const views = { island: document.getElementById('view-island'), battle: document.getElementById('view-battle'), grid: document.getElementById('view-grid') };
+  let gridMode = 'all';
   navBtns.forEach(b => b.addEventListener('click', () => {
     navBtns.forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
     const v = b.dataset.view;
     Object.entries(views).forEach(([k,el]) => el.classList.toggle('active', k===v));
-    if(v==='grid') buildGrid();
+    if(v==='grid') buildGrid(gridMode);
   }));
 
-  // ============ GRID ============
-  function buildGrid(){
+  // ============ GRID (with filters) ============
+  function gradeLabel(g){ return g==='6'?'6★ Superstar':g==='5'?'5★ Star':g==='4'?'4★':g==='3'?'3★':g==='1'?'Special':'★'+g; }
+  function cardHTML(p, extra){
+    const sup = (p.tier||'').includes('Superstar') ? ' superstar' : '';
+    return `<div class="grid-card${sup}" data-name="${p.name}">
+      ${extra||''}<img src="${p.sprite}" alt=""><div class="gname">${p.name}</div><div class="g-pe">PE ${p.pe}</div>
+    </div>`;
+  }
+  function buildGrid(mode){
     const g = document.getElementById('grid');
     g.innerHTML = '';
-    document.getElementById('grid-count').textContent = poke.length + ' tags collected';
-    [...poke].sort((a,b)=>b.pe-a.pe).forEach(p=>{
+    const sorted = [...poke].sort((a,b)=>b.pe-a.pe);
+    let list = sorted;
+    if(mode==='main') list = sorted.filter(p => Number(p.grade) >= 5);
+    if(mode==='power') list = sorted;
+    if(mode==='star'){
+      const order = ['6','5','4','3','1'];
+      order.forEach(gr => {
+        const group = sorted.filter(p=>String(p.grade)===gr);
+        if(!group.length) return;
+        const sec = document.createElement('div');
+        sec.className = 'gsection';
+        sec.textContent = gradeLabel(gr);
+        g.appendChild(sec);
+        group.forEach(p=>{
+          const c = document.createElement('div');
+          c.innerHTML = cardHTML(p);
+          c.firstElementChild.addEventListener('click', ()=>openPopup(p));
+          g.appendChild(c.firstElementChild);
+        });
+      });
+      document.getElementById('grid-count').textContent = poke.length + ' tags · grouped by star';
+      return;
+    }
+    list.forEach((p,i)=>{
       const c = document.createElement('div');
-      c.className = 'grid-card';
-      c.innerHTML = `<img src="${p.sprite}" alt=""><div class="g-name">${p.name}</div><div class="g-pe">PE ${p.pe}</div>`;
-      c.addEventListener('click', ()=>openPopup(p));
-      g.appendChild(c);
+      const rank = (mode==='power') ? `<span class="g-rank">#${i+1}</span>` : '';
+      c.innerHTML = cardHTML(p, rank);
+      c.firstElementChild.addEventListener('click', ()=>openPopup(p));
+      g.appendChild(c.firstElementChild);
     });
+    const label = mode==='main' ? (list.length+' main-roster tags (5★+)') : (list.length+' tags · by power');
+    document.getElementById('grid-count').textContent = mode==='all' ? poke.length+' tags collected' : label;
   }
+  document.querySelectorAll('.filter').forEach(f => f.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+    gridMode = f.dataset.f;
+    buildGrid(gridMode);
+  }));
 
   // ============ BATTLE ============
   const slots = document.querySelectorAll('.enemy-slot');
@@ -150,19 +282,13 @@
   let enemyTeam = [null,null,null];
   let pickingFor = 0;
 
-  slots.forEach((s,i) => s.addEventListener('click', () => {
-    pickingFor = i; openPicker();
-  }));
-
+  slots.forEach((s,i) => s.addEventListener('click', () => { pickingFor = i; openPicker(); }));
   function openPicker(){
     pickerBackdrop.classList.remove('hidden');
-    pickerSearch.value = '';
-    renderPicker('');
-    pickerSearch.focus();
+    pickerSearch.value = ''; renderPicker(''); pickerSearch.focus();
   }
   function renderPicker(q){
-    q = q.toLowerCase();
-    pickerList.innerHTML = '';
+    q = q.toLowerCase(); pickerList.innerHTML = '';
     enemies.filter(e => e.name.toLowerCase().includes(q)).slice(0,60).forEach(e => {
       const d = document.createElement('div');
       d.className = 'pick-item';
@@ -177,12 +303,11 @@
   function pickEnemy(e){
     enemyTeam[pickingFor] = e;
     const s = slots[pickingFor];
-    s.innerHTML = `<span class="p-types" style="justify-content:center">${(e.types||[]).map(t=>`<span class="type ${t}">${t}</span>`).join('')}</span><span class="enemy-name">${e.name}</span>`;
+    s.innerHTML = `<span class="types" style="justify-content:center">${(e.types||[]).map(t=>`<span class="type ${t}">${t}</span>`).join('')}</span><span class="enemy-name">${e.name}</span>`;
     pickerBackdrop.classList.add('hidden');
     computeCounters();
   }
 
-  // ---- type effectiveness: my types vs enemy types ----
   function scoreType(mine, enemy){
     let sc = 0, why = [];
     (mine.types||[]).forEach(mt => {
@@ -193,7 +318,6 @@
           if((tc.immune||[]).includes(mt)){ sc += 2; why.push(`${mt} blocks ${et}`); }
           if((tc.resist||[]).includes(mt)){ sc -= 1; }
         }
-        // enemy attacking me
         const mct = typeChart[mt];
         if(mct && (mct.weak||[]).includes(et)){ sc -= 2; why.push(`${enemy.name}'s ${et} beats my ${mt}`); }
       });
@@ -205,11 +329,7 @@
     if(enemyTeam.some(e=>!e)) return;
     const scored = poke.map(p => {
       let tot=0, whys=[];
-      enemyTeam.forEach(e => {
-        const r = scoreType(p, e);
-        tot += r.sc; whys = whys.concat(r.why);
-      });
-      // PE tiebreak
+      enemyTeam.forEach(e => { const r = scoreType(p,e); tot += r.sc; whys = whys.concat(r.why); });
       const peBonus = p.pe / 50;
       return { p, sc: tot + peBonus, why: [...new Set(whys)] };
     });
@@ -230,10 +350,11 @@
   }
 
   // ============ INIT ============
-  spawnSprites();
   stars();
-  layout();
-  wrapSprites();
+  clouds();
+  // initial population
+  for(let i=0;i<TARGET;i++){ const p = pickWeighted(); if(p) spawnPokemon(p); }
   requestAnimationFrame(step);
-  window.addEventListener('resize', layout);
+  setInterval(rotate, 20000);
+  window.addEventListener('resize', ()=>{});
 })();
