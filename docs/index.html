@@ -1,164 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MEZASTAR BINDER · Khanh</title>
-<meta name="description" content="Personal Pokemon Mezastar binder and boss counter, Stardust Version 2.">
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#080b17">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Mezastar">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b1a2b">
+<title>Pokédex — Khanh's Collection</title>
+<link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grain"></div>
 
-<div class="wrap">
-
-  <header class="top glass" id="appbar">
-    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="ball"></div>
-    <div class="titles">
-      <h1>Mezastar Binder</h1>
-      <div class="sub">Khanh Ngo An · Stardust Version 2 · Vietnam machines</div>
-    </div>
-    <div class="statrow">
-      <div class="stat"><b id="sCount">19</b><span>Tags</span></div>
-      <div class="stat"><b id="sPe">0</b><span>Total PE</span></div>
-      <div class="stat"><b id="sType">0</b><span>Types</span></div>
-    </div>
+<!-- ============ COLLECTION VIEW ============ -->
+<section id="view-grid" class="view active">
+  <header class="titlebar">
+    <h1>POKÉ<span>DEX</span></h1>
+    <div class="count" id="count"></div>
   </header>
+  <div id="filters">
+    <button class="filter active" data-f="all">All</button>
+    <button class="filter" data-f="main">🏆 Main</button>
+    <button class="filter" data-f="star">⭐ Star</button>
+    <button class="filter" data-f="power">⚡ Power</button>
+  </div>
+  <div id="grid"></div>
+</section>
 
-  <nav class="tabs">
-      <button class="on" data-tab="binder">My Binder</button>
-      <button data-tab="boss">Boss Counter</button>
-      <button data-tab="load">Team Lab</button>
-      <button data-tab="hunt">Hunt List</button>
-      <button data-tab="stats">Stats</button>
-      <button data-tab="tickets">🎫 Support</button>
-    </nav>
+<!-- ============ BATTLE VIEW ============ -->
+<section id="view-battle" class="view">
+  <header class="titlebar"><h1>⚔️<span>BATTLE</span></h1></header>
+  <p class="sub">Enemy's 3 Pokémon → your best 3 counters</p>
+  <div id="enemy-slots">
+    <button class="enemy-slot" data-i="0"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+    <button class="enemy-slot" data-i="1"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+    <button class="enemy-slot" data-i="2"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+  </div>
+  <div id="result-wrap"></div>
+</section>
 
-  <div class="scrim navscrim" id="navScrim"></div>
-  <nav class="drawer" id="drawer" aria-hidden="true">
-    <div class="dhead">
-      <img class="dbolt" src="icons/bolt-transparent.png" alt="">
-      <div><div class="dname">Mezastar Binder</div><div class="dsub">Stardust V2 · Vietnam</div></div>
+<!-- ============ DETAIL OVERLAY ============ -->
+<div id="detail-backdrop" class="hidden">
+  <div id="detail-card">
+    <div class="detail-hero">
+      <img id="d-sprite" src="" alt="">
+      <div class="d-name" id="d-name"></div>
+      <div class="d-genus" id="d-genus"></div>
     </div>
-    <button class="dlink on" data-tab="binder"><span class="di">📇</span> My Binder</button>
-    <button class="dlink" data-tab="boss"><span class="di">⚔️</span> Boss Counter</button>
-    <button class="dlink" data-tab="load"><span class="di">🎯</span> Team Lab</button>
-    <button class="dlink" data-tab="hunt"><span class="di">🧭</span> Hunt List</button>
-        <button class="dlink" data-tab="stats"><span class="di">📊</span> Stats</button>
-        <button class="dlink" data-tab="tickets"><span class="di">🎫</span> Support Tickets</button>
-        <div class="dsect">Quick bosses</div>
-    <div class="dchips" id="drawerChips"></div>
-    <div class="dfoot">Personal binder · data on <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">GitHub</a><br>Stardust V2 only · built by Hermes</div>
-  </nav>
 
-  <!-- ============ BINDER ============ -->
-  <section class="panel on" id="p-binder">
-    <div class="tools glass">
-      <input class="search" id="q" placeholder="Search my tags by name, id or type…" autocomplete="off">
-      <button class="btn act" id="sortBtn" data-sort="pe">PE ↓</button>
-      <button class="btn" id="sortName" data-sort="name">A to Z</button>
-      <button class="btn" id="sortDense" data-sort="dense">⚡ Density</button>
+    <div class="detail-tag">
+      <img id="d-tag" src="" alt="">
+      <div class="d-badges" id="d-badges"></div>
     </div>
-    <div class="chips" id="gradeChips"></div>
-    <div class="chips" id="typeChips"></div>
-    <div class="cmpbar glass" id="cmpBar">
-      <span id="cmpCount">0</span> selected
-      <button class="btn act" id="cmpGo">⚖ Compare</button>
-      <button class="btn" id="cmpClear">✕</button>
-    </div>
-    <div class="grid" id="grid"><div class="spin"></div></div>
-  </section>
 
-  <!-- ============ BOSS COUNTER ============ -->
-  <section class="panel" id="p-boss">
-    <div class="tools glass">
-      <input class="search" id="bq" placeholder="Type the boss you just met… (kyurem, koraidon, skele)" autocomplete="off">
-      <button class="btn battlebtn" id="battleBtn" title="Simplified fast layout for use during battle">⚔ Battle</button>
-      <button class="btn" id="drillBtn">🎲 Drill</button>
-      <button class="btn" id="safeBtn" title="Prefer tags this boss cannot punish">🛡 Safe</button>
-      <button class="btn" id="clearBoss">Reset</button>
-    </div>
-    <div class="chips" id="bossChips"></div>
-    <div id="bossResult"></div>
-    <div id="trioBox"></div>
-    <div id="compareBox"></div>
-    <div class="listhead">
-      <h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase">Or pick from the boss list</h3>
-      <div class="poolbox">
-        <span class="pool" id="poolCount">Loading…</span>
-        <button class="btn" id="setToggle" title="Vietnam machines run Stardust Version 2 only">VN only</button>
+    <div class="detail-body">
+      <div class="d-pe" id="d-pe"></div>
+      <div class="d-types" id="d-types"></div>
+
+      <div class="d-matched">
+        <div><b>Strong vs</b><div id="d-beats"></div></div>
+        <div><b>Weak to</b><div id="d-weak"></div></div>
       </div>
-    </div>
-    <div class="glass" id="bossGridWrap" style="padding:10px"><div class="bossgrid" id="bossGrid"></div></div>
-  </section>
 
-  <!-- ============ TEAM LAB ============ -->
-  <section class="panel" id="p-load">
-    <div id="loadout"><div class="spin"></div></div>
-  </section>
-
-  <!-- ============ HUNT LIST ============ -->
-  <section class="panel" id="p-hunt">
-    <div class="tools glass">
-      <input class="search" id="pq" placeholder="Search the 66 tag Stardust V2 pool…" autocomplete="off">
-      <div class="btn-group" id="huntModes">
-        <button class="btn act" data-m="missing">🎯 Missing</button>
-        <button class="btn" data-m="wish">♥ Wishlist</button>
-        <button class="btn" data-m="dupes">⧉ Dupes</button>
-        <button class="btn" data-m="all">All</button>
+      <div class="d-pokedex">
+        <div class="d-sec-title">Pokédex</div>
+        <div class="d-facts" id="d-facts"></div>
+        <p class="d-flavor" id="d-flavor"></p>
+        <div class="d-abilities" id="d-abilities"></div>
       </div>
+
+      <button class="close-btn" id="detail-close">Close</button>
     </div>
-    <div class="chips" id="poolTypeChips"></div>
-    <div class="hint" style="margin:4px 0 10px" id="huntCount"></div>
-    <div id="huntSummary"></div>
-    <div class="grid" id="pgrid"><div class="spin"></div></div>
-  </section>
-
-  <!-- ============ STATS & TOOLS ============ -->
-    <section class="panel" id="p-stats">
-      <div class="hint" id="tipLine" style="margin-bottom:12px"></div>
-      <div id="statsBox"></div>
-    </section>
-
-    <!-- ============ SUPPORT TICKETS ============ -->
-    <section class="panel" id="p-tickets">
-      <div class="tools glass">
-        <input class="search" id="tq" placeholder="Search support tickets by Pokemon, move or source…" autocomplete="off">
-        <div class="btn-group" id="ticketFilters">
-          <button class="btn act" data-f="all">All</button>
-          <button class="btn" data-f="vn">VN Available</button>
-          <button class="btn" data-f="club">Mezastar Club</button>
-          <button class="btn" data-f="mag">Magazine</button>
-          <button class="btn" data-f="event">Event/Flyer</button>
-        </div>
-      </div>
-      <div class="hint" id="ticketCount"></div>
-      <div class="grid" id="tgrid"><div class="spin"></div></div>
-    </section>
-
-    <footer>
-    Personal binder build · Stardust Version 2 only · art from the official Mezastar tag sheets<br>
-    <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">mezastar-dex</a> · type chart: mainline multipliers
-  </footer>
+  </div>
 </div>
 
-<div class="scrim" id="scrim"><div class="modal" id="modal"></div></div>
+<!-- ============ ENEMY PICKER ============ -->
+<div id="picker-backdrop" class="hidden">
+  <div id="picker">
+    <input id="picker-search" type="text" placeholder="Search Pokémon..." autocomplete="off">
+    <div id="picker-list"></div>
+  </div>
+</div>
 
-<script src="assets/app.js"></script>
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <button class="nav-btn active" data-view="grid"><span>📒</span>Collection</button>
+  <button class="nav-btn" data-view="battle"><span>⚔️</span>Battle</button>
+</nav>
+
+<script src="app.js"></script>
 </body>
 </html>
