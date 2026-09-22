@@ -861,29 +861,29 @@ function applyLang(){
 /* ================= SUPPORT TICKETS ================= */
 const TICKETS = [
   { id:"t1", name:"Zygarde", form:"Complete Forme", move:"Thousand Arrows", type:["Ground","Dragon"], grade:5,
-    source:"Mezastar Club (digital)", period:"2020-09-17 to ~2021-01", set:"Set 1", vn:false, img:"img/1-1-025_Zygarde.webp" },
+    source:"Mezastar Club (digital)", period:"2020-09-17 to ~2021-01", set:"Set 1", vn:false, img:"img/1-1-025_Zygarde.webp", qr:"qr/zygarde-qr.png" },
   { id:"t2", name:"Flygon", move:"Earthquake", type:["Ground","Dragon"], grade:5,
-    source:"Mezastar Club (digital)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-050_Flygon.webp" },
+    source:"Mezastar Club (digital)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-050_Flygon.webp", qr:"qr/flygon-qr.png" },
   { id:"t3", name:"Corviknight", move:"Brave Bird", type:["Flying","Steel"], grade:5,
-    source:"Pokémon Fan magazine issue 73 (physical QR)", period:"2021-04-28 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-046_Corviknight.webp" },
+    source:"Pokémon Fan magazine issue 73 (physical QR)", period:"2021-04-28 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-046_Corviknight.webp", qr:"qr/corviknight-qr.png" },
   { id:"t4", name:"Mimikyu", move:"Shadow Claw", type:["Ghost","Fairy"], grade:5,
-    source:"Tournament prize (defeat Star Trainer Sakura)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-049_Mimikyu.webp" },
+    source:"Tournament prize (defeat Star Trainer Sakura)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-049_Mimikyu.webp", qr:"qr/mimikyu-qr.png" },
   { id:"t5", name:"Tangrowth", move:"Power Whip", type:["Grass"], grade:5,
-    source:"Mezastar Club (digital)", period:"2022-09-15 to 2022-11-21", set:"Double Chain 2", vn:false, img:"img/dc2-030_Tangrowth.webp" },
+    source:"Mezastar Club (digital)", period:"2022-09-15 to 2022-11-21", set:"Double Chain 2", vn:false, img:"img/dc2-030_Tangrowth.webp", qr:"qr/tangrowth-qr.png" },
   { id:"t6", name:"Nidoking", move:"Earth Power", type:["Poison","Ground"], grade:5,
-    source:"Mezastar Club (digital) + pamphlet + Pokémon Fan", period:"2023-02-09 to 2023-08-31", set:"Double Chain 4", vn:true, img:"img/dc4-025_Nidoking.webp" },
+    source:"Mezastar Club (digital) + pamphlet + Pokémon Fan", period:"2023-02-09 to 2023-08-31", set:"Double Chain 4", vn:true, img:"img/dc4-025_Nidoking.webp", qr:"qr/nidoking-qr.png" },
   { id:"t7", name:"Krookodile", move:"Earthquake", type:["Ground","Dark"], grade:5,
-    source:"Mezastar Club (digital) + pamphlet + event", period:"2024-02-08 to 2024-04-30", set:"Gorgeous Star 4", vn:true, img:"img/gs4-018_Krookodile.webp" },
+    source:"Mezastar Club (digital) + pamphlet + event", period:"2024-02-08 to 2024-04-30", set:"Gorgeous Star 4", vn:true, img:"img/gs4-018_Krookodile.webp", qr:"qr/krookodile-qr.png" },
   { id:"t8", name:"Calyrex", form:"Ice Rider", move:"Glacial Lance", type:["Psychic","Ice"], grade:6,
-    source:"Mezastar Club (digital)", period:"Super Tag 1 launch period", set:"Super Tag 1", vn:false, img:"img/st1-005_Calyrex_Ice.webp" },
+    source:"Mezastar Club (digital)", period:"Super Tag 1 launch period", set:"Super Tag 1", vn:false, img:"img/st1-005_Calyrex_Ice.webp", qr:"qr/calyrex-ice-qr.png" },
   { id:"t9", name:"Calyrex", form:"Shadow Rider", move:"Astral Barrage", type:["Psychic","Ghost"], grade:6,
-    source:"Physical launch campaign ticket", period:"Super Tag 1 launch", set:"Super Tag 1", vn:false, img:"img/st1-006_Calyrex_Shadow.webp" },
+    source:"Physical launch campaign ticket", period:"Super Tag 1 launch", set:"Super Tag 1", vn:false, img:"img/st1-006_Calyrex_Shadow.webp", qr:"qr/calyrex-shadow-qr.png" },
   { id:"t10", name:"Drifblim", move:"Shadow Ball", type:["Ghost","Flying"], grade:4,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-064_Drifblim.webp" },
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-064_Drifblim.webp", qr:"qr/drifblim-qr.png" },
   { id:"t11", name:"Skeledirge", move:"Torch Song", type:["Fire","Ghost"], grade:5,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-027_Skeledirge.webp" },
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-027_Skeledirge.webp", qr:"qr/skeledirge-qr.png" },
   { id:"t12", name:"Mareanie", move:"Toxic Spikes", type:["Poison","Water"], grade:2,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-065_Mareanie.webp" },
+    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-065_Mareanie.webp", qr:"qr/mareanie-qr.png" },
 ];
 
 function ticketSrc(t){
@@ -908,22 +908,23 @@ function renderTickets(){
   $("#ticketCount").textContent = `${list.length} ticket${list.length===1?"":"s"} · ${list.filter(t=>t.vn).length} available in Vietnam`;
   if (!list.length){ $("#tgrid").innerHTML = `<div class="empty">No tickets match that filter.</div>`; return; }
   $("#tgrid").innerHTML = list.map((t,i) => {
-    const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
-    const firstType = types[0];
-    return `
-    <article class="card ticket" style="--glow:${(TYPE_COLOR[firstType]||"#7aa2ff")}44">
-      <div class="halo"></div>
-      <div class="stars">${stars(t.grade)}</div>
-      ${t.img ? `<img src="${t.img}" alt="${esc(t.name)}" loading="${i<6?'eager':'lazy'}">` : ""}
-      <div class="srcbadge ${ticketSrc(t)}">${ticketSrc(t).toUpperCase()}</div>
-      ${t.vn ? `<div class="srcbadge vn">VN ✔</div>` : `<div class="srcbadge no-vn">VN ✕</div>`}
-      <div class="cname">${esc(t.name)}${t.form?` ${t.form}`:""}</div>
-      <div class="cid">${esc(t.set)}</div>
-      <div class="pills">${types.map(pill).join("")}</div>
-      <div class="move">Move: ${esc(t.move)}</div>
-      <div class="hint" style="margin-top:4px">${esc(t.source)} · ${esc(t.period)}</div>
-    </article>`;
-  }).join("");
+      const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
+      const firstType = types[0];
+      return `
+      <article class="card ticket" style="--glow:${(TYPE_COLOR[firstType]||"#7aa2ff")}44">
+        <div class="halo"></div>
+        <div class="stars">${stars(t.grade)}</div>
+        ${t.img ? `<img src="${t.img}" alt="${esc(t.name)}" loading="${i<6?'eager':'lazy'}">` : ""}
+        ${t.qr ? `<div class="qrimg"><img src="${t.qr}" alt="QR for ${esc(t.name)}" loading="${i<6?'eager':'lazy'}" class="qrcode"></div>` : ""}
+        <div class="srcbadge ${ticketSrc(t)}">${ticketSrc(t).toUpperCase()}</div>
+        ${t.vn ? `<div class="srcbadge vn">VN ✔</div>` : `<div class="srcbadge no-vn">VN ✕</div>`}
+        <div class="cname">${esc(t.name)}${t.form?` ${t.form}`:""}</div>
+        <div class="cid">${esc(t.set)}</div>
+        <div class="pills">${types.map(pill).join("")}</div>
+        <div class="move">Move: ${esc(t.move)}</div>
+        <div class="hint" style="margin-top:4px">${esc(t.source)} · ${esc(t.period)}</div>
+      </article>`;
+    }).join("");
 }
 
 /* ================= wiring ================= */

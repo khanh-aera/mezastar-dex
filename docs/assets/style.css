@@ -356,3 +356,10 @@ body.dim .card .halo{opacity:.3}
 .card.ticket .srcbadge.no-vn{top:34px;background:rgba(255,92,138,.15);border:1px solid rgba(255,92,138,.3);color:#ffb3c6}
 .card.ticket .move{margin-top:6px;font-size:11.5px;color:var(--muted);font-family:"Chakra Petch",sans-serif}
 .card.ticket .move::before{content:"⚔ "}
+.card.ticket .qrimg{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:50px;height:50px;z-index:3;display:flex;align-items:center;justify-content:center}
+.card.ticket .qrcode{width:44px;height:44px;border-radius:8px;background:#fff;padding:2px;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.card.ticket img{position:absolute;width:24px;height:24px;top:4px;left:4px;border-radius:4px;z-index:2}
+.card.ticket .stars{position:absolute;top:4px;left:4px;font-size:10px;line-height:1;z-index:2}
+.card.ticket .cname{position:absolute;top:50%;left:4px;right:4px;font-size:10px;font-weight:bold;text-align:center;line-height:1.1;transform:translateY(-50%);z-index:2}
+.card.ticket .cid{position:absolute;top:58%;left:4px;right:4px;font-size:8px;text-align:center;color:rgba(255,255,255,0.8);z-index:2}
+.card.ticket .pills{position:absolute;top:64%;left:4px;right:4px;display:flex;gap:3px;z-index:2}
