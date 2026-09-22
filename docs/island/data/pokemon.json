@@ -1,0 +1,747 @@
+[
+  {
+    "name": "Kyurem",
+    "id": "1-2-010",
+    "set": "2",
+    "pe": 156,
+    "grade": "6",
+    "types": [
+      "Dragon",
+      "Ice"
+    ],
+    "beats": [
+      "Grass",
+      "Ground",
+      "Flying",
+      "Dragon"
+    ],
+    "weak": [
+      "Fire",
+      "Ice",
+      "Fighting",
+      "Rock",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "tier": "Superstar Pokémon",
+    "sprite": "sprites/kyurem.gif",
+    "animated": true,
+    "tag": "img/1-2-010_Kyurem.webp"
+  },
+  {
+    "name": "Mew",
+    "id": "1-1-002",
+    "set": "1",
+    "pe": 142,
+    "grade": "6",
+    "types": [
+      "Psychic"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison"
+    ],
+    "weak": [
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "tier": "Superstar Pokémon",
+    "sprite": "sprites/mew.gif",
+    "animated": true,
+    "tag": "img/1-1-002_Mew.webp"
+  },
+  {
+    "name": "Gardevoir",
+    "id": "1-2-007",
+    "set": "2",
+    "pe": 124,
+    "grade": "6",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison",
+      "Dragon",
+      "Dark"
+    ],
+    "weak": [
+      "Poison",
+      "Bug",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "tier": "Superstar Pokémon",
+    "sprite": "sprites/gardevoir.gif",
+    "animated": true,
+    "tag": "img/1-2-007_Gardevoir.webp"
+  },
+  {
+    "name": "Alolan Ninetales",
+    "id": "1-2-019",
+    "set": "2",
+    "pe": 122,
+    "grade": "5",
+    "types": [
+      "Ice",
+      "Fairy"
+    ],
+    "beats": [
+      "Grass",
+      "Fighting",
+      "Ground",
+      "Flying",
+      "Dragon",
+      "Dark"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Poison",
+      "Rock",
+      "Steel"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/alolan_ninetales.png",
+    "animated": false,
+    "tag": "img/1-2-019_Alolan_Ninetales.webp"
+  },
+  {
+    "name": "Lucario",
+    "id": "1-2-015",
+    "set": "2",
+    "pe": 118,
+    "grade": "5",
+    "types": [
+      "Fighting",
+      "Steel"
+    ],
+    "beats": [
+      "Normal",
+      "Ice",
+      "Rock",
+      "Dark",
+      "Steel",
+      "Fairy"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Ground",
+      "Flying",
+      "Psychic",
+      "Fairy"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/lucario.gif",
+    "animated": true,
+    "tag": "img/1-2-015_Lucario.webp"
+  },
+  {
+    "name": "Sylveon",
+    "id": "1-2-014",
+    "set": "2",
+    "pe": 116,
+    "grade": "5",
+    "types": [
+      "Fairy"
+    ],
+    "beats": [
+      "Fighting",
+      "Dragon",
+      "Dark"
+    ],
+    "weak": [
+      "Poison",
+      "Steel"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/sylveon.png",
+    "animated": false,
+    "tag": "img/1-2-014_Sylveon.webp"
+  },
+  {
+    "name": "Empoleon",
+    "id": "1-2-018",
+    "set": "2",
+    "pe": 114,
+    "grade": "5",
+    "types": [
+      "Water",
+      "Steel"
+    ],
+    "beats": [
+      "Fire",
+      "Ice",
+      "Ground",
+      "Rock",
+      "Fairy"
+    ],
+    "weak": [
+      "Fire",
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Ground"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/empoleon.gif",
+    "animated": true,
+    "tag": "img/1-2-018_Empoleon.webp"
+  },
+  {
+    "name": "Espeon",
+    "id": "1-2-012",
+    "set": "2",
+    "pe": 112,
+    "grade": "5",
+    "types": [
+      "Psychic"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison"
+    ],
+    "weak": [
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/espeon.gif",
+    "animated": true,
+    "tag": "img/1-2-012_Espeon.webp"
+  },
+  {
+    "name": "Torterra",
+    "id": "1-2-016",
+    "set": "2",
+    "pe": 112,
+    "grade": "5",
+    "types": [
+      "Grass",
+      "Ground"
+    ],
+    "beats": [
+      "Fire",
+      "Water",
+      "Electric",
+      "Poison",
+      "Ground",
+      "Rock",
+      "Steel"
+    ],
+    "weak": [
+      "Fire",
+      "Water",
+      "Grass",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/torterra.gif",
+    "animated": true,
+    "tag": "img/1-2-016_Torterra.webp"
+  },
+  {
+    "name": "Flapple",
+    "id": "1-2-022",
+    "set": "2",
+    "pe": 110,
+    "grade": "5",
+    "types": [
+      "Grass",
+      "Dragon"
+    ],
+    "beats": [
+      "Water",
+      "Ground",
+      "Rock",
+      "Dragon"
+    ],
+    "weak": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug",
+      "Dragon",
+      "Fairy"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/flapple.png",
+    "animated": false,
+    "tag": "img/1-2-022_Flapple.webp"
+  },
+  {
+    "name": "Appletun",
+    "id": "1-2-023",
+    "set": "2",
+    "pe": 110,
+    "grade": "5",
+    "types": [
+      "Grass",
+      "Dragon"
+    ],
+    "beats": [
+      "Water",
+      "Ground",
+      "Rock",
+      "Dragon"
+    ],
+    "weak": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug",
+      "Dragon",
+      "Fairy"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/appletun.png",
+    "animated": false,
+    "tag": "img/1-2-023_Appletun.webp"
+  },
+  {
+    "name": "Inteleon",
+    "id": "1-1-023",
+    "set": "1",
+    "pe": 108,
+    "grade": "5",
+    "types": [
+      "Water"
+    ],
+    "beats": [
+      "Fire",
+      "Ground",
+      "Rock"
+    ],
+    "weak": [
+      "Electric",
+      "Grass"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/inteleon.png",
+    "animated": false,
+    "tag": "img/1-1-023_Inteleon.webp"
+  },
+  {
+    "name": "Drednaw",
+    "id": "1-2-025",
+    "set": "2",
+    "pe": 104,
+    "grade": "5",
+    "types": [
+      "Water",
+      "Rock"
+    ],
+    "beats": [
+      "Fire",
+      "Ice",
+      "Ground",
+      "Flying",
+      "Bug",
+      "Rock"
+    ],
+    "weak": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Ground",
+      "Steel"
+    ],
+    "tier": "Star Pokémon",
+    "sprite": "sprites/drednaw.png",
+    "animated": false,
+    "tag": "img/1-2-025_Drednaw.webp"
+  },
+  {
+    "name": "Snorlax",
+    "id": "R-1-3",
+    "set": "1",
+    "pe": 104,
+    "grade": "1",
+    "types": [
+      "Normal"
+    ],
+    "beats": [],
+    "weak": [
+      "Fighting"
+    ],
+    "tier": "Regular Tags (Special group)",
+    "sprite": "sprites/snorlax.gif",
+    "animated": true,
+    "tag": "img/R-1-3_Snorlax.webp"
+  },
+  {
+    "name": "Gardevoir",
+    "id": "1-2-069",
+    "set": "2",
+    "pe": 96,
+    "grade": "4",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison",
+      "Dragon",
+      "Dark"
+    ],
+    "weak": [
+      "Poison",
+      "Bug",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/gardevoir.gif",
+    "animated": true,
+    "tag": "img/1-2-069_Gardevoir.webp"
+  },
+  {
+    "name": "Meowscarada",
+    "id": "1-2-026",
+    "set": "2",
+    "pe": 92,
+    "grade": "4",
+    "types": [
+      "Grass",
+      "Dark"
+    ],
+    "beats": [
+      "Water",
+      "Ground",
+      "Psychic",
+      "Rock",
+      "Ghost"
+    ],
+    "weak": [
+      "Fire",
+      "Ice",
+      "Fighting",
+      "Poison",
+      "Flying",
+      "Bug",
+      "Fairy"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/meowscarada.png",
+    "animated": false,
+    "tag": "img/1-2-026_Meowscarada.webp"
+  },
+  {
+    "name": "Pidgeot",
+    "id": "1-2-049",
+    "set": "2",
+    "pe": 82,
+    "grade": "4",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "beats": [
+      "Grass",
+      "Fighting",
+      "Bug"
+    ],
+    "weak": [
+      "Electric",
+      "Ice",
+      "Fighting",
+      "Rock"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/pidgeot.gif",
+    "animated": true,
+    "tag": "img/1-2-049_Pidgeot.webp"
+  },
+  {
+    "name": "Alolan Sandslash",
+    "id": "1-2-051",
+    "set": "2",
+    "pe": 78,
+    "grade": "4",
+    "types": [
+      "Ice",
+      "Steel"
+    ],
+    "beats": [
+      "Grass",
+      "Ice",
+      "Ground",
+      "Flying",
+      "Rock",
+      "Dragon",
+      "Fairy"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Ground",
+      "Rock",
+      "Steel"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/alolan_sandslash.png",
+    "animated": false,
+    "tag": "img/1-2-051_Alolan_Sandslash.webp"
+  },
+  {
+    "name": "Bronzong",
+    "id": "1-2-053",
+    "set": "2",
+    "pe": 74,
+    "grade": "4",
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "beats": [
+      "Ice",
+      "Fighting",
+      "Poison",
+      "Rock",
+      "Fairy"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Ground",
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/bronzong.gif",
+    "animated": true,
+    "tag": "img/1-2-053_Bronzong.webp"
+  },
+  {
+    "name": "Jynx",
+    "id": "1-2-059",
+    "set": "2",
+    "pe": 68,
+    "grade": "3",
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "beats": [
+      "Grass",
+      "Fighting",
+      "Poison",
+      "Ground",
+      "Flying",
+      "Dragon"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Bug",
+      "Rock",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/jynx.gif",
+    "animated": true,
+    "tag": "img/1-2-059_Jynx.webp"
+  },
+  {
+    "name": "Togedemaru",
+    "id": "1-2-066",
+    "set": "2",
+    "pe": 68,
+    "grade": "3",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "beats": [
+      "Water",
+      "Ice",
+      "Flying",
+      "Rock",
+      "Fairy"
+    ],
+    "weak": [
+      "Fire",
+      "Fighting",
+      "Ground"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/togedemaru.png",
+    "animated": false,
+    "tag": "img/1-2-066_Togedemaru.webp"
+  },
+  {
+    "name": "Onix",
+    "id": "1-2-070",
+    "set": "2",
+    "pe": 64,
+    "grade": "3",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "beats": [
+      "Fire",
+      "Electric",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug",
+      "Rock",
+      "Steel"
+    ],
+    "weak": [
+      "Water",
+      "Grass",
+      "Ice",
+      "Fighting",
+      "Ground",
+      "Steel"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/onix.gif",
+    "animated": true,
+    "tag": "img/1-2-070_Onix.webp"
+  },
+  {
+    "name": "Kadabra",
+    "id": "1-2-061",
+    "set": "2",
+    "pe": 62,
+    "grade": "3",
+    "types": [
+      "Psychic"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison"
+    ],
+    "weak": [
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/kadabra.gif",
+    "animated": true,
+    "tag": "img/1-2-061_Kadabra.webp"
+  },
+  {
+    "name": "Kirlia",
+    "id": "1-2-068",
+    "set": "2",
+    "pe": 50,
+    "grade": "4",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "beats": [
+      "Fighting",
+      "Poison",
+      "Dragon",
+      "Dark"
+    ],
+    "weak": [
+      "Poison",
+      "Bug",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/kirlia.gif",
+    "animated": true,
+    "tag": "img/1-2-068_Kirlia.webp"
+  },
+  {
+    "name": "Fuecoco",
+    "id": "1-1-028",
+    "set": "1",
+    "pe": 48,
+    "grade": "4",
+    "types": [
+      "Fire"
+    ],
+    "beats": [
+      "Grass",
+      "Ice",
+      "Bug",
+      "Steel"
+    ],
+    "weak": [
+      "Water",
+      "Ground",
+      "Rock"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/fuecoco.png",
+    "animated": false,
+    "tag": "img/1-1-028_Fuecoco.webp"
+  },
+  {
+    "name": "Grookey",
+    "id": "1-1-032",
+    "set": "1",
+    "pe": 42,
+    "grade": "4",
+    "types": [
+      "Grass"
+    ],
+    "beats": [
+      "Water",
+      "Ground",
+      "Rock"
+    ],
+    "weak": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/grookey.png",
+    "animated": false,
+    "tag": "img/1-1-032_Grookey.webp"
+  },
+  {
+    "name": "Sobble",
+    "id": "1-1-038",
+    "set": "1",
+    "pe": 42,
+    "grade": "4",
+    "types": [
+      "Water"
+    ],
+    "beats": [
+      "Fire",
+      "Ground",
+      "Rock"
+    ],
+    "weak": [
+      "Electric",
+      "Grass"
+    ],
+    "tier": "★2~4 Pokémon",
+    "sprite": "sprites/sobble.png",
+    "animated": false,
+    "tag": "img/1-1-038_Sobble.webp"
+  }
+]

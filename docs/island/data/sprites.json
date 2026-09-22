@@ -1,0 +1,158 @@
+{
+  "Kyurem": {
+    "dex": 646,
+    "slug": "kyurem",
+    "file": "kyurem.gif",
+    "animated": true
+  },
+  "Mew": {
+    "dex": 151,
+    "slug": "mew",
+    "file": "mew.gif",
+    "animated": true
+  },
+  "Gardevoir": {
+    "dex": 282,
+    "slug": "gardevoir",
+    "file": "gardevoir.gif",
+    "animated": true
+  },
+  "Alolan Ninetales": {
+    "dex": 10104,
+    "slug": "alolan_ninetales",
+    "file": "alolan_ninetales.png",
+    "animated": false
+  },
+  "Lucario": {
+    "dex": 448,
+    "slug": "lucario",
+    "file": "lucario.gif",
+    "animated": true
+  },
+  "Sylveon": {
+    "dex": 700,
+    "slug": "sylveon",
+    "file": "sylveon.png",
+    "animated": false
+  },
+  "Empoleon": {
+    "dex": 395,
+    "slug": "empoleon",
+    "file": "empoleon.gif",
+    "animated": true
+  },
+  "Espeon": {
+    "dex": 196,
+    "slug": "espeon",
+    "file": "espeon.gif",
+    "animated": true
+  },
+  "Torterra": {
+    "dex": 389,
+    "slug": "torterra",
+    "file": "torterra.gif",
+    "animated": true
+  },
+  "Flapple": {
+    "dex": 841,
+    "slug": "flapple",
+    "file": "flapple.png",
+    "animated": false
+  },
+  "Appletun": {
+    "dex": 842,
+    "slug": "appletun",
+    "file": "appletun.png",
+    "animated": false
+  },
+  "Inteleon": {
+    "dex": 818,
+    "slug": "inteleon",
+    "file": "inteleon.png",
+    "animated": false
+  },
+  "Drednaw": {
+    "dex": 834,
+    "slug": "drednaw",
+    "file": "drednaw.png",
+    "animated": false
+  },
+  "Snorlax": {
+    "dex": 143,
+    "slug": "snorlax",
+    "file": "snorlax.gif",
+    "animated": true
+  },
+  "Meowscarada": {
+    "dex": 908,
+    "slug": "meowscarada",
+    "file": "meowscarada.png",
+    "animated": false
+  },
+  "Pidgeot": {
+    "dex": 18,
+    "slug": "pidgeot",
+    "file": "pidgeot.gif",
+    "animated": true
+  },
+  "Alolan Sandslash": {
+    "dex": 10103,
+    "slug": "alolan_sandslash",
+    "file": "alolan_sandslash.png",
+    "animated": false
+  },
+  "Bronzong": {
+    "dex": 437,
+    "slug": "bronzong",
+    "file": "bronzong.gif",
+    "animated": true
+  },
+  "Jynx": {
+    "dex": 124,
+    "slug": "jynx",
+    "file": "jynx.gif",
+    "animated": true
+  },
+  "Togedemaru": {
+    "dex": 777,
+    "slug": "togedemaru",
+    "file": "togedemaru.png",
+    "animated": false
+  },
+  "Onix": {
+    "dex": 95,
+    "slug": "onix",
+    "file": "onix.gif",
+    "animated": true
+  },
+  "Kadabra": {
+    "dex": 64,
+    "slug": "kadabra",
+    "file": "kadabra.gif",
+    "animated": true
+  },
+  "Kirlia": {
+    "dex": 281,
+    "slug": "kirlia",
+    "file": "kirlia.gif",
+    "animated": true
+  },
+  "Fuecoco": {
+    "dex": 909,
+    "slug": "fuecoco",
+    "file": "fuecoco.png",
+    "animated": false
+  },
+  "Grookey": {
+    "dex": 810,
+    "slug": "grookey",
+    "file": "grookey.png",
+    "animated": false
+  },
+  "Sobble": {
+    "dex": 816,
+    "slug": "sobble",
+    "file": "sobble.png",
+    "animated": false
+  }
+}

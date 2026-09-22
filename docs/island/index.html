@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0b1a2b">
+<title>Pokédex Island</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ ISLAND VIEW ============ -->
+<section id="view-island" class="view active">
+  <div class="island-sky">
+    <div class="sky-stars"></div>
+    <div class="moon"></div>
+    <div class="treeline treeline-far"></div>
+    <div class="treeline treeline-near"></div>
+  </div>
+  <div class="ground"></div>
+
+  <div class="campfire" id="campfire">
+    <div class="flame">🔥</div>
+    <div class="logs">🪵</div>
+    <div class="glow"></div>
+  </div>
+
+  <div id="sprites-layer"></div>
+
+  <header class="island-title">
+    <h1>Pokédex<span>Island</span></h1>
+    <div class="island-count" id="island-count"></div>
+  </header>
+
+  <div class="island-hint" id="island-hint">tap a Pokémon</div>
+</section>
+
+<!-- ============ BATTLE VIEW ============ -->
+<section id="view-battle" class="view">
+  <header class="panel-title"><h2>⚔️ Battle Checker</h2></header>
+  <p class="sub">Enemy's 3 Pokémon → your best 3 counters</p>
+
+  <div id="enemy-slots">
+    <button class="enemy-slot" data-i="0"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+    <button class="enemy-slot" data-i="1"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+    <button class="enemy-slot" data-i="2"><span class="slot-q">?</span><span class="slot-hint">tap to pick</span></button>
+  </div>
+
+  <div id="result-wrap"></div>
+</section>
+
+<!-- ============ GRID VIEW ============ -->
+<section id="view-grid" class="view">
+  <header class="panel-title"><h2>📒 My Tags</h2></header>
+  <p class="sub" id="grid-count"></p>
+  <div id="grid"></div>
+</section>
+
+<!-- ============ POPUP (tap a pokemon) ============ -->
+<div id="popup-backdrop" class="hidden">
+  <div id="popup-card">
+    <div class="popup-tag">
+      <img id="popup-tag-img" src="" alt="">
+    </div>
+    <div class="popup-info">
+      <div class="popup-name" id="popup-name"></div>
+      <div class="popup-meta" id="popup-meta"></div>
+      <div class="popup-pe"><span id="popup-pe"></span> <small>PE</small></div>
+      <div class="popup-types" id="popup-types"></div>
+      <div class="popup-matched">
+        <div><b>Strong vs</b><div id="popup-beats"></div></div>
+        <div><b>Weak to</b><div id="popup-weak"></div></div>
+      </div>
+      <button class="popup-close" id="popup-close">👍</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ENEMY PICKER ============ -->
+<div id="picker-backdrop" class="hidden">
+  <div id="picker">
+    <input id="picker-search" type="text" placeholder="Search Pokémon..." autocomplete="off">
+    <div id="picker-list"></div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <button class="nav-btn active" data-view="island"><span>🏕️</span>Island</button>
+  <button class="nav-btn" data-view="battle"><span>⚔️</span>Battle</button>
+  <button class="nav-btn" data-view="grid"><span>📒</span>Grid</button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
