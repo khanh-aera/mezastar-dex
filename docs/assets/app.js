@@ -133,7 +133,7 @@ function renderGrid(){
       <div class="halo"></div>
       <div class="pe">PE ${x.pe}</div>
       <div class="stars">${stars(x.grade)}</div>
-      ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : ""}
+      ${x.sprite ? `<img class="s2d ${x.animated?"":"still"}" src="${x.sprite}" alt="${esc(x.name)}" loading="lazy">` : (x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : "")}
       <button class="selbtn" title="Compare">${SEL.has(x.id)?"⚖":"+"}</button>
       <div class="cname">${esc(x.name)}</div>
       <div class="cid">${esc(x.id)}${x.ability?" · "+esc(x.ability):""}</div>
@@ -192,9 +192,10 @@ function openTag(id){
     <button class="close" id="x">×</button>
     <div class="mherow">
       <div class="mart" style="background:radial-gradient(circle at 50% 20%,${(TYPE_COLOR[x.types[0]]||"#7aa2ff")}33,transparent 70%),rgba(255,255,255,.05)">
-        ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}">` : ""}
-      </div>
-      <div class="minfo">
+              ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}">` : ""}
+            </div>
+            ${x.sprite ? `<div class="mart spriteart"><img class="s2d ${x.animated?"":"still"}" src="${x.sprite}" alt="${esc(x.name)}"></div>` : ""}
+            <div class="minfo">
         <div class="role">${esc(x.tier || "Tag")} · Grade ${esc(x.grade||"?")}</div>
         <h2 class="hname">${esc(x.name)}</h2>
         <div class="ptypes">${x.types.map(pill).join("")}</div>
@@ -208,6 +209,11 @@ function openTag(id){
         </div>
       </div>
     </div>
+    ${x.pdx ? `<div class="sect pokedex"><h3>Pokédex · #${x.pdx.dex}</h3>
+      <div class="pdxf">${(x.pdx.height_m!=null?`<span class="pdxc">↕ ${x.pdx.height_m} m</span>`:"")}${(x.pdx.weight_kg!=null?`<span class="pdxc">⚖ ${x.pdx.weight_kg} kg</span>`:"")}${x.pdx.genus?`<span class="pdxc">${esc(x.pdx.genus)}</span>`:""}</div>
+      ${x.pdx.flavor?`<p class="pdxt">${esc(x.pdx.flavor)}</p>`:""}
+      ${(x.pdx.abilities||[]).length?`<div class="ptypes" style="margin-top:6px">${x.pdx.abilities.map(a=>`<span class="tin">${esc(a)}</span>`).join("")}</div>`:""}
+    </div>` : ""}
     ${x.moves ? `<div class="sect"><h3>Moves</h3><div class="hint">${esc(x.moves)}</div></div>` : ""}
     <div class="sect"><h3>Hits bosses for double damage</h3>
       <div class="tagsin">${x.beats.length ? x.beats.map(z => `<span class="tin" style="background:${TYPE_COLOR[z]}">${z} 2x</span>`).join("") : `<span class="hint">No super effective coverage.</span>`}</div>
@@ -991,13 +997,20 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
   try{
-    const [ro, po, bo, tc] = await Promise.all([
-      fetch("data/roster.json").then(r => r.json()),
-      fetch("data/pool.json").then(r => r.json()),
-      fetch("data/bosses.json").then(r => r.json()),
-      fetch("data/typechart.json").then(r => r.json())
-    ]);
-    ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types;
+    const [ro, po, bo, tc, spr, px] = await Promise.all([
+          fetch("data/roster.json").then(r => r.json()),
+          fetch("data/pool.json").then(r => r.json()),
+          fetch("data/bosses.json").then(r => r.json()),
+          fetch("data/typechart.json").then(r => r.json()),
+          fetch("island/data/sprites.json").then(r => r.json()).catch(() => ({})),
+          fetch("island/data/pokedex.json").then(r => r.json()).catch(() => ({}))
+        ]);
+        ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types;
+        /* 2D game sprite + Pokédex info per tag (matched by Pokémon name) */
+        ROSTER.forEach(x => {
+          const s = spr[x.name]; if (s){ x.sprite = "island/sprites/" + s.file; x.animated = !!s.animated; }
+          const d = px[x.name]; if (d) x.pdx = d;
+        });
     OWNED = {}; ROSTER.forEach(x => OWNED[x.name] = (OWNED[x.name]||0) + 1);
     TEAM = TEAM.map(id => id && ROSTER.some(x => x.id === id) ? id : null);
     $("#sCount").textContent = ROSTER.length;
