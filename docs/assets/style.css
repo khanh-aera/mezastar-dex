@@ -395,6 +395,3 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 .pdxf{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
 .pdxc{font-family:"Chakra Petch",sans-serif;font-size:12.5px;letter-spacing:.02em;color:var(--muted);padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--stroke-soft)}
 .pdxt{font-size:14px;line-height:1.6;color:var(--txt,#eaf2f8);margin:2px 0 10px;font-style:italic}
-
-/* Disable pinch + double-tap zoom (keep scroll) */
-html, body{touch-action:pan-x pan-y;-ms-touch-action:pan-x pan-y}

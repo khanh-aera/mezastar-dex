@@ -1,5 +1,5 @@
 /* Mezastar Binder service worker. Bump VERSION whenever the site changes. */
-const VERSION = "mezastar-v10";
+const CACHE_NAME = "mezastar-v11";
 const SHELL = ["./", "index.html", "assets/style.css", "assets/app.js",
   "data/roster.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
   "island/data/sprites.json", "island/data/pokedex.json",

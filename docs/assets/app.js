@@ -1034,10 +1034,6 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
       }
     })();
 
-/* Disable pinch / double-tap zoom (iOS ignores meta user-scalable) */
-document.addEventListener("gesturestart", e => e.preventDefault());
-document.addEventListener("touchmove", e => { if (e.touches.length > 1) e.preventDefault(); }, { passive:false });
-
 /* Installable on the phone home screen, and works offline once opened (art is cached). */
 if ("serviceWorker" in navigator){
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
