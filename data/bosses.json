@@ -1,0 +1,2124 @@
+{
+ "count": 169,
+ "bosses": [
+  {
+   "name": "Abra",
+   "id": "1-2-060",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-060_Abra.webp"
+  },
+  {
+   "name": "Absol",
+   "id": "2-2-025",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dark"
+   ],
+   "pe": 130,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-025_Absol.webp"
+  },
+  {
+   "name": "Aerodactyl",
+   "id": "2-2-013",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Rock",
+    "Flying"
+   ],
+   "pe": 128,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-013_Aerodactyl.webp"
+  },
+  {
+   "name": "Alakazam",
+   "id": "2-2-016",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic"
+   ],
+   "pe": 128,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-016_Alakazam.webp"
+  },
+  {
+   "name": "Alcremie",
+   "id": "2-2-065",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fairy"
+   ],
+   "pe": 112,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-065_Alcremie.webp"
+  },
+  {
+   "name": "Alolan Ninetales",
+   "id": "1-4-047",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ice",
+    "Fairy"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-4-047_Alolan_Ninetales.webp"
+  },
+  {
+   "name": "Alolan Sandshrew",
+   "id": "1-2-050",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ice",
+    "Steel"
+   ],
+   "pe": "40",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-050_Alolan_Sandshrew.webp"
+  },
+  {
+   "name": "Alolan Sandslash",
+   "id": "1-2-051",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ice",
+    "Steel"
+   ],
+   "pe": "78",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-051_Alolan_Sandslash.webp"
+  },
+  {
+   "name": "Appletun",
+   "id": "1-2-023",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass",
+    "Dragon"
+   ],
+   "pe": "110",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-023_Appletun.webp"
+  },
+  {
+   "name": "Arcanine",
+   "id": "2-1-057",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-057_Arcanine.webp"
+  },
+  {
+   "name": "Arctozolt",
+   "id": "2-2-017",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Electric"
+   ],
+   "pe": 136,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-017_Arctozolt.webp"
+  },
+  {
+   "name": "Blastoise",
+   "id": "1-1-010",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": "124",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-1-010_Blastoise.webp"
+  },
+  {
+   "name": "Boltund",
+   "id": "1-2-046",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric"
+   ],
+   "pe": "84",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-046_Boltund.webp"
+  },
+  {
+   "name": "Bronzong",
+   "id": "1-2-053",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Steel",
+    "Psychic"
+   ],
+   "pe": "74",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-053_Bronzong.webp"
+  },
+  {
+   "name": "Bronzor",
+   "id": "1-2-052",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Steel",
+    "Psychic"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-052_Bronzor.webp"
+  },
+  {
+   "name": "Budew",
+   "id": "2-2-061",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass",
+    "Poison"
+   ],
+   "pe": 40,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-061_Budew.webp"
+  },
+  {
+   "name": "Charcadet",
+   "id": "2-1-029",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-029_Charcadet.webp"
+  },
+  {
+   "name": "Charizard",
+   "id": "2-2-004",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fire",
+    "Flying"
+   ],
+   "pe": 150,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-004_Charizard.webp"
+  },
+  {
+   "name": "Charjabug",
+   "id": "1-1-061",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Electric"
+   ],
+   "pe": "62",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-061_Charjabug.webp"
+  },
+  {
+   "name": "Chimchar",
+   "id": "1-2-035",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-035_Chimchar.webp"
+  },
+  {
+   "name": "Cinderace",
+   "id": "2-1-002",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "Superstar Pokémon",
+   "img": "img/2-1-002_Cinderace.webp"
+  },
+  {
+   "name": "Cramorant",
+   "id": "1-1-068",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Flying",
+    "Water"
+   ],
+   "pe": "70",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-068_Cramorant.webp"
+  },
+  {
+   "name": "Crocalor",
+   "id": "2-2-028",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": 84,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-028_Crocalor.webp"
+  },
+  {
+   "name": "Dedenne",
+   "id": "1-1-041",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Electric",
+    "Fairy"
+   ],
+   "pe": "52",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-041_Dedenne.webp"
+  },
+  {
+   "name": "Dewott",
+   "id": "2-2-039",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 84,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-039_Dewott.webp"
+  },
+  {
+   "name": "Dodrio",
+   "id": "1-1-064",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Normal",
+    "Flying"
+   ],
+   "pe": "82",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-064_Dodrio.webp"
+  },
+  {
+   "name": "Doduo",
+   "id": "1-1-063",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Normal",
+    "Flying"
+   ],
+   "pe": "40",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-063_Doduo.webp"
+  },
+  {
+   "name": "Dracovish",
+   "id": "2-2-015",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water",
+    "Dragon"
+   ],
+   "pe": 138,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-015_Dracovish.webp"
+  },
+  {
+   "name": "Dracozolt",
+   "id": "2-2-014",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric",
+    "Dragon"
+   ],
+   "pe": 138,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-014_Dracozolt.webp"
+  },
+  {
+   "name": "Drednaw",
+   "id": "1-2-025",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water",
+    "Rock"
+   ],
+   "pe": "104",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-025_Drednaw.webp"
+  },
+  {
+   "name": "Drifblim",
+   "id": "2-1-044",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ghost",
+    "Flying"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-044_Drifblim.webp"
+  },
+  {
+   "name": "Drifloon",
+   "id": "2-1-043",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ghost",
+    "Flying"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-043_Drifloon.webp"
+  },
+  {
+   "name": "Drizzile",
+   "id": "2-1-039",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-039_Drizzile.webp"
+  },
+  {
+   "name": "Duraludon",
+   "id": "2-2-003",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Steel",
+    "Dragon"
+   ],
+   "pe": 158,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-003_Duraludon.webp"
+  },
+  {
+   "name": "Eelektrik",
+   "id": "2-2-047",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 82,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-047_Eelektrik.webp"
+  },
+  {
+   "name": "Eelektross",
+   "id": "2-2-048",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 112,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-048_Eelektross.webp"
+  },
+  {
+   "name": "Eevee",
+   "id": "1-1-044",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Normal"
+   ],
+   "pe": "60",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-044_Eevee.webp"
+  },
+  {
+   "name": "Eldegoss",
+   "id": "2-1-062",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-062_Eldegoss.webp"
+  },
+  {
+   "name": "Electabuzz",
+   "id": "2-2-067",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 96,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-067_Electabuzz.webp"
+  },
+  {
+   "name": "Electivire",
+   "id": "2-2-068",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 118,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-068_Electivire.webp"
+  },
+  {
+   "name": "Elekid",
+   "id": "2-2-066",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 50,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-066_Elekid.webp"
+  },
+  {
+   "name": "Emboar",
+   "id": "2-2-020",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fire",
+    "Fighting"
+   ],
+   "pe": 144,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-020_Emboar.webp"
+  },
+  {
+   "name": "Empoleon",
+   "id": "1-2-018",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water",
+    "Steel"
+   ],
+   "pe": "114",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-018_Empoleon.webp"
+  },
+  {
+   "name": "Espeon",
+   "id": "1-2-012",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic"
+   ],
+   "pe": "112",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-012_Espeon.webp"
+  },
+  {
+   "name": "Feebas",
+   "id": "2-2-044",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 32,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-044_Feebas.webp"
+  },
+  {
+   "name": "Flapple",
+   "id": "1-2-022",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass",
+    "Dragon"
+   ],
+   "pe": "110",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-022_Flapple.webp"
+  },
+  {
+   "name": "Flareon",
+   "id": "1-2-042",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire"
+   ],
+   "pe": "90",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-042_Flareon.webp"
+  },
+  {
+   "name": "Floragato",
+   "id": "2-2-026",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": 84,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-026_Floragato.webp"
+  },
+  {
+   "name": "Flygon",
+   "id": "2-1-017",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ground",
+    "Dragon"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/2-1-017_Flygon.webp"
+  },
+  {
+   "name": "Frigibax",
+   "id": "2-1-030",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dragon",
+    "Ice"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-030_Frigibax.webp"
+  },
+  {
+   "name": "Frosmoth",
+   "id": "1-1-070",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Bug"
+   ],
+   "pe": "86",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-070_Frosmoth.webp"
+  },
+  {
+   "name": "Fuecoco",
+   "id": "2-1-027",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-027_Fuecoco.webp"
+  },
+  {
+   "name": "Galarian Linoone",
+   "id": "1-1-058",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Normal"
+   ],
+   "pe": "64",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-058_Galarian_Linoone.webp"
+  },
+  {
+   "name": "Galarian Meowth",
+   "id": "2-2-069",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Steel"
+   ],
+   "pe": 42,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-069_Galarian_Meowth.webp"
+  },
+  {
+   "name": "Galarian Zigzagoon",
+   "id": "1-1-057",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Normal"
+   ],
+   "pe": "36",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-057_Galarian_Zigzagoon.webp"
+  },
+  {
+   "name": "Gallade",
+   "id": "2-2-052",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Psychic",
+    "Fighting"
+   ],
+   "pe": 114,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-052_Gallade.webp"
+  },
+  {
+   "name": "Gardevoir",
+   "id": "2-2-051",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic",
+    "Fairy"
+   ],
+   "pe": 114,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-051_Gardevoir.webp"
+  },
+  {
+   "name": "Gengar",
+   "id": "R-2-3",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ghost",
+    "Poison"
+   ],
+   "pe": "",
+   "tier": "Regular Tags",
+   "img": "img/R-2-3_Gengar.webp"
+  },
+  {
+   "name": "Glaceon",
+   "id": "1-2-044",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ice"
+   ],
+   "pe": "94",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-044_Glaceon.webp"
+  },
+  {
+   "name": "Golett",
+   "id": "1-1-051",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ground",
+    "Ghost"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-051_Golett.webp"
+  },
+  {
+   "name": "Golisopod",
+   "id": "2-2-018",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Water"
+   ],
+   "pe": 132,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-018_Golisopod.webp"
+  },
+  {
+   "name": "Golurk",
+   "id": "1-1-052",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ground",
+    "Ghost"
+   ],
+   "pe": "72",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-052_Golurk.webp"
+  },
+  {
+   "name": "Gossifleur",
+   "id": "2-1-061",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-061_Gossifleur.webp"
+  },
+  {
+   "name": "Greedent",
+   "id": "2-2-057",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Normal"
+   ],
+   "pe": 98,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-057_Greedent.webp"
+  },
+  {
+   "name": "Grookey",
+   "id": "2-1-032",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-032_Grookey.webp"
+  },
+  {
+   "name": "Grotle",
+   "id": "1-2-033",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass"
+   ],
+   "pe": "64",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-033_Grotle.webp"
+  },
+  {
+   "name": "Groudon",
+   "id": "1-2-002",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ground"
+   ],
+   "pe": "152",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-002_Groudon.webp"
+  },
+  {
+   "name": "Grubbin",
+   "id": "1-1-060",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Bug"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-060_Grubbin.webp"
+  },
+  {
+   "name": "Hatterene",
+   "id": "2-2-024",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Psychic",
+    "Fairy"
+   ],
+   "pe": 128,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-024_Hatterene.webp"
+  },
+  {
+   "name": "Haxorus",
+   "id": "2-2-012",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dragon"
+   ],
+   "pe": 132,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-012_Haxorus.webp"
+  },
+  {
+   "name": "Infernape",
+   "id": "1-2-017",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire",
+    "Fighting"
+   ],
+   "pe": "114",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-017_Infernape.webp"
+  },
+  {
+   "name": "Inteleon",
+   "id": "2-1-003",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": "",
+   "tier": "Superstar Pokémon",
+   "img": "img/2-1-003_Inteleon.webp"
+  },
+  {
+   "name": "Iron Treads",
+   "id": "2-2-022",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Ground"
+   ],
+   "pe": 148,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-022_Iron_Treads.webp"
+  },
+  {
+   "name": "Jolteon",
+   "id": "1-2-011",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric"
+   ],
+   "pe": "108",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-011_Jolteon.webp"
+  },
+  {
+   "name": "Jynx",
+   "id": "1-2-059",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ice",
+    "Psychic"
+   ],
+   "pe": "68",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-059_Jynx.webp"
+  },
+  {
+   "name": "Kadabra",
+   "id": "1-2-061",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic"
+   ],
+   "pe": "62",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-061_Kadabra.webp"
+  },
+  {
+   "name": "Keldeo",
+   "id": "2-1-013",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water",
+    "Fighting"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/2-1-013_Keldeo.webp"
+  },
+  {
+   "name": "Kirlia",
+   "id": "2-2-050",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic",
+    "Fairy"
+   ],
+   "pe": 60,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-050_Kirlia.webp"
+  },
+  {
+   "name": "Kommo-o",
+   "id": "1-2-006",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dragon",
+    "Fighting"
+   ],
+   "pe": "158",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-006_Kommo-o.webp"
+  },
+  {
+   "name": "Koraidon",
+   "id": "1-2-003",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fighting",
+    "Dragon"
+   ],
+   "pe": "162",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-003_Koraidon.webp"
+  },
+  {
+   "name": "Kyogre",
+   "id": "1-2-001",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water"
+   ],
+   "pe": "152",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-001_Kyogre.webp"
+  },
+  {
+   "name": "Kyurem",
+   "id": "1-4-008",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dragon",
+    "Ice"
+   ],
+   "pe": "",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-4-008_Kyurem.webp"
+  },
+  {
+   "name": "Latias",
+   "id": "2-2-008",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dragon",
+    "Psychic"
+   ],
+   "pe": 164,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-008_Latias.webp"
+  },
+  {
+   "name": "Latios",
+   "id": "2-2-009",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dragon",
+    "Psychic"
+   ],
+   "pe": 164,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-009_Latios.webp"
+  },
+  {
+   "name": "Leafeon",
+   "id": "1-2-013",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass"
+   ],
+   "pe": "114",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-013_Leafeon.webp"
+  },
+  {
+   "name": "Lucario",
+   "id": "2-2-006",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fighting",
+    "Steel"
+   ],
+   "pe": 146,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-006_Lucario.webp"
+  },
+  {
+   "name": "Mareanie",
+   "id": "1-2-065",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Poison",
+    "Water"
+   ],
+   "pe": "54",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-065_Mareanie.webp"
+  },
+  {
+   "name": "Meowscarada",
+   "id": "2-2-027",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass",
+    "Dark"
+   ],
+   "pe": 118,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-027_Meowscarada.webp"
+  },
+  {
+   "name": "Metagross",
+   "id": "2-2-011",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Steel",
+    "Psychic"
+   ],
+   "pe": 144,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-011_Metagross.webp"
+  },
+  {
+   "name": "Mew",
+   "id": "1-1-002",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Psychic"
+   ],
+   "pe": "142",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-1-002_Mew.webp"
+  },
+  {
+   "name": "Mewtwo",
+   "id": "2-1-008",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Psychic"
+   ],
+   "pe": "",
+   "tier": "Superstar Pokémon",
+   "img": "img/2-1-008_Mewtwo.webp"
+  },
+  {
+   "name": "Milcery",
+   "id": "2-2-064",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fairy"
+   ],
+   "pe": 42,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-064_Milcery.webp"
+  },
+  {
+   "name": "Milotic",
+   "id": "2-2-045",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 112,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-045_Milotic.webp"
+  },
+  {
+   "name": "Miraidon",
+   "id": "1-1-007",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Electric",
+    "Dragon"
+   ],
+   "pe": "162",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-1-007_Miraidon.webp"
+  },
+  {
+   "name": "Monferno",
+   "id": "1-2-036",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire",
+    "Fighting"
+   ],
+   "pe": "64",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-036_Monferno.webp"
+  },
+  {
+   "name": "Mudbray",
+   "id": "1-3-057",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ground"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-3-057_Mudbray.webp"
+  },
+  {
+   "name": "Mudsdale",
+   "id": "1-3-058",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ground"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-3-058_Mudsdale.webp"
+  },
+  {
+   "name": "Naganadel",
+   "id": "2-2-010",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Poison",
+    "Dragon"
+   ],
+   "pe": 150,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-010_Naganadel.webp"
+  },
+  {
+   "name": "Obstagoon",
+   "id": "1-4-020",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Normal"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/1-4-020_Obstagoon.webp"
+  },
+  {
+   "name": "Onix",
+   "id": "1-2-070",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Rock",
+    "Ground"
+   ],
+   "pe": "64",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-070_Onix.webp"
+  },
+  {
+   "name": "Oshawott",
+   "id": "2-2-038",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 46,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-038_Oshawott.webp"
+  },
+  {
+   "name": "Pawmi",
+   "id": "2-1-031",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-031_Pawmi.webp"
+  },
+  {
+   "name": "Pelipper",
+   "id": "1-2-058",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water",
+    "Flying"
+   ],
+   "pe": "70",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-058_Pelipper.webp"
+  },
+  {
+   "name": "Perrserker",
+   "id": "2-2-070",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Steel"
+   ],
+   "pe": 82,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-070_Perrserker.webp"
+  },
+  {
+   "name": "Pidgeot",
+   "id": "1-3-017",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Normal",
+    "Flying"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/1-3-017_Pidgeot.webp"
+  },
+  {
+   "name": "Pidgeotto",
+   "id": "1-2-048",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Normal",
+    "Flying"
+   ],
+   "pe": "54",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-048_Pidgeotto.webp"
+  },
+  {
+   "name": "Pidgey",
+   "id": "1-2-047",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Normal",
+    "Flying"
+   ],
+   "pe": "36",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-047_Pidgey.webp"
+  },
+  {
+   "name": "Pignite",
+   "id": "2-2-036",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fire",
+    "Fighting"
+   ],
+   "pe": 86,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-036_Pignite.webp"
+  },
+  {
+   "name": "Pikachu",
+   "id": "R-2-1",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric"
+   ],
+   "pe": "",
+   "tier": "Regular Tags",
+   "img": "img/R-2-1_Pikachu.webp"
+  },
+  {
+   "name": "Piplup",
+   "id": "1-2-038",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water"
+   ],
+   "pe": "44",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-038_Piplup.webp"
+  },
+  {
+   "name": "Poipole",
+   "id": "2-2-023",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Poison"
+   ],
+   "pe": 110,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-023_Poipole.webp"
+  },
+  {
+   "name": "Poliwag",
+   "id": "2-2-041",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 42,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-041_Poliwag.webp"
+  },
+  {
+   "name": "Poliwhirl",
+   "id": "2-2-042",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 74,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-042_Poliwhirl.webp"
+  },
+  {
+   "name": "Poliwrath",
+   "id": "2-2-043",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water",
+    "Fighting"
+   ],
+   "pe": 108,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-043_Poliwrath.webp"
+  },
+  {
+   "name": "Prinplup",
+   "id": "1-2-039",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water"
+   ],
+   "pe": "64",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-039_Prinplup.webp"
+  },
+  {
+   "name": "Quaquaval",
+   "id": "2-2-031",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water",
+    "Fighting"
+   ],
+   "pe": 118,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-031_Quaquaval.webp"
+  },
+  {
+   "name": "Quaxly",
+   "id": "2-1-028",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-028_Quaxly.webp"
+  },
+  {
+   "name": "Quaxwell",
+   "id": "2-2-030",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 84,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-030_Quaxwell.webp"
+  },
+  {
+   "name": "Raboot",
+   "id": "2-1-036",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-036_Raboot.webp"
+  },
+  {
+   "name": "Raichu",
+   "id": "1-1-043",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": "84",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-043_Raichu.webp"
+  },
+  {
+   "name": "Ralts",
+   "id": "2-2-049",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Psychic",
+    "Fairy"
+   ],
+   "pe": 34,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-049_Ralts.webp"
+  },
+  {
+   "name": "Rayquaza",
+   "id": "2-2-007",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dragon",
+    "Flying"
+   ],
+   "pe": 184,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-007_Rayquaza.webp"
+  },
+  {
+   "name": "Reshiram",
+   "id": "1-2-008",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dragon",
+    "Fire"
+   ],
+   "pe": "162",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-008_Reshiram.webp"
+  },
+  {
+   "name": "Rhyperior",
+   "id": "1-1-018",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ground",
+    "Rock"
+   ],
+   "pe": "110",
+   "tier": "Star Pokémon",
+   "img": "img/1-1-018_Rhyperior.webp"
+  },
+  {
+   "name": "Rillaboom",
+   "id": "2-1-001",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "Superstar Pokémon",
+   "img": "img/2-1-001_Rillaboom.webp"
+  },
+  {
+   "name": "Roselia",
+   "id": "2-2-062",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass",
+    "Poison"
+   ],
+   "pe": 76,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-062_Roselia.webp"
+  },
+  {
+   "name": "Roserade",
+   "id": "2-2-063",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass",
+    "Poison"
+   ],
+   "pe": 108,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-063_Roserade.webp"
+  },
+  {
+   "name": "Samurott",
+   "id": "2-2-021",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": 144,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-021_Samurott.webp"
+  },
+  {
+   "name": "Scolipede",
+   "id": "2-2-055",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Poison"
+   ],
+   "pe": 110,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-055_Scolipede.webp"
+  },
+  {
+   "name": "Scorbunny",
+   "id": "2-1-035",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-035_Scorbunny.webp"
+  },
+  {
+   "name": "Sealeo",
+   "id": "2-2-059",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Water"
+   ],
+   "pe": 82,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-059_Sealeo.webp"
+  },
+  {
+   "name": "Serperior",
+   "id": "2-2-019",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": 144,
+   "tier": "Star Pokémon",
+   "img": "img/2-2-019_Serperior.webp"
+  },
+  {
+   "name": "Servine",
+   "id": "2-2-033",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": 84,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-033_Servine.webp"
+  },
+  {
+   "name": "Skeledirge",
+   "id": "2-2-029",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fire",
+    "Ghost"
+   ],
+   "pe": 118,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-029_Skeledirge.webp"
+  },
+  {
+   "name": "Skwovet",
+   "id": "2-2-056",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Normal"
+   ],
+   "pe": 40,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-056_Skwovet.webp"
+  },
+  {
+   "name": "Slowbro",
+   "id": "1-1-054",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water",
+    "Psychic"
+   ],
+   "pe": "84",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-054_Slowbro.webp"
+  },
+  {
+   "name": "Slowpoke",
+   "id": "1-1-053",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water",
+    "Psychic"
+   ],
+   "pe": "42",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-053_Slowpoke.webp"
+  },
+  {
+   "name": "Sneasel",
+   "id": "2-1-063",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Ice"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-063_Sneasel.webp"
+  },
+  {
+   "name": "Snivy",
+   "id": "2-2-032",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": 46,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-032_Snivy.webp"
+  },
+  {
+   "name": "Snom",
+   "id": "1-1-069",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Bug"
+   ],
+   "pe": "30",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-1-069_Snom.webp"
+  },
+  {
+   "name": "Snorlax",
+   "id": "R-1-3",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Normal"
+   ],
+   "pe": "",
+   "tier": "Regular Tags",
+   "img": "img/R-1-3_Snorlax.webp"
+  },
+  {
+   "name": "Sobble",
+   "id": "2-1-038",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Water"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-038_Sobble.webp"
+  },
+  {
+   "name": "Spheal",
+   "id": "2-2-058",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Water"
+   ],
+   "pe": 44,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-058_Spheal.webp"
+  },
+  {
+   "name": "Sprigatito",
+   "id": "2-1-026",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-026_Sprigatito.webp"
+  },
+  {
+   "name": "Sylveon",
+   "id": "1-2-014",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Fairy"
+   ],
+   "pe": "116",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-014_Sylveon.webp"
+  },
+  {
+   "name": "Tepig",
+   "id": "2-2-035",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Fire"
+   ],
+   "pe": 46,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-035_Tepig.webp"
+  },
+  {
+   "name": "Thwackey",
+   "id": "2-1-033",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-1-033_Thwackey.webp"
+  },
+  {
+   "name": "Togedemaru",
+   "id": "1-2-066",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric",
+    "Steel"
+   ],
+   "pe": "68",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-066_Togedemaru.webp"
+  },
+  {
+   "name": "Torterra",
+   "id": "1-2-016",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass",
+    "Ground"
+   ],
+   "pe": "112",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-016_Torterra.webp"
+  },
+  {
+   "name": "Trapinch",
+   "id": "1-2-054",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ground"
+   ],
+   "pe": "40",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-054_Trapinch.webp"
+  },
+  {
+   "name": "Turtonator",
+   "id": "1-3-062",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Fire",
+    "Dragon"
+   ],
+   "pe": "",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-3-062_Turtonator.webp"
+  },
+  {
+   "name": "Turtwig",
+   "id": "1-2-032",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Grass"
+   ],
+   "pe": "44",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-032_Turtwig.webp"
+  },
+  {
+   "name": "Tynamo",
+   "id": "2-2-046",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Electric"
+   ],
+   "pe": 42,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-046_Tynamo.webp"
+  },
+  {
+   "name": "Tyranitar",
+   "id": "1-2-020",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Rock",
+    "Dark"
+   ],
+   "pe": "132",
+   "tier": "Star Pokémon",
+   "img": "img/1-2-020_Tyranitar.webp"
+  },
+  {
+   "name": "Umbreon",
+   "id": "1-2-043",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dark"
+   ],
+   "pe": "92",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-043_Umbreon.webp"
+  },
+  {
+   "name": "Vaporeon",
+   "id": "1-2-041",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water"
+   ],
+   "pe": "90",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-041_Vaporeon.webp"
+  },
+  {
+   "name": "Venipede",
+   "id": "2-2-053",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Poison"
+   ],
+   "pe": 40,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-053_Venipede.webp"
+  },
+  {
+   "name": "Venusaur",
+   "id": "1-1-008",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Grass",
+    "Poison"
+   ],
+   "pe": "122",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-1-008_Venusaur.webp"
+  },
+  {
+   "name": "Vibrava",
+   "id": "1-2-055",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Ground",
+    "Dragon"
+   ],
+   "pe": "58",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-055_Vibrava.webp"
+  },
+  {
+   "name": "Vikavolt",
+   "id": "2-1-024",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Electric"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/2-1-024_Vikavolt.webp"
+  },
+  {
+   "name": "Walrein",
+   "id": "2-2-060",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Ice",
+    "Water"
+   ],
+   "pe": 116,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-060_Walrein.webp"
+  },
+  {
+   "name": "Weavile",
+   "id": "2-1-014",
+   "version": "Stardust V1",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Ice"
+   ],
+   "pe": "",
+   "tier": "Star Pokémon",
+   "img": "img/2-1-014_Weavile.webp"
+  },
+  {
+   "name": "Whirlipede",
+   "id": "2-2-054",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Bug",
+    "Poison"
+   ],
+   "pe": 76,
+   "tier": "★2~4 Pokémon",
+   "img": "img/2-2-054_Whirlipede.webp"
+  },
+  {
+   "name": "Wingull",
+   "id": "1-2-057",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Water",
+    "Flying"
+   ],
+   "pe": "38",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-057_Wingull.webp"
+  },
+  {
+   "name": "Yamper",
+   "id": "1-2-045",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Electric"
+   ],
+   "pe": "38",
+   "tier": "★2~4 Pokémon",
+   "img": "img/1-2-045_Yamper.webp"
+  },
+  {
+   "name": "Zacian",
+   "id": "2-2-001",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Steel",
+    "Fairy"
+   ],
+   "pe": 206,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-001_Zacian.webp"
+  },
+  {
+   "name": "Zamazenta",
+   "id": "2-2-002",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Steel",
+    "Fighting"
+   ],
+   "pe": 206,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-002_Zamazenta.webp"
+  },
+  {
+   "name": "Zarude",
+   "id": "2-2-005",
+   "version": "Galaxy V2",
+   "vn": false,
+   "types": [
+    "Dark",
+    "Grass"
+   ],
+   "pe": 166,
+   "tier": "Superstar Pokémon",
+   "img": "img/2-2-005_Zarude.webp"
+  },
+  {
+   "name": "Zekrom",
+   "id": "1-2-009",
+   "version": "Stardust V2",
+   "vn": true,
+   "types": [
+    "Dragon",
+    "Electric"
+   ],
+   "pe": "162",
+   "tier": "Superstar Pokémon",
+   "img": "img/1-2-009_Zekrom.webp"
+  }
+ ]
+}

@@ -1,0 +1,483 @@
+{
+  "Kyurem": {
+    "dex": 646,
+    "height_m": 3.0,
+    "weight_kg": 325.0,
+    "genus": "Boundary Pokémon",
+    "flavor": "It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.",
+    "abilities": [
+      "Pressure"
+    ],
+    "stats": {
+      "hp": 125,
+      "attack": 130,
+      "defense": 90,
+      "special-attack": 130,
+      "special-defense": 90,
+      "speed": 95
+    }
+  },
+  "Gardevoir": {
+    "dex": 282,
+    "height_m": 1.6,
+    "weight_kg": 48.4,
+    "genus": "Embrace Pokémon",
+    "flavor": "GARDEVOIR has the ability to read the future. If it senses impending danger to its TRAINER, this POKéMON is said to unleash its psychokinetic energy at full power.",
+    "abilities": [
+      "Synchronize",
+      "Trace"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 65,
+      "defense": 65,
+      "special-attack": 125,
+      "special-defense": 115,
+      "speed": 80
+    }
+  },
+  "Lucario": {
+    "dex": 448,
+    "height_m": 1.2,
+    "weight_kg": 54.0,
+    "genus": "Aura Pokémon",
+    "flavor": "It has the ability to sense the auras of all things. It understands human speech.",
+    "abilities": [
+      "Steadfast",
+      "Inner Focus"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 70,
+      "special-attack": 115,
+      "special-defense": 70,
+      "speed": 90
+    }
+  },
+  "Sylveon": {
+    "dex": 700,
+    "height_m": 1.0,
+    "weight_kg": 23.5,
+    "genus": "Intertwining Pokémon",
+    "flavor": "It sends a soothing aura from its ribbonlike feelers to calm fights.",
+    "abilities": [
+      "Cute Charm"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 65,
+      "special-attack": 110,
+      "special-defense": 130,
+      "speed": 60
+    }
+  },
+  "Empoleon": {
+    "dex": 395,
+    "height_m": 1.7,
+    "weight_kg": 84.5,
+    "genus": "Emperor Pokémon",
+    "flavor": "The three horns that extend from its beak attest to its power. The leader has the biggest horns.",
+    "abilities": [
+      "Torrent"
+    ],
+    "stats": {
+      "hp": 84,
+      "attack": 86,
+      "defense": 88,
+      "special-attack": 111,
+      "special-defense": 101,
+      "speed": 60
+    }
+  },
+  "Espeon": {
+    "dex": 196,
+    "height_m": 0.9,
+    "weight_kg": 26.5,
+    "genus": "Sun Pokémon",
+    "flavor": "It uses the fine hair that covers its body to sense air currents and predict its ene­ my's actions.",
+    "abilities": [
+      "Synchronize"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "special-attack": 130,
+      "special-defense": 95,
+      "speed": 110
+    }
+  },
+  "Torterra": {
+    "dex": 389,
+    "height_m": 2.2,
+    "weight_kg": 310.0,
+    "genus": "Continent Pokémon",
+    "flavor": "Small Pokémon occasionally gather on its unmoving back to begin building their nests.",
+    "abilities": [
+      "Overgrow"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 109,
+      "defense": 105,
+      "special-attack": 75,
+      "special-defense": 85,
+      "speed": 56
+    }
+  },
+  "Flapple": {
+    "dex": 841,
+    "height_m": 0.3,
+    "weight_kg": 1.0,
+    "genus": "Apple Wing Pokémon",
+    "flavor": "It ate a sour apple, and that induced its evolution. In its cheeks, it stores an acid capable of causing chemical burns.",
+    "abilities": [
+      "Ripen",
+      "Gluttony"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 80,
+      "special-attack": 95,
+      "special-defense": 60,
+      "speed": 70
+    }
+  },
+  "Appletun": {
+    "dex": 842,
+    "height_m": 0.4,
+    "weight_kg": 13.0,
+    "genus": "Apple Nectar Pokémon",
+    "flavor": "Eating a sweet apple caused its evolution. A nectarous scent wafts from its body, luring in the bug Pokémon it preys on.",
+    "abilities": [
+      "Ripen",
+      "Gluttony"
+    ],
+    "stats": {
+      "hp": 110,
+      "attack": 85,
+      "defense": 80,
+      "special-attack": 100,
+      "special-defense": 80,
+      "speed": 30
+    }
+  },
+  "Drednaw": {
+    "dex": 834,
+    "height_m": 1.0,
+    "weight_kg": 115.5,
+    "genus": "Bite Pokémon",
+    "flavor": "With jaws that can shear through steel rods, this highly aggressive Pokémon chomps down on its unfortunate prey.",
+    "abilities": [
+      "Strong Jaw",
+      "Shell Armor"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 115,
+      "defense": 90,
+      "special-attack": 48,
+      "special-defense": 68,
+      "speed": 74
+    }
+  },
+  "Meowscarada": {
+    "dex": 908,
+    "height_m": 1.5,
+    "weight_kg": 31.2,
+    "genus": "Magician Pokémon",
+    "flavor": "This Pokémon uses the reflective fur lining its cape to camouflage the stem of its flower, creating the illusion that the flower is floating.",
+    "abilities": [
+      "Overgrow"
+    ],
+    "stats": {
+      "hp": 76,
+      "attack": 110,
+      "defense": 70,
+      "special-attack": 81,
+      "special-defense": 70,
+      "speed": 123
+    }
+  },
+  "Pidgeot": {
+    "dex": 18,
+    "height_m": 1.5,
+    "weight_kg": 39.5,
+    "genus": "Bird Pokémon",
+    "flavor": "When hunting, it skims the surface of water at high speed to pick off unwary prey such as MAGIKARP.",
+    "abilities": [
+      "Keen Eye",
+      "Tangled Feet"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 75,
+      "special-attack": 70,
+      "special-defense": 70,
+      "speed": 101
+    }
+  },
+  "Alolan Sandslash": {
+    "dex": 28,
+    "height_m": 0.6,
+    "weight_kg": 9.9,
+    "genus": "Mouse Pokémon",
+    "flavor": "Curls up into a spiny ball when threatened. It can roll while curled up to attack or escape.",
+    "abilities": [
+      "Snow Cloak"
+    ],
+    "stats": {
+      "hp": 38,
+      "attack": 41,
+      "defense": 40,
+      "special-attack": 50,
+      "special-defense": 65,
+      "speed": 65
+    }
+  },
+  "Jynx": {
+    "dex": 124,
+    "height_m": 1.4,
+    "weight_kg": 40.6,
+    "genus": "Human Shape Pokémon",
+    "flavor": "It seductively wiggles its hips as it walks. It can cause people to dance in unison with it.",
+    "abilities": [
+      "Oblivious",
+      "Forewarn"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 50,
+      "defense": 35,
+      "special-attack": 115,
+      "special-defense": 95,
+      "speed": 95
+    }
+  },
+  "Togedemaru": {
+    "dex": 777,
+    "height_m": 0.3,
+    "weight_kg": 3.3,
+    "genus": "Roly-Poly Pokémon",
+    "flavor": "The spiny fur on its back is normally at rest. When this Pokémon becomes agitated, its fur stands on end and stabs into its attackers.",
+    "abilities": [
+      "Iron Barbs",
+      "Lightning Rod"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 98,
+      "defense": 63,
+      "special-attack": 40,
+      "special-defense": 73,
+      "speed": 96
+    }
+  },
+  "Onix": {
+    "dex": 95,
+    "height_m": 8.8,
+    "weight_kg": 210.0,
+    "genus": "Rock Snake Pokémon",
+    "flavor": "As it grows, the stone portions of its body harden to become similar to a diamond, but colored black.",
+    "abilities": [
+      "Rock Head",
+      "Sturdy"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 45,
+      "defense": 160,
+      "special-attack": 30,
+      "special-defense": 45,
+      "speed": 70
+    }
+  },
+  "Kadabra": {
+    "dex": 64,
+    "height_m": 1.3,
+    "weight_kg": 56.5,
+    "genus": "Psi Pokémon",
+    "flavor": "It emits special alpha waves from its body that induce headaches just by being close by.",
+    "abilities": [
+      "Synchronize",
+      "Inner Focus"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 35,
+      "defense": 30,
+      "special-attack": 120,
+      "special-defense": 70,
+      "speed": 105
+    }
+  },
+  "Alolan Ninetales": {
+    "dex": 38,
+    "height_m": 1.1,
+    "weight_kg": 19.9,
+    "genus": "Fox Pokémon",
+    "flavor": "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
+    "abilities": [
+      "Snow Cloak"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 67,
+      "defense": 75,
+      "special-attack": 81,
+      "special-defense": 100,
+      "speed": 109
+    }
+  },
+  "Bronzong": {
+    "dex": 437,
+    "height_m": 1.3,
+    "weight_kg": 187.0,
+    "genus": "Bronze Bell Pokémon",
+    "flavor": "One caused a news sensation when it was dug up at a construction site after a 2,000-year sleep.",
+    "abilities": [
+      "Levitate",
+      "Heatproof"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 89,
+      "defense": 116,
+      "special-attack": 79,
+      "special-defense": 116,
+      "speed": 33
+    }
+  },
+  "Kirlia": {
+    "dex": 281,
+    "height_m": 0.8,
+    "weight_kg": 20.2,
+    "genus": "Emotion Pokémon",
+    "flavor": "It is said that a KIRLIA that is exposed to the positive emotions of its TRAINER grows beautiful. This POKéMON controls psychokinetic powers with its highly developed brain.",
+    "abilities": [
+      "Synchronize",
+      "Trace"
+    ],
+    "stats": {
+      "hp": 38,
+      "attack": 35,
+      "defense": 35,
+      "special-attack": 65,
+      "special-defense": 55,
+      "speed": 50
+    }
+  },
+  "Mew": {
+    "dex": 151,
+    "height_m": 0.4,
+    "weight_kg": 4.0,
+    "genus": "New Species Pokémon",
+    "flavor": "So rare that it is still said to be a mirage by many experts. Only a few people have seen it worldwide.",
+    "abilities": [
+      "Synchronize"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "special-attack": 100,
+      "special-defense": 100,
+      "speed": 100
+    }
+  },
+  "Inteleon": {
+    "dex": 818,
+    "height_m": 1.9,
+    "weight_kg": 45.2,
+    "genus": "Secret Agent Pokémon",
+    "flavor": "It has many hidden capabilities, such as fingertips that can shoot water and a membrane on its back that it can use to glide through the air.",
+    "abilities": [
+      "Torrent"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 65,
+      "special-attack": 125,
+      "special-defense": 65,
+      "speed": 120
+    }
+  },
+  "Fuecoco": {
+    "dex": 909,
+    "height_m": 0.4,
+    "weight_kg": 9.8,
+    "genus": "Fire Croc Pokémon",
+    "flavor": "It lies on warm rocks and uses the heat absorbed by its square-shaped scales to create fire energy.",
+    "abilities": [
+      "Blaze"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 45,
+      "defense": 59,
+      "special-attack": 63,
+      "special-defense": 40,
+      "speed": 36
+    }
+  },
+  "Grookey": {
+    "dex": 810,
+    "height_m": 0.3,
+    "weight_kg": 5.0,
+    "genus": "Chimp Pokémon",
+    "flavor": "When it uses its special stick to strike up a beat, the sound waves produced carry revitalizing energy to the plants and flowers in the area.",
+    "abilities": [
+      "Overgrow"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 50,
+      "special-attack": 40,
+      "special-defense": 40,
+      "speed": 65
+    }
+  },
+  "Sobble": {
+    "dex": 816,
+    "height_m": 0.3,
+    "weight_kg": 4.0,
+    "genus": "Water Lizard Pokémon",
+    "flavor": "When scared, this Pokémon cries. Its tears pack the chemical punch of 100 onions, and attackers won’t be able to resist weeping.",
+    "abilities": [
+      "Torrent"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 40,
+      "defense": 40,
+      "special-attack": 70,
+      "special-defense": 40,
+      "speed": 70
+    }
+  },
+  "Snorlax": {
+    "dex": 143,
+    "height_m": 2.1,
+    "weight_kg": 460.0,
+    "genus": "Sleeping Pokémon",
+    "flavor": "Very lazy. Just eats and sleeps. As its rotund bulk builds, it becomes steadily more slothful.",
+    "abilities": [
+      "Immunity",
+      "Thick Fat"
+    ],
+    "stats": {
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "special-attack": 65,
+      "special-defense": 110,
+      "speed": 30
+    }
+  }
+}
