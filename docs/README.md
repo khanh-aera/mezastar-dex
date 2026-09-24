@@ -32,3 +32,4 @@ public. Settings -> Pages -> Source: Deploy from a branch -> Branch: `main` -> F
 Every path in the site is relative, so it works at a domain root and under a project subpath
 (`https://<user>.github.io/<repo>/`). All boss answers are computed in the browser from
 `data/typechart.json` against the roster, so the site works offline once loaded.
+GitHub Pages deployment attempt Thu, Sep 24, 2026  8:01:48 AM
