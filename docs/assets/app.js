@@ -371,23 +371,41 @@ function renderBossResult(){
     </div>`;
   $("#logW").onclick = () => logBattle(b, x, true);
   $("#logL").onclick = () => logBattle(b, x, false);
-  $("#sayBtn").onclick = () => speak(`Dùng ${x.name}. ${good ? x.name+" đánh "+b.name+" nhân "+r.top.o : "Không có lợi thế, đánh bằng "+x.name}`);
+  $("#sayBtn").onclick = () => { const tr = trioRoles(b); speak(`Dùng ${tr.map((r,i) => r.t.name).join(", rồi ")}. Boss ${b.name}.`); };
   $("#shareBtn").onclick = () => shareText(`Boss ${b.name} (${b.types.join("/")}) → dùng ${x.name} ${good ? r.top.o+"x" : "(PE pick)"} · PE ${x.pe} · Mezastar Binder`);
   $("#cmpBoss").onclick = () => { toggleCompareBoss(b.name); };
 }
-/* F7 field trio */
+/* F7 field trio: 3 tags to slide in (LEAD / MAIN / FLEX) — Mezastar lanes, not a type chart duel */
+function trioRoles(boss){
+  const rows = counterFor(boss).rows;                      /* already full-fight scored, best first */
+  const safe = rows.filter(r => r.inc < 2);                /* never lead a tag the boss punishes */
+  const pool = safe.length >= 3 ? safe : rows;
+  const lead = pool.slice().sort((a,b) => (a.inc - b.inc) || (b.score - a.score))[0];
+  const rest = rows.filter(r => r.t.id !== lead.t.id);
+  const main = rest.slice().sort((a,b) => (b.o - a.o) || (b.t.pe - a.t.pe) || (a.inc - b.inc))[0];
+  const flex = rest.filter(r => r.t.id !== main.t.id)
+                   .sort((a,b) => (b.score - a.score))[0];
+  return [lead, main, flex].filter(Boolean);
+}
 function renderTrioSuggestion(){
   const el = $("#trioBox"); if (!el || !state.boss) { if (el) el.innerHTML = ""; return; }
-  const r = counterFor(state.boss);
-  const tank = r.rows.slice().sort((a,c) => (a.inc - c.inc) || (c.o - a.o))[0];
-  const alt = r.alts[0] || r.rows[1];
-  const trio = [r.top.t, alt ? alt.t : null, tank.t].filter(Boolean)
-                .filter((v,i,arr) => arr.findIndex(z => z.name === v.name) === i);
-  el.innerHTML = `<div class="glass hero"><div class="role" style="margin-bottom:10px">Field trio for ${esc(state.boss.name)}</div>
-    <div class="setrow">${trio.map((m,i) => `<div class="setcard glass"><img src="${m.img}" alt="">
-      <div><div class="role">${i===0?"Main":i===1?"Backup":"Tank"}</div><div class="rn">${esc(m.name)}</div>
-      <div class="rs hint">PE ${m.pe} · ${esc(m.types.join(" / "))}</div></div></div>`).join("")}</div>
-    <div class="hint" style="margin-top:8px">Main deals the damage, backup covers a bad matchup, tank ${esc(tank.t.name)} only takes ${tank.inc}x from this boss.</div></div>`;
+  const b = state.boss;
+  const trio = trioRoles(b);
+  const role = i => i === 0 ? "1 · LEAD (slide in first, build the gauge)"
+                  : i === 1 ? "2 · MAIN DAMAGE (drop when the boss is worn)"
+                  : "3 · FLEX (close the fight)";
+  const cards = trio.map((r, i) => {
+    const x = r.t;
+    const good = r.o >= 2 ? `${r.o}x damage` : "PE damage";
+    const hurt = r.inc >= 4 ? `boss hits it 4x — emergency only` : r.inc >= 2 ? `boss hits it 2x` : "takes 1x or less";
+    return `<div class="setcard glass"><img src="${x.img}" alt="">
+      <div><div class="role">${role(i)}</div><div class="rn">${esc(x.name)}</div>
+      <div class="rs hint">PE ${x.pe} · ${esc(x.types.join(" / "))}</div>
+      <div class="rs ok">${good}</div><div class="rs ${r.inc>=2?"bad":"dim"}">${hurt}</div></div></div>`;
+  }).join("");
+  el.innerHTML = `<div class="glass hero"><div class="role" style="margin-bottom:10px">Your 3 to slide in vs ${esc(b.name)}</div>
+    <div class="setrow">${cards}</div>
+    <div class="hint" style="margin-top:8px">Slide 1 first and mash to charge the gauge, then bring 2 for the big hits, keep 3 for the finish. Order matters — never lead a tag the boss hits for 2x.</div></div>`;
 }
 /* F27 battle log + F28 streak */
 function logBattle(b, x, win){
