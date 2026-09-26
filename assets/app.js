@@ -40,7 +40,7 @@ const LS = {
 };
 
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
-let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false, enemies:[] };
+let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
 let pstate = { q:"", type:null, mode:"missing" };
 let ALLSETS = false;
 let SEL = new Set();                                /* F5  binder compare selection */
@@ -57,7 +57,7 @@ let OWNED = {};                                    /* name -> copies owned */
 /* ---------- F33 Vietnamese interface ---------- */
 const STR = {
  en:{ tb:"My Binder", tc:"Boss Counter", tl:"Team Lab", th:"Hunt List", ts:"Stats & Tools",
-     sq:"Search my tags by name, id or type…", sbq:"Type enemy 1 (boss first), Enter to add, then the 2 sidekicks…",
+     sq:"Search my tags by name, id or type…", sbq:"Type the boss you just met… (kyurem, koraidon, skele)",
      pick:"Your pick", alts:"Also works", avoid:"Leave in the bag", plan:"Battle plan",
      logw:"Log win", logl:"Log loss", compare:"Compare", clear:"Reset", wish:"Wishlist",
      missing:"Missing", dupes:"Dupes", all:"All", vn:"VN", club:"Club", mag:"Magazine", event:"Event", owned:"owned", want:"want",
@@ -65,7 +65,7 @@ const STR = {
      streak:"Current streak", winrate:"Win rate", budget:"Budget planner", guide:"Tactics guide",
      export:"Export data", imp:"Import", reset:"Reset all", tips:"Pro tip" },
  vi:{ tb:"Bộ Sưu Tập", tc:"Chống Boss", tl:"Xây Đội", th:"Danh Sách Săn", ts:"Thống Kê & Công Cụ", tt:"Vé Hỗ Trợ",
-      sq:"Tìm tag theo tên, mã, hệ…", sbq:"Gõ boss trước (Enter để thêm), rồi 2 đàn em…", tq:"Tìm vé hỗ trợ theo tên, chiêu thức, nguồn…",
+      sq:"Tìm tag theo tên, mã, hệ…", sbq:"Gõ tên boss vừa gặp… (kyurem, koraidon, skele)", tq:"Tìm vé hỗ trợ theo tên, chiêu thức, nguồn…",
       pick:"Tag nên dùng", alts:"Cũng dùng được", avoid:"Cất vào túi", plan:"Kế hoạch đấu",
       logw:"Thắng", logl:"Thua", compare:"So sánh", clear:"Đặt lại", wish:"Muốn có",
       missing:"Chưa có", dupes:"Trùng", all:"Tất Cả", vn:"VN", club:"CLB", mag:"Tạp Chí", event:"Sự Kiện",
@@ -265,125 +265,47 @@ function resolveBoss(q){
           .sort((x,y) => lev(s, x.name.toLowerCase()) - lev(s, y.name.toLowerCase()))[0]
       || null;
 }
-/* ============ ENEMY LINEUP (boss + 2 sidekicks) ============ */
-function multVs(x, e){
+/* per boss MOVE type: product over the tag's defensive types (catches 4x quads) */
+function incMoveMult(bossTypes, mine){
   let best = 1;
-  x.types.forEach(at => { let m = 1; e.types.forEach(bt => m *= (CHART[at]?.[bt] ?? 1)); if (m > best) best = m; });
-  return best;
-}
-function incVs(x, e){
-  let best = 1;
-  e.types.forEach(bt => x.types.forEach(d => { const m = CHART[bt]?.[d] ?? 1; if (m > best) best = m; }));
-  return best;
-}
-function addEnemyObj(b){
-  if (!b) return false;
-  if (state.enemies.some(e => e.name === b.name)) return false;
-  if (state.enemies.length >= 3){ flashNote("#bossResult", "Lineup full (boss + 2 sidekicks) — remove one first ✕"); return false; }
-  state.enemies.push(b);
-  state.boss = state.enemies[0];
-  return true;
-}
-function renderBench(){
-  const el = $("#enemyBench"); if (!el) return;
-  const slots = [0,1,2].map(i => {
-    const e = state.enemies[i];
-    const lbl = i === 0 ? "🎯 BOSS" : " SIDEKICK " + i;
-    return e
-      ? `<div class="eslot on" data-i="${i}">${e.img ? `<img src="${e.img}" alt="">` : ""}
-          <div><div class="role">${lbl}</div><div class="rn">${esc(e.name)}</div>
-          <div class="rs">${esc(e.types.join(" / "))}</div></div>
-          <button class="rm" title="Remove" aria-label="Remove ${esc(e.name)}">✕</button></div>`
-      : `<div class="eslot todo"><div class="role">${lbl}</div><div class="rn dim">${i===0?"add the boss":"add sidekick "+i}</div></div>`;
-  }).join("");
-  el.innerHTML = `<div class="benchhead"><b>Enemy lineup</b><span class="hint">boss first, then the 2 sidekicks</span></div><div class="bench">${slots}</div>`;
-  el.querySelectorAll(".eslot.on .rm").forEach(btn => btn.onclick = ev => {
-    ev.stopPropagation();
-    state.enemies.splice(+btn.closest(".eslot").dataset.i, 1);
-    state.boss = state.enemies[0] || null;
-    renderBench(); renderBossResult(); renderTrioSuggestion(); renderCompareBox();
-  });
-}
-/* greedy trio: slot 1 covers the boss, next slots cover what is left */
-function trioFor(enemies){
-  const W = enemies.map((_, i) => i === 0 ? 1.6 : 1);
-  const covered = enemies.map(() => false);
-  const picked = [];
-  for (let slot = 0; slot < 3; slot++){
-    let best = null;
-    for (const x of ROSTER){
-      if (picked.some(p => p.x.id === x.id)) continue;
-      let s = 0;
-      enemies.forEach((e, i) => {
-        const o = multVs(x, e), inc = incVs(x, e);
-        const need = !covered[i];
-        if (o >= 4) s += (need ? 3 : 1.2) * W[i];
-        else if (o >= 2) s += (need ? 2 : 1) * W[i];
-        if (inc >= 4) s -= 3 * W[i];
-        else if (inc >= 2) s -= 2 * W[i];
-        if (inc < 1) s += 0.6 * W[i];
-        s += x.pe / 200;
-      });
-      if (!best || s > best.s) best = { x, s };
-    }
-    if (!best) break;
-    enemies.forEach((e, i) => { if (multVs(best.x, e) >= 2 && incVs(best.x, e) < 2) covered[i] = true; });
-    picked.push(best);
+  for (const bt of bossTypes){
+    let m = 1;
+    for (const d of mine) m *= (CHART[bt]?.[d] ?? 1);
+    best = Math.max(best, m);
   }
-  return picked;
+  return best;
 }
-function trioHTML(){
-  const enemies = state.enemies, picks = trioFor(enemies);
-  if (!picks.length) return "";
-  const covered = enemies.filter(e => picks.some(p => multVs(p.x, e) >= 2 && incVs(p.x, e) < 2)).length;
-  const totPE = picks.reduce((a, p) => a + p.x.pe, 0);
-  const lead = picks[0].x, boss = enemies[0];
-  const cards = picks.map((p, i) => {
-    const x = p.x;
-    const good = enemies.map(e => { const o = multVs(x, e); return o >= 2 ? `${o}x vs ${esc(e.name)}` : null; }).filter(Boolean);
-    const hurt = enemies.map(e => { const inc = incVs(x, e); return inc >= 2 ? `${esc(e.name)} hits ${x.name} for ${inc}x` : null; }).filter(Boolean);
-    return `<div class="setcard glass pickbig">
-      <img src="${x.img}" alt="">
-      <div>
-        <div class="role">${i === 0 ? "⭐ PICK " + (i+1) : "PICK " + (i+1)}</div>
-        <div class="rn">${esc(x.name)}</div>
-        <div class="rs hint">PE ${x.pe} · ${esc(x.types.join(" / "))}</div>
-        ${good.length ? `<div class="rs ok">${good.join(" · ")}</div>` : `<div class="rs dim">no double hit — PE play</div>`}
-        ${hurt.length ? `<div class="rs bad">${hurt.join(" · ")}</div>` : ""}
-      </div></div>`;
-  }).join("");
-  const avoid = ROSTER.filter(x => enemies.some(e => incVs(x, e) >= 2) && !picks.some(p => p.x.id === x.id))
-                      .sort((a,b) => b.pe - a.pe).slice(0, 4);
-  return `<div class="glass hero">
-    <div class="role" style="margin-bottom:10px">Your 3 vs this lineup</div>
-    <div class="setrow">${cards}</div>
-    <div class="hint" style="margin-top:8px">Trio covers ${covered}/${enemies.length} enemies safely · combined PE ${totPE}. Pick 1 goes in first: ${esc(lead.name)} ${multVs(lead, boss) >= 2 ? `hits ${esc(boss.name)} for ${multVs(lead, boss)}x` : `(PE ${lead.pe} lead)`}.</div>
-    ${avoid.length ? `<div class="note bad"><b>Leave home:</b> ${avoid.map(z => esc(z.name)).join(", ")} — the lineup punishes them.</div>` : ""}
-    <div class="actrow">
-      <button class="btn act" id="logW">✔ ${t("logw")}</button>
-      <button class="btn" id="logL">✖ ${t("logl")}</button>
-      <button class="btn" id="sayBtn">🔊</button>
-      <button class="btn" id="shareBtn">📤</button>
-    </div>
-  </div>`;
-}
-/* F43 safer picks mode reorders: mult, then how hard the boss hits back, then PE */
+/* full-fight scoring: offense + PE + danger + resists + fragility + triggers */
 function counterFor(boss){
   const rows = ROSTER.map(x => {
-    const o = offMult(x.types, boss.types), inc = incomingMult(boss.types, x.types);
+    const o = offMult(x.types, boss.types), inc = incMoveMult(boss.types, x.types);
+    const beats = (x.beats || []).filter(bt => boss.types.includes(bt));
+    const resists = (x.resist || []).filter(bt => boss.types.includes(bt));
+    const frag = (x.weak || []).length || 6;
     let why = [];
     x.types.forEach(at => { let m = 1; boss.types.forEach(bt => m *= (CHART[at]?.[bt] ?? 1)); if (m >= 2) why.push(`${at} ${m}x`); });
-    return { t:x, o, inc, why };
-  }).sort((a,b) => state.safe
-      ? (b.o - a.o) || (a.inc - b.inc) || (b.t.weak.length - a.t.weak.length ? a.t.weak.length - b.t.weak.length : b.t.pe - a.t.pe)
-      : (b.o - a.o) || (a.inc - b.inc) || (b.t.pe - a.t.pe));
+    if (beats.length) why.push(`2x into ${beats.join(" & ")}`);
+    if (inc < 1 && resists.length) why.push(`resists ${resists.join(" & ")}`);
+    let score = 0;
+    if (o >= 4) score += 6; else if (o >= 2) score += 4;      /* offense advantage */
+    score += (x.pe || 100) / 25;                              /* raw power 4.2 to 6.4 */
+    if (inc >= 4) score -= 7;                                 /* quad danger: nearly never field */
+    else if (inc >= 2) score -= (state.safe ? 4 : 2.5);       /* the boss punishes it back */
+    if (inc < 1) score += 1.5;                                /* tanks the boss */
+    score += resists.length * 0.5;                            /* partial resists */
+    score += /Dynamax|Mega|Z Move/i.test(x.tier || "") ? 0.8 : 0;  /* trigger advantage */
+    score -= frag * 0.06;                                     /* general fragility tiebreak */
+    return { t: x, o, inc, why, score };
+  }).sort((a,b) => (b.score - a.score) || (b.t.pe - a.t.pe));
   const top = rows[0];
-  const seen = new Set(), seenAvoid = new Set();
-  const alts = rows.filter(r => r.o === top.o && r.t.name !== top.t.name)
+  const seen = new Set();
+  const alts = rows.filter(r => r.t.name !== top.t.name)
                    .filter(r => !seen.has(r.t.name) && seen.add(r.t.name)).slice(0, 3);
-  const avoid = ROSTER.filter(x => incomingMult(boss.types, x.types) >= 2 && x.name !== top.t.name)
-                      .sort((a,b) => b.pe - a.pe)
-                      .filter(x => !seenAvoid.has(x.name) && seenAvoid.add(x.name)).slice(0,4);
+  const avoid = ROSTER.map(x => ({ x, inc: incMoveMult(boss.types, x.types) }))
+                      .filter(z => z.inc >= 2 && z.x.name !== top.t.name)
+                      .sort((a,b) => b.inc - a.inc || b.x.pe - a.x.pe)
+                      .map(z => z.x)
+                      .filter(x => !seen.has(x.name) && seen.add(x.name)).slice(0, 4);
   return { top, alts, avoid, rows };
 }
 function routeRow(x, mult, sub){
@@ -405,21 +327,8 @@ function battlePlan(b, r){
 }
 function renderBossResult(){
   const el = $("#bossResult");
-    if (!state.enemies.length){ el.innerHTML = `<div class="glass hero"><div class="hint">Build the enemy lineup: add the boss first, then its 2 sidekicks. I will pick your best 3.</div></div>`; renderBench(); return; }
-    if (state.enemies.length >= 2){
-      el.innerHTML = trioHTML();
-      const picks = trioFor(state.enemies);
-      if (picks.length){
-        const boss0 = state.enemies[0], px = picks[0].x;
-        const lw = $("#logW"), ll = $("#logL");
-        if (lw) lw.onclick = () => logBattle(boss0, px, true);
-        if (ll) ll.onclick = () => logBattle(boss0, px, false);
-        const sb = $("#sayBtn"); if (sb) sb.onclick = () => speak(`Dùng ${picks.map(p => p.x.name).join(", rồi ")}`);
-        const sh = $("#shareBtn"); if (sh) sh.onclick = () => shareText(`Lineup: ${state.enemies.map(e => e.name).join(" + ")} → dùng ${picks.map(p => p.x.name).join(" + ")} · Mezastar Binder`);
-      }
-      return;
-    }
-    const b = state.boss, r = counterFor(b), x = r.top.t;
+  if (!state.boss){ el.innerHTML = `<div class="glass hero"><div class="hint">${t("sbq")}</div></div>`; return; }
+  const b = state.boss, r = counterFor(b), x = r.top.t;
   const good = r.top.o >= 2;
   const inCompare = COMPARE.includes(b.name);
   el.innerHTML = `
@@ -550,18 +459,15 @@ function renderBossGrid(){
   const tg = $("#setToggle"); if (tg) tg.classList.toggle("act", ALLSETS);
   $("#bossGrid").innerHTML = list.map(b => `<div class="bcard ${state.boss&&state.boss.name===b.name?"on":""}" data-n="${esc(b.name)}">
       ${b.img ? `<img src="${b.img}" alt="" loading="lazy">` : ""}<div class="bn">${esc(b.name)}</div>
-            <div class="pn" style="font-size:10px;color:var(--dim)">${esc(b.types.join("/"))}${b.vn?'<span style="color:#9dff6a"> · VN</span>':'<span style="color:#ff9aad"> · '+esc(b.version||"")+'</span>'}</div>
-            <div class="addin ${state.enemies.some(e => e.name === b.name) ? "on" : ""}">${state.enemies.some(e => e.name === b.name) ? "✓ in lineup" : "+ add"}</div></div>`).join("")
+            <div class="pn" style="font-size:10px;color:var(--dim)">${esc(b.types.join("/"))}${b.vn?'<span style="color:#9dff6a"> · VN</span>':'<span style="color:#ff9aad"> · '+esc(b.version||"")+'</span>'}</div></div>`).join("")
       || `<div class="empty">No boss with that name in the database.</div>`;
   $("#bossGrid").querySelectorAll(".bcard").forEach(c => c.onclick = () => { selectBoss(c.dataset.n); });
 }
 function selectBoss(name, keepFilter){
-  const b = resolveBoss(name);
-  if (b) addEnemyObj(b);
-  state.boss = state.enemies[0] || null;
+  state.boss = resolveBoss(name);
   if (!keepFilter){ state.bfilter = ""; const bq = $("#bq"); if (bq) bq.value = ""; }
   document.querySelectorAll("#bossChips .chip").forEach(c => c.classList.toggle("on", c.dataset.n === name));
-  renderBench(); renderBossResult(); renderTrioSuggestion(); renderCompareBox(); renderBossGrid();
+  renderBossResult(); renderTrioSuggestion(); renderCompareBox(); renderBossGrid();
   if (BATTLE && state.boss) requestAnimationFrame(() => $("#bossResult").scrollIntoView({behavior:"smooth", block:"start"}));
   const el = $("#bossResult");
   if (el) el.scrollIntoView({behavior:"smooth", block:"nearest"});
@@ -1129,7 +1035,6 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#drawerChips").innerHTML = quick.slice(0, 8).map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
     $("#drawerChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { tab("boss"); setDrawer(false); $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
     $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
-        renderBench();
         document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
         renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
