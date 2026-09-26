@@ -395,3 +395,23 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 .pdxf{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
 .pdxc{font-family:"Chakra Petch",sans-serif;font-size:12.5px;letter-spacing:.02em;color:var(--muted);padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--stroke-soft)}
 .pdxt{font-size:14px;line-height:1.6;color:var(--txt,#eaf2f8);margin:2px 0 10px;font-style:italic}
+
+/* ===== enemy lineup bench ===== */
+#enemyBench{margin-bottom:10px;padding:10px}
+.benchhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.benchhead b{font-family:'Chakra Petch';letter-spacing:.1em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+.bench{display:flex;gap:8px;flex-wrap:wrap}
+.eslot{flex:1;min-width:140px;display:flex;align-items:center;gap:8px;padding:8px;border-radius:14px;border:1px dashed rgba(255,255,255,.16);min-height:64px;background:rgba(255,255,255,.03)}
+.eslot.on{border-style:solid;border-color:rgba(157,255,106,.35)}
+.eslot img{width:44px;height:44px;object-fit:contain}
+.eslot .rn{font-weight:600}
+.eslot .dim{opacity:.5;font-weight:400}
+.eslot .rm{margin-left:auto;background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:8px;padding:4px 9px;cursor:pointer;font-size:13px}
+.eslot.todo{opacity:.55;justify-content:center;text-align:center}
+.pickbig{display:flex;gap:12px;align-items:center;min-width:200px;flex:1}
+.pickbig img{width:74px;height:74px;object-fit:contain}
+.rs.ok{color:#9dff6a}
+.rs.bad{color:#ff9aad}
+.bcard .addin{position:absolute;right:6px;top:6px;font-size:9px;padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.1);color:var(--dim)}
+.bcard{position:relative}
+.bcard .addin.on{background:#9dff6a;color:#08120a;font-weight:700}
