@@ -664,7 +664,7 @@ function renderPoolGrid(){
     const own = OWNED[p.name] || 0;
     return `<article class="card pool ${own?"owned":""}" style="--glow:${(TYPE_COLOR[p.types[0]]||"#7aa2ff")}44">
       <div class="halo"></div>
-      <div class="pe">PE ${p.pe}</div>
+      <div class="pe">${p.pe ? "PE "+p.pe : "PE ?"}</div>
       <div class="stars">${stars(p.grade)}</div>
       ${p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="${i<8?"eager":"lazy"}">` : ""}
       <button class="mini heart ${WISH.includes(p.id)?"on":""}" data-w="${esc(p.id)}">${WISH.includes(p.id)?"♥":"♡"}</button>
@@ -682,10 +682,10 @@ function renderHuntSummary(){
   const covOwned = new Set(ROSTER.flatMap(x => x.types));
   const gaps = TYPES.filter(tp => !covOwned.has(tp));
   const fixers = {};
-  gaps.forEach(tp => { fixers[tp] = POOL.filter(p => !OWNED[p.name] && p.types.includes(tp)).sort((a,b) => b.pe - a.pe).slice(0,2); });
+  gaps.forEach(tp => { fixers[tp] = POOL.filter(p => !OWNED[p.name] && p.types.includes(tp)).sort((a,b) => (b.pe||0) - (a.pe||0)).slice(0,2); });
   $("#huntSummary").innerHTML = `
     <div class="glass hero">
-      <div class="role">Stardust V2 completion</div>
+      <div class="role">Stardust completion</div>
       <div class="covmeter"><div class="covbar" style="width:${pct}%"></div></div>
       <div class="hint"><b>${owned} of ${total}</b> unique tags owned · ${pct}% · ${ROSTER.length - owned > 0 ? ROSTER.length - owned + " extra copies" : "no spares"}</div>
       ${gaps.length ? `<div class="sect"><h3>Type gaps in your binder</h3>
