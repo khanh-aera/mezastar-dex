@@ -41,7 +41,7 @@ const LS = {
 
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
 let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
-let pstate = { q:"", type:null, mode:"missing" };
+let pstate = { q:"", type:null, mode:"missing", series:"1-3" };
 let ALLSETS = false;
 let SEL = new Set();                                /* F5  binder compare selection */
 let COMPARE = [];                                  /* F8  boss compare bench */
@@ -641,6 +641,9 @@ function toggleWish(id, btn){
 function poolFiltered(){
   const q = pstate.q.trim().toLowerCase();
   let list = POOL.filter(p => {
+    const ser = (p.id || "").split("-").slice(0, p.id && p.id.startsWith("R-") ? 2 : 2).join("-");
+    if (pstate.series === "R") { if (!/^R-/.test(p.id)) return false; }
+    else if (pstate.series && !String(p.id).startsWith(pstate.series + "-")) return false;
     if (pstate.type && !p.types.includes(pstate.type)) return false;
     if (!q) return true;
     return (p.name + " " + p.id + " " + p.types.join(" ")).toLowerCase().includes(q);
@@ -649,6 +652,19 @@ function poolFiltered(){
   else if (pstate.mode === "dupes") list = list.filter(p => OWNED[p.name] > 1);
   else if (pstate.mode === "wish") list = list.filter(p => WISH.includes(p.id));
   return list;
+}
+function renderSeriesChips(){
+  const el = $("#seriesChips"); if (!el) return;
+  const defs = [
+    ["1-3", "⭐ V3 · ACTIVE (hunt these)"],
+    ["R", "🎟 Regular"],
+    ["1-1", "V1 · retired"],
+    ["1-2", "V2 · retired"],
+    ["", "All series"]
+  ];
+  el.innerHTML = defs.map(([v, label]) =>
+    `<span class="chip ${pstate.series===v?"on":""}" data-s="${v}">${label}</span>`).join("");
+  el.querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.series = c.dataset.s; renderSeriesChips(); renderPoolGrid(); });
 }
 function renderPoolChips(){
   const present = [...new Set(POOL.flatMap(p => p.types))].sort();
@@ -993,7 +1009,7 @@ function tab(name){
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
-  if (name === "hunt"){ renderPoolChips(); renderPoolGrid(); renderHuntSummary(); }
+  if (name === "hunt"){ renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); }
   if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
@@ -1055,7 +1071,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
         document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
-        renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
+        renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
         // translate ticket filter buttons
         document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
           const key = b.dataset.f; b.textContent = t(key);
