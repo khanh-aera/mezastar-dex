@@ -45,8 +45,7 @@ let pstate = { q:"", type:null, mode:"missing", series:"1-3" };
 let ALLSETS = false;
 let SEL = new Set();                                /* F5  binder compare selection */
 let COMPARE = [];                                  /* F8  boss compare bench */
-let PICK_SLOT = -1;                                /* team lab slot being filled */
-let TEAM = LS.get("team", [null, null, null]);     /* F23 */
+let TEAM = LS.get("team", [null, null, null]);     /* legacy saved teams */
 let SAVED_TEAMS = LS.get("teams", []);             /* F24 */
 let WISH = LS.get("wish", []);                     /* F16 */
 let LOG = LS.get("log", []);                       /* F27 */
@@ -265,369 +264,54 @@ function resolveBoss(q){
           .sort((x,y) => lev(s, x.name.toLowerCase()) - lev(s, y.name.toLowerCase()))[0]
       || null;
 }
-/* per boss MOVE type: product over the tag's defensive types (catches 4x quads) */
-function incMoveMult(bossTypes, mine){
-  let best = 1;
-  for (const bt of bossTypes){
-    let m = 1;
-    for (const d of mine) m *= (CHART[bt]?.[d] ?? 1);
-    best = Math.max(best, m);
-  }
-  return best;
-}
-/* full-fight scoring: offense + PE + danger + resists + fragility + triggers */
-function counterFor(boss){
-  const rows = ROSTER.map(x => {
-    const o = offMult(x.types, boss.types), inc = incMoveMult(boss.types, x.types);
-    const beats = (x.beats || []).filter(bt => boss.types.includes(bt));
-    const resists = (x.resist || []).filter(bt => boss.types.includes(bt));
-    const frag = (x.weak || []).length || 6;
-    let why = [];
-    x.types.forEach(at => { let m = 1; boss.types.forEach(bt => m *= (CHART[at]?.[bt] ?? 1)); if (m >= 2) why.push(`${at} ${m}x`); });
-    if (beats.length) why.push(`2x into ${beats.join(" & ")}`);
-    if (inc < 1 && resists.length) why.push(`resists ${resists.join(" & ")}`);
-    let score = 0;
-    if (o >= 4) score += 6; else if (o >= 2) score += 4;      /* offense advantage */
-    score += (x.pe || 100) / 25;                              /* raw power 4.2 to 6.4 */
-    if (inc >= 4) score -= 7;                                 /* quad danger: nearly never field */
-    else if (inc >= 2) score -= (state.safe ? 4 : 2.5);       /* the boss punishes it back */
-    if (inc < 1) score += 1.5;                                /* tanks the boss */
-    score += resists.length * 0.5;                            /* partial resists */
-    score += /Dynamax|Mega|Z Move/i.test(x.tier || "") ? 0.8 : 0;  /* trigger advantage */
-    score -= frag * 0.06;                                     /* general fragility tiebreak */
-    return { t: x, o, inc, why, score };
-  }).sort((a,b) => (b.score - a.score) || (b.t.pe - a.t.pe));
-  const top = rows[0];
-  const seen = new Set();
-  const alts = rows.filter(r => r.t.name !== top.t.name)
-                   .filter(r => !seen.has(r.t.name) && seen.add(r.t.name)).slice(0, 3);
-  const avoid = ROSTER.map(x => ({ x, inc: incMoveMult(boss.types, x.types) }))
-                      .filter(z => z.inc >= 2 && z.x.name !== top.t.name)
-                      .sort((a,b) => b.inc - a.inc || b.x.pe - a.x.pe)
-                      .map(z => z.x)
-                      .filter(x => !seen.has(x.name) && seen.add(x.name)).slice(0, 4);
-  return { top, alts, avoid, rows };
-}
 function routeRow(x, mult, sub){
   return `<div class="route"><img src="${x.img}" alt="">
     <div><div class="rn">${esc(x.name)}</div><div class="rs">${sub}</div></div>
     <div class="badge" style="background:${mult>=4?GRAD[6]:GRAD[5]}">${mult ? mult+"x" : "PE"}</div></div>`;
 }
-/* F9 turn by turn battle plan */
-function battlePlan(b, r){
-  const safeLead = r.rows.slice().sort((a,c) => (a.inc - c.inc) || (c.o - a.o))[0];
-  const steps = [
-    `Turn 1: field ${safeLead.t.name} and clear the two sidekicks. Button mash hard, it charges your attack gauge.`,
-    `Turn 2: drag the boss out. Slide ${r.top.t.name} in${r.top.o >= 2 ? " (" + r.top.why.join(", ") + ")" : ""}.`,
-    `Roulette: tap on the high number zone, mid rotation. Expect 1.5x to 2x swings.`,
-    `Get Time comes after the boss drops. Extra 100 VND tier coin only if the tag on offer is worth it.`,
-    r.top.t.tier && /Dynamax| Mega|Z Move/i.test(r.top.t.tier) ? `Trigger window: fire ${r.top.t.tier} when the boss is below half, not at full HP.` : `Keep your one big trigger for the second boss of the session.`
-  ];
-  return `<div class="plan">${steps.map((s,i) => `<div class="step"><span class="stepn">${i+1}</span><div>${s}</div></div>`).join("")}</div>`;
-}
-function renderBossResult(){
-  const el = $("#bossResult");
-  if (!state.boss){ el.innerHTML = `<div class="glass hero"><div class="hint">${t("sbq")}</div></div>`; return; }
-  const b = state.boss, r = counterFor(b), x = r.top.t;
-  const good = r.top.o >= 2;
-  const inCompare = COMPARE.includes(b.name);
-  el.innerHTML = `
-    <div class="glass hero" id="bossHero">
-      <div class="pickrow">
-        <div class="pickart" style="background:radial-gradient(circle at 50% 25%,${(TYPE_COLOR[x.types[0]]||"#7aa2ff")}44,transparent 72%),rgba(255,255,255,.06)">
-          ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}">` : ""}
-          <div class="mult">${good ? (r.top.o>=4?"4x":"2x") : "PE"}</div>
-          <span class="lbl">${t("pick")}</span>
-        </div>
-        <div style="flex:1;min-width:210px">
-          <div class="role">Boss: ${esc(b.name)} · ${esc(b.types.join(" / "))}${b.version ? " · "+esc(b.version)+(b.vn?" (VN machine)":"") : ""}</div>
-          <h2 class="picktitle">${esc(x.name)}</h2>
-          <div class="ptypes">${x.types.map(pill).join("")}</div>
-          <div class="hint">${good
-            ? `${esc(x.name)} hits ${esc(b.name)} for ${r.top.o}x${r.top.why.length ? " (" + r.top.why.join(", ") + ")" : ""}. PE ${x.pe}.`
-            : `Nobody in the binder hits this boss for double. ${esc(x.name)} is your highest PE play at ${x.pe}.`}</div>
-          ${r.top.inc >= 2 ? `<div class="note warn">Careful: this boss hits ${esc(x.name)} for double damage too.</div>` : ""}
-          <div class="actrow">
-            <button class="btn act" id="logW">✔ ${t("logw")}</button>
-            <button class="btn" id="logL">✖ ${t("logl")}</button>
-            <button class="btn" id="sayBtn">🔊</button>
-            <button class="btn" id="shareBtn">📤</button>
-            <button class="btn ${inCompare?"act":""}" id="cmpBoss">⚖ ${t("compare")}${COMPARE.length?" ("+COMPARE.length+")":""}</button>
-          </div>
-        </div>
-        ${b.img ? `<div class="pickart bossart" style="background:radial-gradient(circle at 50% 80%,${(TYPE_COLOR[b.types[0]]||"#7aa2ff")}33,transparent 72%),rgba(255,255,255,.04)">
-          <img src="${b.img}" alt="${esc(b.name)}"><span class="lbl">Boss</span></div>` : ""}
-      </div>
-      ${!b.vn ? `<div class="note warn"><b>Heads up:</b> ${esc(b.name)} is from ${esc(b.version || "another set")}. Vietnam machines only run Stardust Version 2 right now. The counters below still show what would work.</div>` : ""}
-      ${r.alts.length ? `<div class="sect alts-keep"><h3>${t("alts")}</h3>${r.alts.map(a => routeRow(a.t, a.o, `PE ${a.t.pe} · ${a.why.join(", ") || a.t.types.join(" / ")}`)).join("")}</div>` : ""}
-      ${r.avoid.length ? `<div class="note bad"><b>${t("avoid")}:</b> ${r.avoid.map(z => esc(z.name)).join(", ")} (this boss hits them for double damage).</div>` : ""}
-      <div class="sect plan-keep"><h3>${t("plan")}</h3>${battlePlan(b, r)}</div>
-      <details class="gdetails"><summary>F${""}ull counter matrix</summary>
-        <div class="mwrap"><table class="mtable stickyhead"><thead><tr><th>#</th><th>Tag</th><th>Deals</th><th>Takes</th><th>PE</th></tr></thead>
-        <tbody>${r.rows.map((row,i) => `<tr class="${row.t.id===x.id?"hi":""}"><td>${i+1}</td><td>${esc(row.t.name)}</td>
-          <td><span class="mb ${row.o>=4?"g4":row.o>=2?"g2":""}">${row.o}x</span></td>
-          <td><span class="mb ${row.inc>=2?"bad":""}">${row.inc}x</span></td><td>${row.t.pe}</td></tr>`).join("")}</tbody></table></div>
-      </details>
-    </div>`;
-  $("#logW").onclick = () => logBattle(b, x, true);
-  $("#logL").onclick = () => logBattle(b, x, false);
-  $("#sayBtn").onclick = () => { const tr = trioRoles(b); speak(`Dùng ${tr.map((r,i) => r.t.name).join(", rồi ")}. Boss ${b.name}.`); };
-  $("#shareBtn").onclick = () => shareText(`Boss ${b.name} (${b.types.join("/")}) → dùng ${x.name} ${good ? r.top.o+"x" : "(PE pick)"} · PE ${x.pe} · Mezastar Binder`);
-  $("#cmpBoss").onclick = () => { toggleCompareBoss(b.name); };
-}
-/* F7 field trio: 3 tags to slide in (LEAD / MAIN / FLEX) — Mezastar lanes, not a type chart duel */
-function trioRoles(boss){
-  const rows = counterFor(boss).rows;                      /* already full-fight scored, best first */
-  const safe = rows.filter(r => r.inc < 2);                /* never lead a tag the boss punishes */
-  const pool = safe.length >= 3 ? safe : rows;
-  const lead = pool.slice().sort((a,b) => (a.inc - b.inc) || (b.score - a.score))[0];
-  const rest = rows.filter(r => r.t.id !== lead.t.id);
-  const main = rest.slice().sort((a,b) => (b.o - a.o) || (b.t.pe - a.t.pe) || (a.inc - b.inc))[0];
-  const flex = rest.filter(r => r.t.id !== main.t.id)
-                   .sort((a,b) => (b.score - a.score))[0];
-  return [lead, main, flex].filter(Boolean);
-}
-function renderTrioSuggestion(){
-  const el = $("#trioBox"); if (!el || !state.boss) { if (el) el.innerHTML = ""; return; }
-  const b = state.boss;
-  const trio = trioRoles(b);
-  const role = i => i === 0 ? "1 · LEAD (slide in first, build the gauge)"
-                  : i === 1 ? "2 · MAIN DAMAGE (drop when the boss is worn)"
-                  : "3 · FLEX (close the fight)";
-  const cards = trio.map((r, i) => {
-    const x = r.t;
-    const good = r.o >= 2 ? `${r.o}x damage` : "PE damage";
-    const hurt = r.inc >= 4 ? `boss hits it 4x — emergency only` : r.inc >= 2 ? `boss hits it 2x` : "takes 1x or less";
-    return `<div class="setcard glass"><img src="${x.img}" alt="">
-      <div><div class="role">${role(i)}</div><div class="rn">${esc(x.name)}</div>
-      <div class="rs hint">PE ${x.pe} · ${esc(x.types.join(" / "))}</div>
-      <div class="rs ok">${good}</div><div class="rs ${r.inc>=2?"bad":"dim"}">${hurt}</div></div></div>`;
-  }).join("");
-  el.innerHTML = `<div class="glass hero"><div class="role" style="margin-bottom:10px">Your 3 to slide in vs ${esc(b.name)}</div>
-    <div class="setrow">${cards}</div>
-    <div class="hint" style="margin-top:8px">Slide 1 first and mash to charge the gauge, then bring 2 for the big hits, keep 3 for the finish. Order matters — never lead a tag the boss hits for 2x.</div></div>`;
-}
-/* F27 battle log + F28 streak */
-function logBattle(b, x, win){
-  LOG.push({ boss:b.name, pick:x.name, win, ts:Date.now(), mult:offMult(x.types, b.types) });
-  if (LOG.length > 200) LOG = LOG.slice(-200);
-  LS.set("log", LOG);
-  flashNote("#bossResult", win ? "Logged a win ✔" : "Logged a loss ✖");
-  renderStats();
-}
-function streaks(){
-  let cur = 0, best = 0, run = 0;
-  for (const e of LOG){ run = e.win ? run + 1 : 0; best = Math.max(best, run); }
-  for (let i = LOG.length - 1; i >= 0 && LOG[i].win; i--) cur++;
-  return { cur, best };
-}
-/* F12 share + F13 speak */
-function shareText(txt){
-  if (navigator.share) navigator.share({ text: txt }).catch(() => {});
-  else if (navigator.clipboard) navigator.clipboard.writeText(txt).then(() => flashNote("#bossResult", "Copied to clipboard")).catch(() => {});
-}
-function speak(txt){
-  try {
-    const u = new SpeechSynthesisUtterance(txt);
-    u.lang = SETTINGS.ve === "vi" ? "vi-VN" : "en-US";
-    speechSynthesis.cancel(); speechSynthesis.speak(u);
-  } catch(e){}
-}
-/* F8 compare bosses */
-function toggleCompareBoss(name){
-  const i = COMPARE.indexOf(name);
-  if (i >= 0) COMPARE.splice(i, 1);
-  else { if (COMPARE.length >= 3) COMPARE.shift(); COMPARE.push(name); }
-  renderBossResult(); renderCompareBox();
-}
-function renderCompareBox(){
-  const el = $("#compareBox"); if (!el) return;
-  if (!COMPARE.length){ el.innerHTML = ""; return; }
-  const bs = COMPARE.map(n => BOSSES.find(b => b.name === n)).filter(Boolean);
-  const picks = bs.map(b => counterFor(b).top);
-  const safeForAll = ROSTER.filter(x => bs.every(b => offMult(x.types, b.types) >= 2))
-                           .sort((a,b) => b.pe - a.pe).slice(0,3);
-  el.innerHTML = `<div class="glass hero">
-    <div class="role" style="margin-bottom:10px">Boss compare${COMPARE.length>1?"":" · add another with ⚖"}</div>
-    <div class="mwrap"><table class="mtable"><thead><tr><th>Boss</th><th>Best pick</th><th>Deals</th></tr></thead><tbody>
-      ${bs.map((b,i) => `<tr><td>${esc(b.name)}<br><span class="rs">${esc(b.types.join("/"))}</span></td>
-        <td>${esc(picks[i].t.name)}</td><td><span class="mb ${picks[i].o>=4?"g4":picks[i].o>=2?"g2":""}">${picks[i].o}x</span></td></tr>`).join("")}
-    </tbody></table></div>
-    ${COMPARE.length > 1 && safeForAll.length ? `<div class="sect"><h3>Safe field for all of them</h3>
-      ${safeForAll.map(x => routeRow(x, Math.min(...bs.map(b => offMult(x.types, b.types))), `PE ${x.pe} · 2x into every boss above`)).join("")}</div>` : ""}
-  </div>`;
-}
-/* F10 random drill */
-function randomDrill(){
-  const vn = BOSSES.filter(b => b.vn);
-  const b = vn[Math.floor(Math.random() * vn.length)];
-  selectBoss(b.name, true);
-  $("#bq").value = b.name;
-  const hero = $("#bossHero");
-  if (hero){ hero.classList.remove("drill"); void hero.offsetWidth; hero.classList.add("drill"); }
-}
-function renderBossGrid(){
-  const q = state.bfilter.trim().toLowerCase();
-  const pool = bossList();
-  const list = pool.filter(b => !q || b.name.toLowerCase().includes(q)).slice(0, 90);
-  const pc = $("#poolCount");
-  if (pc) pc.innerHTML = ALLSETS
-    ? `${BOSSES.length} bosses, all sets · <b>${BOSSES.filter(b=>b.vn).length}</b> are on VN machines`
-    : `<b>${pool.length}</b> bosses in play in Vietnam`;
-  const tg = $("#setToggle"); if (tg) tg.classList.toggle("act", ALLSETS);
-  $("#bossGrid").innerHTML = list.map(b => `<div class="bcard ${state.boss&&state.boss.name===b.name?"on":""}" data-n="${esc(b.name)}">
-      ${b.img ? `<img src="${b.img}" alt="" loading="lazy">` : ""}<div class="bn">${esc(b.name)}</div>
-            <div class="pn" style="font-size:10px;color:var(--dim)">${esc(b.types.join("/"))}${b.vn?'<span style="color:#9dff6a"> · VN</span>':'<span style="color:#ff9aad"> · '+esc(b.version||"")+'</span>'}</div></div>`).join("")
-      || `<div class="empty">No boss with that name in the database.</div>`;
-  $("#bossGrid").querySelectorAll(".bcard").forEach(c => c.onclick = () => { selectBoss(c.dataset.n); });
-}
-function selectBoss(name, keepFilter){
-  state.boss = resolveBoss(name);
-  if (!keepFilter){ state.bfilter = ""; const bq = $("#bq"); if (bq) bq.value = ""; }
-  document.querySelectorAll("#bossChips .chip").forEach(c => c.classList.toggle("on", c.dataset.n === name));
-  renderBossResult(); renderTrioSuggestion(); renderCompareBox(); renderBossGrid();
-  if (BATTLE && state.boss) requestAnimationFrame(() => $("#bossResult").scrollIntoView({behavior:"smooth", block:"start"}));
-  const el = $("#bossResult");
-  if (el) el.scrollIntoView({behavior:"smooth", block:"nearest"});
-}
-
-/* ================= TEAM LAB ================= */
 function byName(n){ return ROSTER.find(x => x.name === n) || ROSTER[0]; }
 function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x => x.id === i)).filter(Boolean); }
+/* ================= MAIN ROSTER ================= */
+const MAIN_IDS = ["1-3-014","1-3-016","1-3-021","1-1-002","1-1-023","1-3-005","1-3-006","1-3-008",
+                  "1-2-007","1-2-010","1-2-012","1-2-014","1-2-015","1-2-016","1-2-018","1-2-019",
+                  "1-2-022","1-2-023","1-2-025","1-2-069","R-1-3"];
 function renderLoadout(){
-  const trio = [["Snorlax","LEAD","Only one weakness in the game. Survives anything, holds Dynamax."],
-                ["Kyurem","CLOSER","Your highest PE. 2x into Grass, Ground, Flying, Dragon. Never lead with it."],
-                ["Lucario","FLEX","Unlocks Normal, Ice, Rock, Dark, Steel, Fairy. Holds Mega Evolution."]];
-  const variants = [
-    ["Max coverage","Kyurem + Gardevoir + Lucario","12 of 18 boss types at 398 PE. No tank, and Gardevoir is fragile."],
-    ["Z-Move build","Kyurem + Snorlax + Torterra","10 of 18 at 412 PE, fires a Z-Move. Torterra is weak to 7 types, keep it in the back."],
-    ["Z-Move, safer art","Kyurem + Snorlax + Empoleon","8 of 18 at 414 PE. Covers Fire, Ice, Rock and Fairy you otherwise miss."]
-  ];
-  const bag = ["Gardevoir","Torterra","Drednaw","Meowscarada","Empoleon"];
-  $("#loadout").innerHTML = `
-    <div class="glass hero">
-      <div class="role" style="margin-bottom:10px">Default loadout · blind boss</div>
-      ${trio.map(([n,role,why]) => { const x = byName(n); return `
-        <div class="setcard glass">
-          <img src="${x.img}" alt="">
-          <div style="flex:1;min-width:170px">
-            <div class="role">${role}</div>
-            <div class="rn" style="font-family:'Chakra Petch';font-size:18px">${esc(x.name)} <span style="color:var(--gold)">PE ${x.pe}</span></div>
-            <div class="rs hint">${why}</div>
-            <div class="pills">${x.types.map(pill).join("")}</div>
-          </div>
-        </div>`; }).join("")}
-      <div class="note good">Total 418 PE · covers 10 of 18 boss types · your Kyurem + Snorlax pair alone only covers 4, so the third slot is the whole coverage lever.</div>
-    </div>
-    <div class="glass hero" id="teamLab">
-      <div class="role" style="margin-bottom:10px">Team Lab · build your own</div>
-      <div class="setrow" id="labSlots"></div>
-      <div class="actrow" style="margin-top:10px">
-        <button class="btn act" id="autoBuild">⚡ Auto build</button>
-        <button class="btn" id="clearTeam">✕ Clear</button>
-        <button class="btn" id="saveTeam">💾 Save team</button>
-      </div>
-      <div id="labStats"></div>
-    </div>
-    <div class="glass hero" id="savedTeamsBox"></div>
-    <div class="glass hero">
-      <div class="role" style="margin-bottom:10px">Variants</div>
-      ${variants.map(([name,list,why]) => `
-        <div class="setcard glass" style="align-items:flex-start">
-          <div style="flex:1;min-width:190px">
-            <div class="rn" style="font-family:'Chakra Petch';font-size:16px">${name}</div>
-            <div class="rs hint">${list}<br>${why}</div>
-          </div>
-        </div>`).join("")}
-      <div class="note warn">Only one Z-Move per session, so carrying Torterra and Empoleon together wastes a slot.</div>
-    </div>
-    <div class="glass hero">
-      <div class="role" style="margin-bottom:10px">Spare bag · swap before loading</div>
-      ${bag.map(n => { const x = byName(n); return `
-        <div class="route"><img src="${x.img}" alt="">
-          <div><div class="rn">${esc(x.name)}</div><div class="rs">PE ${x.pe} · ${esc(x.types.join(" / "))}${x.beats.length?" · 2x into "+esc(x.beats.join(", ")):""}</div></div></div>`; }).join("")}
-      <div class="note good">Trigger budget: Dynamax on Snorlax, Mega on Lucario, Z-Move once (Torterra or Empoleon).</div>
-      <div class="note warn">Kyurem is weak to 7 types. If the boss is Dragon, Fighting, Fairy, Fire, Ice, Rock or Steel, keep it for last or leave it out.</div>
-    </div>`;
-  $("#autoBuild").onclick = autoBuild;
-  $("#clearTeam").onclick = () => { TEAM = [null,null,null]; LS.set("team", TEAM); renderTeamLab(); };
-  $("#saveTeam").onclick = saveTeam;
-  renderTeamLab();
-}
-function renderTeamLab(){
-  const host = $("#labSlots"); if (!host) return;
-  host.innerHTML = TEAM.map((id, i) => {
-    const m = id === null ? null : ROSTER.find(x => x.id === id);
-    return `<div class="setcard glass slot" data-i="${i}">
-      ${m ? `<img src="${m.img}" alt=""><div style="flex:1;min-width:120px">
-        <div class="rn">${esc(m.name)} <span style="color:var(--gold)">PE ${m.pe}</span></div>
-        <div class="pills">${m.types.map(pill).join("")}</div></div>
-        <button class="mini" data-r="${i}">✕</button>`
-       : `<div style="flex:1;padding:10px 4px"><div class="rn" style="color:var(--dim)">Empty slot ${i+1}</div><div class="rs hint">Tap to pick a tag</div></div>`}
-    </div>`;
-  }).join("");
-  host.querySelectorAll(".slot").forEach(s => s.onclick = e => {
-    if (e.target.dataset.r !== undefined) { TEAM[+e.target.dataset.r] = null; LS.set("team", TEAM); renderTeamLab(); return; }
-    PICK_SLOT = +s.dataset.i; openPicker();
-  });
-  renderLabStats(); renderSavedTeams();
-}
-function openPicker(){
-  $("#modal").innerHTML = `
-    <button class="close" id="x">×</button>
-    <div class="sect"><h3>Pick a tag for slot ${PICK_SLOT + 1}</h3></div>
-    <div class="pickgrid">${ROSTER.map(x => `<button class="pickcard" data-id="${esc(x.id)}">
-      <img src="${x.img}" alt=""><div class="rn" style="font-size:12px">${esc(x.name)}</div><div class="rs">PE ${x.pe}</div></button>`).join("")}</div>`;
-  $("#scrim").classList.add("on");
-  $("#x").onclick = closeModal;
-  $("#modal").querySelectorAll(".pickcard").forEach(c => c.onclick = () => {
-    TEAM[PICK_SLOT] = c.dataset.id; LS.set("team", TEAM); closeModal(); renderTeamLab(); });
-}
-/* F26 coverage meter + F25 danger report */
-function renderLabStats(){
-  const el = $("#labStats"); if (!el) return;
-  const members = teamMembers();
-  if (!members.length){ el.innerHTML = `<div class="hint" style="margin-top:10px">Pick three tags, or hit Auto build.</div>`; return; }
+  const el = $("#loadout");
+  const members = MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
+  const dyn = members.filter(x => /Dynamax/i.test(x.tier || "") || /Dynamax/i.test(x.ability || ""));
+  const zm  = members.filter(x => /Z[- ]?Move/i.test(x.tier || "") || /Z[- ]?Move/i.test(x.ability || ""));
+  const mega= members.filter(x => /Mega/i.test(x.tier || "") || /Mega/i.test(x.ability || ""));
+  const totalPE = members.reduce((s,x) => s + (x.pe || 0), 0);
   const cov = coveredTypes(members);
-  const danger = TYPES.filter(bt => members.filter(m => incomingMult([bt], m.types) >= 2).length >= 2);
-  const score = cov.length * 120 + teamPE(members) - danger.length * 90;
+  const card = (x, role, why) => `
+    <article class="card pool owned" style="--glow:${(TYPE_COLOR[x.types[0]]||"#7aa2ff")}44">
+      <div class="halo"></div>
+      <div class="roletag">${role}</div>
+      ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : ""}
+      <div class="cname">${esc(x.name)}</div>
+      <div class="cid">${esc(x.id)}${x.pe ? " · PE "+x.pe : ""}</div>
+      <div class="pills">${x.types.map(pill).join("")}</div>
+      <div class="hint" style="margin-top:4px">${why}</div>
+    </article>`;
+  const lead = ["Snorlax","Kyurem","Lucario"].map(byName).filter(Boolean);
   el.innerHTML = `
-    <div class="covmeter"><div class="covbar" style="width:${Math.round(cov.length/18*100)}%"></div></div>
-    <div class="hint" style="margin:8px 0 4px">PE ${teamPE(members)} · covers <b>${cov.length} of 18</b> boss types · team score ${score}</div>
-    <div class="tagsin">${cov.map(z => `<span class="tin" style="background:${TYPE_COLOR[z]}">${z}</span>`).join("") || `<span class="hint">No 2x coverage yet.</span>`}</div>
-    ${danger.length ? `<div class="note bad" style="margin-top:8px">Shared weakness: ${danger.join(", ")} hit at least two members for double. A boss of that type eats this team.</div>`
-                    : `<div class="note good" style="margin-top:8px">No shared double weakness. Solid against blind bosses.</div>`}`;
-}
-/* F23 auto build */
-function autoBuild(){
-  let best = null;
-  for (let a = 0; a < ROSTER.length; a++) for (let b = a+1; b < ROSTER.length; b++) for (let c = b+1; c < ROSTER.length; c++){
-    const trio = [ROSTER[a], ROSTER[b], ROSTER[c]];
-    const cov = coveredTypes(trio).length;
-    const danger = TYPES.filter(bt => trio.filter(m => incomingMult([bt], m.types) >= 2).length >= 2).length;
-    const s = cov * 120 + teamPE(trio) - danger * 90;
-    if (!best || s > best.s) best = { s, trio };
-  }
-  if (best){ TEAM = best.trio.map(m => m.id); LS.set("team", TEAM); renderTeamLab(); }
-}
-/* F24 save teams */
-function saveTeam(){
-  const members = teamMembers();
-  if (members.length < 2){ flashNote("#teamLab", "Pick at least two tags first."); return; }
-  SAVED_TEAMS.unshift({ name: members.map(m => m.name).join(" + "), ids: TEAM.slice(), ts: Date.now() });
-  SAVED_TEAMS = SAVED_TEAMS.slice(0, 8);
-  LS.set("teams", SAVED_TEAMS);
-  renderSavedTeams();
-}
-function renderSavedTeams(){
-  const el = $("#savedTeamsBox"); if (!el) return;
-  if (!SAVED_TEAMS.length){ el.innerHTML = ""; return; }
-  el.innerHTML = `<div class="role" style="margin-bottom:10px">Saved teams</div>` +
-    SAVED_TEAMS.map((s,i) => `<div class="route">
-      <div style="flex:1"><div class="rn">${esc(s.name)}</div><div class="rs">${fmtDate(s.ts)} · PE ${teamPE(s.ids.map(id => ROSTER.find(x => x.id === id)).filter(Boolean))} · ${coveredTypes(s.ids.map(id => ROSTER.find(x => x.id === id)).filter(Boolean)).length}/18</div></div>
-      <button class="btn" data-load="${i}">Load</button><button class="mini" data-del="${i}">✕</button></div>`).join("");
-  el.querySelectorAll("[data-load]").forEach(b => b.onclick = () => { TEAM = SAVED_TEAMS[+b.dataset.load].ids.slice(); LS.set("team", TEAM); renderTeamLab(); });
-  el.querySelectorAll("[data-del]").forEach(b => b.onclick = () => { SAVED_TEAMS.splice(+b.dataset.del, 1); LS.set("teams", SAVED_TEAMS); renderSavedTeams(); });
+    <div class="glass hero">
+      <div class="role" style="margin-bottom:8px">Main Roster · the case you bring to the arcade</div>
+      <div class="hint" style="margin-bottom:8px">${members.length} tags · total PE ${totalPE} · covers ${cov.length} of 18 boss types${dyn.length?" · Dynamax: "+dyn.map(x=>x.name).join(", "):""}${zm.length?" · Z-Move: "+zm.map(x=>x.name).join(", "):""}${mega.length?" · Mega: "+mega.map(x=>x.name).join(", "):""}</div>
+      <div class="sect"><h3>Opening trio (unknown boss)</h3></div>
+      <div class="setrow">${lead.map(x => `
+        <div class="setcard glass"><img src="${x.img}" alt="">
+          <div><div class="rn">${esc(x.name)} <span style="color:var(--gold)">PE ${x.pe}</span></div>
+          <div class="rs hint">${x.name==="Snorlax"?"Lead · only 1 weakness in the game, holds Dynamax":x.name==="Kyurem"?"Closer · highest PE, never lead into Dragon/Fighting/Fairy bosses":"Flex · Mega, unlocks 6 types"}</div>
+          <div class="pills">${x.types.map(pill).join("")}</div></div></div>`).join("")}</div>
+      <div class="note good">Lead Snorlax to build the gauge safely, Kyurem drops when the boss is worn, Lucario flexes into whatever is left.</div>
+    </div>
+    <div class="sect"><h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase;margin:10px 2px">Full roster · ${members.length} tags</h3></div>
+    <div class="grid">${members.map(x => {
+      const isLead = lead.some(l => l.id === x.id);
+      const why = isLead ? "Opening trio" : /Dynamax/i.test(x.tier||"") ? "Dynamax holder" : /Z[- ]?Move/i.test(x.tier||"") ? "Z-Move one-shot per session" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
+      return card(x, isLead ? "⭐ LEAD" : /Dynamax/i.test(x.tier||"") ? "🔺 DYNAMAX" : /Z[- ]?Move/i.test(x.tier||"") ? "⚡ Z-MOVE" : "◆", why);
+    }).join("")}</div>`;
 }
 
 /* ================= HUNT LIST ================= */
@@ -850,13 +534,13 @@ function renderStats(){
       if (d.teams) { SAVED_TEAMS = d.teams; LS.set("teams", SAVED_TEAMS); }
       if (d.team) { TEAM = d.team; LS.set("team", TEAM); }
       if (d.set) { SETTINGS = d.set; LS.set("set", SETTINGS); }
-      renderStats(); renderTeamLab(); renderPoolGrid(); flashNote("#statsBox", "Imported ✔");
+      renderStats(); renderLoadout(); renderPoolGrid(); flashNote("#statsBox", "Imported ✔");
     } catch(e){ flashNote("#statsBox", "That is not a valid backup."); } };
   $("#resetBtn").onclick = () => {
     if (!confirm("Delete wishlist, log, teams and settings? This cannot be undone.")) return;
     ["wish","log","teams","team","set","session"].forEach(k => localStorage.removeItem("meza."+k));
     WISH = []; LOG = []; SAVED_TEAMS = []; TEAM = [null,null,null]; SESSION = null; SETTINGS = { ve:"en", dim:false };
-    renderStats(); renderTeamLab(); renderPoolGrid();
+    renderStats(); renderLoadout(); renderPoolGrid();
   };
 }
 /* F30/F31 budget */
@@ -915,12 +599,10 @@ function renderGold(){
 }
 function applyLang(){
   document.querySelectorAll("nav.tabs button").forEach(b => {
-    b.textContent = t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "boss" ? "tc" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
+    b.textContent = t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
   const q = $("#q"); if (q) q.placeholder = t("sq");
-  const bq = $("#bq"); if (bq) bq.placeholder = t("sbq");
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => {
-    b.lastChild.textContent = " " + t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "boss" ? "tc" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
-  renderBossResult(); if (state.boss) renderTrioSuggestion();
+    b.lastChild.textContent = " " + t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
 }
 
 /* ================= SUPPORT TICKETS ================= */
@@ -1023,11 +705,6 @@ $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classLis
 
 
 
-$("#bq").oninput = e => {
-  state.bfilter = e.target.value;
-  renderBossGrid();
-};
-$("#bq").onkeydown = e => { if (e.key === "Enter"){ const m = resolveBoss(state.bfilter); if (m){ $("#bq").value = ""; state.bfilter = ""; selectBoss(m.name); } } };
 
 $("#pq").oninput = e => { pstate.q = e.target.value; renderPoolGrid(); };
 $("#tq").oninput = e => { renderTickets(); };
@@ -1064,13 +741,8 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#sPe").textContent = ROSTER.reduce((s,x) => s + x.pe, 0);
     $("#sType").textContent = [...new Set(ROSTER.flatMap(x => x.types))].length;
     const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
-    $("#bossChips").innerHTML = quick.map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
-    $("#bossChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
-    $("#drawerChips").innerHTML = quick.slice(0, 8).map(n => `<span class="chip" data-n="${n}">${n}</span>`).join("");
-    $("#drawerChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { tab("boss"); setDrawer(false); $("#bq").value = c.dataset.n; selectBoss(c.dataset.n); });
-    $("#setToggle").onclick = () => { ALLSETS = !ALLSETS; renderBossGrid(); };
-        document.body.classList.toggle("dim", !!SETTINGS.dim);
-        renderChips(); renderGrid(); renderBossResult(); renderBossGrid(); renderLoadout();
+            document.body.classList.toggle("dim", !!SETTINGS.dim);
+        renderChips(); renderGrid(); renderLoadout();
         renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
         // translate ticket filter buttons
         document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {

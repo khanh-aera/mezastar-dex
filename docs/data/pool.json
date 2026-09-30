@@ -1,7 +1,7 @@
 {
  "version": "Stardust V3 ready",
  "built": "2026-09-20",
- "count": 139,
+ "count": 145,
  "tags": [
   {
    "id": "1-2-003",
@@ -4742,6 +4742,193 @@
    ],
    "img": "img/R-1-3_Snorlax.webp",
    "version": "Stardust V3",
+   "vn": true
+  },
+  {
+   "id": "1-1-002",
+   "name": "Mew",
+   "types": [
+    "Psychic"
+   ],
+   "pe": 142,
+   "grade": "6",
+   "tier": "Superstar Pokémon",
+   "ability": "",
+   "moves": "Psychic",
+   "beats": [
+    "Fighting",
+    "Poison"
+   ],
+   "weak": [
+    "Bug",
+    "Ghost",
+    "Dark"
+   ],
+   "resist": [
+    "Fighting",
+    "Psychic"
+   ],
+   "img": "img/1-1-002_Mew.webp",
+   "version": "Stardust V1/V2",
+   "vn": true
+  },
+  {
+   "id": "1-1-023",
+   "name": "Inteleon",
+   "types": [
+    "Water"
+   ],
+   "pe": 108,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Fire",
+    "Ground",
+    "Rock"
+   ],
+   "weak": [
+    "Electric",
+    "Grass"
+   ],
+   "resist": [
+    "Fire",
+    "Water",
+    "Ice",
+    "Steel"
+   ],
+   "img": "img/1-1-023_Inteleon.webp",
+   "version": "Stardust V1/V2",
+   "vn": true
+  },
+  {
+   "id": "1-2-069",
+   "name": "Gardevoir",
+   "types": [
+    "Psychic",
+    "Fairy"
+   ],
+   "pe": 96,
+   "grade": "4",
+   "tier": "★2~4 Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Fighting",
+    "Poison",
+    "Dragon",
+    "Dark"
+   ],
+   "weak": [
+    "Poison",
+    "Bug",
+    "Ghost",
+    "Dark",
+    "Steel"
+   ],
+   "resist": [
+    "Fighting"
+   ],
+   "img": "img/1-2-069_Gardevoir.webp",
+   "version": "Stardust V1/V2",
+   "vn": true
+  },
+  {
+   "id": "1-1-028",
+   "name": "Fuecoco",
+   "types": [
+    "Fire"
+   ],
+   "pe": 48,
+   "grade": "4",
+   "tier": "★2~4 Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Grass",
+    "Ice",
+    "Bug",
+    "Steel"
+   ],
+   "weak": [
+    "Water",
+    "Ground",
+    "Rock"
+   ],
+   "resist": [
+    "Fire",
+    "Grass",
+    "Ice",
+    "Bug",
+    "Steel",
+    "Fairy"
+   ],
+   "img": "img/1-1-028_Fuecoco.webp",
+   "version": "Stardust V1/V2",
+   "vn": true
+  },
+  {
+   "id": "1-1-032",
+   "name": "Grookey",
+   "types": [
+    "Grass"
+   ],
+   "pe": 42,
+   "grade": "4",
+   "tier": "★2~4 Pokémon",
+   "ability": "",
+   "moves": "Branch Poke",
+   "beats": [
+    "Water",
+    "Ground",
+    "Rock"
+   ],
+   "weak": [
+    "Fire",
+    "Ice",
+    "Poison",
+    "Flying",
+    "Bug"
+   ],
+   "resist": [
+    "Water",
+    "Electric",
+    "Grass",
+    "Ground"
+   ],
+   "img": "img/1-1-032_Grookey.webp",
+   "version": "Stardust V1/V2",
+   "vn": true
+  },
+  {
+   "id": "1-1-038",
+   "name": "Sobble",
+   "types": [
+    "Water"
+   ],
+   "pe": 42,
+   "grade": "4",
+   "tier": "★2~4 Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Fire",
+    "Ground",
+    "Rock"
+   ],
+   "weak": [
+    "Electric",
+    "Grass"
+   ],
+   "resist": [
+    "Fire",
+    "Water",
+    "Ice",
+    "Steel"
+   ],
+   "img": "img/1-1-038_Sobble.webp",
+   "version": "Stardust V1/V2",
    "vn": true
   }
  ]
