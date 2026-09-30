@@ -415,3 +415,11 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 .bcard .addin{position:absolute;right:6px;top:6px;font-size:9px;padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.1);color:var(--dim)}
 .bcard{position:relative}
 .bcard .addin.on{background:#9dff6a;color:#08120a;font-weight:700}
+
+/* type icon grid */
+#rosterTypes{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}
+#rosterTypes .ticon{height:46px;border:none;border-radius:12px;font-size:20px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:transform .12s,box-shadow .12s,opacity .12s;opacity:.85}
+#rosterTypes .ticon:active{transform:scale(.92)}
+#rosterTypes .ticon.on{opacity:1;transform:scale(1.06)}
+@media (max-width:380px){#rosterTypes{grid-template-columns:repeat(6,1fr);gap:6px}#rosterTypes .ticon{height:40px;font-size:17px}}

@@ -25,6 +25,9 @@ const FEATURES = [
  "Dupe trade list","Spare bag advisor","Type coverage checklist","Rotating pro tips","Battery saver dim mode"
 ];
 
+const TYPE_ICON = { Normal:"⭐", Fire:"🔥", Water:"💧", Electric:"⚡", Grass:"🍃", Ice:"❄️",
+  Fighting:"✊", Poison:"☠️", Ground:"⛰️", Flying:"🕊️", Psychic:"🔮", Bug:"🐛",
+  Rock:"🪨", Ghost:"👻", Dragon:"🐉", Dark:"🌙", Steel:"⚙️", Fairy:"✨" };
 const TYPE_COLOR = {
   Normal:"#b8bec9", Fire:"#ff8a4c", Water:"#59a8ff", Electric:"#ffd93d", Grass:"#6ede6a",
   Ice:"#7fe4e6", Fighting:"#ff6b6b", Poison:"#c07bff", Ground:"#e0b26a", Flying:"#9fb8ff",
@@ -89,6 +92,16 @@ function incomingMult(bossTypes, mine){
   let best = 0;
   for (const b of bossTypes) for (const d of mine) best = Math.max(best, CHART[b]?.[d] ?? 1);
   return best || 1;
+}
+/* per boss MOVE type: product over the tag's defensive types (catches 4x quads) */
+function incMoveMult(bossTypes, mine){
+  let best = 1;
+  for (const bt of bossTypes){
+    let m = 1;
+    for (const d of mine) m *= (CHART[bt]?.[d] ?? 1);
+    best = Math.max(best, m);
+  }
+  return best;
 }
 const coveredTypes = team => TYPES.filter(bt => team.some(m => offMult(m.types, [bt]) >= 2));
 const teamPE = team => team.reduce((s,m) => s + (m ? m.pe : 0), 0);
@@ -299,8 +312,9 @@ function trioVsType(members, btype){
 function renderRosterTypes(members){
   const el = $("#rosterTypes"); if (!el) return;
   el.innerHTML = TYPES.map(tp =>
-    `<span class="chip" data-tp="${tp}" style="background:${TYPE_COLOR[tp]}${state.rcType===tp?"":"88"};color:#fff">${tp}</span>`).join("");
-  el.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+    `<button class="ticon ${state.rcType===tp?"on":""}" data-tp="${tp}" title="${tp}" aria-label="${tp}"
+      style="background:${TYPE_COLOR[tp]}${state.rcType===tp?"":"55"};box-shadow:${state.rcType===tp?`0 0 0 2px ${TYPE_COLOR[tp]}, 0 0 14px ${TYPE_COLOR[tp]}66`:"none"}">${TYPE_ICON[tp]||tp}</button>`).join("");
+  el.querySelectorAll(".ticon").forEach(c => c.onclick = () => {
     state.rcType = state.rcType === c.dataset.tp ? null : c.dataset.tp;
     renderRosterTypes(members); renderTypeCounter(members);
   });
