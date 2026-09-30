@@ -311,7 +311,7 @@ function scoreVsType(members, btype){
     const mult = st.dmg / Math.max(1, x.pe || 100);
     let s = 0;
     if (mult >= 4) s += 6; else if (mult >= 2) s += 4;
-    s += st.statMod * 10;
+    s += Math.min(st.statMod * 10, 4);
     s += st.effBonus;
     if (st.gimmick) s += 0.8;
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
@@ -395,6 +395,21 @@ function bestStrike(x, defTypes){
     if (mv.gimmick){ d *= 1.5; gimmick = true; }          /* Z/Dmax move: once per battle but huge */
     if (d > dmg){ dmg = d; mvName = mv.name; }
   }
+  /* SURVIVAL CHECK vs the specific enemy (Khanh rule: no need to be a
+     wall, just survive the boss's strikes). Estimate every hit the boss
+     throws (its move1 + move2, type mults vs OUR types). */
+  let survival = null;
+  if (defTypes && defTypes._boss){
+    const boss = defTypes._boss;
+    const ehp = (x.hp || 100) + Math.min(x.dfn || 100, x.spd || 100);
+    let worst = 0, worstMv = "";
+    for (const bm of [boss.move1, boss.move2].filter(Boolean)){
+      if (!bm || !bm.type) continue;
+      const d = (boss.pe || 100) * moveMult(bm.type, x.types);
+      if (d > worst){ worst = d; worstMv = bm.name; }
+    }
+    survival = { ehp, worst, worstMv, ok: ehp > worst, spare: ehp - worst };
+  }
   /* move effects from the sheet */
   const eff = (x.move_effect || "").toLowerCase();
   if (eff.includes("high crit")) effBonus += 0.5;
@@ -403,22 +418,28 @@ function bestStrike(x, defTypes){
   /* stat shape: offense converts to roulette bonus damage, bulk keeps you alive */
   const bulk = (x.hp || 100) + (x.dfn || 100) * 0.6 + (x.spd || 100) * 0.6;
   const off = atkPower * 0.15 + (x.spe || 50) * 0.05;
-  return { dmg, mvName, effBonus, gimmick, statMod: (bulk + off) / 300 };
+  return { dmg, mvName, effBonus, gimmick, survival, statMod: (bulk + off) / 300 };
 }
 function bestVsTag(target){
+  const bossStats = (window.STATS_BY_ID || {})[target.id] || null;
+  const def = target.types.slice(); if (bossStats) def._boss = bossStats;
   const rows = mainMembers().map(x => {
-    const st = bestStrike(x, target.types);
+    const st = bestStrike(x, def);
     const inc = incMoveMult(target.types, x.types);
     const mult = st.dmg / Math.max(1, x.pe || 100);
     let s = 0;
     if (mult >= 4) s += 6; else if (mult >= 2) s += 4;
-    s += st.statMod * 10;                                  /* HP/Def/SpD/Atk/SpA/Spe shape */
-    s += st.effBonus;                                      /* high-crit / anti-Dmax / hits-Def */
-    if (st.gimmick) s += 0.8;                              /* has Z/Dmax move loaded */
+    s += Math.min(st.statMod * 10, 4);                     /* generic stats capped - no wall-hunting */
+    if (st.survival){
+      if (st.survival.ok) s += 2 + Math.min(st.survival.spare / 50, 2);   /* survives boss's worst hit */
+      else s -= 4 + Math.min(-st.survival.spare / 50, 4);                 /* dies to its big move: heavy penalty */
+    }
+    s += st.effBonus;
+    if (st.gimmick) s += 0.8;
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
     if (inc < 1) s += 1.5;
     if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
-    return { x, dmg: st.dmg, mvName: st.mvName, inc, s, eff: st.effBonus };
+    return { x, dmg: st.dmg, mvName: st.mvName, inc, s, surv: st.survival };
   }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
   return rows[0];
 }
@@ -429,6 +450,11 @@ function openCounterPopup(tag){
   const bits = [];
   const mult = best.dmg / Math.max(1, best.x.pe || 100);
   bits.push(`${best.mvName} — ${Math.round(best.dmg)} dmg (${mult}x vs this boss)`);
+  if (best.surv){
+    bits.push(best.surv.ok
+      ? `🛡 survives ${best.surv.worstMv || "boss hits"} (spare ${Math.round(best.surv.spare)})`
+      : `☠ DANGER: dies to ${best.surv.worstMv || "boss big hit"} (${Math.round(-best.surv.spare)} short)`);
+  }
   if (best.inc >= 4) bits.push("⚠ it takes 4x back — emergency only");
   else if (best.inc >= 2) bits.push(`⚠ takes 2x from ${target.types.join("/")}`);
   else if (best.inc < 1) bits.push(`resists ${target.types.join("/")}`);
@@ -918,15 +944,17 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
   try{
-    const [ro, po, bo, tc, spr, px] = await Promise.all([
+    const [ro, po, bo, tc, spr, px, sst] = await Promise.all([
           fetch("data/roster.json").then(r => r.json()),
           fetch("data/pool.json").then(r => r.json()),
           fetch("data/bosses.json").then(r => r.json()),
           fetch("data/typechart.json").then(r => r.json()),
+          fetch("data/stats_allsets.json").then(r => r.json()).catch(() => []),
           fetch("island/data/sprites.json").then(r => r.json()).catch(() => ({})),
           fetch("island/data/pokedex.json").then(r => r.json()).catch(() => ({}))
         ]);
         ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types;
+        window.STATS_BY_ID = {}; (sst || []).forEach(s => { if (s && s.id) window.STATS_BY_ID[s.id] = s; });
         /* 2D game sprite + Pokédex info per tag (matched by Pokémon name) */
         ROSTER.forEach(x => {
           const s = spr[x.name]; if (s){ x.sprite = "island/sprites/" + s.file; x.animated = !!s.animated; }
