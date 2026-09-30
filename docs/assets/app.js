@@ -304,16 +304,20 @@ const MAIN_IDS = [
   "1-3-014", "1-3-016", "1-3-022"  /* Chandelure, Nidoqueen, Regice */
 ];
 function scoreVsType(members, btype){
+  const defTypes = [btype];
   return members.map(x => {
-    const o = offMult(x.types, [btype]), inc = incMoveMult([btype], x.types);
+    const strike = bestStrike(x, defTypes);
+    const inc = incMoveMult(defTypes, x.types);
+    const mult = strike.dmg / Math.max(1, x.pe || 100);
+    const ratio = strike.dmg / Math.max(1, x.hp || 100);
     let s = 0;
-    if (o >= 4) s += 6; else if (o >= 2) s += 4;
-    s += (x.pe || 100) / 25;
+    if (mult >= 4) s += 6; else if (mult >= 2) s += 4;
+    s += ratio * 30;
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
     if (inc < 1) s += 1.5;
-    if (/Dynamax|Mega|Z[- ]?Move/i.test(x.tier || "")) s += 0.8;
-    return { x, o, inc, s };
-  }).sort((a,b) => (b.s - a.s) || (b.x.pe || 0) - (a.x.pe || 0));
+    if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
+    return { x, o: mult, inc, s, dmg: strike.dmg, mvName: strike.mvName };
+  }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
 }
 function trioVsType(members, btype){
   const rows = scoreVsType(members, btype);
@@ -346,7 +350,7 @@ function renderTypeCounter(members){
   const role = i => i === 0 ? "1 · LEAD" : i === 1 ? "2 · MAIN DAMAGE" : "3 · FLEX";
   const why = r => {
     const bits = [];
-    bits.push(r.o >= 4 ? `${r.o}x damage` : r.o >= 2 ? `${r.o}x damage` : "no type bonus (PE power)");
+    bits.push(r.o >= 4 ? `${r.o}xx damage` : r.o >= 2 ? `${r.o}xx damage` : "no type bonus (PE power)");
     if (r.inc >= 4) bits.push("⚠ boss hits it 4x — emergency only");
     else if (r.inc >= 2) bits.push(`⚠ takes 2x from ${tp}`);
     else if (r.inc < 1) bits.push(`resists ${tp}`);
@@ -367,21 +371,41 @@ function renderTypeCounter(members){
   const warn = members.filter(m => incMoveMult([tp], m.types) >= 4).map(m => m.name);
   el.innerHTML += `
     ${warn.length ? `<div class="note bad" style="margin-top:8px">Never field vs ${tp}: ${warn.join(", ")} (4x weak). ${trio.some(t=>warn.includes(t.x.name))?"":"Your trio is safe."}</div>` : `<div class="note good" style="margin-top:8px">Nobody in your case is 4x weak to ${tp}. Full trio safe to slide.</div>`}
-    <div class="hint" style="margin-top:6px">Trio coverage: ${cov.length} of 18 boss types hit for 2x. ${trio.every(t=>t.o>=2) ? "All three hit "+tp+" for super damage." : trio[0].o>=2 ? "Lead carries the super damage here." : "No super-effective option — lead with PE power."}</div>`;
+    <div class="hint" style="margin-top:6px">Trio coverage: ${cov.length} of 18 boss types hit for 2x. ${trio.every(t=>t.o>=2) ? "All three hit "+tp+" for super damage (move-based)." : trio[0].o>=2 ? "Lead carries the super damage here." : "No super-effective option — lead with PE power."}</div>`;
 }
 function mainMembers(){ return MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean); }
 /* best single tag in the main roster vs a target tag (types + PE + danger) */
+
+/* ==== move-based damage (v30 data: moves have real types) ==== */
+function moveMult(moveType, defTypes){
+  let m = 1;
+  for (const b of (defTypes || [])) m *= (CHART[moveType] && CHART[moveType][b]) || 1;
+  return m;
+}
+/* best strike of a member vs target: PE x move-mult, considering every move */
+function bestStrike(x, defTypes){
+  let dmg = (x.pe || 100), mvName = "(body)";
+  for (const mv of (x.moves || [])){
+    if (!mv || !mv.type) continue;
+    const d = (x.pe || 100) * moveMult(mv.type, defTypes);
+    if (d > dmg){ dmg = d; mvName = mv.name; }
+  }
+  return { dmg, mvName };
+}
 function bestVsTag(target){
   const rows = mainMembers().map(x => {
-    const o = offMult(x.types, target.types), inc = incMoveMult(target.types, x.types);
+    const strike = bestStrike(x, target.types);           /* PE x move-mult */
+    const inc = incMoveMult(target.types, x.types);       /* defensive only */
+    const ratio = strike.dmg / Math.max(1, (x.hp || 100));
     let s = 0;
-    if (o >= 4) s += 6; else if (o >= 2) s += 4;
-    s += (x.pe || 100) / 25;
+    if (strike.dmg >= (x.pe||100) * 4) s += 6;            /* move hits 4x */
+    else if (strike.dmg >= (x.pe||100) * 2) s += 4;       /* move hits 2x */
+    s += ratio * 30;                                      /* power-to-bulk */
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
     if (inc < 1) s += 1.5;
-    if (/Dynamax|Mega|Z[- ]?Move/i.test(x.tier || "")) s += 0.8;
-    return { x, o, inc, s };
-  }).sort((a,b) => (b.s - a.s) || ((b.x.pe||0) - (a.x.pe||0)));
+    if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
+    return { x, dmg: strike.dmg, mvName: strike.mvName, inc, s };
+  }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
   return rows[0];
 }
 /* popup: tap a hunt-list tag -> best main-roster answer vs it */
@@ -389,7 +413,8 @@ function openCounterPopup(tag){
   const best = bestVsTag(tag);
   const x = best.x;
   const bits = [];
-  bits.push(best.o >= 4 ? `${best.o}x damage` : best.o >= 2 ? `${best.o}x damage` : "no type bonus (PE power)");
+  const mult = best.dmg / Math.max(1, best.x.pe || 100);
+  bits.push(`${best.mvName} — ${Math.round(best.dmg)} dmg (${mult}x vs this boss)`);
   if (best.inc >= 4) bits.push("⚠ it takes 4x back — emergency only");
   else if (best.inc >= 2) bits.push(`⚠ takes 2x from ${target.types.join("/")}`);
   else if (best.inc < 1) bits.push(`resists ${target.types.join("/")}`);
