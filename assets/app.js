@@ -274,6 +274,71 @@ function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x =
 /* ================= MAIN ROSTER ================= */
 const MAIN_IDS = ["1-1-023","1-1-002","1-2-010","1-2-007","1-2-015","1-2-019","1-2-023","1-2-016",
                   "1-2-025","1-2-014","1-2-018","1-2-012","1-2-022","1-3-014","1-3-016","1-3-022"];
+function scoreVsType(members, btype){
+  return members.map(x => {
+    const o = offMult(x.types, [btype]), inc = incMoveMult([btype], x.types);
+    let s = 0;
+    if (o >= 4) s += 6; else if (o >= 2) s += 4;
+    s += (x.pe || 100) / 25;
+    if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
+    if (inc < 1) s += 1.5;
+    if (/Dynamax|Mega|Z[- ]?Move/i.test(x.tier || "")) s += 0.8;
+    return { x, o, inc, s };
+  }).sort((a,b) => (b.s - a.s) || (b.x.pe || 0) - (a.x.pe || 0));
+}
+function trioVsType(members, btype){
+  const rows = scoreVsType(members, btype);
+  const safe = rows.filter(r => r.inc < 2);
+  const pool = safe.length ? safe : rows;
+  const lead = pool.slice().sort((a,b) => (a.inc - b.inc) || (b.s - a.s))[0];
+  const rest = rows.filter(r => r.x.id !== lead.x.id);
+  const main = rest.slice().sort((a,b) => (b.o - a.o) || ((b.x.pe||0) - (a.x.pe||0)) || (a.inc - b.inc))[0];
+  const flex = rest.filter(r => r.x.id !== main.x.id)[0];
+  return [lead, main, flex].filter(Boolean);
+}
+function renderRosterTypes(members){
+  const el = $("#rosterTypes"); if (!el) return;
+  el.innerHTML = TYPES.map(tp =>
+    `<span class="chip" data-tp="${tp}" style="background:${TYPE_COLOR[tp]}${state.rcType===tp?"":"88"};color:#fff">${tp}</span>`).join("");
+  el.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+    state.rcType = state.rcType === c.dataset.tp ? null : c.dataset.tp;
+    renderRosterTypes(members); renderTypeCounter(members);
+  });
+}
+function renderTypeCounter(members){
+  const el = $("#typeCounter"); if (!el) return;
+  if (!state.rcType){
+    el.innerHTML = `<div class="hint">Tap a boss type above — I will pick the 3 strongest tags from your case for that fight.</div>`;
+    return;
+  }
+  const tp = state.rcType;
+  const trio = trioVsType(members, tp);
+  const role = i => i === 0 ? "1 · LEAD" : i === 1 ? "2 · MAIN DAMAGE" : "3 · FLEX";
+  const why = r => {
+    const bits = [];
+    bits.push(r.o >= 4 ? `${r.o}x damage` : r.o >= 2 ? `${r.o}x damage` : "no type bonus (PE power)");
+    if (r.inc >= 4) bits.push("⚠ boss hits it 4x — emergency only");
+    else if (r.inc >= 2) bits.push(`⚠ takes 2x from ${tp}`);
+    else if (r.inc < 1) bits.push(`resists ${tp}`);
+    if (/Dynamax/i.test(r.x.tier || "")) bits.push("Dynamax ready");
+    if (/Mega/i.test(r.x.tier || "")) bits.push("Mega ready");
+    if (/Z[- ]?Move/i.test(r.x.tier || "")) bits.push("Z-Move once");
+    return bits.join(" · ");
+  };
+  el.innerHTML = `
+    <div class="role" style="margin:4px 0 8px">Your 3 strongest vs <span style="color:${TYPE_COLOR[tp]}">${tp}</span></div>
+    <div class="setrow">${trio.map((r,i) => `
+      <div class="setcard glass"><img src="${r.x.img}" alt="">
+        <div><div class="rn">${esc(r.x.name)} <span style="color:var(--gold)">${r.x.pe ? "PE "+r.x.pe : "PE ?"}</span></div>
+        <div class="rs hint">${esc(r.x.types.join(" / "))}</div>
+        <div class="rs" style="color:var(--gold)">${role(i)}</div>
+        <div class="rs ${r.inc>=2?"bad":"ok"}">${why(r)}</div></div></div>`).join("")}</div>`;
+  const cov = coveredTypes(members.filter(m => trio.some(t => t.x.id === m.id)));
+  const warn = members.filter(m => incMoveMult([tp], m.types) >= 4).map(m => m.name);
+  el.innerHTML += `
+    ${warn.length ? `<div class="note bad" style="margin-top:8px">Never field vs ${tp}: ${warn.join(", ")} (4x weak). ${trio.some(t=>warn.includes(t.x.name))?"":"Your trio is safe."}</div>` : `<div class="note good" style="margin-top:8px">Nobody in your case is 4x weak to ${tp}. Full trio safe to slide.</div>`}
+    <div class="hint" style="margin-top:6px">Trio coverage: ${cov.length} of 18 boss types hit for 2x. ${trio.every(t=>t.o>=2) ? "All three hit "+tp+" for super damage." : trio[0].o>=2 ? "Lead carries the super damage here." : "No super-effective option — lead with PE power."}</div>`;
+}
 function renderLoadout(){
   const el = $("#loadout");
   const members = MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
@@ -295,7 +360,10 @@ function renderLoadout(){
   const lead = ["Empoleon","Kyurem","Lucario"].map(n => members.find(x => x.name === n)).filter(Boolean);
   el.innerHTML = `
     <div class="glass hero">
-      <div class="role" style="margin-bottom:8px">Main Roster · the case you bring to the arcade</div>
+      <div class="role" style="margin-bottom:8px">Pick a boss type · get your 3 strongest</div>
+      <div class="chips" id="rosterTypes" style="margin-bottom:10px"></div>
+      <div id="typeCounter"></div>
+      <div class="role" style="margin:10px 0 8px">Main Roster · the case you bring to the arcade</div>
       <div class="hint" style="margin-bottom:8px">${members.length} tags · total PE ${totalPE} · covers ${cov.length} of 18 boss types${dyn.length?" · Dynamax: "+dyn.map(x=>x.name).join(", "):""}${zm.length?" · Z-Move: "+zm.map(x=>x.name).join(", "):""}${mega.length?" · Mega: "+mega.map(x=>x.name).join(", "):""}</div>
       <div class="sect"><h3>Opening trio (unknown boss)</h3></div>
       <div class="setrow">${lead.map(x => `
@@ -311,6 +379,8 @@ function renderLoadout(){
       const why = isLead ? "Opening trio" : x.id === "1-3-016" ? "Dynamax holder (V3)" : x.id === "1-3-014" ? "Z-Move one-shot per session (V3)" : x.id === "1-3-022" ? "V3 Star · PE not measured yet" : /Mega/i.test(x.tier||"") ? "Mega holder" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
       return card(x, isLead ? "⭐ LEAD" : x.id === "1-3-016" ? "🔺 DYNAMAX" : x.id === "1-3-014" ? "⚡ Z-MOVE" : x.name === "Kyurem" ? "💎 CLOSER" : "◆", why);
     }).join("")}</div>`;
+  state.rcType = state.rcType || null;
+  renderRosterTypes(members); renderTypeCounter(members);
 }
 
 /* ================= HUNT LIST ================= */
