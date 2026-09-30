@@ -434,7 +434,7 @@ function bestStrike(x, defTypes){
   const off = atkPower * 0.15 + (x.spe || 50) * 0.05;
   return { dmg, mvName, effBonus, gimmick, survival, statMod: (bulk + off) / 300 };
 }
-function bestVsTag(target){
+function bestVsTagRows(target){
   const bossStats = (window.STATS_BY_ID || {})[target.id] || null;
   const def = target.types.slice(); if (bossStats) def._boss = bossStats;
   const rows = mainMembers().map(x => {
@@ -455,11 +455,13 @@ function bestVsTag(target){
     if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
     return { x, dmg: st.dmg, mvName: st.mvName, inc, s, surv: st.survival };
   }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
-  return rows[0];
+  return rows;
 }
+function bestVsTag(target){ return bestVsTagRows(target)[0]; }
 /* popup: tap a hunt-list tag -> best main-roster answer vs it */
 function openCounterPopup(tag){
-  const best = bestVsTag(tag);
+  const rows = bestVsTagRows(tag);
+  const best = rows[0], second = rows[1];
   const x = best.x;
   const bits = [];
   const mult = best.dmg / Math.max(1, best.x.pe || 100);
@@ -499,6 +501,16 @@ function openCounterPopup(tag){
           <div class="rs hint" style="margin-top:4px">${bits.join(" · ")}</div>
         </div>
       </div>
+      ${second ? `<div style="text-align:center;font-size:15px;margin:10px 0 4px;opacity:.75">🥈 second best</div>
+      <div class="setcard glass" style="border-color:rgba(255,255,255,.25)">
+        ${second.x.img ? `<img src="${second.x.img}" alt="" style="opacity:.92">` : ""}
+        <div style="flex:1;min-width:150px">
+          <div class="role">Backup option</div>
+          <div class="rn">${esc(second.x.name)} <span style="color:var(--gold)">${second.x.pe ? "PE "+second.x.pe : "PE ?"}</span></div>
+          <div class="pills">${second.x.types.map(pill).join("")}</div>
+          <div class="rs hint" style="margin-top:4px">${second.mvName} — ${Math.round(second.dmg)} dmg${second.surv ? (second.surv.ok ? ` · 🛡 survives (${Math.round(second.surv.spare)} spare)` : ` · ☠ dies to ${second.surv.worstMv || "boss hit"}`) : ""}${second.inc >= 2 ? ` · ⚠ takes ${second.inc}x back` : ""}</div>
+        </div>
+      </div>` : ""}
       <div class="note good" style="margin-top:8px">Slide it in when the gauge is charged. One trigger (Dynamax/Mega/Z) per battle — fire it when the boss is below half.</div>
     </div>`;
   $("#scrim").classList.add("on");
