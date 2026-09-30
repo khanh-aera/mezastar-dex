@@ -287,8 +287,22 @@ function routeRow(x, mult, sub){
 function byName(n){ return ROSTER.find(x => x.name === n) || ROSTER[0]; }
 function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x => x.id === i)).filter(Boolean); }
 /* ================= MAIN ROSTER ================= */
-const MAIN_IDS = ["1-1-023","1-1-002","1-2-010","1-2-007","1-2-015","1-2-019","1-2-023","1-2-016",
-                  "1-2-025","1-2-014","1-2-018","1-2-012","1-2-022","1-3-014","1-3-016","1-3-022"];
+const MAIN_IDS = [
+  /* ---- V1 buys (2026-09-30) ---- */
+  "1-1-005",                       /* Tyranitar 6★ PE144 */
+  "1-1-013",                       /* Umbreon 5★ PE112 */
+  /* ---- V1 case ---- */
+  "1-1-023", "1-1-002",            /* Inteleon, Mew */
+  /* ---- V2 case + buys ---- */
+  "1-2-010", "1-2-007",            /* Kyurem, Gardevoir */
+  "1-2-015", "1-2-016", "1-2-019", "1-2-023", /* Lucario(Mega), Torterra(Mega), A.Ninetales(Mega), Appletun */
+  "1-2-025", "1-2-014", "1-2-018", /* Drednaw, Sylveon, Empoleon */
+  "1-2-012", "1-2-022",            /* Espeon, Flapple */
+  "1-2-021",                       /* Metagross 5★ PE132 (buy) */
+  "1-2-002",                       /* Groudon 6★ PE152 (buy) */
+  /* ---- V3 case ---- */
+  "1-3-014", "1-3-016", "1-3-022"  /* Chandelure, Nidoqueen, Regice */
+];
 function scoreVsType(members, btype){
   return members.map(x => {
     const o = offMult(x.types, [btype]), inc = incMoveMult([btype], x.types);
