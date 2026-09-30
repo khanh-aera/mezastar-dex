@@ -306,17 +306,18 @@ const MAIN_IDS = [
 function scoreVsType(members, btype){
   const defTypes = [btype];
   return members.map(x => {
-    const strike = bestStrike(x, defTypes);
+    const st = bestStrike(x, defTypes);
     const inc = incMoveMult(defTypes, x.types);
-    const mult = strike.dmg / Math.max(1, x.pe || 100);
-    const ratio = strike.dmg / Math.max(1, x.hp || 100);
+    const mult = st.dmg / Math.max(1, x.pe || 100);
     let s = 0;
     if (mult >= 4) s += 6; else if (mult >= 2) s += 4;
-    s += ratio * 30;
+    s += st.statMod * 10;
+    s += st.effBonus;
+    if (st.gimmick) s += 0.8;
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
     if (inc < 1) s += 1.5;
     if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
-    return { x, o: mult, inc, s, dmg: strike.dmg, mvName: strike.mvName };
+    return { x, o: mult, inc, s, dmg: st.dmg, mvName: st.mvName };
   }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
 }
 function trioVsType(members, btype){
@@ -382,29 +383,42 @@ function moveMult(moveType, defTypes){
   for (const b of (defTypes || [])) m *= (CHART[moveType] && CHART[moveType][b]) || 1;
   return m;
 }
-/* best strike of a member vs target: PE x move-mult, considering every move */
+/* best strike of a member vs target - considers EVERY stat on the tag:
+   PE, all moves (+types+effects), gimmick move, Atk/SpA (mash power),
+   HP+Def+SpD (bulk), Speed, trigger */
 function bestStrike(x, defTypes){
-  let dmg = (x.pe || 100), mvName = "(body)";
+  let dmg = (x.pe || 100), mvName = "(no move data)", effBonus = 0, gimmick = false;
+  const atkPower = Math.max(x.atk || 0, x.spa || 0);
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
-    const d = (x.pe || 100) * moveMult(mv.type, defTypes);
+    let d = (x.pe || 100) * moveMult(mv.type, defTypes);
+    if (mv.gimmick){ d *= 1.5; gimmick = true; }          /* Z/Dmax move: once per battle but huge */
     if (d > dmg){ dmg = d; mvName = mv.name; }
   }
-  return { dmg, mvName };
+  /* move effects from the sheet */
+  const eff = (x.move_effect || "").toLowerCase();
+  if (eff.includes("high crit")) effBonus += 0.5;
+  if (eff.includes("2x damage to dynamax")) effBonus += 1;
+  if (eff.includes("hits def")) effBonus += 0.3;
+  /* stat shape: offense converts to roulette bonus damage, bulk keeps you alive */
+  const bulk = (x.hp || 100) + (x.dfn || 100) * 0.6 + (x.spd || 100) * 0.6;
+  const off = atkPower * 0.15 + (x.spe || 50) * 0.05;
+  return { dmg, mvName, effBonus, gimmick, statMod: (bulk + off) / 300 };
 }
 function bestVsTag(target){
   const rows = mainMembers().map(x => {
-    const strike = bestStrike(x, target.types);           /* PE x move-mult */
-    const inc = incMoveMult(target.types, x.types);       /* defensive only */
-    const ratio = strike.dmg / Math.max(1, (x.hp || 100));
+    const st = bestStrike(x, target.types);
+    const inc = incMoveMult(target.types, x.types);
+    const mult = st.dmg / Math.max(1, x.pe || 100);
     let s = 0;
-    if (strike.dmg >= (x.pe||100) * 4) s += 6;            /* move hits 4x */
-    else if (strike.dmg >= (x.pe||100) * 2) s += 4;       /* move hits 2x */
-    s += ratio * 30;                                      /* power-to-bulk */
+    if (mult >= 4) s += 6; else if (mult >= 2) s += 4;
+    s += st.statMod * 10;                                  /* HP/Def/SpD/Atk/SpA/Spe shape */
+    s += st.effBonus;                                      /* high-crit / anti-Dmax / hits-Def */
+    if (st.gimmick) s += 0.8;                              /* has Z/Dmax move loaded */
     if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
     if (inc < 1) s += 1.5;
     if (/Dynamax|Mega|Z[- ]?Move|TAG/i.test(x.trigger || x.tier || "")) s += 0.8;
-    return { x, dmg: strike.dmg, mvName: strike.mvName, inc, s };
+    return { x, dmg: st.dmg, mvName: st.mvName, inc, s, eff: st.effBonus };
   }).sort((a,b) => (b.s - a.s) || (b.dmg - a.dmg));
   return rows[0];
 }
