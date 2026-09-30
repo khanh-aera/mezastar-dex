@@ -1,7 +1,7 @@
 {
  "version": "Stardust V3 ready",
  "built": "2026-09-20",
- "count": 145,
+ "count": 147,
  "tags": [
   {
    "id": "1-2-003",
@@ -4930,6 +4930,33 @@
    "img": "img/1-1-038_Sobble.webp",
    "version": "Stardust V1/V2",
    "vn": true
+  },
+  {
+   "id": "1-1-005",
+   "name": "Tyranitar",
+   "types": [
+    "Rock",
+    "Dark"
+   ],
+   "pe": 144,
+   "grade": "6",
+   "tier": "Superstar Pokémon",
+   "version": "Stardust V1",
+   "vn": true,
+   "img": "img/1-1-005_Tyranitar.webp"
+  },
+  {
+   "id": "1-1-013",
+   "name": "Umbreon",
+   "types": [
+    "Dark"
+   ],
+   "pe": 112,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "version": "Stardust V1",
+   "vn": true,
+   "img": "img/1-1-013_Umbreon.webp"
   }
  ]
 }
