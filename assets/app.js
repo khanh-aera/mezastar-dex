@@ -944,7 +944,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
   try{
-    const [ro, po, bo, tc, spr, px, sst] = await Promise.all([
+    const [ro, po, bo, tc, sst, spr, px] = await Promise.all([
           fetch("data/roster.json").then(r => r.json()),
           fetch("data/pool.json").then(r => r.json()),
           fetch("data/bosses.json").then(r => r.json()),
