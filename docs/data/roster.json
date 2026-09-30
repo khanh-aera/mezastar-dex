@@ -1,7 +1,7 @@
 {
  "owner": "Khanh Ngo An (khanh-aera)",
  "built": "2026-09-20",
- "count": 27,
+ "count": 30,
  "tags": [
   {
    "id": "1-2-010",
@@ -818,6 +818,130 @@
     "Steel"
    ],
    "img": "img/1-1-038_Sobble.webp"
+  },
+  {
+   "id": "1-3-014",
+   "name": "Chandelure",
+   "types": [
+    "Ghost",
+    "Fire"
+   ],
+   "pe": null,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Bug",
+    "Ghost",
+    "Grass",
+    "Ice",
+    "Psychic",
+    "Steel"
+   ],
+   "weak": [
+    "Dark",
+    "Ghost",
+    "Ground",
+    "Rock",
+    "Water"
+   ],
+   "resist": [
+    "Bug",
+    "Dark",
+    "Dragon",
+    "Fairy",
+    "Fighting",
+    "Fire",
+    "Grass",
+    "Ice",
+    "Normal",
+    "Poison",
+    "Rock",
+    "Steel",
+    "Water"
+   ],
+   "img": "img/1-3-014_Chandelure.webp",
+   "version": "Stardust V3",
+   "vn": true
+  },
+  {
+   "id": "1-3-016",
+   "name": "Nidoqueen",
+   "types": [
+    "Poison",
+    "Ground"
+   ],
+   "pe": null,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Electric",
+    "Fairy",
+    "Fire",
+    "Grass",
+    "Poison",
+    "Rock",
+    "Steel"
+   ],
+   "weak": [
+    "Ground",
+    "Ice",
+    "Psychic",
+    "Water"
+   ],
+   "resist": [
+    "Bug",
+    "Electric",
+    "Fairy",
+    "Fighting",
+    "Flying",
+    "Ghost",
+    "Grass",
+    "Ground",
+    "Poison",
+    "Rock",
+    "Steel"
+   ],
+   "img": "img/1-3-016_Nidoqueen.webp",
+   "version": "Stardust V3",
+   "vn": true
+  },
+  {
+   "id": "1-3-022",
+   "name": "Regice",
+   "types": [
+    "Ice"
+   ],
+   "pe": null,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Dragon",
+    "Flying",
+    "Grass",
+    "Ground"
+   ],
+   "weak": [
+    "Fighting",
+    "Fire",
+    "Rock",
+    "Steel"
+   ],
+   "resist": [
+    "Fire",
+    "Ice",
+    "Steel",
+    "Water"
+   ],
+   "img": "img/1-3-022_Regice.webp",
+   "version": "Stardust V3",
+   "vn": true
   }
- ]
+ ],
+ "updated": "2026-09-30: added V3 case tags Chandelure/Nidoqueen/Regice"
 }
