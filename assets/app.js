@@ -46,7 +46,7 @@ const LS = {
 
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
 let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
-let pstate = { q:"", type:null, mode:"missing", series:"1-3" };
+let pstate = { q:"", type:null, mode:"missing", series:"1-3", grade:null };   /* grade null=all, "5", "6" */
 let ALLSETS = false;
 let SEL = new Set();                                /* F5  binder compare selection */
 let COMPARE = [];                                  /* F8  boss compare bench */
@@ -470,8 +470,8 @@ function openCounterPopup(tag){
       : `☠ DANGER: dies to ${best.surv.worstMv || "boss big hit"} (${Math.round(-best.surv.spare)} short)`);
   }
   if (best.inc >= 4) bits.push("⚠ it takes 4x back — emergency only");
-  else if (best.inc >= 2) bits.push(`⚠ takes 2x from ${target.types.join("/")}`);
-  else if (best.inc < 1) bits.push(`resists ${target.types.join("/")}`);
+  else if (best.inc >= 2) bits.push(`⚠ takes 2x from ${tag.types.join("/")}`);
+  else if (best.inc < 1) bits.push(`resists ${tag.types.join("/")}`);
   if (/Dynamax/i.test(x.tier || "")) bits.push("Dynamax ready");
   if (/Mega/i.test(x.tier || "")) bits.push("Mega ready");
   if (/Z[- ]?Move/i.test(x.tier || "")) bits.push("Z-Move once");
@@ -485,6 +485,7 @@ function openCounterPopup(tag){
           <div class="role">Target · hunt list</div>
           <div class="rn">${esc(tag.name)} <span style="color:var(--gold)">${tag.pe ? "PE "+tag.pe : "PE ?"}</span></div>
           <div class="pills">${tag.types.map(pill).join("")}</div>
+          ${(window.STATS_BY_ID[tag.id] && window.STATS_BY_ID[tag.id].move1 && window.STATS_BY_ID[tag.id].move1.name) ? `<div class="rs hint" style="margin-top:4px">⚔ ${esc(window.STATS_BY_ID[tag.id].move1.name)}${window.STATS_BY_ID[tag.id].move1.type ? " ("+window.STATS_BY_ID[tag.id].move1.type+")" : ""}${window.STATS_BY_ID[tag.id].move2 && window.STATS_BY_ID[tag.id].move2.name ? ` · ⚔ ${esc(window.STATS_BY_ID[tag.id].move2.name)} (${window.STATS_BY_ID[tag.id].move2.type})` : ""}${window.STATS_BY_ID[tag.id].hp ? ` · HP ${window.STATS_BY_ID[tag.id].hp}` : ""}</div>` : ""}
         </div>
       </div>
       <div style="text-align:center;font-size:22px;margin:6px 0">⬇ beats ⬆</div>
@@ -494,6 +495,7 @@ function openCounterPopup(tag){
           <div class="role" style="color:var(--gold)">Play this</div>
           <div class="rn">${esc(x.name)} <span style="color:var(--gold)">${x.pe ? "PE "+x.pe : "PE ?"}</span></div>
           <div class="pills">${x.types.map(pill).join("")}</div>
+          ${(x.ability || (window.STATS_BY_ID[x.id] && window.STATS_BY_ID[x.id].move1 && window.STATS_BY_ID[x.id].move1.name)) ? `<div class="rs hint" style="margin-top:4px">${x.ability ? `✨ ${esc(x.ability)} · ` : ""}${x.moves && x.moves.length ? x.moves.map(m => `⚔ ${esc(m.name)}${m.type ? " ("+m.type+")" : ""}`).join(" · ") : (window.STATS_BY_ID[x.id].move1 ? `⚔ ${esc(window.STATS_BY_ID[x.id].move1.name)} (${window.STATS_BY_ID[x.id].move1.type})` : "")}</div>` : ""}
           <div class="rs hint" style="margin-top:4px">${bits.join(" · ")}</div>
         </div>
       </div>
@@ -561,6 +563,7 @@ function poolFiltered(){
     if (pstate.series === "R") { if (!/^R-/.test(p.id)) return false; }
     else if (pstate.series && !String(p.id).startsWith(pstate.series + "-")) return false;
     if (pstate.type && !p.types.includes(pstate.type)) return false;
+    if (pstate.grade && String(p.grade) !== pstate.grade) return false;
     if (!q) return true;
     return (p.name + " " + p.id + " " + p.types.join(" ")).toLowerCase().includes(q);
   });
@@ -581,6 +584,12 @@ function renderSeriesChips(){
   el.innerHTML = defs.map(([v, label]) =>
     `<span class="chip ${pstate.series===v?"on":""}" data-s="${v}">${label}</span>`).join("");
   el.querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.series = c.dataset.s; renderSeriesChips(); renderPoolGrid(); });
+  const gel = $("#gradeChips");
+  if (gel){
+    const gdefs = [["6", "★6 Superstar"], ["5", "★5 Star"], ["", "All grades"]];
+    gel.innerHTML = gdefs.map(([v, label]) => `<span class="chip ${pstate.grade===v?"on":""}" data-g="${v}">${label}</span>`).join("");
+    gel.querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.grade = c.dataset.g || null; renderSeriesChips(); renderPoolGrid(); });
+  }
 }
 function renderPoolChips(){
   const present = [...new Set(POOL.flatMap(p => p.types))].sort();
