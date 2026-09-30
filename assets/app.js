@@ -374,7 +374,13 @@ function renderTypeCounter(members){
     ${warn.length ? `<div class="note bad" style="margin-top:8px">Never field vs ${tp}: ${warn.join(", ")} (4x weak). ${trio.some(t=>warn.includes(t.x.name))?"":"Your trio is safe."}</div>` : `<div class="note good" style="margin-top:8px">Nobody in your case is 4x weak to ${tp}. Full trio safe to slide.</div>`}
     <div class="hint" style="margin-top:6px">Trio coverage: ${cov.length} of 18 boss types hit for 2x. ${trio.every(t=>t.o>=2) ? "All three hit "+tp+" for super damage (move-based)." : trio[0].o>=2 ? "Lead carries the super damage here." : "No super-effective option — lead with PE power."}</div>`;
 }
-function mainMembers(){ return MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean); }
+function mainMembers(){
+  return MAIN_IDS.map(id => {
+    const r = ROSTER.find(x => x.id === id), p = POOL.find(x => x.id === id);
+    if (!r && !p) return null;
+    return Object.assign({}, p || {}, r || {});      /* pool has moves+stats for ALL; roster carries ownership/hero art */
+  }).filter(Boolean);
+}
 /* best single tag in the main roster vs a target tag (types + PE + danger) */
 
 /* ==== move-based damage (v30 data: moves have real types) ==== */
