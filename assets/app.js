@@ -355,6 +355,60 @@ function renderTypeCounter(members){
     ${warn.length ? `<div class="note bad" style="margin-top:8px">Never field vs ${tp}: ${warn.join(", ")} (4x weak). ${trio.some(t=>warn.includes(t.x.name))?"":"Your trio is safe."}</div>` : `<div class="note good" style="margin-top:8px">Nobody in your case is 4x weak to ${tp}. Full trio safe to slide.</div>`}
     <div class="hint" style="margin-top:6px">Trio coverage: ${cov.length} of 18 boss types hit for 2x. ${trio.every(t=>t.o>=2) ? "All three hit "+tp+" for super damage." : trio[0].o>=2 ? "Lead carries the super damage here." : "No super-effective option — lead with PE power."}</div>`;
 }
+function mainMembers(){ return MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean); }
+/* best single tag in the main roster vs a target tag (types + PE + danger) */
+function bestVsTag(target){
+  const rows = mainMembers().map(x => {
+    const o = offMult(x.types, target.types), inc = incMoveMult(target.types, x.types);
+    let s = 0;
+    if (o >= 4) s += 6; else if (o >= 2) s += 4;
+    s += (x.pe || 100) / 25;
+    if (inc >= 4) s -= 7; else if (inc >= 2) s -= 2.5;
+    if (inc < 1) s += 1.5;
+    if (/Dynamax|Mega|Z[- ]?Move/i.test(x.tier || "")) s += 0.8;
+    return { x, o, inc, s };
+  }).sort((a,b) => (b.s - a.s) || ((b.x.pe||0) - (a.x.pe||0)));
+  return rows[0];
+}
+/* popup: tap a hunt-list tag -> best main-roster answer vs it */
+function openCounterPopup(tag){
+  const best = bestVsTag(tag);
+  const x = best.x;
+  const bits = [];
+  bits.push(best.o >= 4 ? `${best.o}x damage` : best.o >= 2 ? `${best.o}x damage` : "no type bonus (PE power)");
+  if (best.inc >= 4) bits.push("⚠ it takes 4x back — emergency only");
+  else if (best.inc >= 2) bits.push(`⚠ takes 2x from ${target.types.join("/")}`);
+  else if (best.inc < 1) bits.push(`resists ${target.types.join("/")}`);
+  if (/Dynamax/i.test(x.tier || "")) bits.push("Dynamax ready");
+  if (/Mega/i.test(x.tier || "")) bits.push("Mega ready");
+  if (/Z[- ]?Move/i.test(x.tier || "")) bits.push("Z-Move once");
+  $("#modal").innerHTML = `
+    <button class="close" id="x">×</button>
+    <div class="glass hero" style="max-width:420px">
+      <div class="role" style="margin-bottom:10px">Best answer from your Main Roster</div>
+      <div class="setcard glass">
+        ${tag.img ? `<img src="${tag.img}" alt="">` : ""}
+        <div style="flex:1;min-width:150px">
+          <div class="role">Target · hunt list</div>
+          <div class="rn">${esc(tag.name)} <span style="color:var(--gold)">${tag.pe ? "PE "+tag.pe : "PE ?"}</span></div>
+          <div class="pills">${tag.types.map(pill).join("")}</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:22px;margin:6px 0">⬇ beats ⬆</div>
+      <div class="setcard glass" style="border-color:var(--gold)">
+        ${x.img ? `<img src="${x.img}" alt="">` : ""}
+        <div style="flex:1;min-width:150px">
+          <div class="role" style="color:var(--gold)">Play this</div>
+          <div class="rn">${esc(x.name)} <span style="color:var(--gold)">${x.pe ? "PE "+x.pe : "PE ?"}</span></div>
+          <div class="pills">${x.types.map(pill).join("")}</div>
+          <div class="rs hint" style="margin-top:4px">${bits.join(" · ")}</div>
+        </div>
+      </div>
+      <div class="note good" style="margin-top:8px">Slide it in when the gauge is charged. One trigger (Dynamax/Mega/Z) per battle — fire it when the boss is below half.</div>
+    </div>`;
+  $("#scrim").classList.add("on");
+  $("#x").onclick = closeModal;
+}
 function renderLoadout(){
   const el = $("#loadout");
   const members = MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
@@ -447,7 +501,7 @@ function renderPoolGrid(){
   if (!list.length){ $("#pgrid").innerHTML = `<div class="empty">Nothing here. ${pstate.mode==="missing"?"You own the whole filter.":""}</div>`; return; }
   $("#pgrid").innerHTML = list.map((p,i) => {
     const own = OWNED[p.name] || 0;
-    return `<article class="card pool ${own?"owned":""}" style="--glow:${(TYPE_COLOR[p.types[0]]||"#7aa2ff")}44">
+    return `<article class="card pool ${own?"owned":""}" data-hunt="${esc(p.id)}" style="--glow:${(TYPE_COLOR[p.types[0]]||"#7aa2ff")}44;cursor:pointer">
       <div class="halo"></div>
       <div class="pe">${p.pe ? "PE "+p.pe : "PE ?"}</div>
       <div class="stars">${stars(p.grade)}</div>
@@ -459,6 +513,11 @@ function renderPoolGrid(){
       <div class="pills">${p.types.map(pill).join("")}</div>
     </article>`; }).join("");
   $("#pgrid").querySelectorAll("[data-w]").forEach(b => b.onclick = ev => { ev.stopPropagation(); toggleWish(b.dataset.w, b); });
+  $("#pgrid").querySelectorAll("[data-hunt]").forEach(c => c.onclick = ev => {
+    if (ev.target.closest("[data-w]")) return;
+    const tag = POOL.find(z => z.id === c.dataset.hunt);
+    if (tag) openCounterPopup(tag);
+  });
 }
 /* F14 completion + F18 gap advisor + F19 ladder + F22 PE per type */
 function renderHuntSummary(){
