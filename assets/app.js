@@ -378,7 +378,15 @@ function mainMembers(){
   return MAIN_IDS.map(id => {
     const r = ROSTER.find(x => x.id === id), p = POOL.find(x => x.id === id);
     if (!r && !p) return null;
-    return Object.assign({}, p || {}, r || {});      /* pool has moves+stats for ALL; roster carries ownership/hero art */
+    const m = Object.assign({}, p || {}, r || {});   /* roster carries ownership/hero art */
+    /* roster sometimes holds EMPTY moves [] - never let it blank out pool's real move data */
+    if (m === r || (r && (!Array.isArray(m.moves) || !m.moves.length) && p && p.moves && p.moves.length)){
+      m.moves = p.moves;
+      ["hp","atk","dfn","spa","spd","spe","move_effect","gimmick","trigger","pe"].forEach(k => {
+        if (m[k] === undefined || m[k] === null || m[k] === "" || (k !== "pe" && Array.isArray(m[k]) && !m[k].length)) m[k] = p[k];
+      });
+    }
+    return m;
   }).filter(Boolean);
 }
 /* best single tag in the main roster vs a target tag (types + PE + danger) */
