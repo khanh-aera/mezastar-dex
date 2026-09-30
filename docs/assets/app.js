@@ -272,9 +272,8 @@ function routeRow(x, mult, sub){
 function byName(n){ return ROSTER.find(x => x.name === n) || ROSTER[0]; }
 function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x => x.id === i)).filter(Boolean); }
 /* ================= MAIN ROSTER ================= */
-const MAIN_IDS = ["1-3-014","1-3-016","1-3-021","1-1-002","1-1-023","1-3-005","1-3-006","1-3-008",
-                  "1-2-007","1-2-010","1-2-012","1-2-014","1-2-015","1-2-016","1-2-018","1-2-019",
-                  "1-2-022","1-2-023","1-2-025","1-2-069","R-1-3"];
+const MAIN_IDS = ["1-1-023","1-1-002","1-2-010","1-2-007","1-2-015","1-2-019","1-2-023","1-2-016",
+                  "1-2-025","1-2-014","1-2-018","1-2-012","1-2-022","1-3-014","1-3-016","1-3-022"];
 function renderLoadout(){
   const el = $("#loadout");
   const members = MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
@@ -293,7 +292,7 @@ function renderLoadout(){
       <div class="pills">${x.types.map(pill).join("")}</div>
       <div class="hint" style="margin-top:4px">${why}</div>
     </article>`;
-  const lead = ["Snorlax","Kyurem","Lucario"].map(byName).filter(Boolean);
+  const lead = ["Empoleon","Kyurem","Lucario"].map(n => members.find(x => x.name === n)).filter(Boolean);
   el.innerHTML = `
     <div class="glass hero">
       <div class="role" style="margin-bottom:8px">Main Roster · the case you bring to the arcade</div>
@@ -302,15 +301,15 @@ function renderLoadout(){
       <div class="setrow">${lead.map(x => `
         <div class="setcard glass"><img src="${x.img}" alt="">
           <div><div class="rn">${esc(x.name)} <span style="color:var(--gold)">PE ${x.pe}</span></div>
-          <div class="rs hint">${x.name==="Snorlax"?"Lead · only 1 weakness in the game, holds Dynamax":x.name==="Kyurem"?"Closer · highest PE, never lead into Dragon/Fighting/Fairy bosses":"Flex · Mega, unlocks 6 types"}</div>
+          <div class="rs hint">${x.name==="Empoleon"?"Lead · Water/Steel Mega, resists half the type chart":x.name==="Kyurem"?"Closer · highest PE 156, keep away from Dragon/Fighting/Fairy bosses":"Flex · Mega, unlocks Fighting Steel Ice Rock Dark Fairy"}</div>
           <div class="pills">${x.types.map(pill).join("")}</div></div></div>`).join("")}</div>
-      <div class="note good">Lead Snorlax to build the gauge safely, Kyurem drops when the boss is worn, Lucario flexes into whatever is left.</div>
+      <div class="note good">Lead Empoleon to build the gauge safely (Mega when worn), Kyurem drops for the big damage, Lucario flexes into whatever is left. Vs Dragon bosses lead Sylveon or Alolan Ninetales instead.</div>
     </div>
     <div class="sect"><h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase;margin:10px 2px">Full roster · ${members.length} tags</h3></div>
     <div class="grid">${members.map(x => {
       const isLead = lead.some(l => l.id === x.id);
-      const why = isLead ? "Opening trio" : /Dynamax/i.test(x.tier||"") ? "Dynamax holder" : /Z[- ]?Move/i.test(x.tier||"") ? "Z-Move one-shot per session" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
-      return card(x, isLead ? "⭐ LEAD" : /Dynamax/i.test(x.tier||"") ? "🔺 DYNAMAX" : /Z[- ]?Move/i.test(x.tier||"") ? "⚡ Z-MOVE" : "◆", why);
+      const why = isLead ? "Opening trio" : x.id === "1-3-016" ? "Dynamax holder (V3)" : x.id === "1-3-014" ? "Z-Move one-shot per session (V3)" : x.id === "1-3-022" ? "V3 Star · PE not measured yet" : /Mega/i.test(x.tier||"") ? "Mega holder" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
+      return card(x, isLead ? "⭐ LEAD" : x.id === "1-3-016" ? "🔺 DYNAMAX" : x.id === "1-3-014" ? "⚡ Z-MOVE" : x.name === "Kyurem" ? "💎 CLOSER" : "◆", why);
     }).join("")}</div>`;
 }
 
