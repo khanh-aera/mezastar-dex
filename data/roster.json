@@ -1,7 +1,7 @@
 {
  "owner": "Khanh Ngo An (khanh-aera)",
  "built": "2026-09-20",
- "count": 33,
+ "count": 34,
  "tags": [
   {
    "id": "1-2-010",
@@ -1002,7 +1002,39 @@
    "version": "Stardust V1",
    "vn": true,
    "img": "img/1-1-013_Umbreon.webp"
+  },
+  {
+   "id": "1-2-002",
+   "name": "Groudon",
+   "types": [
+    "Ground"
+   ],
+   "pe": 152,
+   "grade": "6",
+   "tier": "Superstar Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Fire",
+    "Electric",
+    "Poison",
+    "Rock",
+    "Steel"
+   ],
+   "weak": [
+    "Water",
+    "Grass",
+    "Ice"
+   ],
+   "resist": [
+    "Electric",
+    "Poison",
+    "Rock"
+   ],
+   "img": "img/1-2-002_Groudon.webp",
+   "version": "Stardust V2",
+   "vn": true
   }
  ],
- "updated": "2026-09-30: bought Tyranitar 1-1-005, Metagross 1-2-021, Umbreon 1-1-013"
+ "updated": "2026-09-30: bought Groudon 1-2-002 (6-star)"
 }
