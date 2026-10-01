@@ -288,20 +288,28 @@ function byName(n){ return ROSTER.find(x => x.name === n) || ROSTER[0]; }
 function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x => x.id === i)).filter(Boolean); }
 /* ================= MAIN ROSTER ================= */
 const MAIN_IDS = [
-  /* ---- V1 buys (2026-09-30) ---- */
-  "1-1-005",                       /* Tyranitar 6★ PE144 */
-  "1-1-013",                       /* Umbreon 5★ PE112 */
-  /* ---- V1 case ---- */
-  "1-1-023", "1-1-002",            /* Inteleon, Mew */
-  /* ---- V2 case + buys ---- */
-  "1-2-010", "1-2-007",            /* Kyurem, Gardevoir */
-  "1-2-015", "1-2-016", "1-2-019", "1-2-023", /* Lucario(Mega), Torterra(Mega), A.Ninetales(Mega), Appletun */
-  "1-2-025", "1-2-014", "1-2-018", /* Drednaw, Sylveon, Empoleon */
-  "1-2-012", "1-2-022",            /* Espeon, Flapple */
-  "1-2-021",                       /* Metagross 5★ PE132 (buy) */
-  "1-2-002",                       /* Groudon 6★ PE152 (buy) */
-  /* ---- V3 case ---- */
-  "1-3-014", "1-3-016", "1-3-022"  /* Chandelure, Nidoqueen, Regice */
+  /* ==== SQUAD V3 - core 11 (2026-10-01, ranked vs full V3 field + 5 legends covered) ==== */
+  "1-1-005",                       /* Tyranitar 6★ PE144 - Lugia 432 / Ho-Oh 864 (Dmax) */
+  "1-2-002",                       /* Groudon 6★ PE152 - ground cannon */
+  "1-3-016",                       /* Nidoqueen 5★ PE122 - top field score, Solgaleo 366 (Dmax) */
+  "1-3-014",                       /* Chandelure 5★ PE130 - Lunala 780 / Solgaleo 390 (Z) */
+  "1-1-013",                       /* Umbreon 5★ PE112 - Lunala 448, zero-weakness shield */
+  "1-2-016",                       /* Torterra 5★ PE112 - Solgaleo 336 (Mega) */
+  "1-2-010",                       /* Kyurem 6★ PE156 - long-range Dragon/Ice */
+  "1-2-014",                       /* Sylveon 5★ PE116 - Eternatus 232 */
+  "1-1-002",                       /* Mew 6★ PE142 - flex slot: 109-across bulk, never useless, Eternatus 284 */
+  "1-1-023",                       /* Inteleon 5★ PE108 - Ho-Oh backup 216 */
+  "1-2-019",                       /* A.Ninetales 5★ PE122 - Ice Z deterrent */
+  /* ==== BENCH (rest of the 20, still selectable) ==== */
+  "1-2-007",                       /* Gardevoir 6★ */
+  "1-2-015",                       /* Lucario 5★ (Mega) */
+  "1-2-021",                       /* Metagross 5★ (buy) */
+  "1-2-018",                       /* Empoleon 5★ */
+  "1-2-023",                       /* Appletun 5★ */
+  "1-2-025",                       /* Drednaw 5★ */
+  "1-2-012",                       /* Espeon 5★ */
+  "1-2-022",                       /* Flapple 5★ */
+  "1-3-022"                        /* Regice 5★ */
 ];
 function scoreVsType(members, btype){
   const defTypes = [btype];
