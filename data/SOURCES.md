@@ -27,3 +27,8 @@ Checked 2026-10-02.
 ## Open items
 - V4 stats/moves: no source yet (official site lists names only; no stat pages). Ask arcade community / check sheet updates when V4 tags circulate in Vietnam.
 - `stats_allsets.json` types column should eventually be rebuilt from pool.json for consistency.
+
+## 5. Sheet tier lists ("Min Tags" tabs, same Google Sheet)
+- Tabs S3/S4/G1/G2 Min Tags = per-TYPE coverage tier lists ("Bring any 2 of each type"), tier rows Top Tier / Great / Mediocre / Terrible, cells are tag thumbnail images.
+- S3 (Khanh's version) columns: Fairy, Electric, Ground, Ghost, Dark. Ghost top = Chandelure + Lunala (matches our engine's Chandelure pick vs Solgaleo). Dark top includes Urshifu. Electric top = Zeraora + Pikachu. Images are thumbnails with Chinese tag names - full transcription pending; screenshots saved in docs/data/tierlists/.
+- These tabs are OPINION/coverage guidance from the sheet author, complementary to our brute-force engine (which computes the same kind of answer from stats). Do not feed into the engine as data; use as a cross-check reference.
