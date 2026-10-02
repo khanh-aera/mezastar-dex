@@ -635,12 +635,17 @@ function renderSquad(){
 /* ================= BATTLE MODE ================= */
 /* Candidates: EVERY owned 5/6-star tag (roster + pool merge), not just squad 11. */
 const BATTLE = { foes: [null, null, null] };
-const CANDS = ROSTER.filter(t2 => t2.grade === "5" || t2.grade === "6").map(t2 => {
-  const p = POOL.find(x => x.id === t2.id) || {};
-  const m = Object.assign({}, p, t2);
-  if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
-  return m;
-});
+/* built LAZILY: ROSTER/POOL fill in the boot IIFE after this line runs */
+let CANDS = [];
+function buildCands(){
+  CANDS.length = 0;
+  CANDS.push(...ROSTER.filter(t2 => t2.grade === "5" || t2.grade === "6").map(t2 => {
+    const p = POOL.find(x => x.id === t2.id) || {};
+    const m = Object.assign({}, p, t2);
+    if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
+    return m;
+  }));
+}
 /* scoreOf: one tag vs one enemy - same rules as the popup counter
    (mult tiers, stat shape, survival vs enemy's real sheet moves, gimmick,
    incoming-damage penalty). Returns { s, dmg, mv, sv, inc }. */
@@ -703,6 +708,8 @@ function battleAssign(team, foes){
 /* strongest team: exhaustive C(20,3) = 1140 x 6 pairings, cached scores.
    ~30ms cold, ~10ms warm - fine for a tap. */
 function battleBest(foes){
+  if (!CANDS.length) buildCands();
+  if (CANDS.length < 3 || foes.filter(Boolean).length < 3) return null;
   let best = null;
   const N = CANDS.length;
   for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
@@ -714,14 +721,20 @@ function battleBest(foes){
 /* enemy slot chip + picker sheet (reuses the scrim modal) */
 function renderBattleFoes(){
   const el = $("#battleFoes"); if (!el) return;
-  el.innerHTML = BATTLE.foes.map((f, i2) => `
+  const picked = BATTLE.foes.filter(Boolean).length;
+  el.innerHTML = `<div class="foehead"><span class="foetitle">ENEMY TEAM</span><span class="foesub">${picked}/3${picked < 3 ? " · tap a slot" : ""}</span>${picked ? `<button class="foesclear" id="foesClear">✕</button>` : ""}</div>
+    <div class="foerow">
+    ${BATTLE.foes.map((f, i2) => `
     <div class="foeslot ${f ? "filled" : ""}" data-slot="${i2}">
+      <span class="slotno">${i2 + 1}</span>
       ${f ? `<img src="${esc(f.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
             <div class="fname">${esc(f.name)}</div>
             <div class="ftype">${(f.types || []).map(pill).join(" ")}</div>`
           : `<div class="fname dim">Slot ${i2 + 1}</div><div class="ftype dim">tap to pick</div>`}
-    </div>`).join("");
+    </div>`).join("")}
+    </div>`;
   el.querySelectorAll("[data-slot]").forEach(sl => sl.onclick = () => battlePick(sl.dataset.slot));
+  const fc = $("#foesClear"); if (fc) fc.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
 }
 function battlePick(slot){
   const el = $("#modal");
@@ -756,42 +769,61 @@ function renderBattle(){
   renderBattleFoes();
   const foes = BATTLE.foes.filter(Boolean);
   if (foes.length < 3){
-    el.innerHTML = `<div class="empty">Pick 3 enemy tags above.${foes.length ? ` (${foes.length}/3 picked)` : ""}</div>`;
+    el.innerHTML = `<div class="empty">⚔️ Pick 3 enemy tags above.${foes.length ? ` (${foes.length}/3 picked)` : ""}</div>`;
     return;
   }
   const t0 = performance.now();
   const win = battleBest(BATTLE.foes);
+  if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
   const ms = Math.max(1, Math.round(performance.now() - t0));
+  const verdicts = win.pairs.map(pr => pr.r.sv ? (pr.r.sv.ok ? 1 : -1) : 0);
+  const safe = verdicts.filter(v => v === 1).length, risk = verdicts.filter(v => v === -1).length;
   el.innerHTML = `
-    <div class="glass hero">
-      <div class="role">SUGGESTED TEAM <span class="dim" style="font-size:.75em">(${ms}ms · all ${CANDS.length} 5-6★ checked)</span></div>
+    <div class="arena">
+      <div class="vsline"><span class="mineTag">YOUR 3</span><span class="vsbadge">VS</span><span class="foeTag">ENEMY 3</span></div>
+      <div class="teamstrip">
+        ${win.pairs.map(pr => `
+          <div class="tslot">
+            <img src="${esc(pr.mine.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+            <div class="tsname">${esc(pr.mine.name)}</div>
+            <div class="tspe">PE ${pr.mine.pe ?? "?"} <span class="stars">${stars(pr.mine.grade)}</span></div>
+          </div>`).join("")}
+      </div>
+      <div class="vsfoot ${risk ? "warn" : "clean"}">${risk
+        ? `⚠ ${safe}/3 survive their matchup - risky order matters`
+        : `✔ all 3 survive their matchup`}<span class="dim" style="font-size:.72em"> · ${CANDS.length} tags searched · ${ms}ms</span></div>
     </div>
-    ${win.pairs.map(pr => {
+    ${win.pairs.map((pr, i2) => {
       const r = pr.r;
       const mult = (r.dmg / Math.max(1, pr.mine.pe || 100)).toFixed(1);
-      return `<article class="card pair">
-        <div class="halo"></div>
-        <div class="pcol mine">
-          <img src="${esc(pr.mine.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
-          <div class="cname">${esc(pr.mine.name)} <span class="stars">${stars(pr.mine.grade)}</span></div>
-          <div class="hint">PE ${pr.mine.pe ?? "?"}</div>
+      const ratio = Math.min(100, Math.round(r.dmg / Math.max(1, r.dmg, 900) * 100));
+      return `<article class="matchup ${r.sv ? (r.sv.ok ? "ok" : "danger") : ""}">
+        <div class="mrow">
+          <div class="mside me">
+            <img src="${esc(pr.mine.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+            <div class="msname">${esc(pr.mine.name)}</div>
+            <div class="mstypes">${(pr.mine.types || []).map(pill).join(" ")}</div>
+          </div>
+          <div class="mvs">VS</div>
+          <div class="mside them">
+            <img src="${esc(pr.foe.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+            <div class="msname">${esc(pr.foe.name)}</div>
+            <div class="mstypes">${(pr.foe.types || []).map(pill).join(" ")}</div>
+          </div>
         </div>
-        <div class="pvs">→</div>
-        <div class="pcol foe">
-          <div class="cname">${esc(pr.foe.name)}</div>
-          <div class="hint">${(pr.foe.types || []).map(pill).join(" ")}</div>
+        <div class="mverdict ${r.sv ? (r.sv.ok ? "good" : "bad") : ""}">${r.sv ? (r.sv.ok
+          ? `🛡 survives ${esc(r.sv.worstMv || "hits")} · spare ${Math.round(r.sv.spare)}`
+          : `☠ DIES to ${esc(r.sv.worstMv || "hits")} · short ${Math.round(-r.sv.spare)}`) : ""}</div>
+        <div class="mnum">
+          <span class="mvname">${esc(r.mv)}</span>
+          <span class="mdmg">${Math.round(r.dmg)}<small>dmg</small></span>
+          <span class="mmult">${mult}x</span>
+          <span class="minc">${r.inc}x taken</span>
         </div>
-        <div class="pnum">
-          <div class="dmg">${Math.round(r.dmg)} dmg</div>
-          <div class="hint">${esc(r.mv)} (${mult}x)</div>
-          <div class="hint ${r.sv ? (r.sv.ok ? "good" : "bad") : ""}">${r.sv ? (r.sv.ok
-            ? `🛡 survives ${esc(r.sv.worstMv || "hits")} (spare ${Math.round(r.sv.spare)})`
-            : `☠ DIES to ${esc(r.sv.worstMv || "hits")} (short ${Math.round(-r.sv.spare)})`) : ""}</div>
-          <div class="hint">takes ${r.inc}x from this foe</div>
-        </div>
+        <div class="mbar"><i style="width:${ratio}%"></i></div>
       </article>`;
     }).join("")}
-    <div class="btnrow"><button class="btn" id="battleAgain">Battle again</button></div>`;
+    <div class="btnrow"><button class="btn" id="battleAgain">⚔️ New battle</button></div>`;
   const ba = $("#battleAgain"); if (ba) ba.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
 }
 
