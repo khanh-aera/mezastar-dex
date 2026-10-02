@@ -288,28 +288,19 @@ function byName(n){ return ROSTER.find(x => x.name === n) || ROSTER[0]; }
 function teamMembers(){ return TEAM.map(i => i === null ? null : ROSTER.find(x => x.id === i)).filter(Boolean); }
 /* ================= MAIN ROSTER ================= */
 const MAIN_IDS = [
-  /* ==== SQUAD V3 - core 11 (2026-10-01, ranked vs full V3 field + 5 legends covered) ==== */
-  "1-1-005",                       /* Tyranitar 6★ PE144 - Lugia 432 / Ho-Oh 864 (Dmax) */
-  "1-2-002",                       /* Groudon 6★ PE152 - ground cannon */
-  "1-3-016",                       /* Nidoqueen 5★ PE122 - top field score, Solgaleo 366 (Dmax) */
-  "1-3-014",                       /* Chandelure 5★ PE130 - Lunala 780 / Solgaleo 390 (Z) */
-  "1-1-013",                       /* Umbreon 5★ PE112 - Lunala 448, zero-weakness shield */
-  "1-2-016",                       /* Torterra 5★ PE112 - Solgaleo 336 (Mega) */
-  "1-2-010",                       /* Kyurem 6★ PE156 - long-range Dragon/Ice */
-  "1-2-014",                       /* Sylveon 5★ PE116 - Eternatus 232 */
-  "1-1-002",                       /* Mew 6★ PE142 - flex slot: 109-across bulk, never useless, Eternatus 284 */
-  "1-1-023",                       /* Inteleon 5★ PE108 - Ho-Oh backup 216 */
-  "1-2-019",                       /* A.Ninetales 5★ PE122 - Ice Z deterrent */
-  /* ==== BENCH (rest of the 20, still selectable) ==== */
-  "1-2-007",                       /* Gardevoir 6★ */
-  "1-2-015",                       /* Lucario 5★ (Mega) */
-  "1-2-021",                       /* Metagross 5★ (buy) */
-  "1-2-018",                       /* Empoleon 5★ */
-  "1-2-023",                       /* Appletun 5★ */
-  "1-2-025",                       /* Drednaw 5★ */
-  "1-2-012",                       /* Espeon 5★ */
-  "1-2-022",                       /* Flapple 5★ */
-  "1-3-022"                        /* Regice 5★ */
+  /* ==== THE SQUAD 11 (2026-10-02: brute-forced optimal over C(20,11)=167,960,
+         beats all 70 V3 bosses, every boss has a surviving answer) ==== */
+  "1-1-005",  /* Tyranitar 6★ PE144 - Lugia 432 / Ho-Oh 864 */
+  "1-2-002",  /* Groudon 6★ PE152 - SPARE: tankiest, safe vs everything */
+  "1-3-016",  /* Nidoqueen 5★ PE122 - Zeraora/Eternatus 366 (Dynamax) */
+  "1-3-014",  /* Chandelure 5★ PE130 - Solgaleo 390 / Lunala 780 (Z-Move) */
+  "1-1-013",  /* Umbreon 5★ PE112 - Lunala 448, zero-weakness shield */
+  "1-2-016",  /* Torterra 5★ PE112 - Solgaleo 336 (Mega) */
+  "1-1-002",  /* Mew 6★ PE142 - Keldeo 284, 109-across flex */
+  "1-2-019",  /* A.Ninetales 5★ PE122 - Zygarde 732 (Ice Z) */
+  "1-2-015",  /* Lucario 5★ PE118 - Greninja 236 (Mega) */
+  "1-2-021",  /* Metagross 5★ PE132 - Grimmsnarl 396 */
+  "1-2-023"   /* Appletun 5★ PE110 - Swampert 440 */
 ];
 function scoreVsType(members, btype){
   const defTypes = [btype];
@@ -542,7 +533,7 @@ function renderLoadout(){
       <div class="pills">${x.types.map(pill).join("")}</div>
       <div class="hint" style="margin-top:4px">${why}</div>
     </article>`;
-  const lead = ["Empoleon","Kyurem","Lucario"].map(n => members.find(x => x.name === n)).filter(Boolean);
+  const lead = ["Tyranitar","Nidoqueen","Chandelure"].map(n => members.find(x => x.name === n)).filter(Boolean);
   el.innerHTML = `
     <div class="glass hero">
       <div class="role" style="margin-bottom:8px">Pick a boss type · get your 3 strongest</div>
@@ -554,15 +545,15 @@ function renderLoadout(){
       <div class="setrow">${lead.map(x => `
         <div class="setcard glass"><img src="${x.img}" alt="">
           <div><div class="rn">${esc(x.name)} <span style="color:var(--gold)">PE ${x.pe}</span></div>
-          <div class="rs hint">${x.name==="Empoleon"?"Lead · Water/Steel Mega, resists half the type chart":x.name==="Kyurem"?"Closer · highest PE 156, keep away from Dragon/Fighting/Fairy bosses":"Flex · Mega, unlocks Fighting Steel Ice Rock Dark Fairy"}</div>
+          <div class="rs hint">${x.name==="Tyranitar"?"Open · Rock/Dark, resists Flying and Psychic, survives everything in V3":x.name==="Nidoqueen"?"Dynamax holder · Ground beats Electric Poison Rock Steel, fires Max Quake":"Z-Move holder · Ghost hits Psychic and Ghost bosses for 2x, Never-Ending Nightmare one-shot"}</div>
           <div class="pills">${x.types.map(pill).join("")}</div></div></div>`).join("")}</div>
-      <div class="note good">Lead Empoleon to build the gauge safely (Mega when worn), Kyurem drops for the big damage, Lucario flexes into whatever is left. Vs Dragon bosses lead Sylveon or Alolan Ninetales instead.</div>
+      <div class="note good">Lead Tyranitar to build the gauge safely (no 2x weakness to exploit), Nidoqueen holds the Dynamax for the boss that needs it, Chandelure holds the Z-Move. Tap any Hunt List boss for the exact answer.</div>
     </div>
     <div class="sect"><h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase;margin:10px 2px">Full roster · ${members.length} tags</h3></div>
     <div class="grid">${members.map(x => {
       const isLead = lead.some(l => l.id === x.id);
       const why = isLead ? "Opening trio" : x.id === "1-3-016" ? "Dynamax holder (V3)" : x.id === "1-3-014" ? "Z-Move one-shot per session (V3)" : x.id === "1-3-022" ? "V3 Star · PE not measured yet" : /Mega/i.test(x.tier||"") ? "Mega holder" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
-      return card(x, isLead ? "⭐ LEAD" : x.id === "1-3-016" ? "🔺 DYNAMAX" : x.id === "1-3-014" ? "⚡ Z-MOVE" : x.name === "Kyurem" ? "💎 CLOSER" : "◆", why);
+      return card(x, isLead ? "⭐ LEAD" : x.id === "1-3-016" ? "🔺 DYNAMAX" : x.id === "1-3-014" ? "⚡ Z-MOVE" : x.id === "1-1-005" ? "⭐ OPEN" : "◆", why);
     }).join("")}</div>`;
   state.rcType = state.rcType || null;
   renderRosterTypes(members); renderTypeCounter(members);
@@ -609,7 +600,7 @@ function renderSquad(){
   el.innerHTML = `
     <div class="glass hero">
       <div class="role">V3 bosses · which pokemon to use</div>
-      <div class="note">Slide in the ▶ tag. ② = backup.</div>
+      <div class="note">Slide in the ▶ tag. ② = backup. Tap a boss for full detail.</div>
     </div>
     <div class="grid">
     ${list.map(b => {
@@ -618,7 +609,7 @@ function renderSquad(){
       const r = rows[0]; if (!r) return "";
       const sv = r.surv, alt = rows[1];
       const mult = (r.dmg / Math.max(1, r.x.pe || 100)).toFixed(1);
-      return `<article class="card pool">
+      return `<article class="card pool" data-boss="${esc(b.id)}" style="cursor:pointer">
         <div class="halo"></div>
         <div class="stars">${stars(b.grade)}</div>
         ${b.img ? `<img src="${b.img}" alt="${esc(b.name)}" loading="lazy">` : ""}
@@ -635,6 +626,10 @@ function renderSquad(){
     }).join("")}
     ${list.length ? "" : `<div class="empty">No boss matches that.</div>`}
   </div>`;
+  el.querySelectorAll("[data-boss]").forEach(c => c.onclick = () => {
+    const tag = POOL.find(z2 => z2.id === c.dataset.boss);
+    if (tag) openCounterPopup(tag);
+  });
 }
 
 /* ================= STATS & TOOLS ================= */
@@ -703,7 +698,7 @@ function renderStats(){
       ${Object.entries(trig).map(([k,v]) => `<div class="route"><div style="flex:1"><div class="rn">${k}</div>
         <div class="rs">${v.length ? v.map(x => esc(x.name)).join(", ") : "none in the binder"}</div></div>
         <div class="badge" style="background:${v.length?GRAD[5]:"rgba(255,255,255,.1)"}">${v.length}</div></div>`).join("")}
-      <div class="hint" style="margin-top:6px">One of each per session. Snorlax holds Dynamax, Lucario holds Mega, Torterra or Empoleon hold the Z Move.</div>
+      <div class="hint" style="margin-top:6px">One of each per session. Nidoqueen holds Dynamax, Lucario or Torterra holds Mega, Chandelure holds the Z Move.</div>
     </div>
     <div class="glass hero"><div class="role">${t("budget")}</div>
       <div class="kv">
@@ -975,7 +970,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#sCount").textContent = ROSTER.length;
     $("#sPe").textContent = ROSTER.reduce((s,x) => s + x.pe, 0);
     $("#sType").textContent = [...new Set(ROSTER.flatMap(x => x.types))].length;
-    const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
+    const quick = ["Lugia","Ho-Oh","Solgaleo","Lunala","Eternatus","Zygarde","Greninja","Keldeo","Zeraora","Grimmsnarl","Tyranitar","Chandelure"];
             document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderLoadout();
         renderSquad(); renderStats();
