@@ -666,6 +666,92 @@ function renderHuntSummary(){
   $("#huntSummary").querySelectorAll("[data-w]").forEach(b => b.onclick = () => toggleWish(b.dataset.w, b));
 }
 
+
+/* ============================================================
+   V3 SQUAD 11 - the 11 tags that beat ALL 70 Stardust V3 bosses.
+   Brute-forced over C(20,11)=167,960 combinations of the owned tags, scored with
+   the same bestVsTag math the popup uses. Damage fills the Get Gauge and a dead
+   tag stops filling it, so each boss is scored by the best squad tag that both
+   hits hard AND survives the boss's heaviest move (0.3x discount if it dies).
+   Result: 70/70 bosses covered, 0 without a surviving answer.
+   Groudon + Torterra have ZERO marginal value - they are deliberate spares so a
+   tag lost mid-run does not break coverage.
+   ============================================================ */
+const SQUAD11 = ["1-1-005","1-2-002","1-3-016","1-3-014","1-1-013","1-2-016",
+                 "1-1-002","1-2-019","1-2-015","1-2-021","1-2-023"];
+const SQUAD11_SPARE = ["1-2-002","1-2-016"];              /* zero marginal value */
+const SQUAD11_COMBOS = 167960;                           /* C(20,11) */
+function squadMembers(){
+  return SQUAD11.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
+}
+/* every V3 6-star/5-star boss + which squad tag answers it best */
+function squadCoverage(){
+  const bosses = POOL.filter(p => String(p.id).indexOf("1-3-") === 0 && (p.grade === "6" || p.grade === "5"));
+  return bosses.map(b => {
+    const rows = bestVsTagRows(b).filter(r => SQUAD11.indexOf(r.x.id) >= 0);
+    rows.sort((a, c) => (c.s - a.s) || (c.dmg - a.dmg));
+    return { boss: b, rows: rows };
+  });
+}
+function renderSquad(){
+  const el = $("#squadBox"); if (!el) return;
+  const squad = squadMembers();
+  const cov = squadCoverage();
+  const six = cov.filter(c => c.boss.grade === "6").sort((a, b) => b.rows[0].dmg - a.rows[0].dmg);
+  const safe = cov.filter(c => c.rows[0] && c.rows[0].surv && c.rows[0].surv.ok).length;
+  const totalPE = squad.reduce((s, x) => s + (x.pe || 0), 0);
+  el.innerHTML = `
+    <div class="glass hero">
+      <div class="role">V3 squad · 11 tags that beat every Stardust V3 boss</div>
+      <div class="hint"><b>${cov.length} V3 bosses</b> (6★ + 5★) covered ·
+        <span style="color:var(--lime)">${safe}/${cov.length} have a tag that survives</span> ·
+        squad PE ${totalPE}</div>
+      <div class="note">Damage fills the Get Gauge and a dead tag stops filling it, so each boss is scored by the
+        best squad tag that both hits hard and survives the boss's heaviest move. Brute-forced over all
+        ${SQUAD11_COMBOS.toLocaleString()} combinations of your owned tags.</div>
+    </div>
+    <div class="sect"><h3>★6 Superstars · which tag to slide in</h3>
+      <div class="grid">
+        ${six.map(c => {
+          const r = c.rows[0]; if (!r) return "";
+          const sv = r.surv, alt = c.rows[1];
+          const mult = (r.dmg / Math.max(1, r.x.pe || 100)).toFixed(1);
+          return `<article class="card pool">
+            <div class="halo"></div>
+            <div class="stars">${stars(c.boss.grade)}</div>
+            ${c.boss.img ? `<img src="${c.boss.img}" alt="${esc(c.boss.name)}" loading="lazy">` : ""}
+            <span class="ownbadge no">boss</span>
+            <div class="cname">${esc(c.boss.name)}</div>
+            <div class="cid">${esc(c.boss.id)}</div>
+            <div class="pills">${c.boss.types.map(pill).join("")}</div>
+            <div class="cid" style="margin-top:6px;color:var(--text)">▶ ${esc(r.x.name)} · ${esc(r.mvName || "")} · ${Math.round(r.dmg)} dmg (${mult}x)</div>
+            <div class="cid" style="color:${(sv && sv.ok) ? "var(--lime)" : "var(--hot)"}">${(sv && sv.ok)
+              ? `survives ${esc(sv.worstMv || "boss hits")} · spare ${Math.round(sv.spare)}`
+              : "dies to the boss big move"}</div>
+            ${alt ? `<div class="cid">2nd ${esc(alt.x.name)} · ${Math.round(alt.dmg)}</div>` : ""}
+          </article>`;
+        }).join("")}
+      </div>
+    </div>
+    <div class="sect"><h3>Your squad</h3><div class="grid">
+      ${squad.map(x => {
+        const spare = SQUAD11_SPARE.indexOf(x.id) >= 0;
+        const mv = (x.moves || [])[0] || {};
+        return `<article class="card pool owned" style="--glow:${(TYPE_COLOR[x.types[0]] || "#7aa2ff")}">
+          <div class="pe">PE ${x.pe || "?"}</div>
+          <div class="stars">${stars(x.grade)}</div>
+          ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : ""}
+          <span class="ownbadge">${spare ? "spare" : "squad"}</span>
+          <div class="cname">${esc(x.name)}</div>
+          <div class="cid">${esc(x.id)}</div>
+          <div class="pills">${x.types.map(pill).join("")}</div>
+          ${mv.name ? `<div class="cid">${esc(mv.name)}</div>` : ""}
+        </article>`;
+      }).join("")}
+    </div></div>`;
+}
+
+
 /* ================= STATS & TOOLS ================= */
 const TIPS = [
  "Kill the boss on turn 2, not turn 3. Rotating bosses fast is how you meet 6★ tags.",
@@ -957,7 +1043,7 @@ function tab(name){
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
-  if (name === "hunt"){ renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); }
+  if (name === "hunt"){ renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderSquad(); }
   if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
@@ -1011,7 +1097,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
             document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderLoadout();
-        renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderStats();
+        renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderSquad(); renderStats();
         // translate ticket filter buttons
         document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
           const key = b.dataset.f; b.textContent = t(key);
