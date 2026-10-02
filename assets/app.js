@@ -44,7 +44,7 @@ const LS = {
   set(k, v){ try { localStorage.setItem("meza."+k, JSON.stringify(v)); } catch(e){} }
 };
 
-let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
+let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = []; let MOVE_AR = {};  /* per-move attack roulette multipliers (MovesAR tab) */
 let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
 let pstate = { q:"" };   /* hunt tab: only a boss-name filter */   /* grade null=all, "5", "6" */
 let ALLSETS = false;
@@ -405,6 +405,8 @@ function bestStrike(x, defTypes){
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
     let d = (x.pe || 100) * moveMult(mv.type, defTypes);
+    const arInfo = MOVE_AR[mv.name];
+    if (arInfo && arInfo.ar){ d *= (arInfo.ar / 100); }   /* real attack-roulette multiplier per move (100 = neutral) */
     if (mv.gimmick){ d *= 1.5; gimmick = true; }          /* Z/Dmax move: once per battle but huge */
     if (d > dmg){ dmg = d; mvName = mv.name; }
   }
@@ -418,7 +420,9 @@ function bestStrike(x, defTypes){
     let worst = 0, worstMv = "";
     for (const bm of [boss.move1, boss.move2].filter(Boolean)){
       if (!bm || !bm.type) continue;
-      const d = (boss.pe || 100) * moveMult(bm.type, x.types);
+      let d = (boss.pe || 100) * moveMult(bm.type, x.types);
+      const bar = MOVE_AR[bm.name];
+      if (bar && bar.ar){ d *= (bar.ar / 100); }
       if (d > worst){ worst = d; worstMv = bm.name; }
     }
     survival = { ehp, worst, worstMv, ok: ehp > worst, spare: ehp - worst };
@@ -1149,16 +1153,17 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
   try{
-    const [ro, po, bo, tc, sst, spr, px] = await Promise.all([
+    const [ro, po, bo, tc, sst, mar, spr, px] = await Promise.all([
           fetch("data/roster.json").then(r => r.json()),
           fetch("data/pool.json").then(r => r.json()),
           fetch("data/bosses.json").then(r => r.json()),
           fetch("data/typechart.json").then(r => r.json()),
           fetch("data/stats_allsets.json").then(r => r.json()).catch(() => []),
+          fetch("data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({})),
           fetch("island/data/sprites.json").then(r => r.json()).catch(() => ({})),
           fetch("island/data/pokedex.json").then(r => r.json()).catch(() => ({}))
         ]);
-        ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types;
+        ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types; MOVE_AR = mar || {};
         window.STATS_BY_ID = {}; (sst || []).forEach(s => { if (s && s.id) window.STATS_BY_ID[s.id] = s; });
         /* 2D game sprite + Pokédex info per tag (matched by Pokémon name) */
         ROSTER.forEach(x => {

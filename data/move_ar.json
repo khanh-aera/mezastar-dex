@@ -1,0 +1,566 @@
+{
+ "source": "Kaizen Hayashi sheet 'Moves AR' tab (harvested 2026-10-03)",
+ "meaning": "per move: count of tags carrying it + attack roulette multiplier (percent, 100 = neutral). Slot patterns per move class: 10/35/50, 10/20/50, 5/10/50, 10/20/35, 5/10/20.",
+ "moves": {
+  "Draco Meteor": {
+   "count": 1,
+   "ar": 130.0
+  },
+  "Apple Acid": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Dragon Energy": {
+   "count": 1,
+   "ar": 150.0
+  },
+  "Aeroblast": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Air Slash": {
+   "count": 1,
+   "ar": 75.0
+  },
+  "Leaf Storm": {
+   "count": 5,
+   "ar": 130.0
+  },
+  "Astral Barrage": {
+   "count": 1,
+   "ar": 120.0
+  },
+  "Giga Impact": {
+   "count": 2,
+   "ar": 150.0
+  },
+  "Aura Sphere": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Ancient Power": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Blizzard": {
+   "count": 6,
+   "ar": 110.0
+  },
+  "Glacial Lance": {
+   "count": 1,
+   "ar": 130.0
+  },
+  "Behemoth Bash": {
+   "count": 2,
+   "ar": 100.0
+  },
+  "Assurance": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Brave Bird": {
+   "count": 2,
+   "ar": 120.0
+  },
+  "Head Smash": {
+   "count": 1,
+   "ar": 150.0
+  },
+  "Behemoth Blade": {
+   "count": 2,
+   "ar": 100.0
+  },
+  "Astonish": {
+   "count": 1,
+   "ar": 30.0
+  },
+  "Close Combat": {
+   "count": 2,
+   "ar": 120.0
+  },
+  "Meteor Assault": {
+   "count": 1,
+   "ar": 150.0
+  },
+  "Blaze Kick": {
+   "count": 1,
+   "ar": 85.0
+  },
+  "Aurora Beam": {
+   "count": 2,
+   "ar": 65.0
+  },
+  "Dark Pulse": {
+   "count": 4,
+   "ar": 80.0
+  },
+  "Roar of Time": {
+   "count": 1,
+   "ar": 150.0
+  },
+  "Bug Buzz": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Bite": {
+   "count": 2,
+   "ar": 60.0
+  },
+  "Dazzling Gleam": {
+   "count": 3,
+   "ar": 80.0
+  },
+  "Thunder Cage": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Bullet Seed": {
+   "count": 1,
+   "ar": 77.5
+  },
+  "Breaking Swipe": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Fire Blast": {
+   "count": 1,
+   "ar": 110.0
+  },
+  "Collision Course": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Brick Break": {
+   "count": 2,
+   "ar": 75.0
+  },
+  "Flamethrower": {
+   "count": 4,
+   "ar": 90.0
+  },
+  "Core Enforcer": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Bulldoze": {
+   "count": 4,
+   "ar": 60.0
+  },
+  "Flare Blitz": {
+   "count": 1,
+   "ar": 120.0
+  },
+  "Cross Chop": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Disarming Voice": {
+   "count": 1,
+   "ar": 40.0
+  },
+  "Focus Blast": {
+   "count": 4,
+   "ar": 120.0
+  },
+  "Dig": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Double Kick": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Hurricane": {
+   "count": 2,
+   "ar": 110.0
+  },
+  "Discharge": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Dragon Breath": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Hydro Pump": {
+   "count": 5,
+   "ar": 110.0
+  },
+  "Dive": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Draining Kiss": {
+   "count": 1,
+   "ar": 50.0
+  },
+  "Outrage": {
+   "count": 1,
+   "ar": 120.0
+  },
+  "Dragon Claw": {
+   "count": 3,
+   "ar": 80.0
+  },
+  "Ember": {
+   "count": 3,
+   "ar": 40.0
+  },
+  "Psychic": {
+   "count": 7,
+   "ar": 90.0
+  },
+  "Dragon Pulse": {
+   "count": 1,
+   "ar": 85.0
+  },
+  "Fire Punch": {
+   "count": 2,
+   "ar": 75.0
+  },
+  "Solar Beam": {
+   "count": 1,
+   "ar": 120.0
+  },
+  "Dragon Rush": {
+   "count": 2,
+   "ar": 100.0
+  },
+  "Flame Wheel": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Spirit Break": {
+   "count": 2,
+   "ar": 75.0
+  },
+  "Drill Run": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Freeze-Dry": {
+   "count": 1,
+   "ar": 70.0
+  },
+  "Thunder": {
+   "count": 2,
+   "ar": 110.0
+  },
+  "Drum Beating": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Giga Drain": {
+   "count": 1,
+   "ar": 75.0
+  },
+  "Dual Chop": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Gust": {
+   "count": 1,
+   "ar": 40.0
+  },
+  "Dynamax Cannon": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Headbutt": {
+   "count": 1,
+   "ar": 70.0
+  },
+  "Earth Power": {
+   "count": 2,
+   "ar": 90.0
+  },
+  "Hex": {
+   "count": 5,
+   "ar": 65.0
+  },
+  "Earthquake": {
+   "count": 7,
+   "ar": 100.0
+  },
+  "Hidden Power": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Electro Drift": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Ice Fang": {
+   "count": 1,
+   "ar": 65.0
+  },
+  "Icy Wind": {
+   "count": 2,
+   "ar": 55.0
+  },
+  "Flash Cannon": {
+   "count": 3,
+   "ar": 80.0
+  },
+  "Incinerate": {
+   "count": 2,
+   "ar": 60.0
+  },
+  "Fusion Bolt": {
+   "count": 3,
+   "ar": 100.0
+  },
+  "Leaf Tornado": {
+   "count": 2,
+   "ar": 65.0
+  },
+  "Fusion Flare": {
+   "count": 3,
+   "ar": 100.0
+  },
+  "Leafage": {
+   "count": 4,
+   "ar": 40.0
+  },
+  "Ice Beam": {
+   "count": 2,
+   "ar": 90.0
+  },
+  "Low Sweep": {
+   "count": 2,
+   "ar": 65.0
+  },
+  "Icicle Crash": {
+   "count": 1,
+   "ar": 85.0
+  },
+  "Mud Shot": {
+   "count": 1,
+   "ar": 55.0
+  },
+  "Icicle Spear": {
+   "count": 1,
+   "ar": 77.5
+  },
+  "Night Slash": {
+   "count": 4,
+   "ar": 70.0
+  },
+  "Iron Head": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Nuzzle": {
+   "count": 1,
+   "ar": 20.0
+  },
+  "Iron Tail": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Peck": {
+   "count": 2,
+   "ar": 35.0
+  },
+  "Land's Wrath": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Pluck": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Lava Plume": {
+   "count": 2,
+   "ar": 80.0
+  },
+  "Powder Snow": {
+   "count": 1,
+   "ar": 40.0
+  },
+  "Leaf Blade": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Psybeam": {
+   "count": 3,
+   "ar": 65.0
+  },
+  "Meteor Mash": {
+   "count": 2,
+   "ar": 90.0
+  },
+  "Razor Leaf": {
+   "count": 1,
+   "ar": 55.0
+  },
+  "Moonblast": {
+   "count": 2,
+   "ar": 95.0
+  },
+  "Sand Tomb": {
+   "count": 1,
+   "ar": 35.0
+  },
+  "Moongeist Beam": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Scale Shot": {
+   "count": 1,
+   "ar": 77.5
+  },
+  "Muddy Water": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Scratch": {
+   "count": 1,
+   "ar": 40.0
+  },
+  "Overdrive": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Sludge": {
+   "count": 1,
+   "ar": 65.0
+  },
+  "Plasma Fists": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Snarl": {
+   "count": 1,
+   "ar": 55.0
+  },
+  "Play Rough": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Spark": {
+   "count": 2,
+   "ar": 65.0
+  },
+  "Steel Wing": {
+   "count": 1,
+   "ar": 70.0
+  },
+  "Psyshock": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Stomping Tantrum": {
+   "count": 3,
+   "ar": 75.0
+  },
+  "Psystrike": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Sucker Punch": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Pyro Ball": {
+   "count": 2,
+   "ar": 120.0
+  },
+  "Tackle": {
+   "count": 3,
+   "ar": 50.0
+  },
+  "Rock Blast": {
+   "count": 1,
+   "ar": 77.5
+  },
+  "Thunder Punch": {
+   "count": 1,
+   "ar": 75.0
+  },
+  "Sacred Fire": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Thunder Shock": {
+   "count": 3,
+   "ar": 40.0
+  },
+  "Sacred Sword": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Water Gun": {
+   "count": 2,
+   "ar": 40.0
+  },
+  "Secret Sword": {
+   "count": 2,
+   "ar": 85.0
+  },
+  "Water Pulse": {
+   "count": 1,
+   "ar": 60.0
+  },
+  "Shadow Ball": {
+   "count": 3,
+   "ar": 80.0
+  },
+  "Shadow Claw": {
+   "count": 2,
+   "ar": 70.0
+  },
+  "Snipe Shot": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Spacial Rend": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Stone Edge": {
+   "count": 3,
+   "ar": 100.0
+  },
+  "Strength": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Sunsteel Strike": {
+   "count": 1,
+   "ar": 100.0
+  },
+  "Surging Strikes": {
+   "count": 1,
+   "ar": 75.0
+  },
+  "Throat Chop": {
+   "count": 2,
+   "ar": 80.0
+  },
+  "Thunderbolt": {
+   "count": 8,
+   "ar": 90.0
+  },
+  "Water Shuriken": {
+   "count": 1,
+   "ar": 46.5
+  },
+  "Waterfall": {
+   "count": 3,
+   "ar": 80.0
+  },
+  "Wizked Blow": {
+   "count": 1,
+   "ar": 80.0
+  },
+  "Wild Charge": {
+   "count": 1,
+   "ar": 90.0
+  },
+  "Zen Headbutt": {
+   "count": 1,
+   "ar": 80.0
+  }
+ }
+}
