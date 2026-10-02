@@ -97,7 +97,7 @@ function incomingMult(bossTypes, mine){
 }
 /* per boss MOVE type: product over the tag's defensive types (catches 4x quads) */
 function incMoveMult(bossTypes, mine){
-  let best = 1;
+  let best = 0;  /* 0 = fully immune to everything this enemy has - real advantage, never floor to 1 */
   for (const bt of bossTypes){
     let m = 1;
     for (const d of mine) m *= (CHART[bt]?.[d] ?? 1);
@@ -393,7 +393,7 @@ function mainMembers(){
 /* ==== move-based damage (v30 data: moves have real types) ==== */
 function moveMult(moveType, defTypes){
   let m = 1;
-  for (const b of (defTypes || [])) m *= (CHART[moveType] && CHART[moveType][b]) || 1;
+  for (const b of (defTypes || [])) m *= (CHART[moveType] && CHART[moveType][b] !== undefined) ? CHART[moveType][b] : 1;  /* keeps 0x immunities - never || 1 */
   return m;
 }
 /* best strike of a member vs target - considers EVERY stat on the tag:
@@ -642,6 +642,10 @@ function buildCands(){
   CANDS.push(...ROSTER.filter(t2 => t2.grade === "5" || t2.grade === "6").map(t2 => {
     const p = POOL.find(x => x.id === t2.id) || {};
     const m = Object.assign({}, p, t2);
+    /* roster rows can hold null/"" fields (V3 pe unknown in roster) - pool wins there */
+    for (const k of ["pe","hp","atk","dfn","spa","spd","spe"]){
+      if (m[k] === null || m[k] === undefined || m[k] === "") m[k] = p[k];
+    }
     if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
     return m;
   }));
