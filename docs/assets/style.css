@@ -426,3 +426,33 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 
 #rosterTypes .ticonsvg{width:26px;height:26px;fill:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))}
 @media (max-width:380px){#rosterTypes .ticonsvg{width:22px;height:22px}}
+
+
+/* ==== BATTLE MODE ==== */
+.battlefoes{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.foeslot{ background:var(--glass); border:1px dashed var(--stroke); border-radius:var(--radius-sm);
+  padding:12px 8px; text-align:center; cursor:pointer; min-height:92px; display:flex; flex-direction:column; align-items:center; gap:4px; }
+.foeslot.filled{ border-style:solid; border-color:rgba(255,215,106,.45); }
+.foeslot img{ width:52px; height:52px; object-fit:contain; }
+.foeslot .fname{ font-weight:600; font-size:.9em; }
+.foeslot .ftype{ font-size:.72em; }
+.dim{ opacity:.55; }
+.card.pair{ display:grid; grid-template-columns:1fr 34px 1fr; gap:6px; align-items:center; margin-bottom:12px; }
+.pcol{ text-align:center; min-width:0; }
+.pcol img{ width:64px; height:64px; object-fit:contain; }
+.pvs{ font-size:1.5em; color:var(--gold); text-align:center; }
+.pnum{ grid-column:1 / -1; text-align:center; padding-top:4px; border-top:1px solid var(--stroke-soft); }
+.pnum .dmg{ font-weight:800; font-size:1.15em; color:var(--gold); }
+.hint.good{ color:var(--lime); }
+.hint.bad{ color:var(--hot); }
+.modalhead{ display:flex; justify-content:space-between; align-items:center; font-weight:700; margin-bottom:10px; }
+.xbtn{ background:none; border:none; color:var(--text); font-size:1.2em; cursor:pointer; }
+.bsearch{ width:100%; padding:10px 14px; border-radius:12px; border:1px solid var(--stroke);
+  background:var(--bg2); color:var(--text); margin-bottom:10px; font:inherit; }
+.plist{ max-height:46vh; overflow:auto; display:flex; flex-direction:column; gap:6px; }
+.pitem{ display:flex; justify-content:space-between; align-items:center; gap:10px; width:100%;
+  padding:10px 12px; border-radius:12px; border:1px solid var(--stroke-soft); background:var(--glass);
+  color:var(--text); cursor:pointer; font:inherit; text-align:left; }
+.pitem:active{ background:var(--glass-strong); }
+.psub{ opacity:.6; font-size:.78em; white-space:nowrap; }
+.btnrow{ display:flex; justify-content:center; margin-top:6px; }

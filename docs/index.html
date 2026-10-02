@@ -44,6 +44,7 @@
       <button class="on" data-tab="binder">My Binder</button>
       <button data-tab="load">Main Roster</button>
       <button data-tab="hunt">Hunt List</button>
+      <button data-tab="battle">⚔️ Battle</button>
       <button data-tab="stats">Stats</button>
       <button data-tab="tickets">🎫 Support</button>
     </nav>
@@ -57,6 +58,7 @@
     <button class="dlink on" data-tab="binder"><span class="di">📇</span> My Binder</button>
     <button class="dlink" data-tab="load"><span class="di">🏆</span> Main Roster</button>
     <button class="dlink" data-tab="hunt"><span class="di">🧭</span> Hunt List</button>
+    <button class="dlink" data-tab="battle"><span class="di">⚔️</span> Battle Mode</button>
         <button class="dlink" data-tab="stats"><span class="di">📊</span> Stats</button>
         <button class="dlink" data-tab="tickets"><span class="di">🎫</span> Support Tickets</button>
         <div class="dsect">Quick bosses</div>
@@ -95,6 +97,15 @@
     <div id="squadBox"><div class="spin"></div></div>
   </section>
 
+  <!-- ============ BATTLE MODE ============ -->
+    <section class="panel" id="p-battle">
+      <div class="glass hero">
+        <div class="role">3v3 Battle Mode</div>
+        <div class="note">Pick the 3 enemy tags. I pick the strongest 3 from every 5-6★ you own and who fights who.</div>
+      </div>
+      <div class="battlefoes" id="battleFoes"></div>
+      <div id="battleBox"><div class="empty">Loading…</div></div>
+    </section>
   <!-- ============ STATS & TOOLS ============ -->
     <section class="panel" id="p-stats">
       <div class="hint" id="tipLine" style="margin-bottom:12px"></div>

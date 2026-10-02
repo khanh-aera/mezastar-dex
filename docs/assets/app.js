@@ -632,6 +632,169 @@ function renderSquad(){
   });
 }
 
+/* ================= BATTLE MODE ================= */
+/* Candidates: EVERY owned 5/6-star tag (roster + pool merge), not just squad 11. */
+const BATTLE = { foes: [null, null, null] };
+const CANDS = ROSTER.filter(t2 => t2.grade === "5" || t2.grade === "6").map(t2 => {
+  const p = POOL.find(x => x.id === t2.id) || {};
+  const m = Object.assign({}, p, t2);
+  if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
+  return m;
+});
+/* scoreOf: one tag vs one enemy - same rules as the popup counter
+   (mult tiers, stat shape, survival vs enemy's real sheet moves, gimmick,
+   incoming-damage penalty). Returns { s, dmg, mv, sv, inc }. */
+function battleScore(x, enemy){
+  const bossStats = (window.STATS_BY_ID || {})[enemy.id] || null;
+  let dmg = (x.pe || 100), mvName = "(no move data)", gim = false;
+  for (const mv of (x.moves || [])){
+    if (!mv || !mv.type) continue;
+    let d = (x.pe || 100) * moveMult(mv.type, enemy.types);
+    if (mv.gimmick){ d *= 1.5; gim = true; }
+    if (d > dmg){ dmg = d; mvName = mv.name; }
+  }
+  let sc = 0;
+  const mult = dmg / Math.max(1, x.pe || 100);
+  if (mult >= 4) sc += 6; else if (mult >= 2) sc += 4;
+  const bulk = (x.hp || 100) + (x.dfn || 100) * 0.6 + (x.spd || 100) * 0.6;
+  const off = Math.max(x.atk || 0, x.spa || 0) * 0.15 + (x.spe || 50) * 0.05;
+  sc += Math.min((bulk + off) / 300 * 10, 4);
+  let sv = null;
+  if (bossStats){
+    const ehp = (x.hp || 100) + Math.min(x.dfn || 100, x.spd || 100);
+    let worst = 0, worstMv = "";
+    for (const bm of [bossStats.move1, bossStats.move2]){
+      if (!bm || !bm.type) continue;
+      const d = (bossStats.pe || 100) * moveMult(bm.type, x.types);
+      if (d > worst){ worst = d; worstMv = bm.name; }
+    }
+    sv = { ehp, worst, worstMv, ok: ehp > worst, spare: ehp - worst };
+    if (sv.ok) sc += 2 + Math.min(sv.spare / 50, 2);
+    else sc -= 4 + Math.min(-sv.spare / 50, 4);
+  }
+  if (gim) sc += 0.8;
+  const inc = incMoveMult(enemy.types, x.types);
+  if (inc >= 4) sc -= 7; else if (inc >= 2) sc -= 2.5;
+  if (inc < 1) sc += 1.5;
+  return { s: sc, dmg, mv: mvName, sv, inc };
+}
+/* cache: candidate x enemy scores built lazily, reused across searches */
+const BSC = new Map();
+function bsc(x, e){
+  let m = BSC.get(x.id); if (!m){ m = new Map(); BSC.set(x.id, m); }
+  let v = m.get(e.id);
+  if (v === undefined){ v = battleScore(x, e); m.set(e.id, v); }
+  return v;
+}
+const BPERMS = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+/* best pairing of MY 3 vs THE 3 enemies: all 6 assignments, max total */
+function battleAssign(team, foes){
+  let best = null;
+  for (const pm of BPERMS){
+    let tot = 0; const pairs = [];
+    for (let i2 = 0; i2 < 3; i2++){
+      const r = bsc(team[pm[i2]], foes[i2]);
+      tot += r.s; pairs.push({ mine: team[pm[i2]], foe: foes[i2], r });
+    }
+    if (!best || tot > best.tot) best = { tot, pairs };
+  }
+  return best;
+}
+/* strongest team: exhaustive C(20,3) = 1140 x 6 pairings, cached scores.
+   ~30ms cold, ~10ms warm - fine for a tap. */
+function battleBest(foes){
+  let best = null;
+  const N = CANDS.length;
+  for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
+    const t2 = battleAssign([CANDS[a], CANDS[b], CANDS[c]], foes);
+    if (!best || t2.tot > best.tot) best = { tot: t2.tot, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
+  }
+  return best;
+}
+/* enemy slot chip + picker sheet (reuses the scrim modal) */
+function renderBattleFoes(){
+  const el = $("#battleFoes"); if (!el) return;
+  el.innerHTML = BATTLE.foes.map((f, i2) => `
+    <div class="foeslot ${f ? "filled" : ""}" data-slot="${i2}">
+      ${f ? `<img src="${esc(f.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+            <div class="fname">${esc(f.name)}</div>
+            <div class="ftype">${(f.types || []).map(pill).join(" ")}</div>`
+          : `<div class="fname dim">Slot ${i2 + 1}</div><div class="ftype dim">tap to pick</div>`}
+    </div>`).join("");
+  el.querySelectorAll("[data-slot]").forEach(sl => sl.onclick = () => battlePick(sl.dataset.slot));
+}
+function battlePick(slot){
+  const el = $("#modal");
+  const cands = POOL.slice().sort((a, b) => (b.pe || 0) - (a.pe || 0));
+  el.innerHTML = `<div class="modalhead">Enemy slot ${+slot + 1} <button class="xbtn" id="x">✕</button></div>
+    <input class="bsearch" id="bs" placeholder="Search enemy by name…" autocomplete="off">
+    <div class="plist" id="pl">${cands.map(x => `
+      <button class="pitem" data-id="${esc(x.id)}">
+        <span>${esc(x.name)}</span>
+        <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}</span>
+      </button>`).join("")}</div>`;
+  $("#scrim").classList.add("on");
+  $("#x").onclick = closeModal;
+  $("#bs").oninput = e => {
+    const q = e.target.value.trim().toLowerCase();
+    $("#pl").innerHTML = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q)).map(x => `
+      <button class="pitem" data-id="${esc(x.id)}">
+        <span>${esc(x.name)}</span>
+        <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}</span>
+      </button>`).join("");
+    wirePl();
+  };
+  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    BATTLE.foes[+slot] = POOL.find(x => x.id === b.dataset.id) || BATTLE.foes[+slot];
+    closeModal(); renderBattle();
+  });
+  wirePl();
+  setTimeout(() => { const b = $("#bs"); if (b) b.focus(); }, 50);
+}
+function renderBattle(){
+  const el = $("#battleBox"); if (!el) return;
+  renderBattleFoes();
+  const foes = BATTLE.foes.filter(Boolean);
+  if (foes.length < 3){
+    el.innerHTML = `<div class="empty">Pick 3 enemy tags above.${foes.length ? ` (${foes.length}/3 picked)` : ""}</div>`;
+    return;
+  }
+  const t0 = performance.now();
+  const win = battleBest(BATTLE.foes);
+  const ms = Math.max(1, Math.round(performance.now() - t0));
+  el.innerHTML = `
+    <div class="glass hero">
+      <div class="role">SUGGESTED TEAM <span class="dim" style="font-size:.75em">(${ms}ms · all ${CANDS.length} 5-6★ checked)</span></div>
+    </div>
+    ${win.pairs.map(pr => {
+      const r = pr.r;
+      const mult = (r.dmg / Math.max(1, pr.mine.pe || 100)).toFixed(1);
+      return `<article class="card pair">
+        <div class="halo"></div>
+        <div class="pcol mine">
+          <img src="${esc(pr.mine.img || "")}" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="cname">${esc(pr.mine.name)} <span class="stars">${stars(pr.mine.grade)}</span></div>
+          <div class="hint">PE ${pr.mine.pe ?? "?"}</div>
+        </div>
+        <div class="pvs">→</div>
+        <div class="pcol foe">
+          <div class="cname">${esc(pr.foe.name)}</div>
+          <div class="hint">${(pr.foe.types || []).map(pill).join(" ")}</div>
+        </div>
+        <div class="pnum">
+          <div class="dmg">${Math.round(r.dmg)} dmg</div>
+          <div class="hint">${esc(r.mv)} (${mult}x)</div>
+          <div class="hint ${r.sv ? (r.sv.ok ? "good" : "bad") : ""}">${r.sv ? (r.sv.ok
+            ? `🛡 survives ${esc(r.sv.worstMv || "hits")} (spare ${Math.round(r.sv.spare)})`
+            : `☠ DIES to ${esc(r.sv.worstMv || "hits")} (short ${Math.round(-r.sv.spare)})`) : ""}</div>
+          <div class="hint">takes ${r.inc}x from this foe</div>
+        </div>
+      </article>`;
+    }).join("")}
+    <div class="btnrow"><button class="btn" id="battleAgain">Battle again</button></div>`;
+  const ba = $("#battleAgain"); if (ba) ba.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
+}
+
 /* ================= STATS & TOOLS ================= */
 const TIPS = [
  "Kill the boss on turn 2, not turn 3. Rotating bosses fast is how you meet 6★ tags.",
@@ -924,6 +1087,7 @@ function tab(name){
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
   if (name === "hunt"){ renderSquad(); }
+  if (name === "battle") renderBattle();
   if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
