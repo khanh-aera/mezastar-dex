@@ -46,7 +46,7 @@ const LS = {
 
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
 let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
-let pstate = { q:"", type:null, mode:"missing", series:"1-3", grade:null };   /* grade null=all, "5", "6" */
+let pstate = { q:"" };   /* hunt tab: only a boss-name filter */   /* grade null=all, "5", "6" */
 let ALLSETS = false;
 let SEL = new Set();                                /* F5  binder compare selection */
 let COMPARE = [];                                  /* F8  boss compare bench */
@@ -244,13 +244,13 @@ function openTag(id){
     ${x.weak.length <= 1 ? `<div class="note good">Very safe tag${x.weak.length ? ", only "+x.weak[0]+" threatens it" : ""}. A good opener.</div>` : ""}
     ${coverors.length ? `<div class="sect"><h3>Hunt these to cover its weak spots</h3>
       ${coverors.map(p => `<div class="route"><img src="${p.img}" alt=""><div><div class="rn">${esc(p.name)}</div><div class="rs">PE ${p.pe} · ${esc(p.types.join(" / "))} · covers ${p.beats.filter(bt => x.weak.includes(bt)).join(", ")}</div></div>
-        <button class="mini heart ${WISH.includes(p.id)?"on":""}" data-w="${esc(p.id)}">${WISH.includes(p.id)?"♥":"♡"}</button></div>`).join("")}</div>` : ""}
+        </div>`).join("")}</div>` : ""}
     <div class="sect"><h3>Pairs well with</h3>
       ${partners.map(p => `<div class="route"><img src="${p.img}" alt=""><div><div class="rn">${esc(p.name)}</div><div class="rs">PE ${p.pe} · ${esc(p.types.join(" / "))}</div></div></div>`).join("")}
     </div>`;
   $("#scrim").classList.add("on");
   $("#x").onclick = closeModal;
-  $("#modal").querySelectorAll("[data-w]").forEach(b => b.onclick = () => toggleWish(b.dataset.w, b));
+  
 }
 function closeModal(){ $("#scrim").classList.remove("on"); }
 $("#scrim")?.addEventListener?.("click", e => { if (e.target.id === "scrim") closeModal(); });
@@ -569,104 +569,6 @@ function renderLoadout(){
 }
 
 /* ================= HUNT LIST ================= */
-function toggleWish(id, btn){
-  const i = WISH.indexOf(id);
-  if (i >= 0) WISH.splice(i, 1); else WISH.push(id);
-  LS.set("wish", WISH);
-  if (btn){ btn.textContent = WISH.includes(id) ? "♥" : "♡"; btn.classList.toggle("on", WISH.includes(id)); }
-  if (state.tab === "hunt") renderPoolGrid();
-}
-function poolFiltered(){
-  const q = pstate.q.trim().toLowerCase();
-  let list = POOL.filter(p => {
-    const ser = (p.id || "").split("-").slice(0, p.id && p.id.startsWith("R-") ? 2 : 2).join("-");
-    if (pstate.series === "R") { if (!/^R-/.test(p.id)) return false; }
-    else if (pstate.series && !String(p.id).startsWith(pstate.series + "-")) return false;
-    if (pstate.type && !p.types.includes(pstate.type)) return false;
-    if (pstate.grade && String(p.grade) !== pstate.grade) return false;
-    if (!q) return true;
-    return (p.name + " " + p.id + " " + p.types.join(" ")).toLowerCase().includes(q);
-  });
-  if (pstate.mode === "missing") list = list.filter(p => !OWNED[p.name]);
-  else if (pstate.mode === "dupes") list = list.filter(p => OWNED[p.name] > 1);
-  else if (pstate.mode === "wish") list = list.filter(p => WISH.includes(p.id));
-  return list;
-}
-function renderSeriesChips(){
-  const el = $("#seriesChips"); if (!el) return;
-  const defs = [
-    ["1-3", "⭐ V3 · ACTIVE (hunt these)"],
-    ["R", "🎟 Regular"],
-    ["1-1", "V1 · retired"],
-    ["1-2", "V2 · retired"],
-    ["", "All series"]
-  ];
-  el.innerHTML = defs.map(([v, label]) =>
-    `<span class="chip ${pstate.series===v?"on":""}" data-s="${v}">${label}</span>`).join("");
-  el.querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.series = c.dataset.s; renderSeriesChips(); renderPoolGrid(); });
-  const gel = $("#gradeChips");
-  if (gel){
-    const gdefs = [["6", "★6 Superstar"], ["5", "★5 Star"], ["", "All grades"]];
-    gel.innerHTML = gdefs.map(([v, label]) => `<span class="chip ${pstate.grade===v?"on":""}" data-g="${v}">${label}</span>`).join("");
-    gel.querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.grade = c.dataset.g || null; renderSeriesChips(); renderPoolGrid(); });
-  }
-}
-function renderPoolChips(){
-  const present = [...new Set(POOL.flatMap(p => p.types))].sort();
-  $("#poolTypeChips").innerHTML = `<span class="chip ${!pstate.type?"on":""}" data-t="">All</span>` +
-    present.map(tp => `<span class="chip ${pstate.type===tp?"on":""}" data-t="${tp}" style="${pstate.type===tp?`background:${TYPE_COLOR[tp]}`:""}">${tp}</span>`).join("");
-  $("#poolTypeChips").querySelectorAll(".chip").forEach(c => c.onclick = () => { pstate.type = c.dataset.t || null; renderPoolChips(); renderPoolGrid(); });
-}
-function renderPoolGrid(){
-  const list = poolFiltered();
-  $("#huntCount").textContent = `${list.length} tag${list.length===1?"":"s"}`;
-  if (!list.length){ $("#pgrid").innerHTML = `<div class="empty">Nothing here. ${pstate.mode==="missing"?"You own the whole filter.":""}</div>`; return; }
-  $("#pgrid").innerHTML = list.map((p,i) => {
-    const own = OWNED[p.name] || 0;
-    return `<article class="card pool ${own?"owned":""}" data-hunt="${esc(p.id)}" style="--glow:${(TYPE_COLOR[p.types[0]]||"#7aa2ff")}44;cursor:pointer">
-      <div class="halo"></div>
-      <div class="pe">${p.pe ? "PE "+p.pe : "PE ?"}</div>
-      <div class="stars">${stars(p.grade)}</div>
-      ${p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="${i<8?"eager":"lazy"}">` : ""}
-      <button class="mini heart ${WISH.includes(p.id)?"on":""}" data-w="${esc(p.id)}">${WISH.includes(p.id)?"♥":"♡"}</button>
-      ${own ? `<span class="ownbadge">✔ ${own} ${t("owned")}</span>` : `<span class="ownbadge no">not owned</span>`}
-      <div class="cname">${esc(p.name)}</div>
-      <div class="cid">${esc(p.id)}${p.tier?" · "+esc(p.tier):""}</div>
-      <div class="pills">${p.types.map(pill).join("")}</div>
-    </article>`; }).join("");
-  $("#pgrid").querySelectorAll("[data-w]").forEach(b => b.onclick = ev => { ev.stopPropagation(); toggleWish(b.dataset.w, b); });
-  $("#pgrid").querySelectorAll("[data-hunt]").forEach(c => c.onclick = ev => {
-    if (ev.target.closest("[data-w]")) return;
-    const tag = POOL.find(z => z.id === c.dataset.hunt);
-    if (tag) openCounterPopup(tag);
-  });
-}
-/* F14 completion + F18 gap advisor + F19 ladder + F22 PE per type */
-function renderHuntSummary(){
-  const total = POOL.length, owned = POOL.filter(p => OWNED[p.name]).length;
-  const pct = Math.round(owned / total * 100);
-  const covOwned = new Set(ROSTER.flatMap(x => x.types));
-  const gaps = TYPES.filter(tp => !covOwned.has(tp));
-  const fixers = {};
-  gaps.forEach(tp => { fixers[tp] = POOL.filter(p => !OWNED[p.name] && p.types.includes(tp)).sort((a,b) => (b.pe||0) - (a.pe||0)).slice(0,2); });
-  $("#huntSummary").innerHTML = `
-    <div class="glass hero">
-      <div class="role">Stardust completion</div>
-      <div class="covmeter"><div class="covbar" style="width:${pct}%"></div></div>
-      <div class="hint"><b>${owned} of ${total}</b> unique tags owned · ${pct}% · ${ROSTER.length - owned > 0 ? ROSTER.length - owned + " extra copies" : "no spares"}</div>
-      ${gaps.length ? `<div class="sect"><h3>Type gaps in your binder</h3>
-        ${gaps.map(tp => `<div class="route"><div style="flex:1"><div class="rn">${tp} <span class="rs">· nothing you own hits it 2x</span></div>
-          <div class="rs">${(fixers[tp]||[]).map(f => `${esc(f.name)} PE ${f.pe}`).join(" · ") || "no V2 tag covers this type"}</div></div>
-          ${(fixers[tp]||[])[0] ? `<button class="mini heart ${WISH.includes(fixers[tp][0].id)?"on":""}" data-w="${esc(fixers[tp][0].id)}">${WISH.includes(fixers[tp][0].id)?"♥":"♡"}</button>` : ""}</div>`).join("")}
-        <div class="note warn" style="margin-top:6px">Bug has no tag in Stardust V2 at all. Poison only Mareanie PE54. Those two gaps are machine facts, not bad luck.</div></div>` : ""}
-      <div class="sect"><h3>PE ladder · top of the set</h3>
-        ${POOL.slice(0,6).map((p,i) => `<div class="route"><img src="${p.img}" alt=""><div><div class="rn">${i+1}. ${esc(p.name)}${OWNED[p.name]?" <span style='color:var(--lime)'>✔</span>":""}</div><div class="rs">${esc(p.types.join(" / "))} · ${esc(p.tier||"")}</div></div><div class="badge" style="background:${GRAD[6]}">${p.pe}</div></div>`).join("")}
-      </div>
-    </div>`;
-  $("#huntSummary").querySelectorAll("[data-w]").forEach(b => b.onclick = () => toggleWish(b.dataset.w, b));
-}
-
-
 /* ============================================================
    V3 SQUAD 11 - the 11 tags that beat ALL 70 Stardust V3 bosses.
    Brute-forced over C(20,11)=167,960 combinations of the owned tags, scored with
@@ -695,62 +597,45 @@ function squadCoverage(){
 }
 function renderSquad(){
   const el = $("#squadBox"); if (!el) return;
-  const squad = squadMembers();
-  const cov = squadCoverage();
-  const six = cov.filter(c => c.boss.grade === "6").sort((a, b) => b.rows[0].dmg - a.rows[0].dmg);
-  const safe = cov.filter(c => c.rows[0] && c.rows[0].surv && c.rows[0].surv.ok).length;
-  const totalPE = squad.reduce((s, x) => s + (x.pe || 0), 0);
+  const bosses = POOL.filter(p => String(p.id).indexOf("1-3-") === 0 && (p.grade === "6" || p.grade === "5"));
+  const q = pstate.q.trim().toLowerCase();
+  const list = bosses.filter(b => !q ||
+    (b.name + " " + b.id + " " + b.types.join(" ")).toLowerCase().includes(q));
+  list.sort((a, b) => (b.grade === "6" ? 1 : 0) - (a.grade === "6" ? 1 : 0) ||
+                      (a.id < b.id ? -1 : 1));
+  const sixN = list.filter(b => b.grade === "6").length;
+  const bc = $("#bcount"); if (bc) bc.textContent =
+    list.length + " bosses (" + sixN + "x 6-star, " + (list.length - sixN) + "x 5-star)";
   el.innerHTML = `
     <div class="glass hero">
-      <div class="role">V3 squad · 11 tags that beat every Stardust V3 boss</div>
-      <div class="hint"><b>${cov.length} V3 bosses</b> (6★ + 5★) covered ·
-        <span style="color:var(--lime)">${safe}/${cov.length} have a tag that survives</span> ·
-        squad PE ${totalPE}</div>
-      <div class="note">Damage fills the Get Gauge and a dead tag stops filling it, so each boss is scored by the
-        best squad tag that both hits hard and survives the boss's heaviest move. Brute-forced over all
-        ${SQUAD11_COMBOS.toLocaleString()} combinations of your owned tags.</div>
+      <div class="role">V3 bosses · which pokemon to use</div>
+      <div class="note">Slide in the ▶ tag. ② = backup.</div>
     </div>
-    <div class="sect"><h3>★6 Superstars · which tag to slide in</h3>
-      <div class="grid">
-        ${six.map(c => {
-          const r = c.rows[0]; if (!r) return "";
-          const sv = r.surv, alt = c.rows[1];
-          const mult = (r.dmg / Math.max(1, r.x.pe || 100)).toFixed(1);
-          return `<article class="card pool">
-            <div class="halo"></div>
-            <div class="stars">${stars(c.boss.grade)}</div>
-            ${c.boss.img ? `<img src="${c.boss.img}" alt="${esc(c.boss.name)}" loading="lazy">` : ""}
-            <span class="ownbadge no">boss</span>
-            <div class="cname">${esc(c.boss.name)}</div>
-            <div class="cid">${esc(c.boss.id)}</div>
-            <div class="pills">${c.boss.types.map(pill).join("")}</div>
-            <div class="cid" style="margin-top:6px;color:var(--text)">▶ ${esc(r.x.name)} · ${esc(r.mvName || "")} · ${Math.round(r.dmg)} dmg (${mult}x)</div>
-            <div class="cid" style="color:${(sv && sv.ok) ? "var(--lime)" : "var(--hot)"}">${(sv && sv.ok)
-              ? `survives ${esc(sv.worstMv || "boss hits")} · spare ${Math.round(sv.spare)}`
-              : "dies to the boss big move"}</div>
-            ${alt ? `<div class="cid">2nd ${esc(alt.x.name)} · ${Math.round(alt.dmg)}</div>` : ""}
-          </article>`;
-        }).join("")}
-      </div>
-    </div>
-    <div class="sect"><h3>Your squad</h3><div class="grid">
-      ${squad.map(x => {
-        const spare = SQUAD11_SPARE.indexOf(x.id) >= 0;
-        const mv = (x.moves || [])[0] || {};
-        return `<article class="card pool owned" style="--glow:${(TYPE_COLOR[x.types[0]] || "#7aa2ff")}">
-          <div class="pe">PE ${x.pe || "?"}</div>
-          <div class="stars">${stars(x.grade)}</div>
-          ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : ""}
-          <span class="ownbadge">${spare ? "spare" : "squad"}</span>
-          <div class="cname">${esc(x.name)}</div>
-          <div class="cid">${esc(x.id)}</div>
-          <div class="pills">${x.types.map(pill).join("")}</div>
-          ${mv.name ? `<div class="cid">${esc(mv.name)}</div>` : ""}
-        </article>`;
-      }).join("")}
-    </div></div>`;
+    <div class="grid">
+    ${list.map(b => {
+      const rows = bestVsTagRows(b).filter(r => SQUAD11.indexOf(r.x.id) >= 0);
+      rows.sort((a, c) => (c.s - a.s) || (c.dmg - a.dmg));
+      const r = rows[0]; if (!r) return "";
+      const sv = r.surv, alt = rows[1];
+      const mult = (r.dmg / Math.max(1, r.x.pe || 100)).toFixed(1);
+      return `<article class="card pool">
+        <div class="halo"></div>
+        <div class="stars">${stars(b.grade)}</div>
+        ${b.img ? `<img src="${b.img}" alt="${esc(b.name)}" loading="lazy">` : ""}
+        <span class="ownbadge no">${b.grade === "6" ? "6-star" : "5-star"}</span>
+        <div class="cname">${esc(b.name)}</div>
+        <div class="cid">${esc(b.id)}</div>
+        <div class="pills">${b.types.map(pill).join("")}</div>
+        <div class="cid" style="margin-top:8px;font-size:15px;color:var(--text)">▶ ${esc(r.x.name)} · ${esc(r.mvName || "")} · ${Math.round(r.dmg)} (${mult}x)</div>
+        <div class="cid" style="color:${(sv && sv.ok) ? "var(--lime)" : "var(--hot)"}">${(sv && sv.ok)
+          ? "survives · spare " + Math.round(sv.spare)
+          : "dies to the big hit"}</div>
+        ${alt ? `<div class="cid">② ${esc(alt.x.name)} · ${Math.round(alt.dmg)}</div>` : ""}
+      </article>`;
+    }).join("")}
+    ${list.length ? "" : `<div class="empty">No boss matches that.</div>`}
+  </div>`;
 }
-
 
 /* ================= STATS & TOOLS ================= */
 const TIPS = [
@@ -886,13 +771,13 @@ function renderStats(){
       if (d.teams) { SAVED_TEAMS = d.teams; LS.set("teams", SAVED_TEAMS); }
       if (d.team) { TEAM = d.team; LS.set("team", TEAM); }
       if (d.set) { SETTINGS = d.set; LS.set("set", SETTINGS); }
-      renderStats(); renderLoadout(); renderPoolGrid(); flashNote("#statsBox", "Imported ✔");
+      renderStats(); renderLoadout(); renderSquad(); flashNote("#statsBox", "Imported ✔");
     } catch(e){ flashNote("#statsBox", "That is not a valid backup."); } };
   $("#resetBtn").onclick = () => {
     if (!confirm("Delete wishlist, log, teams and settings? This cannot be undone.")) return;
     ["wish","log","teams","team","set","session"].forEach(k => localStorage.removeItem("meza."+k));
     WISH = []; LOG = []; SAVED_TEAMS = []; TEAM = [null,null,null]; SESSION = null; SETTINGS = { ve:"en", dim:false };
-    renderStats(); renderLoadout(); renderPoolGrid();
+    renderStats(); renderLoadout(); renderSquad();
   };
 }
 /* F30/F31 budget */
@@ -1043,7 +928,7 @@ function tab(name){
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
-  if (name === "hunt"){ renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderSquad(); }
+  if (name === "hunt"){ renderSquad(); }
   if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
@@ -1058,12 +943,8 @@ $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classLis
 
 
 
-$("#pq").oninput = e => { pstate.q = e.target.value; renderPoolGrid(); };
+$("#bq").oninput = e => { pstate.q = e.target.value; renderSquad(); };
 $("#tq").oninput = e => { renderTickets(); };
-document.querySelectorAll("#huntModes .btn").forEach(b => b.onclick = () => {
-  pstate.mode = b.dataset.m;
-  document.querySelectorAll("#huntModes .btn").forEach(x => x.classList.toggle("act", x === b));
-  renderPoolGrid(); });
 document.querySelectorAll("#ticketFilters .btn").forEach(b => b.onclick = () => {
   window.ticketFilter = b.dataset.f;
   document.querySelectorAll("#ticketFilters .btn").forEach(x => x.classList.toggle("act", x === b));
@@ -1097,7 +978,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     const quick = ["Kyurem","Koraidon","Reshiram","Zekrom","Kommo-o","Tyranitar","Metagross","Alolan Ninetales","Skeledirge","Drifblim","Leafeon","Infernape"];
             document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderLoadout();
-        renderSeriesChips(); renderPoolChips(); renderPoolGrid(); renderHuntSummary(); renderSquad(); renderStats();
+        renderSquad(); renderStats();
         // translate ticket filter buttons
         document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
           const key = b.dataset.f; b.textContent = t(key);
