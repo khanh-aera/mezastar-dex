@@ -1,0 +1,214 @@
+/* MEZASTAR PLAY · arcade companion shell.
+   Reuses the binder's dark purple-gold glass from ../assets/style.css; this file
+   only adds the play-specific chrome (header, 2-tab bar, roster grid, footer) and
+   enlarges the battle targets for one-handed use at the cabinet. */
+
+:root {
+  --play-pad: 14px;
+}
+
+html, body.playbody {
+  margin: 0;
+  padding: 0;
+  background: #0b0714;
+  color: #efe9ff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-x pan-y;
+}
+
+/* ---------- header ---------- */
+.playhead {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: calc(10px + env(safe-area-inset-top)) var(--play-pad) 10px;
+  background: linear-gradient(180deg, rgba(28, 12, 46, .96), rgba(18, 8, 32, .92));
+  border-bottom: 1px solid rgba(214, 168, 255, .22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.playbrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  font-size: 15px;
+  color: #ffe9a8;
+}
+.playbrand em {
+  font-style: normal;
+  margin-left: 5px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: linear-gradient(96deg, #ffd76a, #ff9de2);
+  color: #1a0b28;
+}
+.pbolt {
+  width: 12px;
+  height: 20px;
+  background: linear-gradient(180deg, #ffd76a, #ff9de2);
+  clip-path: polygon(58% 0, 12% 55%, 44% 55%, 34% 100%, 92% 40%, 55% 40%);
+  filter: drop-shadow(0 0 6px rgba(255, 190, 120, .5));
+}
+
+.playback {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e6d6ff;
+  background: rgba(120, 80, 180, .22);
+  border: 1px solid rgba(214, 168, 255, .3);
+}
+.playback:active { background: rgba(120, 80, 180, .4); }
+
+/* ---------- two-tab bar ---------- */
+.playtabs {
+  position: sticky;
+  top: calc(46px + env(safe-area-inset-top));
+  z-index: 29;
+  display: flex;
+  gap: 8px;
+  padding: 10px var(--play-pad);
+  background: rgba(14, 7, 26, .93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.playtabs button {
+  flex: 1 1 0;
+  min-height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(214, 168, 255, .22);
+  background: rgba(46, 24, 74, .5);
+  color: #cdb6f5;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  cursor: pointer;
+}
+/* the inactive tab keeps a gold underline marker so "which tab am I on" is
+   unmistakable even when the gradient fill dominates */
+.playtabs button:not(.on) {
+  box-shadow: inset 0 -2px 0 rgba(255, 215, 106, .45);
+}
+.playtabs button.on {
+  color: #1a0b28;
+  background: linear-gradient(96deg, #ffd76a, #ffb0e6);
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(255, 170, 220, .28);
+}
+
+/* ---------- panels ---------- */
+.playmain { padding: 4px var(--play-pad) 24px; }
+.playpanel { display: none; }
+.playpanel.on { display: block; }
+
+.playhint {
+  margin: 6px 0 12px;
+  padding: 11px 13px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #e3d3ff;
+  background: rgba(70, 36, 110, .34);
+  border: 1px solid rgba(214, 168, 255, .2);
+}
+.playhint b { color: #ffd76a; }
+
+/* ---------- roster ---------- */
+.rhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 2px 12px;
+}
+.rlab { font-weight: 800; letter-spacing: .05em; font-size: 14px; color: #ffe9a8; }
+.rnote { font-size: 12px; color: #a68ec9; }
+
+.rgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 10px;
+}
+.rcard {
+  padding: 9px;
+  border-radius: 16px;
+  background: linear-gradient(160deg, rgba(58, 30, 92, .58), rgba(26, 12, 44, .72));
+  border: 1px solid rgba(214, 168, 255, .2);
+  text-align: center;
+}
+.rcard img {
+  width: 100%;
+  height: 92px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .25);
+}
+.rnoart {
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .25);
+  color: #6f5a92;
+  font-size: 26px;
+}
+.rname { margin-top: 6px; font-weight: 800; font-size: 13.5px; color: #fff3d6; }
+.rsub  { margin-top: 3px; font-size: 11px; color: #b9a3e0; }
+.rsub .pill { font-size: 10px; padding: 1px 6px; margin: 1px; }
+.rstat { margin-top: 5px; font-size: 11px; line-height: 1.5; color: #a894cc; }
+.rgim { color: #ffb0e6; font-weight: 700; }
+
+.rfoot {
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: #907cb0;
+  text-align: center;
+}
+
+/* ---------- footer ---------- */
+.playfoot {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px var(--play-pad) calc(14px + env(safe-area-inset-bottom));
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #a493c9;
+  text-align: center;
+  border-top: 1px solid rgba(214, 168, 255, .14);
+}
+.playfoot b { color: #cbb2f2; }
+
+/* ---------- empty modal must not render as an orphan pill ----------
+   #modal exists on the page because the extracted battlePick() writes into it;
+   with no enemy picked it is empty, so keep it out of the layout entirely. */
+.playbody #modal:empty { display: none; }
+
+/* secondary text was too dim against the dark ground */
+.playbody .empty { color: #b09ad0; }
+
+/* ---------- arcade-scale battle targets ---------- */
+/* the binder hides nav/drawer chrome; play has none, but its foes row and
+   buttons are the things he taps mid-battle, so they get thumb-sized targets */
+.playbody .foeslot { min-height: 62px; }
+.playbody #bs { font-size: 19px !important; min-height: 52px; }
+.playbody .btn { min-height: 52px; font-size: 16px; }
+
+@media (max-width: 420px) {
+  .rgrid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
+  .playtabs button { font-size: 14px; }
+}
