@@ -519,65 +519,84 @@ function openCounterPopup(tag){
   $("#scrim").classList.add("on");
   $("#x").onclick = closeModal;
 }
+/* ==== USER ROSTER (v53): additions persisted in localStorage; battle auto-includes ==== */
+function userRoster(){ try { return JSON.parse(localStorage.getItem("userRoster") || "[]"); } catch(e){ return []; } }
+function setUserRoster(ids){ localStorage.setItem("userRoster", JSON.stringify(ids)); }
+function allRosterIds(){ return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id))); }
+
 function renderLoadout(){
   const el = $("#loadout");
-  const members = MAIN_IDS.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
-  const dyn = members.filter(x => /Dynamax/i.test(x.tier || "") || /Dynamax/i.test(x.ability || ""));
-  const zm  = members.filter(x => /Z[- ]?Move/i.test(x.tier || "") || /Z[- ]?Move/i.test(x.ability || ""));
-  const mega= members.filter(x => /Mega/i.test(x.tier || "") || /Mega/i.test(x.ability || ""));
-  const totalPE = members.reduce((s,x) => s + (x.pe || 0), 0);
-  const cov = coveredTypes(members);
-  const card = (x, role, why) => `
-    <article class="card pool owned" style="--glow:${(TYPE_COLOR[x.types[0]]||"#7aa2ff")}44">
+  const ids = allRosterIds();
+  const members = ids.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
+  const card = (x) => `
+    <article class="card pool owned" style="--glow:${(TYPE_COLOR[x.types[0]] || "#7aa2ff")}44">
       <div class="halo"></div>
-      <div class="roletag">${role}</div>
+      <button class="roremove" data-rm="${esc(x.id)}" title="Remove from roster">✕</button>
       ${x.img ? `<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">` : ""}
       <div class="cname">${esc(x.name)}</div>
-      <div class="cid">${esc(x.id)}${x.pe ? " · PE "+x.pe : ""}</div>
+      <div class="cid">${esc(x.id)}${x.pe ? " · PE " + x.pe : ""}</div>
       <div class="pills">${x.types.map(pill).join("")}</div>
-      <div class="hint" style="margin-top:4px">${why}</div>
     </article>`;
-  const lead = ["Tyranitar","Nidoqueen","Chandelure"].map(n => members.find(x => x.name === n)).filter(Boolean);
   el.innerHTML = `
-    <div class="glass hero">
-      <div class="role" style="margin-bottom:8px">Pick a boss type · get your 3 strongest</div>
-      <div class="chips" id="rosterTypes" style="margin-bottom:10px"></div>
-      <div id="typeCounter"></div>
-      <div class="role" style="margin:10px 0 8px">Main Roster · the case you bring to the arcade</div>
-      <div class="hint" style="margin-bottom:8px">${members.length} tags · total PE ${totalPE} · covers ${cov.length} of 18 boss types${dyn.length?" · Dynamax: "+dyn.map(x=>x.name).join(", "):""}${zm.length?" · Z-Move: "+zm.map(x=>x.name).join(", "):""}${mega.length?" · Mega: "+mega.map(x=>x.name).join(", "):""}</div>
-      <div class="sect"><h3>Opening trio (unknown boss)</h3></div>
-      <div class="setrow">${lead.map(x => `
-        <div class="setcard glass"><img src="${x.img}" alt="">
-          <div><div class="rn">${esc(x.name)} <span style="color:var(--gold)">PE ${x.pe}</span></div>
-          <div class="rs hint">${x.name==="Tyranitar"?"Open · Rock/Dark, resists Flying and Psychic, survives everything in V3":x.name==="Nidoqueen"?"Dynamax holder · Ground beats Electric Poison Rock Steel, fires Max Quake":"Z-Move holder · Ghost hits Psychic and Ghost bosses for 2x, Never-Ending Nightmare one-shot"}</div>
-          <div class="pills">${x.types.map(pill).join("")}</div></div></div>`).join("")}</div>
-      <div class="note good">Lead Tyranitar to build the gauge safely (no 2x weakness to exploit), Nidoqueen holds the Dynamax for the boss that needs it, Chandelure holds the Z-Move. Tap any Hunt List boss for the exact answer.</div>
+    <div class="rhead">
+      <div class="rhead-l"><span class="btitle">🏆 Main Roster</span>
+        <span class="hint" style="margin-left:10px">${members.length} tags · battle mode uses these</span></div>
+      <button class="btn act" id="rosterAdd">＋ Add pokemon</button>
     </div>
-    <div class="sect"><h3 style="font-family:'Chakra Petch';letter-spacing:.14em;color:var(--muted);font-size:12px;text-transform:uppercase;margin:10px 2px">Full roster · ${members.length} tags</h3></div>
-    <div class="grid">${members.map(x => {
-      const isLead = lead.some(l => l.id === x.id);
-      const why = isLead ? "Opening trio" : x.id === "1-3-016" ? "Dynamax holder (V3)" : x.id === "1-3-014" ? "Z-Move one-shot per session (V3)" : x.id === "1-3-022" ? "V3 Star · PE not measured yet" : /Mega/i.test(x.tier||"") ? "Mega holder" : (x.pe||0) >= 115 ? "High PE damage" : "Coverage / backup";
-      return card(x, isLead ? "⭐ LEAD" : x.id === "1-3-016" ? "🔺 DYNAMAX" : x.id === "1-3-014" ? "⚡ Z-MOVE" : x.id === "1-1-005" ? "⭐ OPEN" : "◆", why);
-    }).join("")}</div>`;
-  state.rcType = state.rcType || null;
-  renderRosterTypes(members); renderTypeCounter(members);
+    <div class="grid">${members.map(card).join("")}</div>`;
+  el.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
+    const id = b.dataset.rm;
+    const core = MAIN_IDS.includes(id);
+    if (core){
+      /* squad core cannot be removed from data, but user may hide it: store in overrides */
+      const hid = JSON.parse(localStorage.getItem("rosterHidden") || "[]");
+      if (!hid.includes(id)) hid.push(id);
+      localStorage.setItem("rosterHidden", JSON.stringify(hid));
+    } else {
+      setUserRoster(userRoster().filter(x => x !== id));
+    }
+    invalidateCands(); renderLoadout();
+  });
+  const add = $("#rosterAdd"); if (add) add.onclick = rosterAddPicker;
 }
 
-/* ================= HUNT LIST ================= */
-/* ============================================================
-   V3 SQUAD 11 - the 11 tags that beat ALL 70 Stardust V3 bosses.
-   Brute-forced over C(20,11)=167,960 combinations of the owned tags, scored with
-   the same bestVsTag math the popup uses. Damage fills the Get Gauge and a dead
-   tag stops filling it, so each boss is scored by the best squad tag that both
-   hits hard AND survives the boss's heaviest move (0.3x discount if it dies).
-   Result: 70/70 bosses covered, 0 without a surviving answer.
-   Groudon + Torterra have ZERO marginal value - they are deliberate spares so a
-   tag lost mid-run does not break coverage.
-   ============================================================ */
-const SQUAD11 = ["1-1-005","1-2-002","1-3-016","1-3-014","1-1-013","1-2-016",
-                 "1-1-002","1-2-019","1-2-015","1-2-021","1-2-023"];
-const SQUAD11_SPARE = ["1-2-002","1-2-016"];              /* zero marginal value */
-const SQUAD11_COMBOS = 167960;                           /* C(20,11) */
+/* add-pokemon picker: search full pool, tap to add to main roster */
+function rosterAddPicker(){
+  const el = $("#modal");
+  const owned = new Set(ROSTER.map(x => x.id));
+  const cands = POOL.filter(x => !allRosterIds().includes(x.id) && (owned.has(x.id) || (x.grade === "5" || x.grade === "6")))
+    .sort((a, b) => (b.pe || 0) - (a.pe || 0));
+  el.innerHTML = `<div class="modalhead">Add to Main Roster <button class="xbtn" id="x">✕</button></div>
+    <input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off">
+    <div class="plist" id="pl">${cands.map(x => `
+      <button class="pitem" data-id="${esc(x.id)}">
+        <span>${esc(x.name)}</span>
+        <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}${owned.has(x.id) ? " · owned" : ""}</span>
+      </button>`).join("")}</div>`;
+  $("#scrim").classList.add("on");
+  $("#x").onclick = closeModal;
+  $("#bs").oninput = e => {
+    const q = e.target.value.trim().toLowerCase();
+    $("#pl").innerHTML = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q)).map(x => `
+      <button class="pitem" data-id="${esc(x.id)}">
+        <span>${esc(x.name)}</span>
+        <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}${owned.has(x.id) ? " · owned" : ""}</span>
+      </button>`).join("");
+    wirePl();
+  };
+  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    const ids = userRoster();
+    if (!ids.includes(b.dataset.id)) ids.push(b.dataset.id);
+    setUserRoster(ids);
+    closeModal(); invalidateCands(); renderLoadout();
+  });
+  wirePl();
+}
+
+/* battle candidate cache must rebuild when roster changes */
+function invalidateCands(){ BSC.clear(); CANDS.length = 0; buildCands(); }
+
+
 function squadMembers(){
   return SQUAD11.map(id => ROSTER.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
 }
@@ -643,7 +662,16 @@ const BATTLE = { foes: [null, null, null] };
 let CANDS = [];
 function buildCands(){
   CANDS.length = 0;
-  CANDS.push(...ROSTER.filter(t2 => t2.grade === "5" || t2.grade === "6").map(t2 => {
+  const hid = (()=>{ try { return JSON.parse(localStorage.getItem("rosterHidden") || "[]"); } catch(e){ return []; } })();
+  const src = ROSTER.filter(t2 => (t2.grade === "5" || t2.grade === "6") && !hid.includes(t2.id));
+  /* user-added roster tags may live only in POOL */
+  for (const id of userRoster()){
+    if (!src.some(t2 => t2.id === id) && !hid.includes(id)){
+      const p = POOL.find(x => x.id === id);
+      if (p) src.push(p);
+    }
+  }
+  CANDS.push(...src.map(t2 => {
     const p = POOL.find(x => x.id === t2.id) || {};
     const m = Object.assign({}, p, t2);
     /* roster rows can hold null/"" fields (V3 pe unknown in roster) - pool wins there */
@@ -1063,10 +1091,10 @@ function renderGold(){
 }
 function applyLang(){
   document.querySelectorAll("nav.tabs button").forEach(b => {
-    b.textContent = t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
+    b.textContent = t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : "ts"); });
   const q = $("#q"); if (q) q.placeholder = t("sq");
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => {
-    b.lastChild.textContent = " " + t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : b.dataset.tab === "hunt" ? "th" : "ts"); });
+    b.lastChild.textContent = " " + t(b.dataset.tab === "binder" ? "tb" : b.dataset.tab === "load" ? "tl" : "ts"); });
 }
 
 /* ================= SUPPORT TICKETS ================= */
@@ -1156,8 +1184,8 @@ function tab(name){
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
   if (name === "stats") renderStats();
-  if (name === "hunt"){ renderSquad(); }
   if (name === "battle") renderBattle();
+  if (name === "load") renderLoadout();
   if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
@@ -1172,7 +1200,7 @@ $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classLis
 
 
 
-$("#bq").oninput = e => { pstate.q = e.target.value; renderSquad(); };
+/* hunt list removed v53 - #bq gone */
 $("#tq").oninput = e => { renderTickets(); };
 document.querySelectorAll("#ticketFilters .btn").forEach(b => b.onclick = () => {
   window.ticketFilter = b.dataset.f;

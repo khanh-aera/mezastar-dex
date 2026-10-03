@@ -605,3 +605,13 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
   .bhead .btitle{ font-size:12px; letter-spacing:.1em; }
   .bhead .btab, .bhead .bexit{ padding:8px 10px; font-size:11px; }
 }
+/* ==== MAIN ROSTER (v53): simple header + removable cards ==== */
+.rhead{ display:flex; align-items:center; justify-content:space-between; gap:10px;
+  flex-wrap:wrap; margin-bottom:12px; }
+.rhead-l{ display:flex; align-items:baseline; flex-wrap:wrap; }
+.rhead .btn{ min-height:46px; padding:10px 18px; border-radius:13px; }
+.roremove{ position:absolute; top:8px; right:8px; width:32px; height:32px; border-radius:10px;
+  border:1px solid var(--stroke-soft); background:rgba(10,14,32,.72); color:var(--hot);
+  font-size:15px; cursor:pointer; z-index:5; transition:.15s; }
+.roremove:hover{ background:rgba(255,92,138,.18); border-color:var(--hot); }
+.roremove:active{ transform:scale(.9); }
