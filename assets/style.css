@@ -859,3 +859,15 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
   .who{ max-width:66px; }
   .audit > summary{ font-size:10px; }
 }
+
+/* ===== damage-model toggle (v62) ===== */
+.modelrow{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;
+  margin:8px 0 2px; padding:6px 8px; border:1px solid var(--stroke); border-radius:10px;
+  background:rgba(255,255,255,.03); }
+.mlabel{ font-size:9px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
+.mtog{ font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:99px; cursor:pointer;
+  color:var(--muted); background:rgba(255,255,255,.04); border:1px solid var(--stroke);
+  font-family:inherit; transition:all .15s ease; }
+.mtog:hover{ color:var(--text); border-color:var(--gold); }
+.mtog.on{ color:#0a0d1c; background:var(--gold); border-color:var(--gold); }
+.mnote{ font-size:9px; color:var(--dim); flex:1 1 100%; text-align:center; line-height:1.4; }

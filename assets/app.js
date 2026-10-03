@@ -404,10 +404,8 @@ function bestStrike(x, defTypes){
   const atkPower = Math.max(x.atk || 0, x.spa || 0);
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
-    let d = (x.pe || 100) * moveMult(mv.type, defTypes);
-    const arInfo = MOVE_AR[mv.name];
-    if (arInfo && arInfo.ar){ d *= (arInfo.ar / 100); }   /* real attack-roulette multiplier per move (100 = neutral) */
-    if (mv.gimmick){ d *= 1.5; gimmick = true; }          /* Z/Dmax move: once per battle but huge */
+    let d = strikeDmg(x, mv, defTypes).d;                 /* v62: shared damage formula */
+    if (d > 0 && mv.gimmick) gimmick = true;
     if (d > dmg){ dmg = d; mvName = mv.name; }              /* keeps the PE floor for damage */
     else if (mvName === "(immune — no move lands)" && d > 0){ mvName = mv.name; }  /* still NAME the real move */
   }
@@ -702,6 +700,16 @@ function applyStats(m){
     });
     if (!t2.type && mv.type) t2.type = mv.type;
   });
+  /* v62 BUGFIX: stats_allsets never fills move2.category (83/83 gimmick moves are
+     blank). Without this, offStat() fell back to max(Atk,SpA) and inflated those
+     moves by a median of 19% - up to 61% on Chandelure/Alakazam. A gimmick move
+     is the same Pokemon's attacking move, so it inherits move1's category. */
+  const m1 = (s.move1 && s.move1.name) ? (m.moves || []).find(x2 => x2 && x2.name === s.move1.name) : null;
+  if (m1 && m1.category){
+    for (const mv of m.moves || []){
+      if (mv && mv.name && mv.name !== m1.name && !mv.category) mv.category = m1.category;
+    }
+  }
   return m;
 }
 /* scoreOf: one tag vs one enemy - same rules as the popup counter
@@ -711,25 +719,76 @@ function applyStats(m){
    one of MY tags is hit by ALL 3 enemy attacks each round. battleScore therefore takes
    the whole enemy trio: dmgMap = my best-move damage to EACH foe; sv = survival vs the
    SUM of the trio's incoming (still "just survive the round", Khanh rule). */
+/* ============================================================================
+   DAMAGE MODEL (v62)
+   Mezastar damage scales with the attacking tag's OFFENSIVE STAT - Atk for a
+   Physical move, Sp. Atk for a Special one - not with PE. PE (and the sheet's
+   "Total / PE") is an energy/power scalar: it is almost exactly 5.0x for every
+   tag, so it cannot distinguish a good attacker from a bad one.
+   Sources: Bulbapedia battle flow; the Kaizen Hayashi sheet's Avg DMG% column
+   correlates with Sp. Atk at +0.84 on Special moves vs only +0.73 for PE.
+   PE mode is kept behind a toggle because only 103 of 469 sheet rows have the
+   DMG% columns filled, so the constant is fitted rather than known.
+   ============================================================================ */
+/* measured from the sheet's Avg DMG% vs Avg Gimmick DMG% columns (n=49) */
+const GIM_MULT = { "Dynamax": 2.0, "Z-Move": 1.99, "Mega Evolution": 1.56,
+  "Gigantamax": 1.7, "Tag Move": 1.9, "Double Move": 1.9, "Chain Attack": 1.9 };
+const GIM_DEFAULT = 1.92;
+/* dmgModel: "off" = Atk/SpA (real game), "pe" = legacy PE scalar */
+let dmgModel = (()=>{ try { return localStorage.getItem("meza.dmgModel") || "off"; } catch(e){ return "off"; } })();
+function setDmgModel(v){
+  dmgModel = (v === "pe") ? "pe" : "off";
+  try { localStorage.setItem("meza.dmgModel", dmgModel); } catch(e){}
+  BSC.clear(); CANDS.length = 0; buildCands(); renderBattle();
+}
+/* the offensive stat a move actually reads */
+function offStat(tag, mv){
+  if (dmgModel === "pe") return tag.pe || 100;
+  const cat = mv && mv.category;
+  const phys = cat === "Physical", spec = cat === "Special";
+  const a = tag.atk || 0, sp = tag.spa || 0;
+  if (phys && a) return a;
+  if (spec && sp) return sp;
+  if (phys && !a && sp) return sp;
+  if (spec && !sp && a) return a;
+  /* no category at all: use the tag's better stat ONLY if one is clearly dominant,
+     otherwise PE - guessing max() inflated category-less gimmick moves by ~19%. */
+  if (a && sp && (a >= sp * 1.5)) return a;
+  if (sp && a && (sp >= a * 1.5)) return sp;
+  if (a || sp) return tag.pe || 100;
+  return tag.pe || 100;
+}
+function gimMult(tag, mv){
+  if (!mv || !mv.gimmick) return 1;
+  return GIM_MULT[tag.gimmick] || GIM_DEFAULT;
+}
+/* ONE strike formula, shared by the engine and the audit panel */
+function strikeDmg(tag, mv, defTypes){
+  const off = offStat(tag, mv);
+  const mm = (mv && mv.type) ? moveMult(mv.type, defTypes) : 1;
+  const arI = (mv && MOVE_AR[mv.name]) || null;
+  const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
+  const gm = gimMult(tag, mv);
+  return { off, mm, arRaw: arI ? arI.ar : null, ar, gm,
+    d: (mm > 0 ? off : off) * mm * ar * gm };
+}
+
 /* v60: full audit trail for a strike, so the Battle card can show every input
    instead of one opaque number: PE x move-type multiplier x attack-roulette x gimmick. */
 function strikeTrace(x, foe, mv){
-  const pe = x.pe || 100;
-  const mm = (mv && mv.type) ? moveMult(mv.type, foe.types) : 1;
-  const arI = (mv && MOVE_AR[mv.name]) || null;
-  const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
-  const gim = (mv && mv.gimmick) ? 1.5 : 1;
-  return { pe, mm, arRaw: arI ? arI.ar : null, ar, gim: gim > 1,
-    d: pe * mm * ar * gim, mv: mv || null, foe: foe.name || foe.id,
+  const r = strikeDmg(x, mv, foe.types);
+  return { pe: x.pe || 100, off: r.off, mm: r.mm, arRaw: r.arRaw, ar: r.ar,
+    gm: r.gm, gim: r.gm > 1, d: r.d, mv: mv || null, foe: foe.name || foe.id,
     foeTypes: (foe.types || []).slice() };
 }
 /* v60: the mirror image - what an ENEMY move does to one of mine, same vocabulary. */
 function incomingTrace(f, x, mv){
-  const pe = f.pe || 100;
+  const off = offStat(f, mv);
   const mm = (mv && mv.type) ? moveMult(mv.type, x.types) : 1;
   const arI = (mv && MOVE_AR[mv.name]) || null;
   const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
-  return { pe, mm, arRaw: arI ? arI.ar : null, ar, d: pe * mm * ar,
+  const gm = gimMult(f, mv);
+  return { pe: f.pe || 100, off, mm, arRaw: arI ? arI.ar : null, ar, gm, d: off * mm * ar * gm,
     name: (mv && mv.name) || "", from: f.name || f.id, immune: mm === 0, dbl: mm >= 2 };
 }
 
@@ -744,11 +803,9 @@ function battleScore(x, enemy, allFoes){
   const dmgMap = {};
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
-    let d = (x.pe || 100) * moveMult(mv.type, enemy.types);
-    const _ar = MOVE_AR[mv.name];
-    if (_ar && _ar.ar){ d *= (_ar.ar / 100); }
-    if (mv.gimmick && d > 0){ d *= 1.5; gim = true; }      /* a 0x move never counts as a gimmick proc */
-    if (d > dmg){ dmg = d; mvName = mv.name; }              /* true best move, no PE ceiling */
+    const d = strikeDmg(x, mv, enemy.types).d;          /* v62: one shared formula */
+    if (d > 0 && mv.gimmick) gim = true;               /* a 0x move never counts as a gimmick proc */
+    if (d > dmg){ dmg = d; mvName = mv.name; }          /* true best move, no PE ceiling */
     else if (mvName === "(immune — no move lands)" && d > 0){ mvName = mv.name; }  /* still NAME the real move */
   }
   /* v61: when nothing lands the label is the truth - keep dmg at 0 so the lane number
@@ -759,9 +816,7 @@ function battleScore(x, enemy, allFoes){
      right move is the one with the highest SUM across all 3 foes - Tyranitar was
      throwing away 144 damage by leading with Stone Edge instead of Max Rockfall. */
   const mvList = (x.moves || []).filter(mv => mv && mv.type);
-  const strikeOf = (mv, f) => (x.pe || 100) * moveMult(mv.type, f.types)
-    * ((MOVE_AR[mv.name] || {}).ar ? (MOVE_AR[mv.name].ar / 100) : 1)
-    * (mv.gimmick ? 1.5 : 1);
+  const strikeOf = (mv, f) => strikeDmg(x, mv, f.types).d;
   let mvPick = mvList.find(m2 => m2.name === mvName) || mvList[0] || null;
   if (mvList.length > 1){
     let bestSum = -1;
@@ -791,9 +846,7 @@ function battleScore(x, enemy, allFoes){
     if (!bs) continue;
     for (const bm of [bs.move1, bs.move2]){
       if (!bm || !bm.type) continue;
-      let d = (bs.pe || 100) * moveMult(bm.type, x.types);
-      const _bar = MOVE_AR[bm.name];
-      if (_bar && _bar.ar){ d *= (_bar.ar / 100); }
+      const d = strikeDmg({ ...bs, gimmick: bs.gimmick }, bm, x.types).d;   /* v62 */
       incRows.push(incomingTrace(f, x, bm));
       if (d > 0){ worst += d; hitCount++; }
       if (d > big){ big = d; bigMv = bm.name + " (" + (f.name || f.id) + ")"; }
@@ -941,12 +994,15 @@ function auditCard(pr, foes){
   const rowSum = tr.rows.reduce((a, t) => a + t.d, 0);
   const g = mine.gimmick;
   /* damage formula, factored */
-  const t0 = tr.rows[0] || { pe: mine.pe || 100, mm: 1, ar: 1, arRaw: null, gim: false };
+  const t0 = tr.rows[0] || { pe: mine.pe || 100, off: mine.pe || 100, mm: 1, ar: 1, arRaw: null, gim: false, gm: 1 };
+  const useOff = dmgModel === "off";
+  const statLbl = (mv && mv.category === "Physical") ? "Atk" : (mv && mv.category === "Special") ? "SpA" : (useOff ? "Atk/SpA" : "PE");
   const factors = [
-    `<span class="fn">PE</span><span class="fv">${t0.pe}</span>`,
+    `<span class="fn">${statLbl}</span><span class="fv">${t0.off}</span>`,
+    useOff ? `<span class="fn">PE</span><span class="fv dim">${t0.pe}</span>` : "",
     t0.mm !== 1 ? `<span class="fn">type</span><span class="fv ${t0.mm > 1 ? "up" : "down"}">×${t0.mm}</span>` : "",
     t0.arRaw ? `<span class="fn">roulette</span><span class="fv">×${(Math.round(t0.ar * 100) / 100)}</span>` : "",
-    t0.gim ? `<span class="fn">gimmick</span><span class="fv up">×1.5</span>` : "",
+    t0.gim ? `<span class="fn">gimmick</span><span class="fv up">×${t0.gm}</span>` : "",
     `<span class="fn">=</span><span class="fv total">${Math.round(t0.d)}</span>`
   ].filter(Boolean).join("");
   const foeRows = tr.rows.map(t => `
@@ -1028,6 +1084,14 @@ function renderBattle(){
           </div>`).join("")}
       </div>
       <div class="vsfoot clean">💥 max total damage: <b>${Math.round(win.dmgSum)}</b><span class="dim" style="font-size:.72em"> · AoE: every hit damages all 3 · damage-first ranking · ${CANDS.length} tags searched · ${ms}ms</span></div>
+      <div class="modelrow">
+        <span class="mlabel">damage stat</span>
+        <button class="mtog ${dmgModel === "off" ? "on" : ""}" data-model="off">Atk / Sp.ATK</button>
+        <button class="mtog ${dmgModel === "pe" ? "on" : ""}" data-model="pe">PE</button>
+        <span class="mnote">${dmgModel === "off"
+          ? "real game: damage reads the move's offensive stat"
+          : "legacy: flat PE scalar"}</span>
+      </div>
     </div>
     ${win.pairs.map((pr, i2) => {
       const r = pr.r;
@@ -1063,6 +1127,7 @@ function renderBattle(){
       </article>`;
     }).join("")}
     <div class="btnrow"><button class="btn" id="battleAgain">⚔️ New battle</button></div>`;
+  el.querySelectorAll(".mtog").forEach(b => b.onclick = () => setDmgModel(b.dataset.model));
   const ba = $("#battleAgain"); if (ba) ba.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
 }
 
