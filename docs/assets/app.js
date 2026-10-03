@@ -736,12 +736,9 @@ function battleScore(x, enemy, allFoes){
      badly countered (double-weak), matching on-cart feel. */
   worst = 0.35 * big + 0.2 * (worst - big);
   if (hitCount) sv = { ehp, worst, worstMv: bigMv, hits: hitCount, ok: ehp > worst, spare: ehp - worst };
-  if (sv && sv.ok) sc += 2 + Math.min(sv.spare / 150, 2);
-  else if (sv) sc -= 4 + Math.min(-sv.spare / 150, 4);
+  /* v55: s is a damage-flavored tiebreak only - no survival/incoming terms rank */
   if (gim) sc += 0.8;
   const inc = incMoveMult(enemy.types, x.types);
-  if (inc >= 4) sc -= 7; else if (inc >= 2) sc -= 2.5;
-  if (inc < 1) sc += 1.5;
   return { s: sc, dmg, dmgMap, mv: mvName, sv, inc };
 }
 /* cache: candidate x enemy scores built lazily, reused across searches */
@@ -760,22 +757,20 @@ function battleAssign(team, foes){
   const foesKey = foes.map(f2 => f2.id).join("|");
   let best = null;
   for (const pm of BPERMS){
-    let tot = 0, dmgSum = 0, alive = 0; const pairs = [];
+    let tot = 0, dmgSum = 0; const pairs = [];
     for (let i2 = 0; i2 < 3; i2++){
       const r = bsc(team[pm[i2]], foes[i2], foesKey, foes);
       tot += r.s; pairs.push({ mine: team[pm[i2]], foe: foes[i2], r });
-      const ok = r.sv ? r.sv.ok : true;
-      if (ok) alive++;
+      /* v55: pure damage-first (Khanh) - no survival gate, no dead-penalty */
       let dRow = 0;
       for (const f of foes){ if (f) dRow += (r.dmgMap && r.dmgMap[f.id]) || 0; }
-      dmgSum += dRow * (ok ? 1 : 0.3);
+      dmgSum += dRow;
     }
-    /* rank key: survive-first (Khanh rule), then max total damage, then s */
-    const key = [alive, dmgSum, tot];
-    const better = !best || alive > best.key[0]
-      || (alive === best.key[0] && dmgSum > best.key[1])
-      || (alive === best.key[0] && dmgSum === best.key[1] && tot > best.key[2]);
-    if (!best || better) best = { key, tot, dmgSum, alive, pairs };
+    /* rank key: max total AoE damage, then s as tiebreak */
+    const key = [dmgSum, tot];
+    const better = !best || dmgSum > best.key[0]
+      || (dmgSum === best.key[0] && tot > best.key[1]);
+    if (!best || better) best = { key, tot, dmgSum, pairs };
   }
   return best;
 }
@@ -789,9 +784,8 @@ function battleBest(foes){
   for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
     const t2 = battleAssign([CANDS[a], CANDS[b], CANDS[c]], foes);
     const better = !best || t2.key[0] > best.key[0]
-      || (t2.key[0] === best.key[0] && t2.key[1] > best.key[1])
-      || (t2.key[0] === best.key[0] && t2.key[1] === best.key[1] && t2.key[2] > best.key[2]);
-    if (!best || better) best = { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, alive: t2.alive, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
+      || (t2.key[0] === best.key[0] && t2.key[1] > best.key[1]);
+    if (!best || better) best = { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
   }
   return best;
 }
@@ -867,8 +861,7 @@ function renderBattle(){
   const win = battleBest(BATTLE.foes);
   if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
   const ms = Math.max(1, Math.round(performance.now() - t0));
-  const verdicts = win.pairs.map(pr => pr.r.sv ? (pr.r.sv.ok ? 1 : -1) : 0);
-  const safe = verdicts.filter(v => v === 1).length, risk = verdicts.filter(v => v === -1).length;
+  const risk = 0; /* v55: survival no longer ranks - damage-first */
   el.innerHTML = `
     <div class="arena">
       <div class="vsline"><span class="mineTag">YOUR 3</span><span class="vsbadge">VS</span><span class="foeTag">ENEMY 3</span></div>
@@ -880,9 +873,7 @@ function renderBattle(){
             <div class="tspe">PE ${pr.mine.pe ?? "?"} <span class="stars">${stars(pr.mine.grade)}</span></div>
           </div>`).join("")}
       </div>
-      <div class="vsfoot ${risk ? "warn" : "clean"}">${risk
-        ? `⚠ ${safe}/3 survive the full 3-enemy barrage`
-        : `✔ all 3 survive the full 3-enemy barrage`}<span class="dim" style="font-size:.72em"> · AoE: every hit damages all 3 · ${CANDS.length} tags searched · ${ms}ms</span></div>
+      <div class="vsfoot clean">💥 max total damage: <b>${Math.round(win.dmgSum)}</b><span class="dim" style="font-size:.72em"> · AoE: every hit damages all 3 · damage-first ranking · ${CANDS.length} tags searched · ${ms}ms</span></div>
     </div>
     ${win.pairs.map((pr, i2) => {
       const r = pr.r;
