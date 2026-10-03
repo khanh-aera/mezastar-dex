@@ -130,13 +130,25 @@ html, body.playbody {
 /* ---------- roster ---------- */
 .rhead {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 6px 2px 12px;
+  padding: 6px 2px 10px;
+}
+.rhead .btn.act {
+  min-height: 46px;
+  padding: 10px 18px;
+  border-radius: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+  flex: none;
 }
 .rlab { font-weight: 800; letter-spacing: .05em; font-size: 14px; color: #ffe9a8; }
-.rnote { font-size: 12px; color: #a68ec9; }
+.rnote {
+  font-size: 12px;
+  color: #a68ec9;
+  padding: 0 2px 12px;
+}
 
 .rgrid {
   display: grid;
@@ -144,12 +156,30 @@ html, body.playbody {
   gap: 10px;
 }
 .rcard {
+  position: relative;
   padding: 9px;
   border-radius: 16px;
   background: linear-gradient(160deg, rgba(58, 30, 92, .58), rgba(26, 12, 44, .72));
   border: 1px solid rgba(214, 168, 255, .2);
   text-align: center;
 }
+.roremove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  background: rgba(10, 14, 32, .72);
+  color: #ff8fae;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 5;
+  transition: .15s;
+}
+.roremove:hover { background: rgba(255, 92, 138, .2); border-color: #ff5c8a; }
+.roremove:active { transform: scale(.9); }
 .rcard img {
   width: 100%;
   height: 92px;
@@ -178,6 +208,20 @@ html, body.playbody {
   color: #907cb0;
   text-align: center;
 }
+.rfoot .btn.ghost {
+  display: block;
+  margin: 10px auto 0;
+  min-height: 44px;
+  padding: 9px 16px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  background: rgba(70, 36, 110, .3);
+  border: 1px solid rgba(214, 168, 255, .26);
+  color: #e6d6ff;
+  cursor: pointer;
+}
+.rfoot .btn.ghost:active { transform: scale(.97); }
 
 /* ---------- footer ---------- */
 .playfoot {

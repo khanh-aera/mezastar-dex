@@ -47,6 +47,13 @@ SL_USER_ROSTER = "\n".join(lines[idx("function userRoster()"):idx("function rend
 assert "allRosterIds" in SL_USER_ROSTER, "allRosterIds got cut off"
 SL_MAIN_MEMBERS = block(idx("function mainMembers()"), idx("/* best single tag in the main roster"))
 SL_MAIN_IDS = block_to("const MAIN_IDS = [", "];")
+# art paths: the battle block renders raw m.img, which resolves to /play/img/...
+# and 404s. Rewrite to playImg() at build time so the extracted block stays
+# byte-comparable with the binder everywhere except these paths.
+SL_BATTLE_FIX = (SL_BATTLE
+    .replace('<img src="${esc(pr.mine.img || \"\")}"', '<img src="${playImg(pr.mine)}"')
+    .replace('<img src="${esc(pr.foe.img || \"\")}"', '<img src="${playImg(pr.foe)}"'))
+assert "playImg(pr.mine)" in SL_BATTLE_FIX and "playImg(pr.foe)" in SL_BATTLE_FIX, "battle art rewrite matched nothing"
 assert SL_MAIN_IDS.count('"1-') == 11, "MAIN_IDS lost entries: %d" % SL_MAIN_IDS.count('"1-')
 
 # TYPE_COLOR / TYPE_ICON are tiny; take them verbatim so pill() renders identically.
@@ -92,7 +99,14 @@ function invalidateCands(){ BSC.clear(); CANDS.length = 0; buildCands(); }
 
 /* the binder closes a full-screen modal; play has no modal, so this is a no-op
    that keeps the extracted block's contract intact */
-function closeModal(){ const sc = $("#scrim"); if (sc) sc.classList.remove("on"); }
+/* the data files store "img/<file>" relative to the SITE ROOT, so every art
+   reference inside the extracted battle block needs the "../" hop from /play/ */
+function playImg(m){ return m && m.img ? "../" + m.img : ""; }
+function closeModal(){
+  const sc = $("#scrim"); if (sc) sc.classList.remove("on");
+  /* play renders #modal in place, so clear it - the binder hides it with CSS only */
+  const m = $("#modal"); if (m) m.innerHTML = "";
+}
 
 /* two panels instead of five tabs */
 function tab(name){
@@ -150,26 +164,40 @@ function wire() {
   });
 }
 
-/* ---------- main roster panel ---------- */
+/* main roster panel (play): same localStorage contract as the binder -
+   userRoster[] for added ids, rosterHidden[] for core tags he puts away.
+   Candidates are rebuilt on every change so a new tag is battleable at once. */
+function rosterHidden(){
+  try { return JSON.parse(localStorage.getItem("rosterHidden") || "[]"); } catch(e){ return []; }
+}
 function renderRosterPanel() {
   const host = document.querySelector("#rosterList");
   if (!host) return;
-  const ids = allRosterIds();
+  /* a core tag he has put away must not stay on screen - allRosterIds() ignores
+     rosterHidden[], so filter here or the ✕ appears to do nothing */
+  const hid = rosterHidden();
+  const ids = allRosterIds().filter(id => !hid.includes(id));
+  /* mainMembers() only knows MAIN_IDS, so resolve every id the same way the binder
+     loadout does: roster row first (it carries ownership + hero art), pool fills gaps */
   const tags = ids.map(id => {
     const r = ROSTER.find(x => x.id === id);
-    const p = POOL.find(x => x.id === id);
-    return mainMembers().find(m => m.id === id) || Object.assign({}, p || {}, r || {});
+    const pl = POOL.find(x => x.id === id);
+    if (r || pl) return Object.assign({}, pl || {}, r || {});
+    const m = mainMembers().find(x => x.id === id);
+    return m || null;
   }).filter(Boolean);
 
   host.innerHTML = `
     <div class="rhead">
-      <span class="rlab">MAIN ROSTER · ${tags.length} tags</span>
-      <span class="rnote">battle draws from all ${CANDS.length}</span>
+      <span class="rlab">MY ROSTER · ${tags.length} tags</span>
+      <button class="btn act" id="rosterAdd">＋ Add pokemon</button>
     </div>
+    <div class="rnote">battle can answer with ${CANDS.length} of these - add a tag and it is battleable at once</div>
     <div class="rgrid">${tags.map(m => {
       /* data files already store "img/<file>", so resolve from the site root, not from /play/ */
       const art = m.img ? "../" + m.img : "";
       return `<div class="rcard">
+        <button class="roremove" data-rm="${esc(m.id)}" title="Remove">✕</button>
         ${art ? `<img src="${art}" alt="${esc(m.name)}" loading="lazy">` : `<div class="rnoart">?</div>`}
         <div class="rname">${esc(m.name)}</div>
         <div class="rsub">${(m.types || []).map(pill).join(" ")} ${stars(m.grade)}</div>
@@ -177,9 +205,71 @@ function renderRosterPanel() {
       </div>`;
     }).join("")}</div>
     <div class="rfoot">
-      <span>tags marked with an ability fire it once per session in the real game</span>
+      <span>an ability fires once per session in the real game — bring one, not three</span>
+      ${hid.length ? `<button class="btn ghost" id="rosterRestore">↩ put back ${hid.length} hidden</button>` : ""}
     </div>`;
+
+  host.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
+    const id = b.dataset.rm;
+    if (MAIN_IDS.includes(id)){
+      /* core tag: keep the data, remember that he wants it out of the bag */
+      const hid = rosterHidden();
+      if (!hid.includes(id)) hid.push(id);
+      localStorage.setItem("rosterHidden", JSON.stringify(hid));
+    } else {
+      setUserRoster(userRoster().filter(x => x !== id));
+    }
+    invalidateCands();
+    renderRosterPanel();
+    renderBattleFoes();
+  });
+
+  const add = document.querySelector("#rosterAdd");
+  if (add) add.onclick = rosterAddPicker;
+
+  const restore = document.querySelector("#rosterRestore");
+  if (restore) restore.onclick = () => {
+    localStorage.removeItem("rosterHidden");
+    invalidateCands();
+    renderRosterPanel();
+    renderBattleFoes();
+  };
 }
+
+/* reuse the binder's picker, then repaint play's own panels */
+function rosterAddPicker(){
+  const el = $("#modal");
+  if (!el) return;
+  const owned = new Set(ROSTER.map(x => x.id));
+  const cands = POOL.filter(x => !allRosterIds().includes(x.id) && (owned.has(x.id) || x.grade === "5" || x.grade === "6"))
+    .sort((a, b) => (b.pe || 0) - (a.pe || 0));
+  const row = x => `
+      <button class="pitem" data-id="${esc(x.id)}">
+        <span>${esc(x.name)}</span>
+        <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}${owned.has(x.id) ? " · owned" : ""}</span>
+      </button>`;
+  el.innerHTML = `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>
+    <input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off">
+    <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every 5★ and 6★ tag is already on your roster.</div>`}</div>`;
+  $("#scrim").classList.add("on");
+  $("#x").onclick = closeModal;
+  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    const ids = userRoster();
+    if (!ids.includes(b.dataset.id)) ids.push(b.dataset.id);
+    setUserRoster(ids);
+    closeModal();
+    invalidateCands();
+    renderRosterPanel();
+  });
+  $("#bs").oninput = e => {
+    const q = e.target.value.trim().toLowerCase();
+    const hit = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q));
+    $("#pl").innerHTML = hit.length ? hit.map(row).join("") : `<div class="empty">No match for "${esc(q)}".</div>`;
+    wirePl();
+  };
+  wirePl();
+}
+
 
 document.addEventListener("DOMContentLoaded", boot);
 '''
@@ -192,7 +282,7 @@ js = (HEADER
       + "\n" + SL_INC
       + "\n" + SL_MOVE_MULT
       + "\n" + SL_MAIN_MEMBERS
-      + "\n" + SL_BATTLE
+      + "\n" + SL_BATTLE_FIX
       + "\n" + MIDDLE
       + "\n" + FOOTER)
 
