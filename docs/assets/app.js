@@ -685,9 +685,14 @@ function buildCands(){
 /* scoreOf: one tag vs one enemy - same rules as the popup counter
    (mult tiers, stat shape, survival vs enemy's real sheet moves, gimmick,
    incoming-damage penalty). Returns { s, dmg, mv, sv, inc }. */
-function battleScore(x, enemy){
-  const bossStats = (window.STATS_BY_ID || {})[enemy.id] || null;
+/* v54 TRUE 3v3: a Pokemon's attack damages ALL 3 foes (Bulbapedia mechanic), and every
+   one of MY tags is hit by ALL 3 enemy attacks each round. battleScore therefore takes
+   the whole enemy trio: dmgMap = my best-move damage to EACH foe; sv = survival vs the
+   SUM of the trio's incoming (still "just survive the round", Khanh rule). */
+function battleScore(x, enemy, allFoes){
+  const foes = (allFoes && allFoes.length === 3 ? allFoes : [enemy]).filter(Boolean);
   let dmg = (x.pe || 100), mvName = "(no move data)", gim = false;
+  const dmgMap = {};
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
     let d = (x.pe || 100) * moveMult(mv.type, enemy.types);
@@ -696,6 +701,14 @@ function battleScore(x, enemy){
     if (mv.gimmick){ d *= 1.5; gim = true; }
     if (d > dmg){ dmg = d; mvName = mv.name; }
   }
+  /* one chosen move type would splash to everyone; score per foe with that same best move */
+  for (const f of foes){
+    if (!f) continue;
+    const mvx = (x.moves || []).find(m2 => m2 && m2.name === mvName && m2.type) || (x.moves || [])[0];
+    dmgMap[f.id] = mvx ? (x.pe || 100) * moveMult(mvx.type, f.types)
+      * ((MOVE_AR[mvx.name] || {}).ar ? (MOVE_AR[mvx.name].ar / 100) : 1)
+      * (mvx.gimmick ? 1.5 : 1) : (x.pe || 100);
+  }
   let sc = 0;
   const mult = dmg / Math.max(1, x.pe || 100);
   if (mult >= 4) sc += 6; else if (mult >= 2) sc += 4;
@@ -703,46 +716,59 @@ function battleScore(x, enemy){
   const off = Math.max(x.atk || 0, x.spa || 0) * 0.15 + (x.spe || 50) * 0.05;
   sc += Math.min((bulk + off) / 300 * 10, 4);
   let sv = null;
-  if (bossStats){
-    const ehp = (x.hp || 100) + Math.min(x.dfn || 100, x.spd || 100);
-    let worst = 0, worstMv = "";
-    for (const bm of [bossStats.move1, bossStats.move2]){
+  /* incoming: ALL 3 enemies strike my side each round - survive their combined worst */
+  const ehp = (x.hp || 100) + Math.min(x.dfn || 100, x.spd || 100);
+  let worst = 0, hitCount = 0, big = 0, bigMv = "";
+  for (const f of foes){
+    const bs = (window.STATS_BY_ID || {})[f.id] || null;
+    if (!bs) continue;
+    for (const bm of [bs.move1, bs.move2]){
       if (!bm || !bm.type) continue;
-      let d = (bossStats.pe || 100) * moveMult(bm.type, x.types);
+      let d = (bs.pe || 100) * moveMult(bm.type, x.types);
       const _bar = MOVE_AR[bm.name];
       if (_bar && _bar.ar){ d *= (_bar.ar / 100); }
-      if (d > worst){ worst = d; worstMv = bm.name; }
+      if (d > 0){ worst += d; hitCount++; }
+      if (d > big){ big = d; bigMv = bm.name + " (" + (f.name || f.id) + ")"; }
     }
-    sv = { ehp, worst, worstMv, ok: ehp > worst, spare: ehp - worst };
-    if (sv.ok) sc += 2 + Math.min(sv.spare / 50, 2);
-    else sc -= 4 + Math.min(-sv.spare / 50, 4);
   }
+  /* you face one foe per lane; the other attacks are splash. Real damage mitigates via
+     Atk-vs-Def (not full PE), so: main hit 0.35x, splash 0.2x - tags survive unless
+     badly countered (double-weak), matching on-cart feel. */
+  worst = 0.35 * big + 0.2 * (worst - big);
+  if (hitCount) sv = { ehp, worst, worstMv: bigMv, hits: hitCount, ok: ehp > worst, spare: ehp - worst };
+  if (sv && sv.ok) sc += 2 + Math.min(sv.spare / 150, 2);
+  else if (sv) sc -= 4 + Math.min(-sv.spare / 150, 4);
   if (gim) sc += 0.8;
   const inc = incMoveMult(enemy.types, x.types);
   if (inc >= 4) sc -= 7; else if (inc >= 2) sc -= 2.5;
   if (inc < 1) sc += 1.5;
-  return { s: sc, dmg, mv: mvName, sv, inc };
+  return { s: sc, dmg, dmgMap, mv: mvName, sv, inc };
 }
 /* cache: candidate x enemy scores built lazily, reused across searches */
 const BSC = new Map();
-function bsc(x, e){
+function bsc(x, e, foesKey, allFoes){
   let m = BSC.get(x.id); if (!m){ m = new Map(); BSC.set(x.id, m); }
-  let v = m.get(e.id);
-  if (v === undefined){ v = battleScore(x, e); m.set(e.id, v); }
+  const k = e.id + "<<" + foesKey;   /* enemy AND trio context (sv sums the whole trio) */
+  let v = m.get(k);
+  if (v === undefined){ v = battleScore(x, e, allFoes); m.set(k, v); }
   return v;
 }
 const BPERMS = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
-/* best pairing of MY 3 vs THE 3 enemies: all 6 assignments, max total */
+/* v54: my tag's damage SPLASHES to all 3 foes. Round damage = sum over foes of the best-
+   move damage map. alive = my 3 all survive the COMBINED trio incoming. */
 function battleAssign(team, foes){
+  const foesKey = foes.map(f2 => f2.id).join("|");
   let best = null;
   for (const pm of BPERMS){
     let tot = 0, dmgSum = 0, alive = 0; const pairs = [];
     for (let i2 = 0; i2 < 3; i2++){
-      const r = bsc(team[pm[i2]], foes[i2]);
+      const r = bsc(team[pm[i2]], foes[i2], foesKey, foes);
       tot += r.s; pairs.push({ mine: team[pm[i2]], foe: foes[i2], r });
       const ok = r.sv ? r.sv.ok : true;
       if (ok) alive++;
-      dmgSum += r.dmg * (ok ? 1 : 0.3);
+      let dRow = 0;
+      for (const f of foes){ if (f) dRow += (r.dmgMap && r.dmgMap[f.id]) || 0; }
+      dmgSum += dRow * (ok ? 1 : 0.3);
     }
     /* rank key: survive-first (Khanh rule), then max total damage, then s */
     const key = [alive, dmgSum, tot];
@@ -855,12 +881,13 @@ function renderBattle(){
           </div>`).join("")}
       </div>
       <div class="vsfoot ${risk ? "warn" : "clean"}">${risk
-        ? `⚠ ${safe}/3 survive their matchup - risky order matters`
-        : `✔ all 3 survive their matchup`}<span class="dim" style="font-size:.72em"> · ${CANDS.length} tags searched · ${ms}ms</span></div>
+        ? `⚠ ${safe}/3 survive the full 3-enemy barrage`
+        : `✔ all 3 survive the full 3-enemy barrage`}<span class="dim" style="font-size:.72em"> · AoE: every hit damages all 3 · ${CANDS.length} tags searched · ${ms}ms</span></div>
     </div>
     ${win.pairs.map((pr, i2) => {
       const r = pr.r;
       const mult = (r.dmg / Math.max(1, pr.mine.pe || 100)).toFixed(1);
+      const splash = foes.reduce((a2, f2) => a2 + ((r.dmgMap && r.dmgMap[f2.id]) || 0), 0);
       const ratio = Math.min(100, Math.round(r.dmg / Math.max(1, r.dmg, 900) * 100));
       return `<article class="matchup ${r.sv ? (r.sv.ok ? "ok" : "danger") : ""}">
         <div class="mrow">
@@ -877,13 +904,14 @@ function renderBattle(){
           </div>
         </div>
         <div class="mverdict ${r.sv ? (r.sv.ok ? "good" : "bad") : ""}">${r.sv ? (r.sv.ok
-          ? `🛡 survives ${esc(r.sv.worstMv || "hits")} · spare ${Math.round(r.sv.spare)}`
-          : `☠ DIES to ${esc(r.sv.worstMv || "hits")} · short ${Math.round(-r.sv.spare)}`) : ""}</div>
+          ? `🛡 survives all ${r.sv.hits} enemy hits · spare ${Math.round(r.sv.spare)}`
+          : `☠ falls short vs ${r.sv.hits} enemy hits · -${Math.round(-r.sv.spare)}`) : ""}</div>
         <div class="mnum">
           <span class="mvname">${esc(r.mv)}</span>
           <span class="mdmg">${Math.round(r.dmg)}<small>dmg</small></span>
           <span class="mmult">${mult}x</span>
           <span class="minc">${r.inc}x taken</span>
+          <span class="msplash">💥 ${Math.round(splash)} to all 3</span>
         </div>
         <div class="mbar"><i style="width:${ratio}%"></i></div>
       </article>`;
