@@ -680,8 +680,29 @@ function buildCands(){
       if (m[k] === null || m[k] === undefined || m[k] === "") m[k] = p[k];
     }
     if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
-    return m;
+    return applyStats(m, t2);
   }));
+}
+/* v60 AUDIT: roster/pool rows lack the rich per-move metadata that stats_allsets.json
+   carries (category Physical|Special, accuracy, attack-roulette value, effect text, and
+   the gimmick move). Merge it onto each candidate so Battle can show its work. Never
+   overwrite pool move NAMES/types - stats is only consulted where pool lacks it. */
+function applyStats(m){
+  const s = (window.STATS_BY_ID || {})[m.id];
+  if (!s) return m;
+  if (!m.gimmick && s.gimmick) m.gimmick = s.gimmick;
+  if (!m.move_effect && s.move1 && s.move1.effect) m.move_effect = s.move1.effect;
+  [s.move1, s.move2].forEach((mv, i2) => {
+    if (!mv || !mv.name) return;
+    let t2 = (m.moves || []).find(x2 => x2 && x2.name === mv.name);
+    if (!t2){ const nth = (m.moves || [])[i2]; if (nth && !nth.name) t2 = nth; }
+    if (!t2 || typeof t2 !== "object") return;
+    ["category","accuracy","roulette","effect"].forEach(k => {
+      if (!t2[k] && mv[k] !== undefined && mv[k] !== "") t2[k] = mv[k];
+    });
+    if (!t2.type && mv.type) t2.type = mv.type;
+  });
+  return m;
 }
 /* scoreOf: one tag vs one enemy - same rules as the popup counter
    (mult tiers, stat shape, survival vs enemy's real sheet moves, gimmick,
@@ -690,6 +711,28 @@ function buildCands(){
    one of MY tags is hit by ALL 3 enemy attacks each round. battleScore therefore takes
    the whole enemy trio: dmgMap = my best-move damage to EACH foe; sv = survival vs the
    SUM of the trio's incoming (still "just survive the round", Khanh rule). */
+/* v60: full audit trail for a strike, so the Battle card can show every input
+   instead of one opaque number: PE x move-type multiplier x attack-roulette x gimmick. */
+function strikeTrace(x, foe, mv){
+  const pe = x.pe || 100;
+  const mm = (mv && mv.type) ? moveMult(mv.type, foe.types) : 1;
+  const arI = (mv && MOVE_AR[mv.name]) || null;
+  const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
+  const gim = (mv && mv.gimmick) ? 1.5 : 1;
+  return { pe, mm, arRaw: arI ? arI.ar : null, ar, gim: gim > 1,
+    d: pe * mm * ar * gim, mv: mv || null, foe: foe.name || foe.id,
+    foeTypes: (foe.types || []).slice() };
+}
+/* v60: the mirror image - what an ENEMY move does to one of mine, same vocabulary. */
+function incomingTrace(f, x, mv){
+  const pe = f.pe || 100;
+  const mm = (mv && mv.type) ? moveMult(mv.type, x.types) : 1;
+  const arI = (mv && MOVE_AR[mv.name]) || null;
+  const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
+  return { pe, mm, arRaw: arI ? arI.ar : null, ar, d: pe * mm * ar,
+    name: (mv && mv.name) || "", from: f.name || f.id, immune: mm === 0, dbl: mm >= 2 };
+}
+
 function battleScore(x, enemy, allFoes){
   const foes = (allFoes && allFoes.length === 3 ? allFoes : [enemy]).filter(Boolean);
   let dmg = (x.pe || 100), mvName = "(immune — no move lands)", gim = false;
@@ -721,6 +764,7 @@ function battleScore(x, enemy, allFoes){
   /* incoming: ALL 3 enemies strike my side each round - survive their combined worst */
   const ehp = (x.hp || 100) + Math.min(x.dfn || 100, x.spd || 100);
   let worst = 0, hitCount = 0, big = 0, bigMv = "";
+  const incRows = [];   /* v60: keep every incoming line so the card can list them */
   for (const f of foes){
     const bs = (window.STATS_BY_ID || {})[f.id] || null;
     if (!bs) continue;
@@ -729,19 +773,28 @@ function battleScore(x, enemy, allFoes){
       let d = (bs.pe || 100) * moveMult(bm.type, x.types);
       const _bar = MOVE_AR[bm.name];
       if (_bar && _bar.ar){ d *= (_bar.ar / 100); }
+      incRows.push(incomingTrace(f, x, bm));
       if (d > 0){ worst += d; hitCount++; }
       if (d > big){ big = d; bigMv = bm.name + " (" + (f.name || f.id) + ")"; }
     }
   }
+  incRows.sort((a, b) => b.d - a.d);
   /* you face one foe per lane; the other attacks are splash. Real damage mitigates via
      Atk-vs-Def (not full PE), so: main hit 0.35x, splash 0.2x - tags survive unless
      badly countered (double-weak), matching on-cart feel. */
+  const rawSum = worst;   /* un-mitigated sum, needed to show the splash term honestly */
   worst = 0.35 * big + 0.2 * (worst - big);
-  if (hitCount) sv = { ehp, worst, worstMv: bigMv, hits: hitCount, ok: ehp > worst, spare: ehp - worst };
+  if (hitCount) sv = { ehp, worst, worstMv: bigMv, hits: hitCount, ok: ehp > worst, spare: ehp - worst,
+    rows: incRows, main: big, splash: rawSum - big };
   /* v55: s is a damage-flavored tiebreak only - no survival/incoming terms rank */
   if (gim) sc += 0.8;
   const inc = incMoveMult(enemy.types, x.types);
-  return { s: sc, dmg, dmgMap, mv: mvName, sv, inc };
+  /* v60: hand the UI the exact move object that won, plus a per-foe trace. All the
+     arithmetic above is untouched - this only reports what already happened. */
+  const mvx = (x.moves || []).find(m2 => m2 && m2.name === mvName && m2.type) || (x.moves || [])[0] || null;
+  const trace = { rows: [] };
+  for (const f of foes){ if (f) trace.rows.push(strikeTrace(x, f, mvx)); }
+  return { s: sc, dmg, dmgMap, mv: mvName, mvObj: mvx, trace, sv, inc };
 }
 /* cache: candidate x enemy scores built lazily, reused across searches */
 const BSC = new Map();
@@ -850,6 +903,85 @@ function battlePick(slot){
   wirePl();
   setTimeout(() => { const b = $("#bs"); if (b) b.focus(); }, 50);
 }
+/* v60 AUDIT UI: everything the score is made of, one tap away. The card keeps its
+   compact summary; <details> holds the full arithmetic so nothing is dumped at once. */
+const mvTag = (m) => m && m.type ? pill(m.type) : `<span class="dim">—</span>`;
+function moveMetaLine(mv){
+  if (!mv) return "";
+  const bits = [];
+  if (mv.category) bits.push(mv.category);
+  if (mv.accuracy) bits.push(`acc ${mv.accuracy}`);
+  if (mv.roulette) bits.push(`roulette ${mv.roulette}`);
+  if (mv.effect) bits.push(mv.effect);
+  return bits.map(b => `<span class="kv">${esc(b)}</span>`).join("");
+}
+function auditCard(pr, foes){
+  const r = pr.r, mine = pr.mine, mv = r.mvObj, tr = r.trace || { rows: [] };
+  const rowSum = tr.rows.reduce((a, t) => a + t.d, 0);
+  const g = mine.gimmick;
+  /* damage formula, factored */
+  const t0 = tr.rows[0] || { pe: mine.pe || 100, mm: 1, ar: 1, arRaw: null, gim: false };
+  const factors = [
+    `<span class="fn">PE</span><span class="fv">${t0.pe}</span>`,
+    t0.mm !== 1 ? `<span class="fn">type</span><span class="fv ${t0.mm > 1 ? "up" : "down"}">×${t0.mm}</span>` : "",
+    t0.arRaw ? `<span class="fn">roulette</span><span class="fv">×${(Math.round(t0.ar * 100) / 100)}</span>` : "",
+    t0.gim ? `<span class="fn">gimmick</span><span class="fv up">×1.5</span>` : "",
+    `<span class="fn">=</span><span class="fv total">${Math.round(t0.d)}</span>`
+  ].filter(Boolean).join("");
+  const foeRows = tr.rows.map(t => `
+    <tr>
+      <td class="who">${esc(t.foe)}</td>
+      <td class="tt">${(t.foeTypes || []).map(pill).join(" ")}</td>
+      <td class="num ${t.mm > 1 ? "up" : t.mm === 0 ? "zero" : t.mm < 1 ? "down" : ""}">${t.mm}×</td>
+      <td class="num strong">${Math.round(t.d)}</td>
+    </tr>`).join("");
+  let inc = "";
+  if (r.sv && r.sv.rows && r.sv.rows.length){
+    const ir = r.sv.rows.map(t => `
+      <tr>
+        <td class="who">${esc(t.from)}</td>
+        <td class="mv">${esc(t.name)}${t.immune ? ` <span class="zero">immune</span>` : t.dbl ? ` <span class="up">2×</span>` : ""}</td>
+        <td class="num">${t.mm}×</td>
+        <td class="num strong">${Math.round(t.d)}</td>
+      </tr>`).join("");
+    inc = `
+      <div class="ablock">
+        <div class="ahead">📥 INCOMING — all ${r.sv.hits} enemy hits this round</div>
+        <table class="atable"><thead><tr><th>from</th><th>move</th><th>×</th><th>dmg</th></tr></thead><tbody>${ir}</tbody></table>
+        <div class="afoot">main hit ${Math.round(r.sv.main)} ×0.35 + splash ${Math.round(r.sv.splash)} ×0.2 = <b>${Math.round(r.sv.worst)}</b> vs eHP <b>${r.sv.ehp}</b> (HP + min(Def,SpD))</div>
+      </div>`;
+  }
+  const stats = mine && (mine.hp || mine.atk) ? `
+      <div class="ablock">
+        <div class="ahead">📊 TAG STATS</div>
+        <div class="astats">
+          ${[["HP",mine.hp],["ATK",mine.atk],["DEF",mine.dfn],["SPA",mine.spa],["SPD",mine.spd],["SPE",mine.spe]]
+            .filter(([, v]) => v !== null && v !== undefined && v !== "")
+            .map(([k, v]) => `<span class="ast"><i>${k}</i>${v}</span>`).join("")}
+        </div>
+        ${mine.move_effect ? `<div class="afoot">move effect: ${esc(mine.move_effect)}</div>` : ""}
+      </div>` : "";
+  return `<details class="audit">
+      <summary class="asum">⚙ how this number is built</summary>
+      <div class="abody">
+        <div class="ablock">
+          <div class="ahead">⚔️ MY MOVE</div>
+          <div class="amvrow">${mvTag(mv)} <span class="amv">${esc(r.mv)}</span></div>
+          <div class="amvmeta">${moveMetaLine(mv) || `<span class="dim">no extra effect</span>`}</div>
+          ${g ? `<div class="agim">✨ gimmick: ${esc(g)}</div>` : ""}
+          <div class="aformula">${factors}</div>
+        </div>
+        <div class="ablock">
+          <div class="ahead">💥 SPLASH — same move hits all 3 foes</div>
+          <table class="atable"><thead><tr><th>foe</th><th>types</th><th>×</th><th>dmg</th></tr></thead><tbody>${foeRows}</tbody></table>
+          <div class="afoot">total to all 3 = <b>${Math.round(rowSum)}</b> dmg</div>
+        </div>
+        ${inc}${stats}
+        <div class="afoot dim">damage-first ranking · survival is shown, never scored</div>
+      </div>
+    </details>`;
+}
+
 function renderBattle(){
   const el = $("#battleBox"); if (!el) return;
   renderBattleFoes();
@@ -906,6 +1038,7 @@ function renderBattle(){
           <span class="msplash">💥 ${Math.round(splash)} to all 3</span>
         </div>
         <div class="mbar"><i style="width:${ratio}%"></i></div>
+        ${auditCard(pr, foes)}
       </article>`;
     }).join("")}
     <div class="btnrow"><button class="btn" id="battleAgain">⚔️ New battle</button></div>`;
