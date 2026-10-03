@@ -799,7 +799,6 @@ function renderBattleFoes(){
     head.innerHTML = `<span class="btitle">⚔ Battle</span><span class="bspacer"></span>
       <button class="btab" data-go="binder">Binder</button>
       <button class="btab on" data-go="battle">Battle</button>
-      <button class="btab" data-go="hunt">Hunt</button>
       <button class="bexit" data-go="exit">Exit</button>`;
     head.querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
       const g = b.dataset.go;
