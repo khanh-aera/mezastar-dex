@@ -663,6 +663,8 @@ function battleScore(x, enemy){
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
     let d = (x.pe || 100) * moveMult(mv.type, enemy.types);
+    const _ar = MOVE_AR[mv.name];
+    if (_ar && _ar.ar){ d *= (_ar.ar / 100); }
     if (mv.gimmick){ d *= 1.5; gim = true; }
     if (d > dmg){ dmg = d; mvName = mv.name; }
   }
@@ -678,7 +680,9 @@ function battleScore(x, enemy){
     let worst = 0, worstMv = "";
     for (const bm of [bossStats.move1, bossStats.move2]){
       if (!bm || !bm.type) continue;
-      const d = (bossStats.pe || 100) * moveMult(bm.type, x.types);
+      let d = (bossStats.pe || 100) * moveMult(bm.type, x.types);
+      const _bar = MOVE_AR[bm.name];
+      if (_bar && _bar.ar){ d *= (_bar.ar / 100); }
       if (d > worst){ worst = d; worstMv = bm.name; }
     }
     sv = { ehp, worst, worstMv, ok: ehp > worst, spare: ehp - worst };
@@ -704,12 +708,20 @@ const BPERMS = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
 function battleAssign(team, foes){
   let best = null;
   for (const pm of BPERMS){
-    let tot = 0; const pairs = [];
+    let tot = 0, dmgSum = 0, alive = 0; const pairs = [];
     for (let i2 = 0; i2 < 3; i2++){
       const r = bsc(team[pm[i2]], foes[i2]);
       tot += r.s; pairs.push({ mine: team[pm[i2]], foe: foes[i2], r });
+      const ok = r.sv ? r.sv.ok : true;
+      if (ok) alive++;
+      dmgSum += r.dmg * (ok ? 1 : 0.3);
     }
-    if (!best || tot > best.tot) best = { tot, pairs };
+    /* rank key: survive-first (Khanh rule), then max total damage, then s */
+    const key = [alive, dmgSum, tot];
+    const better = !best || alive > best.key[0]
+      || (alive === best.key[0] && dmgSum > best.key[1])
+      || (alive === best.key[0] && dmgSum === best.key[1] && tot > best.key[2]);
+    if (!best || better) best = { key, tot, dmgSum, alive, pairs };
   }
   return best;
 }
@@ -722,7 +734,10 @@ function battleBest(foes){
   const N = CANDS.length;
   for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
     const t2 = battleAssign([CANDS[a], CANDS[b], CANDS[c]], foes);
-    if (!best || t2.tot > best.tot) best = { tot: t2.tot, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
+    const better = !best || t2.key[0] > best.key[0]
+      || (t2.key[0] === best.key[0] && t2.key[1] > best.key[1])
+      || (t2.key[0] === best.key[0] && t2.key[1] === best.key[1] && t2.key[2] > best.key[2]);
+    if (!best || better) best = { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, alive: t2.alive, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
   }
   return best;
 }
