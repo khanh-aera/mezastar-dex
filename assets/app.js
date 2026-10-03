@@ -735,24 +735,45 @@ function incomingTrace(f, x, mv){
 
 function battleScore(x, enemy, allFoes){
   const foes = (allFoes && allFoes.length === 3 ? allFoes : [enemy]).filter(Boolean);
-  let dmg = (x.pe || 100), mvName = "(immune — no move lands)", gim = false;
+  /* v61 BUGFIX: the old code seeded `dmg` with PE, so ANY move scoring at or below
+     1.00x PE (0.9x attack-roulette, a resisted type, a 0x immunity) was silently
+     discarded and replaced by PE itself. Koraidon vs Lunala read 162 instead of a
+     real 40. Start from 0 and pick the true best move; PE is only the floor when a
+     tag has no usable move at all. */
+  let dmg = 0, mvName = "(immune — no move lands)", gim = false;
   const dmgMap = {};
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
     let d = (x.pe || 100) * moveMult(mv.type, enemy.types);
     const _ar = MOVE_AR[mv.name];
     if (_ar && _ar.ar){ d *= (_ar.ar / 100); }
-    if (mv.gimmick){ d *= 1.5; gim = true; }
-    if (d > dmg){ dmg = d; mvName = mv.name; }              /* keeps the PE floor for damage */
+    if (mv.gimmick && d > 0){ d *= 1.5; gim = true; }      /* a 0x move never counts as a gimmick proc */
+    if (d > dmg){ dmg = d; mvName = mv.name; }              /* true best move, no PE ceiling */
     else if (mvName === "(immune — no move lands)" && d > 0){ mvName = mv.name; }  /* still NAME the real move */
   }
-  /* one chosen move type would splash to everyone; score per foe with that same best move */
+  /* v61: when nothing lands the label is the truth - keep dmg at 0 so the lane number
+     can never contradict dmgMap (Torterra vs Lugia read "immune" but 112 dmg). */
+  const immuneAll = dmg <= 0 && mvName === "(immune — no move lands)";
+  /* v61 BUGFIX: the old code picked the move that was best against the LANE foe and
+     then splashed THAT move at everyone. Since ranking is on total AoE damage, the
+     right move is the one with the highest SUM across all 3 foes - Tyranitar was
+     throwing away 144 damage by leading with Stone Edge instead of Max Rockfall. */
+  const mvList = (x.moves || []).filter(mv => mv && mv.type);
+  const strikeOf = (mv, f) => (x.pe || 100) * moveMult(mv.type, f.types)
+    * ((MOVE_AR[mv.name] || {}).ar ? (MOVE_AR[mv.name].ar / 100) : 1)
+    * (mv.gimmick ? 1.5 : 1);
+  let mvPick = mvList.find(m2 => m2.name === mvName) || mvList[0] || null;
+  if (mvList.length > 1){
+    let bestSum = -1;
+    for (const cand of mvList){
+      let sum = 0;
+      for (const f of foes){ if (f) sum += strikeOf(cand, f); }
+      if (sum > bestSum){ bestSum = sum; mvPick = cand; }
+    }
+  }
   for (const f of foes){
     if (!f) continue;
-    const mvx = (x.moves || []).find(m2 => m2 && m2.name === mvName && m2.type) || (x.moves || [])[0];
-    dmgMap[f.id] = mvx ? (x.pe || 100) * moveMult(mvx.type, f.types)
-      * ((MOVE_AR[mvx.name] || {}).ar ? (MOVE_AR[mvx.name].ar / 100) : 1)
-      * (mvx.gimmick ? 1.5 : 1) : (x.pe || 100);
+    dmgMap[f.id] = mvPick ? strikeOf(mvPick, f) : (x.pe || 100);
   }
   let sc = 0;
   const mult = dmg / Math.max(1, x.pe || 100);
@@ -791,7 +812,7 @@ function battleScore(x, enemy, allFoes){
   const inc = incMoveMult(enemy.types, x.types);
   /* v60: hand the UI the exact move object that won, plus a per-foe trace. All the
      arithmetic above is untouched - this only reports what already happened. */
-  const mvx = (x.moves || []).find(m2 => m2 && m2.name === mvName && m2.type) || (x.moves || [])[0] || null;
+  const mvx = mvPick || null;
   const trace = { rows: [] };
   for (const f of foes){ if (f) trace.rows.push(strikeTrace(x, f, mvx)); }
   return { s: sc, dmg, dmgMap, mv: mvName, mvObj: mvx, trace, sv, inc };
