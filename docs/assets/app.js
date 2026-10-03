@@ -400,7 +400,7 @@ function moveMult(moveType, defTypes){
    PE, all moves (+types+effects), gimmick move, Atk/SpA (mash power),
    HP+Def+SpD (bulk), Speed, trigger */
 function bestStrike(x, defTypes){
-  let dmg = (x.pe || 100), mvName = "(no move data)", effBonus = 0, gimmick = false;
+  let dmg = (x.pe || 100), mvName = "(immune — no move lands)", effBonus = 0, gimmick = false;
   const atkPower = Math.max(x.atk || 0, x.spa || 0);
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
@@ -408,7 +408,8 @@ function bestStrike(x, defTypes){
     const arInfo = MOVE_AR[mv.name];
     if (arInfo && arInfo.ar){ d *= (arInfo.ar / 100); }   /* real attack-roulette multiplier per move (100 = neutral) */
     if (mv.gimmick){ d *= 1.5; gimmick = true; }          /* Z/Dmax move: once per battle but huge */
-    if (d > dmg){ dmg = d; mvName = mv.name; }
+    if (d > dmg){ dmg = d; mvName = mv.name; }              /* keeps the PE floor for damage */
+    else if (mvName === "(immune — no move lands)" && d > 0){ mvName = mv.name; }  /* still NAME the real move */
   }
   /* SURVIVAL CHECK vs the specific enemy (Khanh rule: no need to be a
      wall, just survive the boss's strikes). Estimate every hit the boss
@@ -691,7 +692,7 @@ function buildCands(){
    SUM of the trio's incoming (still "just survive the round", Khanh rule). */
 function battleScore(x, enemy, allFoes){
   const foes = (allFoes && allFoes.length === 3 ? allFoes : [enemy]).filter(Boolean);
-  let dmg = (x.pe || 100), mvName = "(no move data)", gim = false;
+  let dmg = (x.pe || 100), mvName = "(immune — no move lands)", gim = false;
   const dmgMap = {};
   for (const mv of (x.moves || [])){
     if (!mv || !mv.type) continue;
@@ -699,7 +700,8 @@ function battleScore(x, enemy, allFoes){
     const _ar = MOVE_AR[mv.name];
     if (_ar && _ar.ar){ d *= (_ar.ar / 100); }
     if (mv.gimmick){ d *= 1.5; gim = true; }
-    if (d > dmg){ dmg = d; mvName = mv.name; }
+    if (d > dmg){ dmg = d; mvName = mv.name; }              /* keeps the PE floor for damage */
+    else if (mvName === "(immune — no move lands)" && d > 0){ mvName = mv.name; }  /* still NAME the real move */
   }
   /* one chosen move type would splash to everyone; score per foe with that same best move */
   for (const f of foes){
