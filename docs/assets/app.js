@@ -745,7 +745,21 @@ function battleBest(foes){
 function renderBattleFoes(){
   const el = $("#battleFoes"); if (!el) return;
   const picked = BATTLE.foes.filter(Boolean).length;
-  el.innerHTML = `<div class="foehead"><span class="foetitle">ENEMY TEAM</span><span class="foeexit" id="arenaExit" title="Exit battle mode">⤺ Exit</span><span class="foesub"><span class="foesub">${picked}/3${picked < 3 ? " · tap a slot" : ""}</span>${picked ? `<button class="foesclear" id="foesClear">✕</button>` : ""}</div>
+  const head = $("#battleHead");
+  if (head && !head.dataset.wired){
+    head.dataset.wired = "1";
+    head.innerHTML = `<span class="btitle">⚔ Battle</span><span class="bspacer"></span>
+      <button class="btab" data-go="binder">Binder</button>
+      <button class="btab on" data-go="battle">Battle</button>
+      <button class="btab" data-go="hunt">Hunt</button>
+      <button class="bexit" data-go="exit">Exit</button>`;
+    head.querySelectorAll("[data-go]").forEach(b => b.onclick = () => {
+      const g = b.dataset.go;
+      if (g === "exit"){ BATTLE.foes = [null, null, null]; tab("binder"); }
+      else tab(g);
+    });
+  }
+  el.innerHTML = `<div class="foehead"><span class="foetitle">ENEMY TEAM</span><span class="foesub">${picked}/3${picked < 3 ? " · tap a slot" : ""}</span>${picked ? `<button class="foesclear" id="foesClear">✕</button>` : ""}</div>
     <div class="foerow battlefoes ${picked === 3 ? "done" : ""}">
     ${BATTLE.foes.map((f, i2) => `
     <div class="foeslot ${f ? "filled" : ""}" data-slot="${i2}">
@@ -758,7 +772,6 @@ function renderBattleFoes(){
     </div>`;
   el.querySelectorAll("[data-slot]").forEach(sl => sl.onclick = () => battlePick(sl.dataset.slot));
   const fc = $("#foesClear"); if (fc) fc.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
-  const ex = $("#arenaExit"); if (ex) ex.onclick = () => tab("binder");
 }
 function battlePick(slot){
   const el = $("#modal");
@@ -1138,7 +1151,6 @@ $("#navScrim").onclick = () => setDrawer(false);
 document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeModal(); setDrawer(false); } });
 function tab(name){
   state.tab = name;
-  document.body.classList.toggle("arena-mode", name === "battle");
   window.scrollTo(0, 0);
   document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
