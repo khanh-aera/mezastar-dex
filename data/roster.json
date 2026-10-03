@@ -1034,6 +1034,141 @@
    "img": "img/1-2-002_Groudon.webp",
    "version": "Stardust V2",
    "vn": true
+  },
+  {
+   "id": "1-3-012",
+   "name": "Blaziken",
+   "types": [
+    "Fire",
+    "Fighting"
+   ],
+   "pe": 128,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Bug",
+    "Dark",
+    "Grass",
+    "Ice",
+    "Normal",
+    "Rock",
+    "Steel"
+   ],
+   "weak": [
+    "Flying",
+    "Ground",
+    "Psychic",
+    "Water"
+   ],
+   "resist": [
+    "Bug",
+    "Dark",
+    "Dragon",
+    "Fairy",
+    "Fire",
+    "Flying",
+    "Ghost",
+    "Grass",
+    "Ice",
+    "Poison",
+    "Psychic",
+    "Rock",
+    "Steel",
+    "Water"
+   ],
+   "img": "img/1-3-012_Blaziken.webp",
+   "version": "Stardust V3",
+   "vn": true,
+   "added": "2026-10-03"
+  },
+  {
+   "id": "1-3-024",
+   "name": "Great Tusk",
+   "types": [
+    "Ground",
+    "Fighting"
+   ],
+   "pe": 138,
+   "grade": "5",
+   "tier": "Star Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Dark",
+    "Electric",
+    "Fire",
+    "Ice",
+    "Normal",
+    "Poison",
+    "Rock",
+    "Steel"
+   ],
+   "weak": [
+    "Fairy",
+    "Flying",
+    "Grass",
+    "Ice",
+    "Psychic",
+    "Water"
+   ],
+   "resist": [
+    "Bug",
+    "Dark",
+    "Electric",
+    "Fairy",
+    "Flying",
+    "Ghost",
+    "Grass",
+    "Poison",
+    "Psychic",
+    "Rock"
+   ],
+   "img": "img/1-3-024_Great_Tusk.webp",
+   "version": "Stardust V3",
+   "vn": true,
+   "added": "2026-10-03"
+  },
+  {
+   "id": "1-3-009",
+   "name": "Grimmsnarl",
+   "types": [
+    "Dark",
+    "Fairy"
+   ],
+   "pe": 128,
+   "grade": "6",
+   "tier": "Superstar Pokémon",
+   "ability": "",
+   "moves": "",
+   "beats": [
+    "Dark",
+    "Dragon",
+    "Fighting",
+    "Ghost",
+    "Psychic"
+   ],
+   "weak": [
+    "Fairy",
+    "Poison",
+    "Steel"
+   ],
+   "resist": [
+    "Dark",
+    "Dragon",
+    "Fairy",
+    "Fighting",
+    "Fire",
+    "Ghost",
+    "Poison",
+    "Psychic",
+    "Steel"
+   ],
+   "img": "img/1-3-009_Grimmsnarl.webp",
+   "version": "Stardust V3",
+   "vn": true,
+   "added": "2026-10-03"
   }
  ],
  "updated": "2026-09-30: bought Groudon 1-2-002 (6-star)"
