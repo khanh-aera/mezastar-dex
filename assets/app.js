@@ -746,7 +746,7 @@ function renderBattleFoes(){
   const el = $("#battleFoes"); if (!el) return;
   const picked = BATTLE.foes.filter(Boolean).length;
   el.innerHTML = `<div class="foehead"><span class="foetitle">ENEMY TEAM</span><span class="foesub">${picked}/3${picked < 3 ? " · tap a slot" : ""}</span>${picked ? `<button class="foesclear" id="foesClear">✕</button>` : ""}</div>
-    <div class="foerow">
+    <div class="foerow battlefoes ${picked === 3 ? "done" : ""}">
     ${BATTLE.foes.map((f, i2) => `
     <div class="foeslot ${f ? "filled" : ""}" data-slot="${i2}">
       <span class="slotno">${i2 + 1}</span>

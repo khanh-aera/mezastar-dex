@@ -519,3 +519,64 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 
 .foehead{ display:flex; align-items:center; justify-content:space-between; gap:8px; white-space:nowrap; }
 .foetitle{ font-size:.72em; letter-spacing:.1em; }
+
+/* ==== BATTLE MOBILE + MOTION (v49) ==== */
+/* #battleFoes wrapper must NOT be a 3-col grid (its children are foehead + foerow) */
+#battleFoes{ display:block !important; }
+
+/* entrance motion */
+@keyframes arenaIn{0%{opacity:0;transform:translateY(14px) scale(.97)}100%{opacity:1;transform:none}}
+@keyframes vsPunch{0%{transform:scale(0) rotate(-12deg);opacity:0}60%{transform:scale(1.25) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+@keyframes cardIn{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:none}}
+@keyframes barFill{0%{width:0 !important}}
+@keyframes vsFlash{0%,100%{text-shadow:0 0 12px rgba(255,215,106,.5)}50%{text-shadow:0 0 22px rgba(255,215,106,.95),0 0 34px rgba(255,157,58,.6)}}
+@keyframes goodPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(160,255,140,.25))}50%{filter:drop-shadow(0 0 14px rgba(160,255,140,.6))}}
+@keyframes dangerPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(255,92,138,.3))}50%{filter:drop-shadow(0 0 16px rgba(255,92,138,.7))}}
+@keyframes slotPop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+@keyframes slotBreath{0%,100%{box-shadow:0 0 10px rgba(255,92,138,.18)}50%{box-shadow:0 0 22px rgba(255,92,138,.42)}}
+@keyframes dizzy{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-2px) rotate(-6deg)}75%{transform:translateY(-2px) rotate(6deg)}}
+
+.arena{ animation:arenaIn .38s cubic-bezier(.2,.9,.3,1.2) both; }
+.vsbadge{ animation:vsPunch .45s cubic-bezier(.2,.9,.3,1.4) both .12s; }
+.mvs{ animation:vsFlash 1.8s ease-in-out infinite; }
+.matchup{ animation:cardIn .45s cubic-bezier(.2,.9,.3,1.1) both; }
+.matchup:nth-child(1){ animation-delay:.10s } .matchup:nth-child(2){ animation-delay:.20s } .matchup:nth-child(3){ animation-delay:.30s }
+.mbar i{ animation:barFill .8s cubic-bezier(.3,.8,.3,1) both .35s; }
+.matchup.ok .mside.me img{ animation:goodPulse 2.2s ease-in-out infinite; }
+.matchup.danger .mside.them img{ animation:dangerPulse 1.6s ease-in-out infinite; }
+.matchup.danger .mside.them{ animation:dizzy 2.4s ease-in-out infinite; }
+.foeslot.filled img{ animation:slotPop .35s cubic-bezier(.2,.9,.3,1.4) both; }
+.battlefoes:not(.done) .foeslot:not(.filled){ animation:slotBreath 1.6s ease-in-out infinite; }
+.foeslot.filled{ animation:arenaIn .3s ease both; }
+
+/* mobile: stack matchup sides vertically, bigger targets */
+@media (max-width:620px){
+  .foeslot{ min-height:118px; padding:16px 8px 12px; }
+  .foeslot img{ width:64px; height:64px; }
+  .foeslot .fname{ font-size:.95em; }
+  .mrow{ grid-template-columns:1fr; gap:2px; }
+  .mvs{ padding:2px 0; font-size:1.05em; }
+  .mside img{ width:88px; height:88px; }
+  .mside.me{ margin-bottom:2px; }
+  .mnum{ gap:8px 14px; }
+  .mdmg{ font-size:1.7em; }
+  .teamstrip{ gap:6px; }
+  .tslot{ padding:12px 4px 10px; }
+  .tslot img{ width:64px; height:64px; }
+  .tsname{ font-size:.86em; }
+  .pitem{ padding:14px 14px; min-height:52px; }
+  .pitem .psub{ font-size:.9em; }
+  .bsearch{ font-size:17px; padding:13px 16px; }
+  .foesclear{ padding:8px 16px !important; min-height:44px; }
+  .plist{ max-height:56vh; }
+}
+@media (max-width:380px){
+  .mside img{ width:76px; height:76px; }
+  .foeslot img{ width:56px; height:56px; }
+  .vsbadge{ font-size:1.15em; padding:5px 16px; }
+}
+/* accessibility: no motion if user prefers reduced */
+@media (prefers-reduced-motion:reduce){
+  .arena,.vsbadge,.matchup,.mbar i,.foeslot.filled,.foeslot.filled img{ animation:none !important; }
+  .mvs,.matchup.ok .mside.me img,.matchup.danger .mside.them img,.matchup.danger .mside.them,.battlefoes:not(.done) .foeslot:not(.filled){ animation:none !important; }
+}
