@@ -1,7 +1,7 @@
 /* Mezastar Binder service worker. Bump VERSION whenever the site changes. */
-const VERSION = "mezastar-v58";
+const VERSION = "mezastar-v59";
 const SHELL = ["./", "index.html", "assets/style.css", "assets/app.js",
-  "data/roster.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
+  "data/roster.json","data/support.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
   "island/data/sprites.json", "island/data/pokedex.json",
   "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 

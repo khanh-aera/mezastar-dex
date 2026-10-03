@@ -101,17 +101,23 @@
     <!-- ============ SUPPORT TICKETS ============ -->
     <section class="panel" id="p-tickets">
       <div class="tools glass">
-        <input class="search" id="tq" placeholder="Search support tickets by Pokemon, move or source…" autocomplete="off">
+        <input class="search" id="tq" placeholder="Search support Pokemon, move or set…" autocomplete="off">
         <div class="btn-group" id="ticketFilters">
           <button class="btn act" data-f="all">All</button>
-          <button class="btn" data-f="vn">VN Available</button>
-          <button class="btn" data-f="club">Mezastar Club</button>
-          <button class="btn" data-f="mag">Magazine</button>
-          <button class="btn" data-f="event">Event/Flyer</button>
+          <button class="btn" data-f="club">Club</button>
+          <button class="btn" data-f="pamphlet">Pamphlet</button>
+          <button class="btn" data-f="magazine">Magazine</button>
+          <button class="btn" data-f="multi">Repeated</button>
         </div>
       </div>
       <div class="hint" id="ticketCount"></div>
-      <div class="grid" id="tgrid"><div class="spin"></div></div>
+      <p class="supnote">
+        Every Support Pokemon Ticket released for Pokemon Mezastar, verified against the Bulbapedia
+        set records for all 19 expansion sets. Scan a QR to jump back to that Pokemon here.
+        <b>The real ticket codes are unique per member or per magazine copy and were never published</b>,
+        so these QR codes open this Dex instead — get the real ticket from the Mezastar Club or a promo pamphlet.
+      </p>
+      <div class="grid supgrid" id="tgrid"><div class="spin"></div></div>
     </section>
 
     <footer>

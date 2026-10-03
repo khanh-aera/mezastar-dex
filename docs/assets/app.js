@@ -925,6 +925,22 @@ const TIPS = [
  "Duplicate tags are trade stock. Keep the higher PE copy visible when trading.",
  "Turn the money you were going to spend on a risky get into one more boss rotation instead."
 ];
+/* Win streaks over the battle log. LOG is newest-last push order, so walk from
+   the end for the current run and scan the whole log for the record. */
+function streaks(){
+  let cur = 0;
+  for (let i = LOG.length - 1; i >= 0; i--){
+    if (!LOG[i].win) break;
+    cur++;
+  }
+  let best = 0, run = 0;
+  for (const e of LOG){
+    run = e.win ? run + 1 : 0;
+    if (run > best) best = run;
+  }
+  return { cur, best };
+}
+
 function renderStats(){
   const host = $("#statsBox"); if (!host) return;
   const wins = LOG.filter(e => e.win).length;
@@ -1118,72 +1134,149 @@ function applyLang(){
 }
 
 /* ================= SUPPORT TICKETS ================= */
-const TICKETS = [
-  { id:"t1", name:"Zygarde", form:"Complete Forme", move:"Thousand Arrows", type:["Ground","Dragon"], grade:5,
-    source:"Mezastar Club (digital)", period:"2020-09-17 to ~2021-01", set:"Set 1", vn:false, img:"img/1-1-025_Zygarde.webp", qr:"img/support_ticket_1.png" },
-  { id:"t2", name:"Flygon", move:"Earthquake", type:["Ground","Dragon"], grade:5,
-    source:"Mezastar Club (digital)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-050_Flygon.webp", qr:"img/support_ticket_2.png" },
-  { id:"t3", name:"Corviknight", move:"Brave Bird", type:["Flying","Steel"], grade:5,
-    source:"Pokémon Fan magazine issue 73 (physical QR)", period:"2021-04-28 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-046_Corviknight.webp", qr:"img/support_ticket_3.png" },
-  { id:"t4", name:"Mimikyu", move:"Shadow Claw", type:["Ghost","Fairy"], grade:5,
-    source:"Tournament prize (defeat Star Trainer Sakura)", period:"2021-04-22 to 2021-09-15", set:"Set 4", vn:false, img:"img/4-049_Mimikyu.webp", qr:"img/support_ticket_4.png" },
-  { id:"t5", name:"Tangrowth", move:"Power Whip", type:["Grass"], grade:5,
-    source:"Mezastar Club (digital)", period:"2022-09-15 to 2022-11-21", set:"Double Chain 2", vn:false, img:"", qr:"img/support_ticket_5.png" },
-  { id:"t6", name:"Nidoking", move:"Earth Power", type:["Poison","Ground"], grade:5,
-    source:"Mezastar Club (digital) + pamphlet + Pokémon Fan", period:"2023-02-09 to 2023-08-31", set:"Double Chain 4", vn:true, img:"img/dc4-025_Nidoking.webp", qr:"img/support_ticket_6.png" },
-  { id:"t7", name:"Krookodile", move:"Earthquake", type:["Ground","Dark"], grade:5,
-    source:"Mezastar Club (digital) + pamphlet + event", period:"2024-02-08 to 2024-04-30", set:"Gorgeous Star 4", vn:true, img:"", qr:"img/support_ticket_7.png" },
-  { id:"t8", name:"Calyrex", form:"Ice Rider", move:"Glacial Lance", type:["Psychic","Ice"], grade:6,
-    source:"Mezastar Club (digital)", period:"Super Tag 1 launch period", set:"Super Tag 1", vn:false, img:"img/st1-005_Calyrex_Ice.webp", qr:"img/support_ticket_8.png" },
-  { id:"t9", name:"Calyrex", form:"Shadow Rider", move:"Astral Barrage", type:["Psychic","Ghost"], grade:6,
-    source:"Physical launch campaign ticket", period:"Super Tag 1 launch", set:"Super Tag 1", vn:false, img:"img/st1-006_Calyrex_Shadow.webp", qr:"img/support_ticket_9.png" },
-  { id:"t10", name:"Drifblim", move:"Shadow Ball", type:["Ghost","Flying"], grade:4,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-064_Drifblim.webp", qr:"img/support_ticket_10.png" },
-  { id:"t11", name:"Skeledirge", move:"Torch Song", type:["Fire","Ghost"], grade:5,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-027_Skeledirge.webp", qr:"img/support_ticket_11.png" },
-  { id:"t12", name:"Mareanie", move:"Toxic Spikes", type:["Poison","Water"], grade:2,
-    source:"Mezastar Club / event flyer", period:"Stardust V2 era (VN)", set:"Stardust V2", vn:true, img:"img/1-2-065_Mareanie.webp", qr:"img/support_ticket_12.png" },
-];
+/* Data: docs/data/support.json
+   Source: Bulbapedia "Support Pokemon Tickets" sections across the 19 Pokemon
+   Mezastar expansion set pages (Set 1-4, Super Tag 1-5, Double Chain 1-5,
+   Gorgeous Star 1-4). Fetched 2026-10-03, 86 offers across 74 Pokemon.
+   NOTE ON QR: the scan codes embedded in real Mezastar tickets are unique per
+   member / per magazine copy and are never published. The QR shown here is a
+   real, scannable code that opens this Dex filtered to the Pokemon - it is NOT
+   a copy of a ticket and must not be presented as one. */
+const SUPPORT_TODAY = "2026-10-03";
 
-function ticketSrc(t){
-  if (t.source.includes("Mezastar Club")) return "club";
-  if (t.source.includes("magazine") || t.source.includes("Pokémon Fan")) return "mag";
-  if (t.source.includes("Tournament")) return "event";
-  if (t.source.includes("launch") || t.source.includes("flyer")) return "event";
-  return "club";
+let SUP = { entries: [], loaded: false };
+
+const SRC_LABEL = {
+  club:     { cls: "club",     text: "Mezastar Club" },
+  pamphlet: { cls: "pamphlet", text: "Promo pamphlet" },
+  magazine: { cls: "magazine", text: "CoroCoro magazine" },
+};
+
+function supFmtDate(iso){
+  if (!iso) return "?";
+  const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const [y,m,d] = iso.split("-").map(Number);
+  return `${d} ${M[m-1]} ${y}`;
 }
+function supAge(iso){
+  if (!iso) return 0;
+  return Math.round((Date.parse(SUPPORT_TODAY) - Date.parse(iso)) / 86400000);
+}
+/* A ticket is only usable while the machine still honours it. Every Mezastar
+   offer we have on record closed by 2024-04-30, so nothing here is live. */
+function supStatus(t){
+  const d = supAge(t.untilDate);
+  if (d <= 0) return { key: "live",   text: "Live now" };
+  if (d <= 90) return { key: "recent", text: "Recently ended" };
+  return { key: "old", text: "Ended" };
+}
+function supTypes(t){
+  return (t.types || []).filter(Boolean);
+}
+/* De-duplicate by Pokemon so the grid reads as one card per support Pokemon,
+   with every set it was ever offered in listed underneath. */
+function supUnique(){
+  const map = new Map();
+  for (const t of SUP.entries){
+    if (!map.has(t.slug)){
+      map.set(t.slug, Object.assign({}, t, { offers: [t] }));
+    } else {
+      map.get(t.slug).offers.push(t);
+    }
+  }
+  const list = [...map.values()];
+  for (const u of list){
+    u.offers.sort((a,b) => (a.fromDate < b.fromDate ? -1 : 1));
+    const ends = u.offers.map(o => o.untilDate).filter(Boolean).sort();
+    u.lastValid = ends[ends.length - 1] || "";
+    u.sets = [...new Set(u.offers.map(o => o.set))];
+    u.sources = [...new Set(u.offers.map(o => o.source))];
+    u.timesOffered = u.offers.length;
+  }
+  return list;
+}
+let SUP_UNIQ = [];
+
+async function loadSupport(){
+  if (SUP.loaded) return;
+  try {
+    const r = await fetch("data/support.json", { cache: "no-cache" });
+    SUP.entries = (await r.json()).entries || [];
+    SUP.loaded = true;
+  } catch (e) {
+    SUP.entries = [];
+  }
+  SUP_UNIQ = supUnique();
+}
+
 function renderTickets(){
   const q = ($("#tq")?.value || "").trim().toLowerCase();
-  const filter = (window.ticketFilter || "all");
-  let list = TICKETS.filter(t => {
-    const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
-    if (filter === "vn" && !t.vn) return false;
-    if (filter === "club" && ticketSrc(t) !== "club") return false;
-    if (filter === "mag" && ticketSrc(t) !== "mag") return false;
-    if (filter === "event" && ticketSrc(t) !== "event") return false;
-    if (!q) return true;
-    return (t.name + " " + t.move + " " + t.set + " " + types.join(" ") + " " + t.source).toLowerCase().includes(q);
-  });
-  $("#ticketCount").textContent = `${list.length} ticket${list.length===1?"":"s"} · ${list.filter(t=>t.vn).length} available in Vietnam`;
-  if (!list.length){ $("#tgrid").innerHTML = `<div class="empty">No tickets match that filter.</div>`; return; }
-  $("#tgrid").innerHTML = list.map((t,i) => {
-      const types = Array.isArray(t.type) ? t.type : [t.type].filter(Boolean);
-      const firstType = types[0];
-      return `
-      <article class="card ticket" style="--glow:${(TYPE_COLOR[firstType]||"#7aa2ff")}44">
-        <div class="halo"></div>
-        <div class="stars">${stars(t.grade)}</div>
-        ${t.img ? `<img src="${t.img}" alt="${esc(t.name)}" loading="${i<6?'eager':'lazy'}">` : ""}
-        ${t.qr ? `<div class="qrimg"><img src="${t.qr}" alt="QR for ${esc(t.name)}" loading="${i<6?'eager':'lazy'}" class="qrcode"></div>` : ""}
-        <div class="srcbadge ${ticketSrc(t)}">${ticketSrc(t).toUpperCase()}</div>
-        ${t.vn ? `<div class="srcbadge vn">VN ✔</div>` : `<div class="srcbadge no-vn">VN ✕</div>`}
-        <div class="cname">${esc(t.name)}${t.form?` ${t.form}`:""}</div>
-        <div class="cid">${esc(t.set)}</div>
-        <div class="pills">${types.map(pill).join("")}</div>
-        <div class="move">Move: ${esc(t.move)}</div>
-        <div class="hint" style="margin-top:4px">${esc(t.source)} · ${esc(t.period)}</div>
-      </article>`;
+  const f = window.ticketFilter || "all";
+
+  let list = SUP_UNIQ.slice();
+  if (f === "club")     list = list.filter(u => u.sources.includes("club"));
+  if (f === "pamphlet") list = list.filter(u => u.sources.includes("pamphlet"));
+  if (f === "magazine") list = list.filter(u => u.sources.includes("magazine"));
+  if (f === "multi")    list = list.filter(u => u.timesOffered > 1);
+  if (q){
+    list = list.filter(u =>
+      (u.name + " " + u.move + " " + u.sets.join(" ") + " " +
+       supTypes(u).join(" ") + " " + u.sources.join(" ")).toLowerCase().includes(q));
+  }
+  list.sort((a,b) => (a.lastValid < b.lastValid ? 1 : a.lastValid > b.lastValid ? -1 : 0));
+
+  const offers = list.reduce((n,u) => n + u.timesOffered, 0);
+  $("#ticketCount").innerHTML = SUP.loaded
+    ? `<b>${list.length}</b> support Pokémon · <b>${offers}</b> historical offers · latest closed <b>${supFmtDate(list.length ? list[0].lastValid : "")}</b>`
+    : `<span class="spin"></span> loading support data…`;
+
+  if (!SUP.loaded){ return; }
+  if (!list.length){ $("#tgrid").innerHTML = `<div class="empty">No support Pokémon match that filter.</div>`; return; }
+
+  $("#tgrid").innerHTML = list.map((u, i) => {
+    const types = supTypes(u);
+    const glow = TYPE_COLOR[types[0]] || "#c9a227";
+    const st = supStatus({ untilDate: u.lastValid });
+    const srcBadges = u.sources.map(s => {
+      const S = SRC_LABEL[s] || { cls: "club", text: s };
+      return `<span class="supsrc ${S.cls}">${S.text}</span>`;
     }).join("");
+    const setLine = u.sets.length === 1
+      ? esc(u.sets[0])
+      : `${esc(u.sets[0])} <span class="supmore">+${u.sets.length - 1}</span>`;
+
+    return `
+    <article class="supcard" data-slug="${u.slug}" style="--glow:${glow}">
+      <div class="supart">
+        <img src="${u.img}" alt="${esc(u.name)}" loading="${i < 9 ? 'eager' : 'lazy'}" decoding="async"${u.animated ? ' class="gifspr"' : ''}>
+      </div>
+      <div class="supqr">
+        <img src="${u.qr}" alt="QR linking to ${esc(u.name)} support page" loading="lazy" decoding="async">
+        <span class="supqr-cap">Dex</span>
+      </div>
+      <div class="supbody">
+        <div class="supname">${esc(u.name)}</div>
+        <div class="supset">${setLine}</div>
+        <div class="pills">${types.map(pill).join("")}</div>
+        <div class="supmove"><b>${esc(u.move)}</b><i>${esc(u.moveType || "")}</i></div>
+        <div class="supmeta">
+          ${srcBadges}
+          <span class="supstat ${st.key}">${st.text}</span>
+        </div>
+        <div class="supdates">valid to ${supFmtDate(u.lastValid)}</div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+/* QR scans land back here as ?support=<slug> and jump straight to the card. */
+function supFocus(slug){
+  const el = document.querySelector(`.supcard[data-slug="${slug}"]`);
+  if (!el) return false;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  el.classList.add("supflash");
+  setTimeout(() => el.classList.remove("supflash"), 2600);
+  return true;
 }
 
 /* ================= wiring ================= */
@@ -1257,9 +1350,14 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
             document.body.classList.toggle("dim", !!SETTINGS.dim);
         renderChips(); renderGrid(); renderLoadout();
         renderSquad(); renderStats();
+        /* support tab: lazy data + QR deep link (?support=slug) */
+        const slug = new URLSearchParams(location.search).get("support");
+        if (slug){ tab("tickets"); }
+        await loadSupport();
+        if (slug){ renderTickets(); supFocus(slug); }
         // translate ticket filter buttons
         document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
-          const key = b.dataset.f; b.textContent = t(key);
+          const key = b.dataset.f; if (!b.textContent.trim()) b.textContent = t(key);
         });
       }catch(err){
         document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);

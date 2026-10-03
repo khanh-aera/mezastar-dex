@@ -619,3 +619,189 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 /* v54 AoE splash chip */
 .msplash{ font-size:11px; color:var(--hot);
   border:1px solid rgba(255,92,138,.35); border-radius:9px; padding:2px 7px; }
+
+/* ============================================================
+   SUPPORT POKEMON TICKETS  (v59 redesign)
+   Dark purple-gold. Large readable cards, one per Support Pokemon.
+   Layout: art on top, QR bottom-right, text bottom-left.
+   ============================================================ */
+.supnote{
+  margin:10px 0 16px; padding:12px 14px;
+  border:1px solid rgba(255,215,106,.22);
+  border-left:3px solid var(--gold);
+  border-radius:var(--radius-sm);
+  background:linear-gradient(180deg,rgba(255,215,106,.07),rgba(255,215,106,.02));
+  color:var(--muted); font-size:13px; line-height:1.6;
+}
+.supnote b{ color:#ffe9ad; font-weight:700; }
+
+.supgrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:16px;
+}
+
+.supcard{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:"art qr" "body body";
+  gap:0;
+  padding:14px 14px 15px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--stroke);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03)),
+    var(--glass);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.supcard::before{
+  content:"";
+  position:absolute; inset:0;
+  background:radial-gradient(120% 80% at 18% 0%, var(--glow), transparent 62%);
+  opacity:.16; pointer-events:none;
+}
+.supcard:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,215,106,.42);
+  box-shadow:0 22px 54px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.supcard.supflash{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(255,215,106,.4), 0 22px 54px rgba(0,0,0,.5);
+  animation:supFlash 2.6s ease-out;
+}
+@keyframes supFlash{
+  0%,100%{ box-shadow:0 0 0 0 rgba(255,215,106,0), var(--shadow); }
+  12%,60%{ box-shadow:0 0 0 3px rgba(255,215,106,.45), 0 22px 54px rgba(0,0,0,.5); }
+}
+
+/* ---- artwork ---- */
+.supart{
+  grid-area:art;
+  display:flex; align-items:flex-end; justify-content:center;
+  min-height:104px; padding:0 2px 6px;
+}
+.supart img{
+  width:100px; height:100px;
+  object-fit:contain;
+  image-rendering:auto;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.55));
+}
+
+/* ---- QR ---- */
+.supqr{
+  grid-area:qr;
+  position:relative;
+  align-self:start;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+.supqr img{
+  width:62px; height:62px;
+  border-radius:9px;
+  background:#fff; padding:3px;
+  box-shadow:0 3px 10px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.35);
+}
+.supqr-cap{
+  font-size:8.5px; font-weight:700; letter-spacing:.14em;
+  color:var(--dim); text-transform:uppercase;
+}
+
+/* ---- text ---- */
+.supbody{
+  grid-area:body;
+  min-width:0;
+  margin-top:10px;
+  padding-top:11px;
+  border-top:1px solid var(--stroke-soft);
+}
+.supname{
+  font-size:17px; font-weight:800; line-height:1.15;
+  letter-spacing:-.01em;
+  color:var(--text);
+  overflow-wrap:anywhere;
+}
+.supset{
+  margin-top:3px;
+  font-size:11px; font-weight:600; letter-spacing:.04em;
+  color:var(--gold); text-transform:uppercase;
+}
+.supset .supmore{
+  color:var(--dim); font-weight:700;
+  padding:1px 6px; margin-left:3px;
+  border:1px solid var(--stroke); border-radius:999px;
+  font-size:10px;
+}
+.supbody .pills{
+  display:flex; flex-wrap:wrap; gap:4px;
+  margin-top:9px;
+}
+.supmove{
+  display:flex; align-items:baseline; gap:7px;
+  margin-top:9px; flex-wrap:wrap;
+}
+.supmove b{
+  font-family:"Chakra Petch",sans-serif;
+  font-size:14.5px; font-weight:700; color:var(--text);
+}
+.supmove i{
+  font-style:normal; font-size:10px; font-weight:700;
+  letter-spacing:.09em; text-transform:uppercase;
+  color:var(--muted);
+}
+.supmeta{
+  display:flex; flex-wrap:wrap; gap:5px;
+  margin-top:10px;
+}
+.supsrc{
+  font-size:9px; font-weight:700; letter-spacing:.07em;
+  padding:3px 7px; border-radius:999px;
+  border:1px solid var(--stroke);
+  color:var(--muted);
+  background:rgba(255,255,255,.05);
+  white-space:nowrap;
+}
+.supsrc.club{ color:#b0f3ff; border-color:rgba(92,225,255,.4); background:rgba(92,225,255,.15); }
+.supsrc.pamphlet{ color:#ffe9ad; border-color:rgba(255,215,106,.4); background:rgba(255,215,106,.14); }
+.supsrc.magazine{ color:#ffd0f0; border-color:rgba(255,164,224,.4); background:rgba(255,164,224,.14); }
+
+.supstat{
+  font-size:9px; font-weight:700; letter-spacing:.07em;
+  padding:3px 7px; border-radius:999px;
+  border:1px solid var(--stroke);
+  color:var(--dim);
+  background:rgba(255,255,255,.04);
+  white-space:nowrap;
+}
+.supstat.live{ color:#c9ffb0; border-color:rgba(157,255,106,.5); background:rgba(157,255,106,.16); }
+.supstat.recent{ color:#ffe9ad; border-color:rgba(255,215,106,.45); background:rgba(255,215,106,.12); }
+.supstat.old{ color:var(--dim); }
+
+.supdates{
+  margin-top:9px;
+  font-size:10.5px; color:var(--dim);
+  letter-spacing:.02em;
+}
+
+/* ---- responsive ---- */
+@media (max-width:520px){
+  .supgrid{ grid-template-columns:repeat(auto-fill,minmax(178px,1fr)); gap:12px; }
+  .supcard{ padding:12px 11px 13px; }
+  .supart{ min-height:86px; }
+  .supart img{ width:78px; height:78px; }
+  .supqr img{ width:52px; height:52px; }
+  .supname{ font-size:15.5px; }
+  .supmove b{ font-size:13.5px; }
+  .supnote{ font-size:12px; padding:10px 12px; }
+}
+@media (max-width:360px){
+  .supgrid{ grid-template-columns:1fr; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .supcard, .supcard.supflash{ transition:none; animation:none; transform:none; }
+}
+.supart img.gifspr{ image-rendering:auto; }
