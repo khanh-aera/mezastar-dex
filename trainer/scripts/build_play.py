@@ -361,6 +361,192 @@ js = (HEADER
       + "\n" + MIDDLE
       + "\n" + FOOTER)
 
+
+# ---------------------------------------------------------------------------
+# play/play-core.css -- GENERATED, same discipline as play/app.js.
+#
+# The play shell must not import ../assets/style.css: it is the arcade app and
+# must not inherit a binder restyle. So we copy out ONLY the rules the play app
+# actually renders. v65 shipped this file hand-written by a regex that matched
+# top-level rules ONLY -- it silently dropped all 13 @media blocks, which is why
+# the play UI lost every responsive rule and came up scrambled on a phone. Parse
+# @media properly and assert the media count survives, so that class of silent
+# truncation cannot come back.
+#
+# Assets: src/assets/style.css is canonical; root is the mirror Pages serves.
+# ---------------------------------------------------------------------------
+
+# Collect every class the play app can render.
+#
+# v65 lesson: do NOT try to tokenise JS string literals to find classes. Every
+# real class in this app sits inside a MULTI-LINE template literal, so any
+# single-line string regex silently matched nothing (97 -> 2 classes) and the
+# generated CSS lost .mside/.foeslot/.bhead entirely. Instead scan the raw text
+# for every `class="..."` / `class='...'` attribute wherever it appears, and
+# split the value on whitespace after stripping ${...} interpolations -- a
+# dynamic value like `class="matchup ${r.sv ? "ok" : ""}"` must contribute both
+# "matchup" and any literal class inside the interpolation.
+used_classes = set()
+for m in re.finditer(r'class(?:Name)?\s*=\s*"([^"\n]*)"', js):
+    val = m.group(1)
+    for chunk in re.split(r"\$\{", val):
+        for c in re.sub(r"\}.*", "", chunk).split():
+            if re.fullmatch(r"[A-Za-z][\w-]*", c):
+                used_classes.add(c)
+# literal class names written inside interpolations, e.g. ${x ? "filled" : ""}
+for lit in re.findall(r'"([A-Za-z][\w-]{2,24})"', js):
+    used_classes.add(lit)
+used_classes -= {"class", "className", "classList"}
+
+used_classes |= set(re.findall(r'classList\.(?:add|remove|toggle)\(\s*"([^"]+)"', js))
+used_classes |= set(re.findall(r"classList\.add\(\s*'([^']+)'", js))
+
+used_ids = set(re.findall(r'#([A-Za-z][\w-]*)\s*[,{]', js))
+
+
+def rule_ok(sel):
+    """True when a rule's selector touches something the play app renders.
+    Globals are always kept so the theme (bg, text, --gold) survives."""
+    sel = (sel or "").strip()
+    if not sel or sel.startswith("/*"):
+        return False
+    if re.match(r'^(html|body|:root|\*)\b', sel):
+        return True
+    return any(re.search(r"[.#]" + re.escape(t) + r"(?![\w-])", sel)
+               for t in (used_classes | used_ids))
+
+
+def _match_brace(text, start):
+    """Index of the '}' matching the '{' at/after `start`. String- and
+    comment-aware so a brace inside a url("...") or a quoted value cannot end
+    the block early."""
+    i, depth, instring, quote, incomment = start, 0, False, "", False
+    while i < len(text):
+        ch = text[i]
+        if incomment:
+            if text[i:i+2] == "*/":
+                incomment, i = False, i + 2
+                continue
+        elif instring:
+            if ch == "\\":
+                i += 2
+                continue
+            if ch == quote:
+                instring = False
+        elif text[i:i+2] == "/*":
+            incomment, i = True, i + 2
+            continue
+        elif ch in "'\"":
+            instring, quote = True, ch
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    return -1
+
+
+def css_slice(css_text):
+    """Copy out the rules the play app renders, recursing into @media/@supports.
+
+    v65 shipped a regex that only ever saw top-level rules, so all 13 @media
+    blocks were dropped and the play UI lost every responsive rule. A regex
+    cannot be trusted to skip nested blocks; this walks the structure instead.
+    """
+    out, i, n = [], 0, len(css_text)
+    while i < n:
+        # skip whitespace
+        if css_text[i].isspace():
+            i += 1
+            continue
+        # comments pass through (they carry section banners and stay readable)
+        if css_text[i:i+2] == "/*":
+            e = css_text.find("*/", i)
+            e = n if e < 0 else e + 2
+            out.append(css_text[i:e] + "\n")
+            i = e
+            continue
+        # at-rules: recurse
+        if css_text[i] == "@":
+            ob = css_text.find("{", i)
+            if ob < 0:
+                break
+            cb = _match_brace(css_text, ob)
+            if cb < 0:
+                break
+            head = css_text[i:ob]
+            inner = css_slice(css_text[ob + 1:cb])
+            if inner.strip():
+                out.append(head + "{\n" + inner + "}\n")
+            i = cb + 1
+            continue
+        # a bare '}' ends this level
+        if css_text[i] == "}":
+            i += 1
+            continue
+        # ordinary rule
+        ob = css_text.find("{", i)
+        if ob < 0:
+            break
+        cb = _match_brace(css_text, ob)
+        if cb < 0:
+            break
+        sel = css_text[i:ob]
+        body = css_text[ob + 1:cb]
+        if rule_ok(sel):
+            out.append(sel + "{" + body + "}\n")
+        i = cb + 1
+    return "".join(out)
+
+
+css = open(CSS, encoding="utf-8").read()
+core = css_slice(css)
+
+# Every @media block that mentions a class/id the play app renders must survive.
+# Binder-only blocks (nav.tabs, .burger, boss grid) legitimately drop out -- play
+# renders no such markup. v65's bug was that the filter dropped @media wholesale,
+# so assert per-block instead of on a raw count.
+src_media = css.count("@media")
+kept_media = core.count("@media")
+
+
+# Binder-only blocks (nav.tabs, .burger, #rosterTypes, .supgrid) legitimately drop
+# out -- play renders no such markup. The ones that must survive are asserted
+# by selector below.
+assert kept_media >= 3, (
+    "play-core.css kept only %d of %d @media blocks -- responsive is gone"
+    % (kept_media, src_media))
+
+# The specific responsive rules the play UI depends on must be present. These
+# are the rules v65 dropped; without them the battle art stays desktop-sized on a
+# 390px phone and the layout collapses. Binder-only blocks (.mart/.pickart from
+# the boss counter, .supgrid from Support, #rosterTypes, nav.tabs, .burger)
+# are expected to drop out -- play renders no such markup.
+for must in (".foeslot", ".mside", ".bhead", ".arena", ".matchup", ".vsbadge"):
+    assert must in core, "play-core.css lost the responsive rule for " + must
+
+# A representative cross-section of real binder rules must be carried over, so a
+# parser regression cannot quietly shrink this file to almost nothing.
+for must in (".foeslot", ".mside", ".matchup", ".bhead", ".arena",
+             ".vsbadge", ".mrow", ".mbar"):
+    assert must in core, "play-core.css is missing " + must
+assert len(core) > 12000, "play-core.css shrank to %d bytes" % len(core)
+
+banner = ("/* GENERATED by trainer/scripts/build_play.py -- do not edit by hand.\n"
+          "   Source: assets/style.css  |  %d @media blocks carried over. */\n\n"
+          % kept_media)
+
+tmpc = os.path.join(OUTD, "play-core.css.tmp")
+with open(tmpc, "w", encoding="utf-8", newline="\n") as f:
+    f.write(banner + core)
+    f.flush()
+    os.fsync(f.fileno())
+shutil.move(tmpc, os.path.join(OUTD, "play-core.css"))
+print("wrote play/play-core.css =", os.path.getsize(os.path.join(OUTD, "play-core.css")),
+      "bytes,", kept_media, "@media blocks (source has", src_media, ")")
+
 tmp = os.path.join(OUTD, "app.js.tmp")
 with open(tmp, "w", encoding="utf-8", newline="\n") as f:
     f.write(js)

@@ -259,7 +259,28 @@ html, body.playbody {
 .playbody #bs { font-size: 19px !important; min-height: 52px; }
 .playbody .btn { min-height: 52px; font-size: 16px; }
 
+/* The binder's battle art only shrinks at max-width:380px, but the common
+   Android width is 390-430px, so a 390px phone got the FULL desktop art and
+   overflowed. Repeat the same shrink one breakpoint higher. */
+@media (max-width: 430px) {
+  .mside img { width: 76px; height: 76px; }
+  .foeslot img { width: 56px; height: 56px; }
+  .vsbadge { font-size: 1.15em; padding: 5px 16px; }
+  .foeslot { padding: 6px 3px; }
+  .foeslot .fname { font-size: 10px; }
+}
+
 @media (max-width: 420px) {
   .rgrid { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
   .playtabs button { font-size: 14px; }
 }
+
+/* ---------------------------------------------------------------------------
+   Nested .battlefoes: the enemy-team markup renders a wrapper AND the row with
+   the same class (`<div class="battlefoes"><div class="foehead">…</div><div
+   class="foerow battlefoes">`). The binder's `.battlefoes` rule is a 3-column
+   grid, so it matched the wrapper too and pushed the row into column 2 --
+   65px past the viewport on a 390px phone. Scope the grid to the row only.
+   --------------------------------------------------------------------------- */
+.playbody .battlefoes:not(.foerow){ display:block; }
+.playbody .foerow.battlefoes{ grid-template-columns:repeat(3,minmax(0,1fr)); }
