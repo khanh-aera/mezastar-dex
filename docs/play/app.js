@@ -28,34 +28,13 @@ const TYPE_COLOR = {
   Dark:"#8a7f9c", Steel:"#a8b8c9", Fairy:"#ffa4e0"
 };
 
-const MAIN_IDS = [
-  /* ==== THE SQUAD 11 (2026-10-02: brute-forced optimal over C(20,11)=167,960,
-         beats all 70 V3 bosses, every boss has a surviving answer) ==== */
-  "1-1-005",  /* Tyranitar 6★ PE144 - Lugia 432 / Ho-Oh 864 */
-  "1-2-002",  /* Groudon 6★ PE152 - SPARE: tankiest, safe vs everything */
-  "1-3-016",  /* Nidoqueen 5★ PE122 - Zeraora/Eternatus 366 (Dynamax) */
-  "1-3-014",  /* Chandelure 5★ PE130 - Solgaleo 390 / Lunala 780 (Z-Move) */
-  "1-1-013",  /* Umbreon 5★ PE112 - Lunala 448, zero-weakness shield */
-  "1-2-016",  /* Torterra 5★ PE112 - Solgaleo 336 (Mega) */
-  "1-1-002",  /* Mew 6★ PE142 - Keldeo 284, 109-across flex */
-  "1-2-019",  /* A.Ninetales 5★ PE122 - Zygarde 732 (Ice Z) */
-  "1-2-015",  /* Lucario 5★ PE118 - Greninja 236 (Mega) */
-  "1-2-021",  /* Metagross 5★ PE132 - Grimmsnarl 396 */
-  "1-2-023"   /* Appletun 5★ PE110 - Swampert 440 */
-];
+const MAIN_IDS = [];  // v68: play owns no hard-coded squad - the bag is his
 
 function userRoster(){ try { return JSON.parse(localStorage.getItem("userRoster") || "[]"); } catch(e){ return []; } }
 function setUserRoster(ids){ localStorage.setItem("userRoster", JSON.stringify(ids)); }
 function allRosterIds(){
-  /* rosterTouched is set the first time he edits the roster, which is what makes
-     an emptied roster stick instead of silently re-seeding with squad 11. */
-  let touched = false;
-  try { touched = localStorage.getItem("rosterTouched") === "1"; } catch(e){}
-  if (touched){
-    const u = userRoster();
-    return u.filter((id, i) => u.indexOf(id) === i);
-  }
-  return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id)));
+  const u = userRoster();
+  return u.filter((id, i) => u.indexOf(id) === i);
 }
 
 function incMoveMult(bossTypes, mine){
@@ -716,9 +695,8 @@ function renderRosterPanel() {
 
   host.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
     const id = b.dataset.rm;
-    /* v65: one list. Squad-11 tags live in userRoster like any other, so ✕ really
-       removes them. rosterTouched is what makes an emptied bag stay empty. */
-    touchRoster();
+    /* v68: one list, no separate hidden set. Every tag lives in userRoster like
+       any other, so ✕ really removes it. */
     setUserRoster(userRoster().filter(x => x !== id));
     invalidateCands();
     renderRosterPanel();
@@ -734,10 +712,6 @@ function renderRosterPanel() {
 
 }
 
-/* v65: the first deliberate edit flips the roster to "his bag" mode. Without this
-   flag an emptied roster would re-seed itself with squad 11 on the next load. */
-function touchRoster(){ try { localStorage.setItem("rosterTouched", "1"); } catch(e){} }
-
 /* reuse the binder's picker, then repaint play's own panels */
 function rosterAddPicker(){
   const el = $("#modal");
@@ -749,34 +723,72 @@ function rosterAddPicker(){
      legitimately owns. */
   const cands = POOL.filter(x => !allRosterIds().includes(x.id))
     .sort((a, b) => (b.pe || 0) - (a.pe || 0) || ((b.grade || 0) - (a.grade || 0)));
+
+  /* MULTI-SELECT: v67. The old picker closed the modal on every pick, so adding
+     N tags cost N taps plus N reopens of a 136-row list. Now picks accumulate,
+     the sheet stays open, and one "Add N tags" commits them. Single pick still
+     closes immediately so the one-tag case stays one tap. */
+  const picked = new Set();
   const row = x => `
-      <button class="pitem" data-id="${esc(x.id)}">
+      <button class="pitem${picked.has(x.id) ? " on" : ""}" data-id="${esc(x.id)}">
         <span>${esc(x.name)}</span>
         <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}${owned.has(x.id) ? " · owned" : ""}</span>
+        <span class="pcheck">${picked.has(x.id) ? "✓" : ""}</span>
       </button>`;
-  el.innerHTML = `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>
-    <input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off">
-    <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
-  $("#scrim").classList.add("on");
-  $("#x").onclick = closeModal;
-  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
-    touchRoster();
+
+  const commit = () => {
+    if (!picked.size) return;
     const ids = userRoster();
-    if (!ids.includes(b.dataset.id)) ids.push(b.dataset.id);
+    picked.forEach(id => { if (!ids.includes(id)) ids.push(id); });
     setUserRoster(ids);
     closeModal();
     invalidateCands();
     renderRosterPanel();
     renderBattleFoes();
     renderBattle();
-  });
-  $("#bs").oninput = e => {
-    const q = e.target.value.trim().toLowerCase();
-    const hit = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q));
-    $("#pl").innerHTML = hit.length ? hit.map(row).join("") : `<div class="empty">No match for "${esc(q)}".</div>`;
+  };
+
+  const head = () => picked.size
+    ? `<div class="modalhead">${picked.size} selected <button class="xbtn" id="x">✕</button></div>
+       <button class="pcommit" id="pcommit">＋ Add ${picked.size} tag${picked.size > 1 ? "s" : ""}</button>`
+    : `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>`;
+
+  let query = "";
+  const paint = () => {
+    el.innerHTML = head()
+      + `<input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off" value="${esc(query)}">
+         <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
+    $("#scrim").classList.add("on");
+    el.querySelector("#x").onclick = closeModal;
+    const pc = el.querySelector("#pcommit");
+    if (pc) pc.onclick = commit;
+    const bs = el.querySelector("#bs");
+    if (bs) {
+      bs.oninput = e => {
+        query = e.target.value;
+        const q = query.trim().toLowerCase();
+        const hit = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q));
+        const pl = el.querySelector("#pl");
+        pl.innerHTML = hit.length ? hit.map(row).join("") : `<div class="empty">No match for "${esc(query.trim())}".</div>`;
+        wirePl();
+      };
+      if (query) { bs.focus(); bs.setSelectionRange(query.length, query.length); }
+    }
     wirePl();
   };
-  wirePl();
+
+  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    const id = b.dataset.id;
+    if (picked.has(id)) {
+      picked.delete(id);
+      if (!picked.size) { closeModal(); return; }  // unpicked the last one: done
+    } else {
+      picked.add(id);
+    }
+    paint();          // keep the sheet open so the next tap adds another tag
+  });
+
+  paint();
 }
 
 

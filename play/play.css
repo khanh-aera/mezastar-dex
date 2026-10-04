@@ -297,3 +297,39 @@ html, body.playbody {
    phone by that much. The binder draws the same rule; scoped here to the play
    shell so a picker search box cannot push the page sideways.
    --------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   Multi-select picker (v68). Tapping a row now ACCUMULATES instead of closing the
+   sheet, so adding a stack of tags costs one tap each plus one commit. The tick
+   badge is absolutely positioned so adding it cannot shift the row's text, and
+   the selected state has to read at a glance on a phone.
+   --------------------------------------------------------------------------- */
+.playbody .pitem { position: relative; padding-right: 34px; text-align: left; }
+.playbody .pitem .pcheck {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid var(--stroke, rgba(255,255,255,.28));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; line-height: 1; color: transparent;
+  background: rgba(255,255,255,.04);
+}
+.playbody .pitem.on {
+  border-color: var(--gold, #f5c451);
+  background: linear-gradient(180deg, rgba(245,196,81,.20), rgba(245,196,81,.07));
+}
+.playbody .pitem.on .pcheck {
+  border-color: var(--gold, #f5c451);
+  background: var(--gold, #f5c451);
+  color: #241a06;
+  font-weight: 700;
+}
+
+/* commit bar: sits directly under the header, always visible while picking */
+.playbody .pcommit {
+  display: block; width: 100%; margin: 0 0 10px;
+  min-height: 48px; border-radius: 14px; cursor: pointer;
+  border: 1px solid rgba(245,196,81,.55);
+  background: linear-gradient(180deg, rgba(245,196,81,.95), rgba(214,160,52,.95));
+  color: #241a06; font-size: 16px; font-weight: 700; letter-spacing: .01em;
+}
+.playbody .pcommit:active { transform: translateY(1px); }

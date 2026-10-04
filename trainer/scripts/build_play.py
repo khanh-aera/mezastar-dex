@@ -46,27 +46,25 @@ SL_INC = "\n".join(lines[idx("function incMoveMult"):idx("const coveredTypes")])
 SL_USER_ROSTER = "\n".join(lines[idx("function userRoster()"):idx("function renderLoadout(){")]).rstrip() + "\n"
 assert "allRosterIds" in SL_USER_ROSTER, "allRosterIds got cut off"
 SL_MAIN_MEMBERS = block(idx("function mainMembers()"), idx("/* best single tag in the main roster"))
-SL_MAIN_IDS = block_to("const MAIN_IDS = [", "];")
+SL_MAIN_IDS = "const MAIN_IDS = [];  // v68: play owns no hard-coded squad - the bag is his\n"
+assert "const MAIN_IDS = [];" in SL_MAIN_IDS, "play MAIN_IDS must be empty"
 # v65: /play/ has its OWN roster semantics - Khanh drives his own bag.
 # The sliced allRosterIds() would always splice in MAIN_IDS, so battle would keep
 # answering from 11 hard-coded tags no matter what he added or removed. Replace
 # the function body here rather than in the binder: the binder keeps squad 11.
+# v68: Khanh restated the requirement - the bag starts EMPTY, every time, on every
+# device. v65 kept a first-run seed of squad 11, which he had to delete by hand
+# before he could start his own list; localStorage empty still rendered 11 cards.
+# There is no seed now: allRosterIds() is whatever he has added, and nothing else.
 PLAY_ALL_ROSTER_IDS = """function allRosterIds(){
-  /* rosterTouched is set the first time he edits the roster, which is what makes
-     an emptied roster stick instead of silently re-seeding with squad 11. */
-  let touched = false;
-  try { touched = localStorage.getItem("rosterTouched") === "1"; } catch(e){}
-  if (touched){
-    const u = userRoster();
-    return u.filter((id, i) => u.indexOf(id) === i);
-  }
-  return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id)));
+  const u = userRoster();
+  return u.filter((id, i) => u.indexOf(id) === i);
 }"""
 import re as _re
 _old = _re.search(r"function allRosterIds\(\)\{[^}]*\}", SL_USER_ROSTER)
 assert _old, "allRosterIds not found in the slice"
 SL_USER_ROSTER = SL_USER_ROSTER.replace(_old.group(0), PLAY_ALL_ROSTER_IDS)
-assert PLAY_ALL_ROSTER_IDS in SL_USER_ROSTER and "rosterTouched" in SL_USER_ROSTER
+assert PLAY_ALL_ROSTER_IDS in SL_USER_ROSTER, "play allRosterIds override not applied"
 
 # v65: buildCands is replaced wholesale. The binder version hard-filters
 # roster.json for every owned 5/6-star, which made the roster read-only - battle
@@ -111,7 +109,10 @@ SL_BATTLE_FIX = (SL_BATTLE
     .replace('<img src="${esc(pr.mine.img || \"\")}"', '<img src="${playImg(pr.mine)}"')
     .replace('<img src="${esc(pr.foe.img || \"\")}"', '<img src="${playImg(pr.foe)}"'))
 assert "playImg(pr.mine)" in SL_BATTLE_FIX and "playImg(pr.foe)" in SL_BATTLE_FIX, "battle art rewrite matched nothing"
-assert SL_MAIN_IDS.count('"1-') == 11, "MAIN_IDS lost entries: %d" % SL_MAIN_IDS.count('"1-')
+# v68: /play/ carries NO hard-coded squad. The binder keeps its own squad 11;
+# asserting a count here would let the two drift apart unnoticed.
+assert SL_MAIN_IDS.count('"1-') == 0, (
+    "play MAIN_IDS must be empty - a hard-coded tag would pre-fill the bag")
 
 # TYPE_COLOR / TYPE_ICON are tiny; take them verbatim so pill() renders identically.
 tc = block(idx("const TYPE_COLOR = {"), idx("const GRAD = {"))
@@ -282,9 +283,8 @@ function renderRosterPanel() {
 
   host.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
     const id = b.dataset.rm;
-    /* v65: one list. Squad-11 tags live in userRoster like any other, so ✕ really
-       removes them. rosterTouched is what makes an emptied bag stay empty. */
-    touchRoster();
+    /* v68: one list, no separate hidden set. Every tag lives in userRoster like
+       any other, so ✕ really removes it. */
     setUserRoster(userRoster().filter(x => x !== id));
     invalidateCands();
     renderRosterPanel();
@@ -300,10 +300,6 @@ function renderRosterPanel() {
 
 }
 
-/* v65: the first deliberate edit flips the roster to "his bag" mode. Without this
-   flag an emptied roster would re-seed itself with squad 11 on the next load. */
-function touchRoster(){ try { localStorage.setItem("rosterTouched", "1"); } catch(e){} }
-
 /* reuse the binder's picker, then repaint play's own panels */
 function rosterAddPicker(){
   const el = $("#modal");
@@ -315,34 +311,72 @@ function rosterAddPicker(){
      legitimately owns. */
   const cands = POOL.filter(x => !allRosterIds().includes(x.id))
     .sort((a, b) => (b.pe || 0) - (a.pe || 0) || ((b.grade || 0) - (a.grade || 0)));
+
+  /* MULTI-SELECT: v67. The old picker closed the modal on every pick, so adding
+     N tags cost N taps plus N reopens of a 136-row list. Now picks accumulate,
+     the sheet stays open, and one "Add N tags" commits them. Single pick still
+     closes immediately so the one-tag case stays one tap. */
+  const picked = new Set();
   const row = x => `
-      <button class="pitem" data-id="${esc(x.id)}">
+      <button class="pitem${picked.has(x.id) ? " on" : ""}" data-id="${esc(x.id)}">
         <span>${esc(x.name)}</span>
         <span class="psub">${(x.types || []).join("/")} · PE ${x.pe ?? "?"}${owned.has(x.id) ? " · owned" : ""}</span>
+        <span class="pcheck">${picked.has(x.id) ? "✓" : ""}</span>
       </button>`;
-  el.innerHTML = `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>
-    <input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off">
-    <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
-  $("#scrim").classList.add("on");
-  $("#x").onclick = closeModal;
-  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
-    touchRoster();
+
+  const commit = () => {
+    if (!picked.size) return;
     const ids = userRoster();
-    if (!ids.includes(b.dataset.id)) ids.push(b.dataset.id);
+    picked.forEach(id => { if (!ids.includes(id)) ids.push(id); });
     setUserRoster(ids);
     closeModal();
     invalidateCands();
     renderRosterPanel();
     renderBattleFoes();
     renderBattle();
-  });
-  $("#bs").oninput = e => {
-    const q = e.target.value.trim().toLowerCase();
-    const hit = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q));
-    $("#pl").innerHTML = hit.length ? hit.map(row).join("") : `<div class="empty">No match for "${esc(q)}".</div>`;
+  };
+
+  const head = () => picked.size
+    ? `<div class="modalhead">${picked.size} selected <button class="xbtn" id="x">✕</button></div>
+       <button class="pcommit" id="pcommit">＋ Add ${picked.size} tag${picked.size > 1 ? "s" : ""}</button>`
+    : `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>`;
+
+  let query = "";
+  const paint = () => {
+    el.innerHTML = head()
+      + `<input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off" value="${esc(query)}">
+         <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
+    $("#scrim").classList.add("on");
+    el.querySelector("#x").onclick = closeModal;
+    const pc = el.querySelector("#pcommit");
+    if (pc) pc.onclick = commit;
+    const bs = el.querySelector("#bs");
+    if (bs) {
+      bs.oninput = e => {
+        query = e.target.value;
+        const q = query.trim().toLowerCase();
+        const hit = cands.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q));
+        const pl = el.querySelector("#pl");
+        pl.innerHTML = hit.length ? hit.map(row).join("") : `<div class="empty">No match for "${esc(query.trim())}".</div>`;
+        wirePl();
+      };
+      if (query) { bs.focus(); bs.setSelectionRange(query.length, query.length); }
+    }
     wirePl();
   };
-  wirePl();
+
+  const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    const id = b.dataset.id;
+    if (picked.has(id)) {
+      picked.delete(id);
+      if (!picked.size) { closeModal(); return; }  // unpicked the last one: done
+    } else {
+      picked.add(id);
+    }
+    paint();          // keep the sheet open so the next tap adds another tag
+  });
+
+  paint();
 }
 
 
