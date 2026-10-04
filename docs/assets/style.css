@@ -872,20 +872,5 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 .mtog.on{ color:#0a0d1c; background:var(--gold); border-color:var(--gold); }
 .mnote{ font-size:9px; color:var(--dim); flex:1 1 100%; text-align:center; line-height:1.4; }
 
-/* ---------- play app entry point ----------
-   /play/ is the arcade companion; the binder is the collection reference.
-   One header button, no extra tab, so the two surfaces stay distinct. */
-.playbtn{
-  flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
-  min-height:40px;padding:0 15px;border-radius:999px;
-  font-family:"Chakra Petch",sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;
-  text-decoration:none;color:#1a0b28;
-  background:linear-gradient(96deg,#ffd76a,#ffb0e6);
-  box-shadow:0 6px 18px rgba(255,170,220,.3);
-  border:1px solid transparent;
-  white-space:nowrap;
-}
-.playbtn:active{transform:translateY(1px);box-shadow:0 3px 10px rgba(255,170,220,.3)}
 @media (max-width:620px){
-  .playbtn{min-height:38px;padding:0 13px;font-size:12px}
 }

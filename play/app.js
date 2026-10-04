@@ -46,7 +46,17 @@ const MAIN_IDS = [
 
 function userRoster(){ try { return JSON.parse(localStorage.getItem("userRoster") || "[]"); } catch(e){ return []; } }
 function setUserRoster(ids){ localStorage.setItem("userRoster", JSON.stringify(ids)); }
-function allRosterIds(){ return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id))); }
+function allRosterIds(){
+  /* rosterTouched is set the first time he edits the roster, which is what makes
+     an emptied roster stick instead of silently re-seeding with squad 11. */
+  let touched = false;
+  try { touched = localStorage.getItem("rosterTouched") === "1"; } catch(e){}
+  if (touched){
+    const u = userRoster();
+    return u.filter((id, i) => u.indexOf(id) === i);
+  }
+  return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id)));
+}
 
 function incMoveMult(bossTypes, mine){
   let best = 0;  /* 0 = fully immune to everything this enemy has - real advantage, never floor to 1 */
@@ -88,24 +98,22 @@ const BATTLE = { foes: [null, null, null] };
 let CANDS = [];
 function buildCands(){
   CANDS.length = 0;
-  const hid = (()=>{ try { return JSON.parse(localStorage.getItem("rosterHidden") || "[]"); } catch(e){ return []; } })();
-  const src = ROSTER.filter(t2 => (t2.grade === "5" || t2.grade === "6") && !hid.includes(t2.id));
-  /* user-added roster tags may live only in POOL */
-  for (const id of userRoster()){
-    if (!src.some(t2 => t2.id === id) && !hid.includes(id)){
-      const p = POOL.find(x => x.id === id);
-      if (p) src.push(p);
-    }
+  const ids = allRosterIds();
+  const src = [];
+  for (const id of ids){
+    if (src.some(t3 => t3.id === id)) continue;
+    /* roster row first (ownership + hero art), pool fills the rest */
+    const r = ROSTER.find(x => x.id === id), p = POOL.find(x => x.id === id);
+    if (r || p) src.push(Object.assign({}, p || {}, r || {}));
   }
-  CANDS.push(...src.map(t2 => {
-    const p = POOL.find(x => x.id === t2.id) || {};
-    const m = Object.assign({}, p, t2);
-    /* roster rows can hold null/"" fields (V3 pe unknown in roster) - pool wins there */
+  CANDS.push(...src.map(t3 => {
+    const p = POOL.find(x => x.id === t3.id) || {};
+    const m = Object.assign({}, p, t3);
     for (const k of ["pe","hp","atk","dfn","spa","spd","spe"]){
       if (m[k] === null || m[k] === undefined || m[k] === "") m[k] = p[k];
     }
     if (!Array.isArray(m.moves) || !m.moves.length) m.moves = Array.isArray(p.moves) ? p.moves : [];
-    return applyStats(m, t2);
+    return applyStats(m, t3);
   }));
 }
 /* v60 AUDIT: roster/pool rows lack the rich per-move metadata that stats_allsets.json
@@ -496,7 +504,13 @@ function renderBattle(){
   }
   const t0 = performance.now();
   const win = battleBest(BATTLE.foes);
-  if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
+  if (!win){
+    const n = CANDS.length;
+    el.innerHTML = n < 3
+      ? `<div class="empty">🎮🎮 Your bag has ${n} tag${n === 1 ? "" : "s"} - battle needs at least 3.<br>${n === 0 ? "Add the tags you carry in <b>My roster</b>, then come back." : "Add more in <b>My roster</b>."}</div>`
+      : `<div class="empty">Building… tap again.</div>`;
+    return;
+  }
   const ms = Math.max(1, Math.round(performance.now() - t0));
   const risk = 0; /* v55: survival no longer ranks - damage-first */
   el.innerHTML = `
@@ -590,7 +604,10 @@ function closeModal(){
 function tab(name){
   document.querySelectorAll("#playTabs button").forEach(b => b.classList.toggle("on", b.dataset.play === name));
   document.querySelectorAll(".playpanel").forEach(p => p.classList.toggle("on", p.id === "pp-" + name));
-  if (name === "battle") renderBattleFoes();
+  /* renderBattle() (not just renderBattleFoes()) so a roster edit made on the
+     other tab is reflected the moment you come back - including the "bag too
+     small" state, which otherwise leaves the previous result card standing. */
+  if (name === "battle"){ renderBattleFoes(); renderBattle(); }
   if (name === "roster") renderRosterPanel();
 }
 
@@ -620,6 +637,18 @@ async function boot() {
       '<div class="empty">Could not load tag data. Check your connection and reload.</div>';
     return;
   }
+  /* v65 MIGRATION. rosterHidden is gone - the bag is one list now. Anyone with a
+     hidden entry had squad-11 tags pulled out of the old display list; put those
+     back so nobody silently loses tags on upgrade. */
+  try {
+    const hid = JSON.parse(localStorage.getItem("rosterHidden") || "[]");
+    if (Array.isArray(hid) && hid.length){
+      const u = userRoster();
+      for (const id of hid){ if (MAIN_IDS.includes(id) && !u.includes(id)) u.push(id); }
+      setUserRoster(u);
+      localStorage.removeItem("rosterHidden");
+    }
+  } catch(e){}
   invalidateCands();
   buildCands();
   wire();
@@ -644,16 +673,10 @@ function wire() {
 /* main roster panel (play): same localStorage contract as the binder -
    userRoster[] for added ids, rosterHidden[] for core tags he puts away.
    Candidates are rebuilt on every change so a new tag is battleable at once. */
-function rosterHidden(){
-  try { return JSON.parse(localStorage.getItem("rosterHidden") || "[]"); } catch(e){ return []; }
-}
 function renderRosterPanel() {
   const host = document.querySelector("#rosterList");
   if (!host) return;
-  /* a core tag he has put away must not stay on screen - allRosterIds() ignores
-     rosterHidden[], so filter here or the ✕ appears to do nothing */
-  const hid = rosterHidden();
-  const ids = allRosterIds().filter(id => !hid.includes(id));
+  const ids = allRosterIds();
   /* mainMembers() only knows MAIN_IDS, so resolve every id the same way the binder
      loadout does: roster row first (it carries ownership + hero art), pool fills gaps */
   const tags = ids.map(id => {
@@ -669,7 +692,13 @@ function renderRosterPanel() {
       <span class="rlab">MY ROSTER · ${tags.length} tags</span>
       <button class="btn act" id="rosterAdd">＋ Add pokemon</button>
     </div>
-    <div class="rnote">battle can answer with ${CANDS.length} of these - add a tag and it is battleable at once</div>
+    <div class="rnote">${ids.length
+      ? `battle will answer with these ${ids.length} tags only`
+      : `empty - add the tags you carry, and battle will use exactly those`}</div>
+    ${tags.length ? "" : `<div class="rempty">
+      <div class="rempty-t">Your bag is empty</div>
+      <div class="rempty-s">Tap ＋ Add pokemon and build the team you actually carry.<br>Battle answers with these tags and nothing else.</div>
+    </div>`}
     <div class="rgrid">${tags.map(m => {
       /* data files already store "img/<file>", so resolve from the site root, not from /play/ */
       const art = m.img ? "../" + m.img : "";
@@ -683,43 +712,43 @@ function renderRosterPanel() {
     }).join("")}</div>
     <div class="rfoot">
       <span>an ability fires once per session in the real game — bring one, not three</span>
-      ${hid.length ? `<button class="btn ghost" id="rosterRestore">↩ put back ${hid.length} hidden</button>` : ""}
     </div>`;
 
   host.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
     const id = b.dataset.rm;
-    if (MAIN_IDS.includes(id)){
-      /* core tag: keep the data, remember that he wants it out of the bag */
-      const hid = rosterHidden();
-      if (!hid.includes(id)) hid.push(id);
-      localStorage.setItem("rosterHidden", JSON.stringify(hid));
-    } else {
-      setUserRoster(userRoster().filter(x => x !== id));
-    }
+    /* v65: one list. Squad-11 tags live in userRoster like any other, so ✕ really
+       removes them. rosterTouched is what makes an emptied bag stay empty. */
+    touchRoster();
+    setUserRoster(userRoster().filter(x => x !== id));
     invalidateCands();
     renderRosterPanel();
+    /* renderBattleFoes() alone leaves the previous result card on screen, so an
+       emptied bag still showed a recommendation it can no longer back up. */
     renderBattleFoes();
+    renderBattle();
   });
 
   const add = document.querySelector("#rosterAdd");
   if (add) add.onclick = rosterAddPicker;
 
-  const restore = document.querySelector("#rosterRestore");
-  if (restore) restore.onclick = () => {
-    localStorage.removeItem("rosterHidden");
-    invalidateCands();
-    renderRosterPanel();
-    renderBattleFoes();
-  };
+
 }
+
+/* v65: the first deliberate edit flips the roster to "his bag" mode. Without this
+   flag an emptied roster would re-seed itself with squad 11 on the next load. */
+function touchRoster(){ try { localStorage.setItem("rosterTouched", "1"); } catch(e){} }
 
 /* reuse the binder's picker, then repaint play's own panels */
 function rosterAddPicker(){
   const el = $("#modal");
   if (!el) return;
   const owned = new Set(ROSTER.map(x => x.id));
-  const cands = POOL.filter(x => !allRosterIds().includes(x.id) && (owned.has(x.id) || x.grade === "5" || x.grade === "6"))
-    .sort((a, b) => (b.pe || 0) - (a.pe || 0));
+  /* v65: his bag, his rules - offer every tag in the pool, any grade, PE-sorted.
+     The binder's 5/6-star gate made sense when battle drew from roster.json;
+     now that the roster IS the pool of candidates, that gate would hide tags he
+     legitimately owns. */
+  const cands = POOL.filter(x => !allRosterIds().includes(x.id))
+    .sort((a, b) => (b.pe || 0) - (a.pe || 0) || ((b.grade || 0) - (a.grade || 0)));
   const row = x => `
       <button class="pitem" data-id="${esc(x.id)}">
         <span>${esc(x.name)}</span>
@@ -727,16 +756,19 @@ function rosterAddPicker(){
       </button>`;
   el.innerHTML = `<div class="modalhead">Add to My roster <button class="xbtn" id="x">✕</button></div>
     <input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off">
-    <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every 5★ and 6★ tag is already on your roster.</div>`}</div>`;
+    <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
   $("#scrim").classList.add("on");
   $("#x").onclick = closeModal;
   const wirePl = () => el.querySelectorAll("[data-id]").forEach(b => b.onclick = () => {
+    touchRoster();
     const ids = userRoster();
     if (!ids.includes(b.dataset.id)) ids.push(b.dataset.id);
     setUserRoster(ids);
     closeModal();
     invalidateCands();
     renderRosterPanel();
+    renderBattleFoes();
+    renderBattle();
   });
   $("#bs").oninput = e => {
     const q = e.target.value.trim().toLowerCase();

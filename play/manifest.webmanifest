@@ -1,9 +1,9 @@
 {
  "name": "Mezastar Play · Khanh",
  "short_name": "Mezastar Play",
- "description": "Arcade companion for Pokemon Mezastar: pick the 3 enemy tags on the machine and get the best 3 tags to send.",
+ "description": "Arcade companion for Pokemon Mezastar: tap the 3 enemy tags on the machine, get the best 3 from your own bag.",
  "start_url": "./",
- "scope": "../",
+ "scope": "./",
  "display": "standalone",
  "orientation": "portrait",
  "background_color": "#0b0714",
@@ -31,6 +31,16 @@
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Battle",
+   "url": "./?tab=battle"
+  },
+  {
+   "name": "My roster",
+   "url": "./?tab=roster"
   }
  ]
 }
