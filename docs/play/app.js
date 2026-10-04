@@ -574,9 +574,45 @@ function invalidateCands(){ BSC.clear(); CANDS.length = 0; buildCands(); }
    reference inside the extracted battle block needs the "../" hop from /play/ */
 function playImg(m){ return m && m.img ? "../" + m.img : ""; }
 function closeModal(){
+  /* v69: the picker sheet is a fixed overlay, so any teardown has to release
+     the body scroll lock. Doing it HERE means no caller can forget it - the
+     picker, battlePick and the scrim tap all go through this one function. */
+  unlockBodyScroll();
   const sc = $("#scrim"); if (sc) sc.classList.remove("on");
   /* play renders #modal in place, so clear it - the binder hides it with CSS only */
   const m = $("#modal"); if (m) m.innerHTML = "";
+}
+
+/* Page scroll lock used by the picker sheet. Remembers and restores the exact
+   scroll offset, because the roster panel can be scrolled when the tap happens.
+   Guarded so a second lock without a close (or a close without a lock) is a
+   no-op rather than a stuck page. */
+let _scrollLock = null;
+function lockBodyScroll(){
+  if (_scrollLock) return;
+  _scrollLock = {
+    y: scrollY,
+    overflow: document.body.style.overflow,
+    position: document.body.style.position,
+    top: document.body.style.top,
+    left: document.body.style.left,
+    right: document.body.style.right,
+  };
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.top = (-_scrollLock.y) + "px";
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+}
+function unlockBodyScroll(){
+  if (!_scrollLock) return;
+  const s = _scrollLock; _scrollLock = null;
+  document.body.style.overflow = s.overflow;
+  document.body.style.position = s.position;
+  document.body.style.top = s.top;
+  document.body.style.left = s.left;
+  document.body.style.right = s.right;
+  scrollTo(0, s.y);
 }
 
 /* two panels instead of five tabs */
@@ -759,6 +795,7 @@ function rosterAddPicker(){
       + `<input class="bsearch" id="bs" placeholder="Search pokemon…" autocomplete="off" value="${esc(query)}">
          <div class="plist" id="pl">${cands.length ? cands.map(row).join("") : `<div class="empty">Every tag in the pool is already in your bag.</div>`}</div>`;
     $("#scrim").classList.add("on");
+    lockBodyScroll();
     el.querySelector("#x").onclick = closeModal;
     const pc = el.querySelector("#pcommit");
     if (pc) pc.onclick = commit;

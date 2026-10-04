@@ -324,6 +324,64 @@ html, body.playbody {
   font-weight: 700;
 }
 
+
+/* ===========================================================================
+   PICKER SHEET (v69) - the search box must stay put, not scroll away.
+
+   Khanh: "the search bar should show at the top, not the bottom of the page,
+   because I have to drag down to reach it."
+
+   What was actually wrong: `.modal` and `.scrim` had NO position rule at all,
+   so both were position:static and the sheet rendered as ordinary content in
+   the middle of the document - its top sat at y=552 on a 390x844 phone while
+   `.plist` ran to y=1125, 281px past the bottom of the screen. The search box
+   was nominally "above the list" in the markup but you had to scroll the PAGE
+   to reach anything, because the only thing that scrolled was the page, not
+   the sheet.
+
+   The fix is a real overlay: scrim becomes a fixed full-screen backdrop and
+   the sheet a fixed centred column capped to the viewport. Only `.plist`
+   scrolls now - header, commit bar and search box are sticky at the top and
+   can never be dragged out of reach.
+   =========================================================================== */
+.playbody .scrim {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(5, 3, 12, .74);
+  display: none; align-items: flex-end; justify-content: center;
+  padding: 0; overflow: hidden;
+}
+.playbody .scrim.on { display: flex; }
+.playbody #modal {
+  position: fixed; z-index: 61;
+  left: 50%; transform: translateX(-50%);
+  bottom: 0; top: auto;
+  width: 100%; max-width: 560px;
+  max-height: min(92vh, 92dvh);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, #241a3d, #16102a);
+  border: 1px solid var(--stroke, rgba(255,255,255,.14));
+  border-bottom: none;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -22px 60px rgba(0,0,0,.55);
+}
+.playbody #modal:empty { display: none; }
+
+/* sticky top furniture: whatever is inside the sheet above the list */
+.playbody .modalhead,
+.playbody .pcommit,
+.playbody #modal > .bsearch {
+  flex: 0 0 auto; position: relative; z-index: 2;
+}
+/* the list is the ONLY thing that scrolls */
+.playbody .plist {
+  flex: 1 1 auto; min-height: 0;
+  max-height: none; height: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* commit bar: sits directly under the header, always visible while picking */
 .playbody .pcommit {
   display: block; width: 100%; margin: 0 0 10px;
