@@ -143,6 +143,7 @@ MIDDLE = '''
 /* ---------- state ---------- */
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
 let STATS_BY_ID = {}, MOVE_AR = {};
+let AR_WHEEL = {};   /* per-TAG Attack Roulette wheel */
 let OWNED = {};
 
 const LS = {
@@ -225,7 +226,8 @@ async function boot() {
       fetch("../data/bosses.json").then(r => r.json()).catch(() => []),
       fetch("../data/typechart.json").then(r => r.json()).catch(() => ({ chart: {}, types: [] })),
       fetch("../data/stats_allsets.json").then(r => r.json()).catch(() => []),
-      fetch("../data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({}))
+      fetch("../data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({})),
+      fetch("../data/ar_wheel.json").then(r => r.json()).then(j => j.tags || {}).catch(() => ({}))
     ]);
     ROSTER = ro.tags || [];
     POOL = po.tags || [];
@@ -234,7 +236,7 @@ async function boot() {
     TYPES = tcj.types || Object.keys(CHART);
     STATS_BY_ID = {};
     (Array.isArray(sst) ? sst : []).forEach(r => { if (r && r.id) STATS_BY_ID[r.id] = r; });
-    MOVE_AR = mar || {};
+    MOVE_AR = mar || {}; AR_WHEEL = arw || {};
   } catch (e) {
     document.querySelector("#battleBox").innerHTML =
       '<div class="empty">Could not load tag data. Check your connection and reload.</div>';

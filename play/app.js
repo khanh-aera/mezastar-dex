@@ -174,7 +174,20 @@ function offStat(tag, mv){
 }
 function gimMult(tag, mv){
   if (!mv || !mv.gimmick) return 1;
+  /* v71: Gigantamax is officially "a special form of Dynamax" and shares its
+     per-session allowance, so it must not carry its own independent budget. */
   return GIM_MULT[tag.gimmick] || GIM_DEFAULT;
+}
+/* v71: the per-TAG Attack Roulette wheel. Bulbapedia: "This roulette has values
+   ranging from 5 to 50 depending on the Grade of Pokemon" - and it is NOT uniform
+   within a grade (4* Sylveon max 50 vs 5* Sylveon max 35). Fitted against the
+   sheet author's own published Max DMG%, damage = 0.708 * offStat * wheelMax is the
+   best-fitting form (cv 0.122 over 103 rows; the additive form was worse at 0.175).
+   Normalised to the pool median wheel so a missing wheel costs nothing. */
+const WHEEL_REF = 35;
+function wheelMult(tag){
+  const w = tag && tag.id && AR_WHEEL[tag.id];
+  return (w && w.max) ? (w.max / WHEEL_REF) : 1;
 }
 /* ONE strike formula, shared by the engine and the audit panel */
 function strikeDmg(tag, mv, defTypes){
@@ -183,8 +196,9 @@ function strikeDmg(tag, mv, defTypes){
   const arI = (mv && MOVE_AR[mv.name]) || null;
   const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
   const gm = gimMult(tag, mv);
-  return { off, mm, arRaw: arI ? arI.ar : null, ar, gm,
-    d: (mm > 0 ? off : off) * mm * ar * gm };
+  const wm = wheelMult(tag);
+  return { off, mm, arRaw: arI ? arI.ar : null, ar, gm, wm,
+    d: off * mm * ar * gm * wm };
 }
 
 /* v60: full audit trail for a strike, so the Battle card can show every input
@@ -192,7 +206,8 @@ function strikeDmg(tag, mv, defTypes){
 function strikeTrace(x, foe, mv){
   const r = strikeDmg(x, mv, foe.types);
   return { pe: x.pe || 100, off: r.off, mm: r.mm, arRaw: r.arRaw, ar: r.ar,
-    gm: r.gm, gim: r.gm > 1, d: r.d, mv: mv || null, foe: foe.name || foe.id,
+    gm: r.gm, gim: r.gm > 1, wm: r.wm, wheel: (x.id && AR_WHEEL[x.id]) ? AR_WHEEL[x.id].max : null,
+    d: r.d, mv: mv || null, foe: foe.name || foe.id,
     foeTypes: (foe.types || []).slice() };
 }
 /* v60: the mirror image - what an ENEMY move does to one of mine, same vocabulary. */
@@ -202,7 +217,8 @@ function incomingTrace(f, x, mv){
   const arI = (mv && MOVE_AR[mv.name]) || null;
   const ar = (arI && arI.ar) ? arI.ar / 100 : 1;
   const gm = gimMult(f, mv);
-  return { pe: f.pe || 100, off, mm, arRaw: arI ? arI.ar : null, ar, gm, d: off * mm * ar * gm,
+  const wm = wheelMult(f);
+  return { pe: f.pe || 100, off, mm, arRaw: arI ? arI.ar : null, ar, gm, wm, d: off * mm * ar * gm * wm,
     name: (mv && mv.name) || "", from: f.name || f.id, immune: mm === 0, dbl: mm >= 2 };
 }
 
@@ -408,7 +424,7 @@ function auditCard(pr, foes){
   const rowSum = tr.rows.reduce((a, t) => a + t.d, 0);
   const g = mine.gimmick;
   /* damage formula, factored */
-  const t0 = tr.rows[0] || { pe: mine.pe || 100, off: mine.pe || 100, mm: 1, ar: 1, arRaw: null, gim: false, gm: 1 };
+  const t0 = tr.rows[0] || { pe: mine.pe || 100, off: mine.pe || 100, mm: 1, ar: 1, arRaw: null, gim: false, gm: 1, wm: 1, wheel: null };
   const useOff = dmgModel === "off";
   const statLbl = (mv && mv.category === "Physical") ? "Atk" : (mv && mv.category === "Special") ? "SpA" : (useOff ? "Atk/SpA" : "PE");
   const factors = [
@@ -416,6 +432,7 @@ function auditCard(pr, foes){
     useOff ? `<span class="fn">PE</span><span class="fv dim">${t0.pe}</span>` : "",
     t0.mm !== 1 ? `<span class="fn">type</span><span class="fv ${t0.mm > 1 ? "up" : "down"}">×${t0.mm}</span>` : "",
     t0.arRaw ? `<span class="fn">roulette</span><span class="fv">×${(Math.round(t0.ar * 100) / 100)}</span>` : "",
+    t0.wheel ? `<span class="fn">wheel max</span><span class="fv">${t0.wheel}</span>` : "",
     t0.gim ? `<span class="fn">gimmick</span><span class="fv up">×${t0.gm}</span>` : "",
     `<span class="fn">=</span><span class="fv total">${Math.round(t0.d)}</span>`
   ].filter(Boolean).join("");
@@ -556,6 +573,7 @@ function renderBattle(){
 /* ---------- state ---------- */
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
 let STATS_BY_ID = {}, MOVE_AR = {};
+let AR_WHEEL = {};   /* per-TAG Attack Roulette wheel */
 let OWNED = {};
 
 const LS = {
@@ -637,7 +655,8 @@ async function boot() {
       fetch("../data/bosses.json").then(r => r.json()).catch(() => []),
       fetch("../data/typechart.json").then(r => r.json()).catch(() => ({ chart: {}, types: [] })),
       fetch("../data/stats_allsets.json").then(r => r.json()).catch(() => []),
-      fetch("../data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({}))
+      fetch("../data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({})),
+      fetch("../data/ar_wheel.json").then(r => r.json()).then(j => j.tags || {}).catch(() => ({}))
     ]);
     ROSTER = ro.tags || [];
     POOL = po.tags || [];
@@ -646,7 +665,7 @@ async function boot() {
     TYPES = tcj.types || Object.keys(CHART);
     STATS_BY_ID = {};
     (Array.isArray(sst) ? sst : []).forEach(r => { if (r && r.id) STATS_BY_ID[r.id] = r; });
-    MOVE_AR = mar || {};
+    MOVE_AR = mar || {}; AR_WHEEL = arw || {};
   } catch (e) {
     document.querySelector("#battleBox").innerHTML =
       '<div class="empty">Could not load tag data. Check your connection and reload.</div>';
