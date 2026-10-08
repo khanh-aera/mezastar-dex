@@ -649,7 +649,7 @@ function tab(name){
 /* ---------- boot ---------- */
 async function boot() {
   try {
-    const [ro, po, bo, tcj, sst, mar] = await Promise.all([
+    const [ro, po, bo, tcj, sst, mar, arw] = await Promise.all([
       fetch("../data/roster.json").then(r => r.json()).catch(() => ({ tags: [] })),
       fetch("../data/pool.json").then(r => r.json()).catch(() => ({ tags: [] })),
       fetch("../data/bosses.json").then(r => r.json()).catch(() => []),
@@ -665,7 +665,16 @@ async function boot() {
     TYPES = tcj.types || Object.keys(CHART);
     STATS_BY_ID = {};
     (Array.isArray(sst) ? sst : []).forEach(r => { if (r && r.id) STATS_BY_ID[r.id] = r; });
-    MOVE_AR = mar || {}; AR_WHEEL = arw || {};
+    MOVE_AR = mar || {};
+    /* v72 BUGFIX: the wheel fetch was added to this Promise.all but the destructure
+       above still had only 6 slots, so `arw` was undefined here -> ReferenceError
+       -> the catch below replaced the whole app with "Could not load tag data".
+       Assert the arity instead of trusting it: if these two ever drift apart again,
+       fail loudly here rather than silently blanking the UI. */
+    AR_WHEEL = arw || {};
+    if (typeof AR_WHEEL !== "object" || typeof MOVE_AR !== "object") {
+      throw new Error("mezastar boot: wheel/move data did not load");
+    }
   } catch (e) {
     document.querySelector("#battleBox").innerHTML =
       '<div class="empty">Could not load tag data. Check your connection and reload.</div>';
