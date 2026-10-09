@@ -657,7 +657,12 @@ function renderSquad(){
 
 /* ================= BATTLE MODE ================= */
 /* Candidates: EVERY owned 5/6-star tag (roster + pool merge), not just squad 11. */
-const BATTLE = { foes: [null, null, null] };
+const BATTLE = { foes: [null, null, null], mode: (function(){ try { return localStorage.getItem("meza.battleMode") === "max" ? "max" : "fresh"; } catch(e){ return "fresh"; } })() };
+function setBattleMode(v){
+  BATTLE.mode = (v === "max") ? "max" : "fresh";
+  try { localStorage.setItem("meza.battleMode", BATTLE.mode); } catch(e){}
+  renderBattle();
+}
 /* built LAZILY: ROSTER/POOL fill in the boot IIFE after this line runs */
 let CANDS = [];
 function buildCands(){
@@ -925,6 +930,7 @@ function battleAssign(team, foes){
 function battleBest(foes){
   if (!CANDS.length) buildCands();
   if (CANDS.length < 3 || foes.filter(Boolean).length < 3) return null;
+  if (BATTLE.mode === "fresh") return freshBest(foes);
   let best = null;
   const N = CANDS.length;
   for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
@@ -934,6 +940,82 @@ function battleBest(foes){
     if (!best || better) best = { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
   }
   return best;
+}
+/* ---- v73 FRESH MODE (Khanh): the argmax team is always the same ~6 meta tags,
+   which wins every fight but plays the same three cards forever. Instead, per
+   SLOT: rank candidates by that slot's AoE damage, keep the 3-4 near-equals
+   (>= FRESH_BAND of the slot's best), and pick the LEAST-RECENTLY-USED among
+   them. Slot-local is sound because dmgSum is per-member additive; only the
+   lane pairing interacts, and battleAssign still optimises that pairing.
+   Usage is stored per foe-trio context so a first battle with new enemies
+   explores freely instead of punishing tags for fights they never saw. */
+const FRESH_BAND = 0.72;   /* "near-equal" per slot. 0.90 was measured too tight for this
+                              meta (slot #1 runs ~16-25% above #2), which collapsed every
+                              pool to a single mon and made rotation impossible. */
+const FRESH_POOL = 4;      /* consider at most this many near-equals per slot */
+function freshUsage(){ try { const u = JSON.parse(localStorage.getItem("meza.freshUsage") || "{}"); if (typeof u._seq !== "number") u._seq = 0; return u; } catch(e){ return { _seq: 0 }; } }
+function freshSeen(tag){
+  const u = freshUsage();
+  return u[tag.id] || 0;
+}
+function freshMarkUsed(team, foes){
+  const u = freshUsage();
+  /* a GLOBAL recency counter, not per-fight timestamps: three picks in one battle
+     would otherwise tie at Date.now() and the LRU sort would keep re-picking the
+     same team. ++seq gives a strict order, and being global means a card played
+     against yesterday's bosses waits its turn against today's too - which is the
+     "cho mấy con khác chơi" behaviour this mode exists for. */
+  /* ONE seq step per BATTLE, not per pick: if each of the three picks got its own
+     ++seq, the first slot's pick would always carry the smallest value and stay
+     "least recently used" forever, so the same team would repeat every battle.
+     A battle-level stamp + damage-order tiebreak breaks that cycle. */
+  u._seq = (u._seq || 0) + 1;
+  const stamp = u._seq;
+  team.forEach((t, i2) => { u[t.id] = stamp * 1000 - i2; });
+  /* prune: with a monotonically rising counter, anything 200+ battles stale is dead.
+     23 candidates x ~3 picks per battle = ~70 touches per 23 battles; 200 battles
+     is far beyond any realistic gap, and this keeps the map tiny forever. */
+  const cutoff = stamp - 200;
+  for (const key in u){
+    if (key === "_seq") continue;
+    if (u[key] < cutoff * 1000) delete u[key];
+  }
+  try { localStorage.setItem("meza.freshUsage", JSON.stringify(u)); } catch(e){}
+}
+function freshBest(foes){
+  if (!CANDS.length) buildCands();
+  const real = foes.filter(Boolean);
+  const foesKey = real.map(f2 => f2.id).join("|");
+  const picks = [];
+  const used = new Set();
+  /* one SLOT per foe: rank candidates by their AoE contribution with that foe
+     as the lane, band against the SLOT's own best (not the global best - that
+     bug made every slot grab the same strong mons and killed rotation), then
+     LRU-pick inside the near-equal pool. */
+  for (const e of real){
+    const slotScored = CANDS.map(t => {
+      const r = bsc(t, e, foesKey, foes);
+      let dRow = 0;
+      for (const f2 of real){ if (f2) dRow += (r.dmgMap && r.dmgMap[f2.id]) || 0; }
+      return { t, v: dRow };
+    }).sort((a2, b2) => b2.v - a2.v);
+    const top = slotScored[0] ? slotScored[0].v : 0;
+    /* near-equal pool: unused candidates within the band, capped at FRESH_POOL.
+       If nothing qualifies (small roster or everything already picked this fight),
+       fall back to the best unused candidate so a team is always returned. */
+    let pool = slotScored.filter(x => !used.has(x.t.id) && x.v >= top * FRESH_BAND);
+    if (!pool.length){
+      const fb = slotScored.find(x => !used.has(x.t.id));
+      if (fb) pool.push(fb);
+    }
+    pool = pool.slice(0, FRESH_POOL);
+    pool.sort((a2, b2) => freshSeen(a2.t) - freshSeen(b2.t));
+    const chosen = pool[0].t;
+    used.add(chosen.id);
+    picks.push(chosen);
+  }
+  const t2 = battleAssign(picks, foes);
+  return { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: picks, pairs: t2.pairs, fresh: true };
 }
 /* enemy slot chip + picker sheet (reuses the scrim modal) */
 function renderBattleFoes(){
@@ -1088,6 +1170,7 @@ function renderBattle(){
   const t0 = performance.now();
   const win = battleBest(BATTLE.foes);
   if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
+  if (win.fresh) freshMarkUsed(win.team, BATTLE.foes);   /* v73: record the rotation */
   const ms = Math.max(1, Math.round(performance.now() - t0));
   const risk = 0; /* v55: survival no longer ranks - damage-first */
   el.innerHTML = `
@@ -1109,6 +1192,14 @@ function renderBattle(){
         <span class="mnote">${dmgModel === "off"
           ? "real game: damage reads the move's offensive stat"
           : "legacy: flat PE scalar"}</span>
+      </div>
+      <div class="modelrow">
+        <span class="mlabel">team style</span>
+        <button class="mtog ${BATTLE.mode !== "max" ? "on" : ""}" data-bmode="fresh">🔄 Fresh</button>
+        <button class="mtog ${BATTLE.mode === "max" ? "on" : ""}" data-bmode="max">💥 Max Power</button>
+        <span class="mnote">${BATTLE.mode === "max"
+          ? "always the single strongest team"
+          : "rotates your roster: per slot picks among ~3-4 near-equal cards, least-played first"}</span>
       </div>
     </div>
     ${win.pairs.map((pr, i2) => {
@@ -1145,7 +1236,10 @@ function renderBattle(){
       </article>`;
     }).join("")}
     <div class="btnrow"><button class="btn" id="battleAgain">⚔️ New battle</button></div>`;
-  el.querySelectorAll(".mtog").forEach(b => b.onclick = () => setDmgModel(b.dataset.model));
+  el.querySelectorAll(".mtog").forEach(b => b.onclick = () => {
+    if (b.dataset.bmode) return setBattleMode(b.dataset.bmode);
+    setDmgModel(b.dataset.model);
+  });
   const ba = $("#battleAgain"); if (ba) ba.onclick = () => { BATTLE.foes = [null, null, null]; renderBattle(); };
 }
 
