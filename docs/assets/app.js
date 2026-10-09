@@ -927,10 +927,9 @@ function battleAssign(team, foes){
 }
 /* strongest team: exhaustive C(20,3) = 1140 x 6 pairings, cached scores.
    ~30ms cold, ~10ms warm - fine for a tap. */
-function battleBest(foes){
-  if (!CANDS.length) buildCands();
-  if (CANDS.length < 3 || foes.filter(Boolean).length < 3) return null;
-  if (BATTLE.mode === "fresh") return freshBest(foes);
+function battleBestRaw(foes){
+  /* the pure argmax, independent of BATTLE.mode - freshBest's safety net needs it and
+     must not route back through battleBest (mode fresh) or it recurses forever. */
   let best = null;
   const N = CANDS.length;
   for (let a = 0; a < N; a++) for (let b = a + 1; b < N; b++) for (let c = b + 1; c < N; c++){
@@ -940,6 +939,12 @@ function battleBest(foes){
     if (!best || better) best = { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: [CANDS[a], CANDS[b], CANDS[c]], pairs: t2.pairs };
   }
   return best;
+}
+function battleBest(foes){
+  if (!CANDS.length) buildCands();
+  if (CANDS.length < 3 || foes.filter(Boolean).length < 3) return null;
+  if (BATTLE.mode === "fresh") return freshBest(foes);
+  return battleBestRaw(foes);
 }
 /* ---- v73 FRESH MODE (Khanh): the argmax team is always the same ~6 meta tags,
    which wins every fight but plays the same three cards forever. Instead, per
@@ -970,6 +975,18 @@ function freshSeen(tag){
     if (l[i].team && l[i].team.indexOf(tag.id) >= 0) return i + 1;   /* 1 = played last battle */
   }
   return 0;                                                          /* 0 = never / oldest */
+}
+/* v76 (Khanh): recency alone still let high-coverage cards (Tyranitar 5 of 7 log rows,
+   Drednaw 4 of 7) re-qualify in every fresh foe pool and get re-picked. TOTAL appearances
+   inside the 20-battle log is the second axis: a card that plays often rests even when it
+   is not the most recent pick. */
+function freshCount(tag){
+  const l = freshLog();
+  let n = 0;
+  for (let i = 0; i < l.length; i++){
+    if (l[i].team && l[i].team.indexOf(tag.id) >= 0) n++;
+  }
+  return n;
 }
 function freshMarkUsed(team, foes){
   const l = freshLog();
@@ -1028,16 +1045,45 @@ function freshBest(foes){
     }
     /* v75 (Khanh): "mỗi slot 3-4 pkm, 3 slot là 12 pkm... rất nhiều lựa chọn".
        A shallow pool kills rotation, so widen the band progressively until the
-       slot has at least 3 candidates - but never admit anything below 55% of
-       the slot's best (that much damage would be felt in every fight). */
-    if (pool.length < 3){
-      const floor = top * 0.55;
+       slot has at least 4 candidates - but never admit anything below 45% of
+       the slot's best (weaker than that loses the fight on its own). */
+    if (pool.length < 4){
+      const floor = top * 0.45;
       for (const x of slotScored){
-        if (pool.length >= 3) break;
+        if (pool.length >= 4) break;
         if (!used.has(x.t.id) && x.v >= floor && !pool.some(y => y.t.id === x.t.id)) pool.push(x);
       }
     }
+    /* last resort: a slot whose pool still has ONE candidate can never rotate. Admit the
+       next-best unused card at ANY damage so the LRU/overuse logic has a second option;
+       Khanh's verified experience is that these teams still win, and variety is the point. */
+    if (pool.length < 2){
+      const anyFloor = top * 0.45;
+      for (const x of slotScored){
+        if (pool.length >= 2) break;
+        if (!used.has(x.t.id) && x.v >= anyFloor && !pool.some(y => y.t.id === x.t.id)) pool.push(x);
+      }
+    }
     pool = pool.slice(0, FRESH_POOL);
+    /* v76 hard overuse gate: a card that already filled HALF of the logged battles
+       (Tyranitar took 5 of 7 rows in Khanh's screenshot) is demoted below every
+       non-capped candidate. It can still be picked - but only when the slot has
+       nothing else, so the meta card stops soaking up every appearance. */
+    const logLen = Math.max(1, freshLog().length);
+    const cap = Math.max(4, Math.ceil(logLen / 2));   /* never punish before 8 battles */
+    const overused = x2 => freshCount(x2.t) >= cap;
+    let free = pool.filter(x2 => !overused(x2));
+    if (!free.length){
+      /* every pool member is over-capped: reach ONE band position further down the
+         slot ranking for a rested alternative, damage be damned - playing the same
+         card every fight is exactly what this mode exists to prevent. */
+      const inPool = new Set(pool.map(x2 => x2.t.id));
+      const altFloor = top * 0.45;   /* rested but never hopeless */
+      const alt = slotScored.find(x2 => !used.has(x2.t.id) && !inPool.has(x2.t.id) && !overused(x2) && x2.v >= altFloor);
+      if (alt) pool.push(alt);
+      free = pool.filter(x2 => !overused(x2));
+    }
+    if (free.length) pool = free.concat(pool.filter(overused));
     /* v75 (Khanh): the pool is the CHOICE, the LRU is the PICK. If enough
        near-equals exist, skip whoever played the immediately previous battle so
        back-to-back fights never field the same card. Only relaxes when the pool
@@ -1050,10 +1096,17 @@ function freshBest(foes){
     /* LRU first; within a seen-tied head group, ROTATE by the battle counter so
        each member takes the lead in turn (any fixed tiebreak re-elects the same
        card forever - that limit cycle froze the old rotation). */
-    pool.sort((a2, b2) => freshSeen(a2.t) - freshSeen(b2.t));
+    /* v76 pick order (Khanh): 1) least-played measured as a BLEND - recency plus total
+       appearances in the 20-battle log (either axis alone let high-coverage cards like
+       Tyranitar take 5 of 7 slots) - 2) 6-star first when still tied, 3) rotate ties. */
+    const sixStar = t2 => (t2.grade === "6" ? 0 : 1);
+    const fatigue = t2 => freshSeen(t2) + 3 * freshCount(t2);
+    pool.sort((a2, b2) => fatigue(a2.t) - fatigue(b2.t)
+      || sixStar(a2.t) - sixStar(b2.t));
     const rot = (function(){ try { return parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0; } catch(e){ return 0; } })();
     let headEnd = 1;
-    while (headEnd < pool.length && freshSeen(pool[headEnd].t) === freshSeen(pool[0].t)) headEnd++;
+    const key0 = (x2) => fatigue(x2.t) + "/" + sixStar(x2.t);
+    while (headEnd < pool.length && key0(pool[headEnd]) === key0(pool[0])) headEnd++;
     if (headEnd > 1){
       const off = rot % headEnd;
       const head = pool.slice(0, headEnd);
@@ -1065,6 +1118,12 @@ function freshBest(foes){
     picks.push(chosen);
   }
   const t2 = battleAssign(picks, foes);
+  /* v76 safety net: variety never buys a loss. If the rotated team falls below 75% of the
+     slot-best total, hand back the argmax team for this fight (logged as max). */
+  const best1 = battleBestRaw(foes);
+  if (best1 && best1.dmgSum && t2.dmgSum < best1.dmgSum * 0.75){
+    return Object.assign({}, best1, { fresh: false, fallback: true });
+  }
   return { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: picks, pairs: t2.pairs, fresh: true };
 }
 /* enemy slot chip + picker sheet (reuses the scrim modal) */
@@ -1267,7 +1326,7 @@ function renderBattle(){
         <button class="mtog ${BATTLE.mode === "max" ? "on" : ""}" data-bmode="max">💥 Max Power</button>
         <span class="mnote">${BATTLE.mode === "max"
           ? "always the single strongest team"
-          : "rotates your roster: per slot picks among ~3-4 near-equal cards, least-played first"}</span>
+          : "rotates your roster: least-played first, fewest log appearances next, prefers 6★ when tied"}</span>
       </div>
     </div>
     ${win.pairs.map((pr, i2) => {
