@@ -14,6 +14,7 @@ const R = path.resolve(__dirname, "..", "..", "docs");
 const el = () => ({ innerHTML: "", textContent: "", value: "", style: {},
   classList: { add(){}, remove(){}, toggle(){}, contains(){return false} },
   appendChild(){}, setAttribute(){}, removeAttribute(){}, addEventListener(){},
+  remove(){},                       /* v74: boot overlay teardown uses it */
   dataset: {}, children: [], querySelector(){return el()}, querySelectorAll(){return []} });
 
 const doc = {

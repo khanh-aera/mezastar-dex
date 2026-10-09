@@ -741,7 +741,28 @@ function tab(name){
 
 
 /* ---------- boot ---------- */
+/* v74 boot overlay helpers: the veil is static markup in index.html. boot() updates
+   its label per stage and removes it on success; on failure it stays with the reason. */
+function bootStage(msg){
+  const sub = document.querySelector("#bootSub");
+  if (sub) sub.textContent = msg;
+}
+function bootDone(){
+  const veil = document.querySelector("#bootVeil");
+  if (!veil) return;
+  veil.classList.add("off");
+  setTimeout(() => veil.remove(), 450);
+}
+function bootFail(msg){
+  const veil = document.querySelector("#bootVeil");
+  if (!veil) return;
+  veil.classList.add("err");
+  const t = veil.querySelector(".boottitle");
+  if (t) t.textContent = "Could not load tag data";
+  bootStage(msg + " — check your connection and reload");
+}
 async function boot() {
+  bootStage("roster · pool · bosses · type chart");
   try {
     const [ro, po, bo, tcj, sst, mar, arw] = await Promise.all([
       fetch("../data/roster.json").then(r => r.json()).catch(() => ({ tags: [] })),
@@ -770,7 +791,11 @@ async function boot() {
       throw new Error("mezastar boot: wheel/move data did not load");
     }
   } catch (e) {
-    document.querySelector("#battleBox").innerHTML =
+    /* v74: the overlay now carries the failure - keep it up with the reason so
+       the user knows the app did not just hang. battleBox gets the same text. */
+    bootFail("some files did not load");
+    const bb = document.querySelector("#battleBox");
+    if (bb) bb.innerHTML =
       '<div class="empty">Could not load tag data. Check your connection and reload.</div>';
     return;
   }
@@ -789,6 +814,7 @@ async function boot() {
   invalidateCands();
   buildCands();
   wire();
+  bootDone();               /* v74: data is in - drop the loading veil */
   renderBattleFoes();
   /* clear the boot placeholder: the battle block only re-renders once all 3 foes
      are picked, so without this the "Loading" line would sit there forever */

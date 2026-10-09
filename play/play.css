@@ -391,3 +391,22 @@ html, body.playbody {
   color: #241a06; font-size: 16px; font-weight: 700; letter-spacing: .01em;
 }
 .playbody .pcommit:active { transform: translateY(1px); }
+
+/* ---------- v74 boot overlay ---------- */
+.bootveil{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 90% at 50% 0%,#1a0f2e 0%,#0b0714 70%);
+  transition:opacity .35s ease}
+.bootveil.off{opacity:0;pointer-events:none}
+.bootcard{text-align:center;padding:34px 30px;max-width:320px}
+.bootball{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;position:relative;
+  background:linear-gradient(180deg,#e63946 0 48%,#f4f1ea 52% 100%);
+  border:3px solid #2a2333;box-shadow:0 6px 22px rgba(0,0,0,.45)}
+.bootball::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;
+  border-radius:50%;background:#f4f1ea;border:3px solid #2a2333}
+.bootspin{position:absolute;inset:-3px;border-radius:50%;
+  border:3px solid transparent;border-top-color:#ffd54a;animation:bootspin .8s linear infinite}
+@keyframes bootspin{to{transform:rotate(360deg)}}
+.boottitle{font-size:15.5px;font-weight:700;color:#f4f1ea;letter-spacing:.4px}
+.bootsub{margin-top:7px;font-size:12px;color:#9b93ab}
+.bootveil.err .boottitle{color:#ff8a80}
+@media (prefers-reduced-motion:reduce){.bootspin{animation:none}}

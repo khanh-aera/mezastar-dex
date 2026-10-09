@@ -3,16 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<link rel="manifest" href="manifest.webmanifest?v=73">
+<link rel="manifest" href="manifest.webmanifest?v=74">
 <meta name="theme-color" content="#0b0714">
 <title>MEZASTAR PLAY · Khanh</title>
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=73">
-<link rel="icon" href="icons/favicon-32.png?v=73">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=73">
-<link rel="stylesheet" href="play-core.css?v=73">
-<link rel="stylesheet" href="play.css?v=73">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=74">
+<link rel="icon" href="icons/favicon-32.png?v=74">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=74">
+<link rel="stylesheet" href="play-core.css?v=74">
+<link rel="stylesheet" href="play.css?v=74">
 </head>
 <body class="playbody">
+
+<!-- v74 boot overlay: visible until tag data finishes loading (or fails with a reason) -->
+<div class="bootveil" id="bootVeil" role="status" aria-live="polite">
+  <div class="bootcard">
+    <div class="bootball"><span class="bootspin"></span></div>
+    <div class="boottitle">Loading tag data…</div>
+    <div class="bootsub" id="bootSub">roster · pool · bosses · type chart</div>
+  </div>
+</div>
 
 <header class="playhead">
   <div class="playbrand"><span class="pbolt"></span><span>MEZASTAR<em>PLAY</em></span></div>
@@ -51,6 +60,6 @@
 <div class="scrim" id="scrim"></div>
 <div class="modal" id="modal"></div>
 
-<script src="app.js?v=73"></script>
+<script src="app.js?v=74"></script>
 </body>
 </html>
