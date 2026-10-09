@@ -874,3 +874,17 @@ img.s2d.still{animation:s2dbob 2.6s ease-in-out infinite}
 
 @media (max-width:620px){
 }
+
+/* ---- v75 battle log ---- */
+details.blog{margin-top:12px;border:1px solid rgba(255,213,74,.25);border-radius:12px;
+  background:rgba(255,255,255,.03);overflow:hidden}
+details.blog summary{cursor:pointer;padding:11px 14px;font-size:12.5px;font-weight:700;
+  color:var(--gold,#ffd54a);letter-spacing:.3px;list-style:none}
+details.blog summary::-webkit-details-marker{display:none}
+details.blog summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.blog[open] summary::before{transform:rotate(90deg)}
+.blogrow{display:flex;gap:10px;align-items:flex-start;padding:8px 14px;border-top:1px solid rgba(255,255,255,.06);font-size:12.5px;line-height:1.45}
+.blogrow.now{background:rgba(255,213,74,.08)}
+.blogn{flex:0 0 22px;color:var(--dim,#9b93ab);font-variant-numeric:tabular-nums}
+.blogteams{flex:1;min-width:0}
+.blogd{flex:0 0 auto;color:var(--dim,#9b93ab);white-space:nowrap}

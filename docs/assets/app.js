@@ -953,34 +953,52 @@ const FRESH_BAND = 0.72;   /* "near-equal" per slot. 0.90 was measured too tight
                               meta (slot #1 runs ~16-25% above #2), which collapsed every
                               pool to a single mon and made rotation impossible. */
 const FRESH_POOL = 4;      /* consider at most this many near-equals per slot */
-function freshUsage(){ try { const u = JSON.parse(localStorage.getItem("meza.freshUsage") || "{}"); if (typeof u._seq !== "number") u._seq = 0; return u; } catch(e){ return { _seq: 0 }; } }
+/* ---- v75 BATTLE LOG (Khanh): "nên có một battle log lưu lại 20 trận gần nhất để
+   đối chiếu và chọn đúng pkm lâu rồi không dùng". The log IS the recency source:
+   each entry {ts, foes:[id], team:[id], mode, dmgSum}, newest first, cap 20.
+   freshSeen() scans it, so what the log shows is exactly what the picker uses. */
+const LOG_CAP = 20;
+function freshLog(){
+  try {
+    const l = JSON.parse(localStorage.getItem("meza.battleLog") || "[]");
+    return Array.isArray(l) ? l : [];
+  } catch(e){ return []; }
+}
 function freshSeen(tag){
-  const u = freshUsage();
-  return u[tag.id] || 0;
+  const l = freshLog();
+  for (let i = 0; i < l.length; i++){
+    if (l[i].team && l[i].team.indexOf(tag.id) >= 0) return i + 1;   /* 1 = played last battle */
+  }
+  return 0;                                                          /* 0 = never / oldest */
 }
 function freshMarkUsed(team, foes){
-  const u = freshUsage();
-  /* a GLOBAL recency counter, not per-fight timestamps: three picks in one battle
-     would otherwise tie at Date.now() and the LRU sort would keep re-picking the
-     same team. ++seq gives a strict order, and being global means a card played
-     against yesterday's bosses waits its turn against today's too - which is the
-     "cho mấy con khác chơi" behaviour this mode exists for. */
-  /* ONE seq step per BATTLE, not per pick: if each of the three picks got its own
-     ++seq, the first slot's pick would always carry the smallest value and stay
-     "least recently used" forever, so the same team would repeat every battle.
-     A battle-level stamp + damage-order tiebreak breaks that cycle. */
-  u._seq = (u._seq || 0) + 1;
-  const stamp = u._seq;
-  team.forEach((t, i2) => { u[t.id] = stamp * 1000 - i2; });
-  /* prune: with a monotonically rising counter, anything 200+ battles stale is dead.
-     23 candidates x ~3 picks per battle = ~70 touches per 23 battles; 200 battles
-     is far beyond any realistic gap, and this keeps the map tiny forever. */
-  const cutoff = stamp - 200;
-  for (const key in u){
-    if (key === "_seq") continue;
-    if (u[key] < cutoff * 1000) delete u[key];
+  const l = freshLog();
+  const entry = {
+    ts: Date.now(),
+    foes: foes.filter(Boolean).map(f2 => f2.id),
+    team: team.map(t => t.id),
+    mode: BATTLE.mode,
+    dmgSum: null
+  };
+  /* a pure re-render (mode toggle, tab switch) must NOT log a duplicate fight.
+     Same-foes-same-team within 60s = re-render (refresh timestamp only). Beyond
+     that, or any different team, it is a REAL new battle and must push - the
+     recency engine freezes if identical rematches do not log. */
+  const last = l[0];
+  const sameFight = last && last.foes.join("|") === entry.foes.join("|")
+    && last.team.join("|") === entry.team.join("|")
+    && (entry.ts - (last.ts || 0)) < 1500;
+  if (sameFight){
+    l[0] = entry;                                    /* refresh timestamp only */
+  } else {
+    l.unshift(entry);
+    if (l.length > LOG_CAP) l.length = LOG_CAP;      /* keep the last 20 battles */
   }
-  try { localStorage.setItem("meza.freshUsage", JSON.stringify(u)); } catch(e){}
+  try { localStorage.setItem("meza.battleLog", JSON.stringify(l)); } catch(e){}
+  try {
+    const rot = parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0;
+    localStorage.setItem("meza.freshRot", String(rot + 1));
+  } catch(e){}
 }
 function freshBest(foes){
   if (!CANDS.length) buildCands();
@@ -1008,8 +1026,40 @@ function freshBest(foes){
       const fb = slotScored.find(x => !used.has(x.t.id));
       if (fb) pool.push(fb);
     }
+    /* v75 (Khanh): "mỗi slot 3-4 pkm, 3 slot là 12 pkm... rất nhiều lựa chọn".
+       A shallow pool kills rotation, so widen the band progressively until the
+       slot has at least 3 candidates - but never admit anything below 55% of
+       the slot's best (that much damage would be felt in every fight). */
+    if (pool.length < 3){
+      const floor = top * 0.55;
+      for (const x of slotScored){
+        if (pool.length >= 3) break;
+        if (!used.has(x.t.id) && x.v >= floor && !pool.some(y => y.t.id === x.t.id)) pool.push(x);
+      }
+    }
     pool = pool.slice(0, FRESH_POOL);
+    /* v75 (Khanh): the pool is the CHOICE, the LRU is the PICK. If enough
+       near-equals exist, skip whoever played the immediately previous battle so
+       back-to-back fights never field the same card. Only relaxes when the pool
+       is too small to survive the exclusion (small rosters still get a team). */
+    const lastTeam = (freshLog()[0] || {}).team || [];
+    if (pool.length >= 3 && lastTeam.length){
+      const rested = pool.filter(x => lastTeam.indexOf(x.t.id) < 0);
+      if (rested.length >= 2) pool = rested;
+    }
+    /* LRU first; within a seen-tied head group, ROTATE by the battle counter so
+       each member takes the lead in turn (any fixed tiebreak re-elects the same
+       card forever - that limit cycle froze the old rotation). */
     pool.sort((a2, b2) => freshSeen(a2.t) - freshSeen(b2.t));
+    const rot = (function(){ try { return parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0; } catch(e){ return 0; } })();
+    let headEnd = 1;
+    while (headEnd < pool.length && freshSeen(pool[headEnd].t) === freshSeen(pool[0].t)) headEnd++;
+    if (headEnd > 1){
+      const off = rot % headEnd;
+      const head = pool.slice(0, headEnd);
+      const rest = pool.slice(headEnd);
+      pool = head.slice(off).concat(head.slice(0, off)).concat(rest);
+    }
     const chosen = pool[0].t;
     used.add(chosen.id);
     picks.push(chosen);
@@ -1171,8 +1221,26 @@ function renderBattle(){
   const win = battleBest(BATTLE.foes);
   if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
   if (win.fresh) freshMarkUsed(win.team, BATTLE.foes);   /* v73: record the rotation */
+  /* v75: Max Power battles log too - the log is the battle history, not a fresh-mode
+     internal. Log AFTER the render constants exist so the entry carries dmgSum. */
+  if (!win.fresh){
+    freshMarkUsed(win.team, BATTLE.foes);
+    try {
+      const l0 = freshLog();
+      if (l0.length) l0[0].dmgSum = Math.round(win.dmgSum);
+      localStorage.setItem("meza.battleLog", JSON.stringify(l0));
+    } catch(e){}
+  } else {
+    try {
+      const lf = freshLog();
+      if (lf.length) lf[0].dmgSum = Math.round(win.dmgSum);
+      localStorage.setItem("meza.battleLog", JSON.stringify(lf));
+    } catch(e){}
+  }
   const ms = Math.max(1, Math.round(performance.now() - t0));
   const risk = 0; /* v55: survival no longer ranks - damage-first */
+  /* v75: log snapshot for display (newest first, capped at 20) */
+  const blog = freshLog().slice(0, 20).map((be, i3) => Object.assign({ i: i3 }, be));
   el.innerHTML = `
     <div class="arena">
       <div class="vsline"><span class="mineTag">YOUR 3</span><span class="vsbadge">VS</span><span class="foeTag">ENEMY 3</span></div>
@@ -1235,6 +1303,18 @@ function renderBattle(){
         ${auditCard(pr, foes)}
       </article>`;
     }).join("")}
+    <details class="blog">
+      <summary>📜 Battle log — last ${blog.length} ${blog.length === 1 ? "battle" : "battles"}</summary>
+      ${blog.length ? blog.map(be => {
+        const f3 = be.foes.map(id => { const t2 = POOL.find(x => x.id === id) || ROSTER.find(x => x.id === id); return t2 ? t2.name : id; });
+        const m3 = be.team.map(id => { const t2 = POOL.find(x => x.id === id) || ROSTER.find(x => x.id === id); return t2 ? t2.name : id; });
+        return `<div class="blogrow${be.i === 0 ? " now" : ""}">
+          <span class="blogn">${be.i === 0 ? "▸" : be.i + 1}</span>
+          <span class="blogteams"><b>${m3.join(" · ")}</b><br><span class="dim">vs ${f3.join(" · ")}</span></span>
+          <span class="blogd">${be.dmgSum ? "💥" + be.dmgSum : ""}${be.mode === "max" ? ' <span class="dim">max</span>' : ""}</span>
+        </div>`;
+      }).join("") : `<div class="blogrow dim">no battles logged yet</div>`}
+    </details>
     <div class="btnrow"><button class="btn" id="battleAgain">⚔️ New battle</button></div>`;
   el.querySelectorAll(".mtog").forEach(b => b.onclick = () => {
     if (b.dataset.bmode) return setBattleMode(b.dataset.bmode);
