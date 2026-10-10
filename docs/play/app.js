@@ -1008,7 +1008,7 @@ function renderBattle(){
 
 /* ---------- state ---------- */
 let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = [];
-let STATS_BY_ID = {}, MOVE_AR = {};
+let STATS_BY_ID = {}, MOVE_AR = {}; let SUPPORTS = [];  /* v81 support QR tags */
 let AR_WHEEL = {};   /* per-TAG Attack Roulette wheel */
 let OWNED = {};
 
@@ -1106,14 +1106,17 @@ function bootFail(msg){
 async function boot() {
   bootStage("roster · pool · bosses · type chart");
   try {
-    const [ro, po, bo, tcj, sst, mar, arw] = await Promise.all([
+    /* v81: `sup` is the 8th slot - the destructure MUST match the fetch list (the v71
+       lesson: a drifted arity here blanks the whole app). */
+    const [ro, po, bo, tcj, sst, mar, arw, sup] = await Promise.all([
       fetch("../data/roster.json").then(r => r.json()).catch(() => ({ tags: [] })),
       fetch("../data/pool.json").then(r => r.json()).catch(() => ({ tags: [] })),
       fetch("../data/bosses.json").then(r => r.json()).catch(() => []),
       fetch("../data/typechart.json").then(r => r.json()).catch(() => ({ chart: {}, types: [] })),
       fetch("../data/stats_allsets.json").then(r => r.json()).catch(() => []),
       fetch("../data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({})),
-      fetch("../data/ar_wheel.json").then(r => r.json()).then(j => j.tags || {}).catch(() => ({}))
+      fetch("../data/ar_wheel.json").then(r => r.json()).then(j => j.tags || {}).catch(() => ({})),
+      fetch("../data/supports.json").then(r => r.json()).then(j => j.supports || []).catch(() => [])
     ]);
     ROSTER = ro.tags || [];
     POOL = po.tags || [];
@@ -1123,6 +1126,7 @@ async function boot() {
     STATS_BY_ID = {};
     (Array.isArray(sst) ? sst : []).forEach(r => { if (r && r.id) STATS_BY_ID[r.id] = r; });
     MOVE_AR = mar || {};
+    SUPPORTS = sup || [];
     /* v72 BUGFIX: the wheel fetch was added to this Promise.all but the destructure
        above still had only 6 slots, so `arw` was undefined here -> ReferenceError
        -> the catch below replaced the whole app with "Could not load tag data".
