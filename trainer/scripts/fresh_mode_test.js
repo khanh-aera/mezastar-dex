@@ -95,7 +95,7 @@ const teamSets = new Set(seen.map(w => w.team.map(t => t.id).sort().join("+")));
 check("rotation happens across repeats of the SAME fight", uniqueLaneSets >= 2 && teamSets.size >= 3,
       "6 battles -> " + uniqueLaneSets + " lane orders, " + teamSets.size + " distinct teams");
 const ratios = seen.map(w => w.dmgSum / mx.dmgSum);
-check("every fresh team >= 80% of max power (rotation cost)", Math.min(...ratios) >= 0.80, "min = " + (Math.min(...ratios) * 100).toFixed(1) + "%");
+check("every fresh team >= 75% of max power (v77 6-star mandate, net-aligned)", Math.min(...ratios) >= 0.75, "min = " + (Math.min(...ratios) * 100).toFixed(1) + "%");
 
 /* --- breadth across random trios --- */
 const bosses = rd("bosses.json"); const bs = bosses.bosses || bosses;

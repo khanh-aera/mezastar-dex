@@ -440,6 +440,9 @@ function freshBest(foes){
      as the lane, band against the SLOT's own best (not the global best - that
      bug made every slot grab the same strong mons and killed rotation), then
      LRU-pick inside the near-equal pool. */
+  /* v76 overuse cap, hoisted so both the seat loop and the v77 6-star reservation share it */
+  const logLen = Math.max(1, freshLog().length);
+  const cap = Math.max(4, Math.ceil(logLen / 2));   /* never punish before 8 battles */
   for (const e of real){
     const slotScored = CANDS.map(t => {
       const r = bsc(t, e, foesKey, foes);
@@ -478,12 +481,22 @@ function freshBest(foes){
       }
     }
     pool = pool.slice(0, FRESH_POOL);
+    /* v77 (Khanh: "van it con 6 sao duoc dung qua"): bench 6-stars (Mew/Gardevoir/Groudon)
+       rank below the 0.45 extension floor for many lanes so the discount never reaches
+       them. Give every 6-star a wider door: if the best unused 6-star sits at >= 30% of
+       the slot top, swap it into the pool for the weakest member below 60% - the fatigue
+       discount then decides whether it actually plays. */
+    const sixCand = slotScored.find(x => !used.has(x.t.id) && x.t.grade === "6" && x.v >= top * 0.30
+      && !pool.some(y => y.t.id === x.t.id));
+    if (sixCand){
+      const weakIdx = pool.findIndex(y => y.v < top * 0.60 && y.t.grade !== "6");
+      if (weakIdx >= 0) pool[weakIdx] = sixCand;
+      else if (pool.length < FRESH_POOL) pool.push(sixCand);
+    }
     /* v76 hard overuse gate: a card that already filled HALF of the logged battles
        (Tyranitar took 5 of 7 rows in Khanh's screenshot) is demoted below every
        non-capped candidate. It can still be picked - but only when the slot has
        nothing else, so the meta card stops soaking up every appearance. */
-    const logLen = Math.max(1, freshLog().length);
-    const cap = Math.max(4, Math.ceil(logLen / 2));   /* never punish before 8 battles */
     const overused = x2 => freshCount(x2.t) >= cap;
     let free = pool.filter(x2 => !overused(x2));
     if (!free.length){
@@ -491,7 +504,7 @@ function freshBest(foes){
          slot ranking for a rested alternative, damage be damned - playing the same
          card every fight is exactly what this mode exists to prevent. */
       const inPool = new Set(pool.map(x2 => x2.t.id));
-      const altFloor = top * 0.45;   /* rested but never hopeless */
+      const altFloor = top * 0.30;   /* v77: 30% - a capped card must yield even vs dragons */
       const alt = slotScored.find(x2 => !used.has(x2.t.id) && !inPool.has(x2.t.id) && !overused(x2) && x2.v >= altFloor);
       if (alt) pool.push(alt);
       free = pool.filter(x2 => !overused(x2));
@@ -509,16 +522,19 @@ function freshBest(foes){
     /* LRU first; within a seen-tied head group, ROTATE by the battle counter so
        each member takes the lead in turn (any fixed tiebreak re-elects the same
        card forever - that limit cycle froze the old rotation). */
-    /* v76 pick order (Khanh): 1) least-played measured as a BLEND - recency plus total
-       appearances in the 20-battle log (either axis alone let high-coverage cards like
-       Tyranitar take 5 of 7 slots) - 2) 6-star first when still tied, 3) rotate ties. */
-    const sixStar = t2 => (t2.grade === "6" ? 0 : 1);
-    const fatigue = t2 => freshSeen(t2) + 3 * freshCount(t2);
-    pool.sort((a2, b2) => fatigue(a2.t) - fatigue(b2.t)
-      || sixStar(a2.t) - sixStar(b2.t));
+    /* v77 pick order (Khanh): 1) least-played blend - recency plus total appearances in
+       the 20-battle log - 2) 6-star BONUS folded into the score: 6-stars divide their
+       fatigue by ~2, so a rested 6-star outranks an equally rested 5-star and the three
+       bench 6-stars actually get court time (v76 tiebreak-only fired almost never).
+       Recency stays primary: a just-played 6-star still loses to a never-played 5-star. */
+    const fatigue = t2 => {
+      const f = freshSeen(t2) + 3 * freshCount(t2);
+      return t2.grade === "6" ? f * 0.45 : f;
+    };
+    pool.sort((a2, b2) => fatigue(a2.t) - fatigue(b2.t));
     const rot = (function(){ try { return parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0; } catch(e){ return 0; } })();
     let headEnd = 1;
-    const key0 = (x2) => fatigue(x2.t) + "/" + sixStar(x2.t);
+    const key0 = (x2) => fatigue(x2.t);
     while (headEnd < pool.length && key0(pool[headEnd]) === key0(pool[0])) headEnd++;
     if (headEnd > 1){
       const off = rot % headEnd;
@@ -529,6 +545,44 @@ function freshBest(foes){
     const chosen = pool[0].t;
     used.add(chosen.id);
     picks.push(chosen);
+  }
+  /* v77 (Khanh: "van it con 6 sao duoc dung qua"): if the rotated team came out all-5-star,
+     seat the best-rested usable 6-star for the weakest member. Usable = >= 30% of the
+     slot top it would have faced. The 75% safety net below still vetoes if the swap
+     costs too much, so this can only fire when the 6-star is genuinely competitive. */
+  const fatigue2 = t6 => {
+    const f = freshSeen(t6) + 3 * freshCount(t6);
+    return t6.grade === "6" ? f * 0.45 : f;
+  };
+  const sixOnTeam = picks.filter(t6 => t6.grade === "6").length;
+  if (sixOnTeam < 2){
+    let bestSwap = null;
+    for (let si = 0; si < real.length; si++){
+      const e = real[si];
+      const slotScored2 = CANDS.map(t => {
+        const r = bsc(t, e, foesKey, foes);
+        let dRow = 0;
+        for (const f2 of real){ if (f2) dRow += (r.dmgMap && r.dmgMap[f2.id]) || 0; }
+        return { t, v: dRow };
+      });
+      const top2 = Math.max(...slotScored2.map(x => x.v)) || 1;
+      const pick = picks[si];
+      const pickV = (slotScored2.find(x => x.t.id === pick.id) || { v: 0 }).v;
+      for (const x of slotScored2){
+        if (x.t.grade !== "6" || used.has(x.t.id)) continue;
+        if (freshCount(x.t) >= cap) continue;          /* respect the overuse cap */
+        /* v77b: only a floor of 20% of slot top - the 75% safety net is the real guard.
+           Mew/Gardevoir/Groudon sit below the old doors for most lanes and never played. */
+        if (x.v < top2 * 0.20) continue;
+        if (!bestSwap || fatigue2(x.t) < fatigue2(bestSwap.cand.t)) bestSwap = { si, cand: x, pickV, top2 };
+      }
+    }
+    if (bestSwap){
+      const oldPick = picks[bestSwap.si];
+      picks[bestSwap.si] = bestSwap.cand.t;
+      used.delete(oldPick.id);
+      used.add(bestSwap.cand.t.id);
+    }
   }
   const t2 = battleAssign(picks, foes);
   /* v76 safety net: variety never buys a loss. If the rotated team falls below 75% of the
