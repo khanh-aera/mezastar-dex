@@ -954,10 +954,11 @@ function battleBest(foes){
    lane pairing interacts, and battleAssign still optimises that pairing.
    Usage is stored per foe-trio context so a first battle with new enemies
    explores freely instead of punishing tags for fights they never saw. */
-const FRESH_BAND = 0.72;   /* "near-equal" per slot. 0.90 was measured too tight for this
+const FRESH_BAND = 0.62;   /* "near-equal" per slot. 0.90 was measured too tight for this
                               meta (slot #1 runs ~16-25% above #2), which collapsed every
                               pool to a single mon and made rotation impossible. */
-const FRESH_POOL = 4;      /* consider at most this many near-equals per slot */
+const FRESH_POOL = 6;      /* v80: 4 -> 6 - Khanh found a day of play samey; a wider
+                              bench per slot spreads court time over more of the roster */
 /* ---- v75 BATTLE LOG (Khanh): "nên có một battle log lưu lại 20 trận gần nhất để
    đối chiếu và chọn đúng pkm lâu rồi không dùng". The log IS the recency source:
    each entry {ts, foes:[id], team:[id], mode, dmgSum}, newest first, cap 20.
@@ -1070,7 +1071,7 @@ function freshBest(foes){
        slot has at least 4 candidates - but never admit anything below 45% of
        the slot's best (weaker than that loses the fight on its own). */
     if (pool.length < 4){
-      const floor = top * 0.45;
+      const floor = top * 0.40;
       for (const x of slotScored){
         if (pool.length >= 4) break;
         if (!used.has(x.t.id) && x.v >= floor && !pool.some(y => y.t.id === x.t.id)) pool.push(x);
@@ -1080,7 +1081,7 @@ function freshBest(foes){
        next-best unused card at ANY damage so the LRU/overuse logic has a second option;
        Khanh's verified experience is that these teams still win, and variety is the point. */
     if (pool.length < 2){
-      const anyFloor = top * 0.45;
+      const anyFloor = top * 0.40;
       for (const x of slotScored){
         if (pool.length >= 2) break;
         if (!used.has(x.t.id) && x.v >= anyFloor && !pool.some(y => y.t.id === x.t.id)) pool.push(x);
@@ -1206,10 +1207,10 @@ function freshBest(foes){
     }
   }
   const t2 = battleAssign(picks, foes);
-  /* v76 safety net: variety never buys a loss. If the rotated team falls below 75% of the
+  /* v76 safety net: variety never buys a loss. If the rotated team falls below 65% of the
      slot-best total, hand back the argmax team for this fight (logged as max). */
   const best1 = battleBestRaw(foes);
-  if (best1 && best1.dmgSum && t2.dmgSum < best1.dmgSum * 0.75){
+  if (best1 && best1.dmgSum && t2.dmgSum < best1.dmgSum * 0.65){
     /* v78 (Khanh: 3 battles -> 3x the same 6-star): if this fight had the 6-star seat
        mandate, do NOT fall back to the pure argmax (it re-creates the Grimmsnarl-every-
        fight loop). Fall back to the best team that still seats TWO 6-stars - wins stay
@@ -1241,11 +1242,11 @@ function freshBest(foes){
       /* v78: two-pass with a 70% emergency floor. Beyond that the argmax returns - wins
          are never traded away entirely, but Grimmsnarl can no longer chain 3 fights. */
       const fresh6 = build(false);
-      if (fresh6 && best1.dmgSum && fresh6.dmgSum >= best1.dmgSum * 0.70){
+      if (fresh6 && best1.dmgSum && fresh6.dmgSum >= best1.dmgSum * 0.60){
         return Object.assign({}, fresh6, { fresh: false, fallback: true, sixStarForced: true });
       }
       const any6 = build(true);
-      if (any6 && best1.dmgSum && any6.dmgSum >= best1.dmgSum * 0.70){
+      if (any6 && best1.dmgSum && any6.dmgSum >= best1.dmgSum * 0.60){
         return Object.assign({}, any6, { fresh: false, fallback: true, sixStarForced: true });
       }
       /* v78 final pass: the 3-peat breaker - if the argmax would field a card for a THIRD
@@ -1462,7 +1463,7 @@ function renderBattle(){
         <button class="mtog ${BATTLE.mode === "max" ? "on" : ""}" data-bmode="max">💥 Max Power</button>
         <span class="mnote">${BATTLE.mode === "max"
           ? "always the single strongest team"
-          : "rotates your roster: least-played first, fewest log appearances next, prefers 6★ when tied"}</span>
+          : "rotates the whole roster: least-played first, 6★ favoured, bench-wide variety over max power"}</span>
       </div>
     </div>
     ${win.pairs.map((pr, i2) => {

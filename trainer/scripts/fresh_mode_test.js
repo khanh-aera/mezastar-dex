@@ -96,7 +96,7 @@ const teamSets = new Set(seen.map(w => w.team.map(t => t.id).sort().join("+")));
 check("rotation happens across repeats of the SAME fight", uniqueLaneSets >= 2 && teamSets.size >= 3,
       "6 battles -> " + uniqueLaneSets + " lane orders, " + teamSets.size + " distinct teams");
 const ratios = seen.map(w => w.dmgSum / mx.dmgSum);
-check("every fresh team >= 75% of max power (v77 6-star mandate, net-aligned)", Math.min(...ratios) >= 0.75, "min = " + (Math.min(...ratios) * 100).toFixed(1) + "%");
+check("every fresh team >= 65% of max power (v80: variety-first, net at 65%)", Math.min(...ratios) >= 0.65, "min = " + (Math.min(...ratios) * 100).toFixed(1) + "%");
 
 /* --- breadth across random trios --- */
 const bosses = rd("bosses.json"); const bs = bosses.bosses || bosses;
@@ -140,7 +140,7 @@ const topMax = Object.entries(maxCount).sort((a,b)=>b[1]-a[1])[0];
 const topFresh = Object.entries(freshCount).sort((a,b)=>b[1]-a[1])[0];
 check("FRESH does not worsen single-card domination vs MAX (tol +6pp; v76 overuse gate trades a little concentration for rotation)", conc(freshCount) <= conc(maxCount) + 0.06,
       "top card MAX: " + topMax[0] + " " + (conc(maxCount)*100).toFixed(0) + "% of slots | FRESH: " + topFresh[0] + " " + (conc(freshCount)*100).toFixed(0) + "%");
-check("fresh ratio across random trios >= 74% (per-fight 75% safety net is the real floor)", Math.min(...rFresh) >= 0.74, "min = " + (Math.min(...rFresh) * 100).toFixed(1) + "% median = " + (rFresh.slice().sort((a,b)=>a-b)[Math.floor(rFresh.length/2)] * 100).toFixed(1) + "%");
+check("fresh ratio across random trios >= 64% (v80: variety-first, net at 65%)", Math.min(...rFresh) >= 0.64, "min = " + (Math.min(...rFresh) * 100).toFixed(1) + "% median = " + (rFresh.slice().sort((a,b)=>a-b)[Math.floor(rFresh.length/2)] * 100).toFixed(1) + "%");
 /* v76: 6-star preference - with an empty log (everyone fatigue 0), the slot pick should
    favour a 6-star over an equal-band 5-star when both qualify for the same slot. */
 store["meza.battleLog"] = "[]";
