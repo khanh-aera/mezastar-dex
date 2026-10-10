@@ -425,6 +425,14 @@ function freshMarkUsed(team, foes){
     if (l.length > LOG_CAP) l.length = LOG_CAP;      /* keep the last 20 battles */
   }
   try { localStorage.setItem("meza.battleLog", JSON.stringify(l)); } catch(e){}
+  /* v78: play history INCLUDING re-renders of the same fight - the streak-breaker needs
+     true consecutive-play counts, which the deduped battle log cannot represent. */
+  try {
+    const ph = JSON.parse(localStorage.getItem("meza.playHist") || "[]");
+    ph.unshift(entry.team);
+    if (ph.length > 12) ph.length = 12;
+    localStorage.setItem("meza.playHist", JSON.stringify(ph));
+  } catch(e){}
   try {
     const rot = parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0;
     localStorage.setItem("meza.freshRot", String(rot + 1));
@@ -442,7 +450,18 @@ function freshBest(foes){
      LRU-pick inside the near-equal pool. */
   /* v76 overuse cap, hoisted so both the seat loop and the v77 6-star reservation share it */
   const logLen = Math.max(1, freshLog().length);
-  const cap = Math.max(4, Math.ceil(logLen / 2));   /* never punish before 8 battles */
+  const cap = Math.max(2, Math.ceil(logLen / 2));   /* v78: cap from battle 3-4 on - Khanh
+                                                       saw the same trio 3 for 3 because the
+                                                       old floor of 4 never engaged early */
+  /* v78 streak-breaker: 2 battles IN A ROW is the real annoyance ("ca 3 deu co Grimmsnarl")
+     - a card that played the last two consecutive fights must sit the next one out (unless
+     the roster literally has nobody else for the slot). Count-cap stays as the long
+     -run half-duty limit. */
+  let lastTwo = [];
+  try { lastTwo = (JSON.parse(localStorage.getItem("meza.playHist") || "[]") || []).slice(0, 2); }
+  catch(e){ lastTwo = freshLog().slice(0, 2).map(en => (en && en.team) || []); }
+  const streak2 = t2 => lastTwo.length === 2
+    && lastTwo[0].indexOf(t2.id) >= 0 && lastTwo[1].indexOf(t2.id) >= 0;
   for (const e of real){
     const slotScored = CANDS.map(t => {
       const r = bsc(t, e, foesKey, foes);
@@ -489,7 +508,10 @@ function freshBest(foes){
     const sixCand = slotScored.find(x => !used.has(x.t.id) && x.t.grade === "6" && x.v >= top * 0.30
       && !pool.some(y => y.t.id === x.t.id));
     if (sixCand){
-      const weakIdx = pool.findIndex(y => y.v < top * 0.60 && y.t.grade !== "6");
+      const weakIdx = pool.findIndex(y => y.v < top * 0.60 && y.t.grade !== "6" && y.v < sixCand.v);
+      /* v78 fix: the 6-star door may only evict a member the 6-star actually outranks -
+         it was replacing the best rested 5-star (A-Ninetales) with mid 6-stars and
+         re-creating the exact Grimmsnarl-every-battle loop Khanh reported. */
       if (weakIdx >= 0) pool[weakIdx] = sixCand;
       else if (pool.length < FRESH_POOL) pool.push(sixCand);
     }
@@ -497,16 +519,25 @@ function freshBest(foes){
        (Tyranitar took 5 of 7 rows in Khanh's screenshot) is demoted below every
        non-capped candidate. It can still be picked - but only when the slot has
        nothing else, so the meta card stops soaking up every appearance. */
-    const overused = x2 => freshCount(x2.t) >= cap;
+    const overused = x2 => freshCount(x2.t) >= cap || streak2(x2.t);
     let free = pool.filter(x2 => !overused(x2));
+
     if (!free.length){
       /* every pool member is over-capped: reach ONE band position further down the
          slot ranking for a rested alternative, damage be damned - playing the same
          card every fight is exactly what this mode exists to prevent. */
       const inPool = new Set(pool.map(x2 => x2.t.id));
       const altFloor = top * 0.30;   /* v77: 30% - a capped card must yield even vs dragons */
-      const alt = slotScored.find(x2 => !used.has(x2.t.id) && !inPool.has(x2.t.id) && !overused(x2) && x2.v >= altFloor);
+      let alt = slotScored.find(x2 => !used.has(x2.t.id) && !inPool.has(x2.t.id) && !overused(x2) && x2.v >= altFloor);
+      if (!alt){
+        /* v78 (Khanh: same card 3 battles in a row): pigeonhole case - every viable card
+           is capped and nothing else passes 30%. Seat the best unused candidate down to
+           22% of slot top anyway; the 75% safety net still guards the total. A lane where
+           the roster offers only ONE real card must still rotate its OTHER seats. */
+        alt = slotScored.find(x2 => !used.has(x2.t.id) && !inPool.has(x2.t.id) && !overused(x2) && x2.v >= top * 0.22);
+      }
       if (alt) pool.push(alt);
+      (globalThis.__DBGL2 = globalThis.__DBGL2 || []).push("[capfix " + e.name + "] alt=" + (alt ? alt.t.name : "NONE"));
       free = pool.filter(x2 => !overused(x2));
     }
     if (free.length) pool = free.concat(pool.filter(overused));
@@ -531,7 +562,10 @@ function freshBest(foes){
       const f = freshSeen(t2) + 3 * freshCount(t2);
       return t2.grade === "6" ? f * 0.45 : f;
     };
-    pool.sort((a2, b2) => fatigue(a2.t) - fatigue(b2.t));
+    /* v78: the overuse cap must survive the fatigue discount - a capped card cannot win
+       by its 6-star bonus, otherwise Grimmsnarl outranks a rested 5-star forever. */
+    const capPenalty = t2 => freshCount(t2) >= cap ? 999 : 0;
+    pool.sort((a2, b2) => (fatigue(a2.t) + capPenalty(a2.t)) - (fatigue(b2.t) + capPenalty(b2.t)));
     const rot = (function(){ try { return parseInt(localStorage.getItem("meza.freshRot") || "0", 10) || 0; } catch(e){ return 0; } })();
     let headEnd = 1;
     const key0 = (x2) => fatigue(x2.t);
@@ -570,7 +604,7 @@ function freshBest(foes){
       const pickV = (slotScored2.find(x => x.t.id === pick.id) || { v: 0 }).v;
       for (const x of slotScored2){
         if (x.t.grade !== "6" || used.has(x.t.id)) continue;
-        if (freshCount(x.t) >= cap) continue;          /* respect the overuse cap */
+        if (freshCount(x.t) >= cap || streak2(x.t)) continue;   /* respect cap + streak */
         /* v77b: only a floor of 20% of slot top - the 75% safety net is the real guard.
            Mew/Gardevoir/Groudon sit below the old doors for most lanes and never played. */
         if (x.v < top2 * 0.20) continue;
@@ -589,6 +623,54 @@ function freshBest(foes){
      slot-best total, hand back the argmax team for this fight (logged as max). */
   const best1 = battleBestRaw(foes);
   if (best1 && best1.dmgSum && t2.dmgSum < best1.dmgSum * 0.75){
+    /* v78 (Khanh: 3 battles -> 3x the same 6-star): if this fight had the 6-star seat
+       mandate, do NOT fall back to the pure argmax (it re-creates the Grimmsnarl-every-
+       fight loop). Fall back to the best team that still seats TWO 6-stars - wins stay
+       likely, court time spreads across the 6-star bench. */
+    const sixPicks = picks.filter(t6 => t6.grade === "6").length;
+    if (sixPicks >= 2){
+      /* two passes: first only six-stars under the cap; if the best such team still holds
+         >= 55% of argmax damage, use it (Grimmsnarl rests). Only when the roster is too
+         thin does the capped meta card come back - wins stay the hard floor. */
+      const sixes = CANDS.filter(c6 => c6.grade === "6");
+      const fives = CANDS.filter(c6 => c6.grade !== "6");
+      const build = (allowCapped) => {
+        let best6 = null;
+        for (let i = 0; i < sixes.length; i++) for (let j = i + 1; j < sixes.length; j++){
+          if (streak2(sixes[i]) || streak2(sixes[j])) continue;
+          if (!allowCapped && (freshCount(sixes[i]) >= cap || freshCount(sixes[j]) >= cap)) continue;
+          for (const f5 of fives){
+            if (streak2(f5)) continue;
+            if (!allowCapped && freshCount(f5) >= cap) continue;
+            const trio = [sixes[i], sixes[j], f5];
+            const r6 = battleAssign(trio, foes);
+            const better = !best6 || r6.key[0] > best6.key[0]
+              || (r6.key[0] === best6.key[0] && r6.key[1] > best6.key[1]);
+            if (!best6 || better) best6 = { key: r6.key, tot: r6.tot, dmgSum: r6.dmgSum, team: trio, pairs: r6.pairs };
+          }
+        }
+        return best6;
+      };
+      /* v78: two-pass with a 70% emergency floor. Beyond that the argmax returns - wins
+         are never traded away entirely, but Grimmsnarl can no longer chain 3 fights. */
+      const fresh6 = build(false);
+      if (fresh6 && best1.dmgSum && fresh6.dmgSum >= best1.dmgSum * 0.70){
+        return Object.assign({}, fresh6, { fresh: false, fallback: true, sixStarForced: true });
+      }
+      const any6 = build(true);
+      if (any6 && best1.dmgSum && any6.dmgSum >= best1.dmgSum * 0.70){
+        return Object.assign({}, any6, { fresh: false, fallback: true, sixStarForced: true });
+      }
+      /* v78 final pass: the 3-peat breaker - if the argmax would field a card for a THIRD
+         consecutive fight, take the best streak-legal team down to 55% (dragons: AN fills
+         Grimmsnarl's seat at ~60%). Below 55% there is no honest alternative: play the
+         strong team and let Grimmsnarl chain - winning stays the hard floor. */
+      const bestStreakLegal = fresh6 || any6;
+      if (bestStreakLegal && best1.dmgSum && bestStreakLegal.dmgSum >= best1.dmgSum * 0.55
+          && best1.team.some(t9 => streak2(t9))){
+        return Object.assign({}, bestStreakLegal, { fresh: false, fallback: true, sixStarForced: true });
+      }
+    }
     return Object.assign({}, best1, { fresh: false, fallback: true });
   }
   return { key: t2.key, tot: t2.tot, dmgSum: t2.dmgSum, team: picks, pairs: t2.pairs, fresh: true };

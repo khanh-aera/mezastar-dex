@@ -64,7 +64,8 @@ const seen = [];
 (async () => {
 for (let i = 0; i < 6; i++){
   const w = M.battleBest(foes);
-  if (w && w.fresh) M.freshMarkUsed(w.team, foes);
+  if (w) M.freshMarkUsed(w.team, foes);   /* v78: the app logs EVERY played battle -
+                                             fallback/mandated teams included */
   seen.push(w);
   await new Promise(r2 => setTimeout(r2, 1600));   /* real pacing: > the 1.5s re-render dedup window */
 }
