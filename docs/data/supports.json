@@ -1,0 +1,86 @@
+{
+ "version": 1,
+ "note": "Khanh's physical support tags (QR). verified=move read from tag photo; sheet-derived=move from stats_allsets mv1; unverified pill text may differ.",
+ "supports": [
+  {
+   "id": "sup-lapras",
+   "name": "Lapras",
+   "move": "Ice Beam",
+   "category": "Special",
+   "mtype": "Ice",
+   "verified": "photo"
+  },
+  {
+   "id": "sup-blastoise",
+   "name": "Blastoise",
+   "move": "Hydro Pump",
+   "category": "Special",
+   "mtype": "Water",
+   "verified": "sheet-derived"
+  },
+  {
+   "id": "sup-keldeo",
+   "name": "Keldeo",
+   "move": "Sacred Sword",
+   "category": "Physical",
+   "mtype": "Fighting",
+   "verified": "photo"
+  },
+  {
+   "id": "sup-gardevoir",
+   "name": "Gardevoir",
+   "move": "Psychic",
+   "category": "Special",
+   "mtype": "Psychic",
+   "verified": "photo"
+  },
+  {
+   "id": "sup-mimikyu",
+   "name": "Mimikyu",
+   "move": "Shadow Claw",
+   "category": "Physical",
+   "mtype": "Ghost",
+   "verified": "photo"
+  },
+  {
+   "id": "sup-gengar",
+   "name": "Gengar",
+   "move": "Shadow Ball",
+   "category": "Special",
+   "mtype": "Ghost",
+   "verified": "photo"
+  },
+  {
+   "id": "sup-sirfetch",
+   "name": "Sirfetch'd",
+   "move": "Meteor Assault",
+   "category": "Physical",
+   "mtype": "Fighting",
+   "verified": "photo+sheet"
+  },
+  {
+   "id": "sup-bagon",
+   "name": "Bagon",
+   "move": "Rock Tomb",
+   "category": "Physical",
+   "mtype": "Rock",
+   "verified": "unverified-pill"
+  },
+  {
+   "id": "sup-charizardx",
+   "name": "Charizard Mega X",
+   "move": "Flamethrower",
+   "category": "Special",
+   "mtype": "Fire",
+   "verified": "sheet-derived"
+  },
+  {
+   "id": "sup-lucario",
+   "name": "Lucario",
+   "move": "Aura Sphere",
+   "category": "Special",
+   "mtype": "Fighting",
+   "verified": "photo+sheet"
+  }
+ ]
+}

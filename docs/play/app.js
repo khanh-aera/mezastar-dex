@@ -37,6 +37,66 @@ function allRosterIds(){
   return u.filter((id, i) => u.indexOf(id) === i);
 }
 
+
+/* ================= SUPPORT ROSTER (v81) ================= */
+/* Khanh's physical support QR tags: each grants one extra attack of a fixed type.
+   Recommend per battle: pick the support whose move type hits the enemy trio for the
+   most super-effective coverage; LRU tiebreak so his 10 tags all see play. */
+function supportLastUsed(sid){
+  try {
+    const h = JSON.parse(localStorage.getItem("meza.supportHist") || "[]");
+    for (let i = h.length - 1; i >= 0; i--) if (h[i] === sid) return h.length - 1 - i;
+  } catch(e){}
+  return 999;
+}
+function supportMarkUsed(sid){
+  try {
+    const h = JSON.parse(localStorage.getItem("meza.supportHist") || "[]");
+    h.push(sid);
+    while (h.length > 40) h.shift();
+    localStorage.setItem("meza.supportHist", JSON.stringify(h));
+  } catch(e){}
+}
+function effVsType(atk, def){
+  const row = CHART[atk];
+  if (!row || row[def] === undefined) return 1;
+  return row[def];
+}
+function supportScore(sup, foes){
+  let best = 0;
+  for (const f of foes){
+    let m = 1;
+    for (const dt of (f.types || [])) m = Math.max(m, effVsType(sup.mtype, dt));
+    best += m;
+  }
+  const lru = supportLastUsed(sup.id);
+  return { eff: best, score: best * 10 - Math.min(lru, 20) * 0.1, lru };
+}
+function recommendSupport(foes){
+  if (!SUPPORTS.length) return null;
+  const f = (foes || []).map(id => BOSSES.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
+  const list = SUPPORTS.map(sup => ({ sup, ...supportScore(sup, f) }));
+  list.sort((a, b) => b.score - a.score);
+  return list[0] ? list[0].sup : null;
+}
+let lastSupportRec = null;  /* v81: most recent per-battle recommendation (root UI only) */
+function renderSupportSection(){
+  if (!SUPPORTS.length) return "";
+  const scol = { Fire:"#ff7a45", Water:"#4aa3ff", Ice:"#7fd4ff", Psychic:"#ff6b9d", Ghost:"#9b7aff", Fighting:"#ff5252", Rock:"#c9b46b" };
+  const chip = (sup) => {
+    const rec = lastSupportRec && lastSupportRec.id === sup.id;
+    return `<div class="supchip${rec ? " suprec" : ""}" style="--glow:${(scol[sup.mtype] || "#7aa2ff")}55">
+      <span class="supdot" style="background:${scol[sup.mtype] || "#7aa2ff"}"></span>
+      <div><div class="supname">${esc(sup.name)}</div>
+      <div class="supmove">${esc(sup.move)} <span class="supcat">(${esc(sup.category)})</span></div></div>
+      ${rec ? '<span class="suptag">★ recommend</span>' : ""}
+    </div>`;
+  };
+  return `<div class="rhead suphead"><span class="btitle">🤝 Support Roster</span>
+    <span class="hint" style="margin-left:10px">${SUPPORTS.length} QR tags · one attack boost each</span></div>
+    <div class="supgrid">${SUPPORTS.map(chip).join("")}</div>`;
+}
+
 function incMoveMult(bossTypes, mine){
   let best = 0;  /* 0 = fully immune to everything this enemy has - real advantage, never floor to 1 */
   for (const bt of bossTypes){
@@ -835,6 +895,11 @@ function renderBattle(){
       : `<div class="empty">Building… tap again.</div>`;
     return;
   }
+  /* v81: support recommendation for THIS battle (LRU tiebreak) */
+  const supRec = recommendSupport(BATTLE.foes);
+  lastSupportRec = supRec || null;
+  if (supRec) supportMarkUsed(supRec.id);
+  const supBanner = supRec ? `<div class="supbanner">🤝 Support: <b>${esc(supRec.name)}</b> — ${esc(supRec.move)} (${esc(supRec.category)})</div>` : "";
   if (win.fresh) freshMarkUsed(win.team, BATTLE.foes);   /* v73: record the rotation */
   /* v75: Max Power battles log too - the log is the battle history, not a fresh-mode
      internal. Log AFTER the render constants exist so the entry carries dmgSum. */
@@ -882,9 +947,10 @@ function renderBattle(){
         <button class="mtog ${BATTLE.mode === "max" ? "on" : ""}" data-bmode="max">💥 Max Power</button>
         <span class="mnote">${BATTLE.mode === "max"
           ? "always the single strongest team"
-          : "rotates your roster: least-played first, fewest log appearances next, prefers 6★ when tied"}</span>
+          : "rotates the whole roster: least-played first, 6★ favoured, bench-wide variety over max power"}</span>
       </div>
     </div>
+    ${supBanner}
     ${win.pairs.map((pr, i2) => {
       const r = pr.r;
       const mult = (r.dmg / Math.max(1, pr.mine.pe || 100)).toFixed(1);

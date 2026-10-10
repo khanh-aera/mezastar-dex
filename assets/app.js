@@ -44,7 +44,7 @@ const LS = {
   set(k, v){ try { localStorage.setItem("meza."+k, JSON.stringify(v)); } catch(e){} }
 };
 
-let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = []; let MOVE_AR = {};  /* per-move attack roulette multipliers (MovesAR tab) */
+let ROSTER = [], POOL = [], BOSSES = [], CHART = {}, TYPES = []; let MOVE_AR = {};  /* per-move attack roulette multipliers (MovesAR tab) */ let SUPPORTS = [];  /* v81: Khanh's physical support QR tags (data/supports.json) */
 let AR_WHEEL = {};   /* per-TAG Attack Roulette wheel {id:{w:[lo,mid,hi],max}} - data/ar_wheel.json */
 let state  = { tab:"binder", q:"", type:null, grade:null, sort:"pe", boss:null, bfilter:"", safe:false };
 let pstate = { q:"" };   /* hunt tab: only a boss-name filter */   /* grade null=all, "5", "6" */
@@ -524,6 +524,66 @@ function userRoster(){ try { return JSON.parse(localStorage.getItem("userRoster"
 function setUserRoster(ids){ localStorage.setItem("userRoster", JSON.stringify(ids)); }
 function allRosterIds(){ return MAIN_IDS.concat(userRoster().filter(id => !MAIN_IDS.includes(id))); }
 
+
+/* ================= SUPPORT ROSTER (v81) ================= */
+/* Khanh's physical support QR tags: each grants one extra attack of a fixed type.
+   Recommend per battle: pick the support whose move type hits the enemy trio for the
+   most super-effective coverage; LRU tiebreak so his 10 tags all see play. */
+function supportLastUsed(sid){
+  try {
+    const h = JSON.parse(localStorage.getItem("meza.supportHist") || "[]");
+    for (let i = h.length - 1; i >= 0; i--) if (h[i] === sid) return h.length - 1 - i;
+  } catch(e){}
+  return 999;
+}
+function supportMarkUsed(sid){
+  try {
+    const h = JSON.parse(localStorage.getItem("meza.supportHist") || "[]");
+    h.push(sid);
+    while (h.length > 40) h.shift();
+    localStorage.setItem("meza.supportHist", JSON.stringify(h));
+  } catch(e){}
+}
+function effVsType(atk, def){
+  const row = CHART[atk];
+  if (!row || row[def] === undefined) return 1;
+  return row[def];
+}
+function supportScore(sup, foes){
+  let best = 0;
+  for (const f of foes){
+    let m = 1;
+    for (const dt of (f.types || [])) m = Math.max(m, effVsType(sup.mtype, dt));
+    best += m;
+  }
+  const lru = supportLastUsed(sup.id);
+  return { eff: best, score: best * 10 - Math.min(lru, 20) * 0.1, lru };
+}
+function recommendSupport(foes){
+  if (!SUPPORTS.length) return null;
+  const f = (foes || []).map(id => BOSSES.find(x => x.id === id) || POOL.find(x => x.id === id)).filter(Boolean);
+  const list = SUPPORTS.map(sup => ({ sup, ...supportScore(sup, f) }));
+  list.sort((a, b) => b.score - a.score);
+  return list[0] ? list[0].sup : null;
+}
+let lastSupportRec = null;  /* v81: most recent per-battle recommendation (root UI only) */
+function renderSupportSection(){
+  if (!SUPPORTS.length) return "";
+  const scol = { Fire:"#ff7a45", Water:"#4aa3ff", Ice:"#7fd4ff", Psychic:"#ff6b9d", Ghost:"#9b7aff", Fighting:"#ff5252", Rock:"#c9b46b" };
+  const chip = (sup) => {
+    const rec = lastSupportRec && lastSupportRec.id === sup.id;
+    return `<div class="supchip${rec ? " suprec" : ""}" style="--glow:${(scol[sup.mtype] || "#7aa2ff")}55">
+      <span class="supdot" style="background:${scol[sup.mtype] || "#7aa2ff"}"></span>
+      <div><div class="supname">${esc(sup.name)}</div>
+      <div class="supmove">${esc(sup.move)} <span class="supcat">(${esc(sup.category)})</span></div></div>
+      ${rec ? '<span class="suptag">★ recommend</span>' : ""}
+    </div>`;
+  };
+  return `<div class="rhead suphead"><span class="btitle">🤝 Support Roster</span>
+    <span class="hint" style="margin-left:10px">${SUPPORTS.length} QR tags · one attack boost each</span></div>
+    <div class="supgrid">${SUPPORTS.map(chip).join("")}</div>`;
+}
+
 function renderLoadout(){
   const el = $("#loadout");
   const ids = allRosterIds();
@@ -543,7 +603,8 @@ function renderLoadout(){
         <span class="hint" style="margin-left:10px">${members.length} tags · battle mode uses these</span></div>
       <button class="btn act" id="rosterAdd">＋ Add pokemon</button>
     </div>
-    <div class="grid">${members.map(card).join("")}</div>`;
+    <div class="grid">${members.map(card).join("")}</div>
+    ${renderSupportSection()}`;
   el.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => {
     const id = b.dataset.rm;
     const core = MAIN_IDS.includes(id);
@@ -1416,6 +1477,11 @@ function renderBattle(){
   const t0 = performance.now();
   const win = battleBest(BATTLE.foes);
   if (!win){ el.innerHTML = `<div class="empty">Building your binder… tap again.</div>`; return; }
+  /* v81: support recommendation for THIS battle (LRU tiebreak) */
+  const supRec = recommendSupport(BATTLE.foes);
+  lastSupportRec = supRec || null;
+  if (supRec) supportMarkUsed(supRec.id);
+  const supBanner = supRec ? `<div class="supbanner">🤝 Support: <b>${esc(supRec.name)}</b> — ${esc(supRec.move)} (${esc(supRec.category)})</div>` : "";
   if (win.fresh) freshMarkUsed(win.team, BATTLE.foes);   /* v73: record the rotation */
   /* v75: Max Power battles log too - the log is the battle history, not a fresh-mode
      internal. Log AFTER the render constants exist so the entry carries dmgSum. */
@@ -1466,6 +1532,7 @@ function renderBattle(){
           : "rotates the whole roster: least-played first, 6★ favoured, bench-wide variety over max power"}</span>
       </div>
     </div>
+    ${supBanner}
     ${win.pairs.map((pr, i2) => {
       const r = pr.r;
       const mult = (r.dmg / Math.max(1, pr.mine.pe || 100)).toFixed(1);
@@ -1931,7 +1998,7 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
   try{
-    const [ro, po, bo, tc, sst, mar, arw, spr, px] = await Promise.all([
+    const [ro, po, bo, tc, sst, mar, arw, spr, px, sup] = await Promise.all([
           fetch("data/roster.json").then(r => r.json()),
           fetch("data/pool.json").then(r => r.json()),
           fetch("data/bosses.json").then(r => r.json()),
@@ -1940,9 +2007,10 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
           fetch("data/move_ar.json").then(r => r.json()).then(j => j.moves || {}).catch(() => ({})),
           fetch("data/ar_wheel.json").then(r => r.json()).then(j => j.tags || {}).catch(() => ({})),
           fetch("island/data/sprites.json").then(r => r.json()).catch(() => ({})),
-          fetch("island/data/pokedex.json").then(r => r.json()).catch(() => ({}))
+          fetch("island/data/pokedex.json").then(r => r.json()).catch(() => ({})),
+          fetch("data/supports.json").then(r => r.json()).then(j => j.supports || []).catch(() => [])
         ]);
-        ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; CHART = tc.chart; TYPES = tc.types; MOVE_AR = mar || {}; AR_WHEEL = arw || {};
+        ROSTER = ro.tags; POOL = po.tags; BOSSES = bo.bosses; SUPPORTS = sup || []; CHART = tc.chart; TYPES = tc.types; MOVE_AR = mar || {}; AR_WHEEL = arw || {};
         window.STATS_BY_ID = {}; (sst || []).forEach(s => { if (s && s.id) window.STATS_BY_ID[s.id] = s; });
         /* 2D game sprite + Pokédex info per tag (matched by Pokémon name) */
         ROSTER.forEach(x => {
