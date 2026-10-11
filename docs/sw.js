@@ -1,5 +1,5 @@
 /* Mezastar Binder service worker. Bump VERSION whenever the site changes. */
-const VERSION = "mezastar-v84";
+const VERSION = "mezastar-v85";
 const SHELL = ["./", "index.html", "assets/style.css", "assets/app.js",
   "data/roster.json","data/support.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
   "data/stats_allsets.json", "data/move_ar.json", "data/ar_wheel.json",
@@ -29,7 +29,7 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
-  const isArt = url.pathname.includes("/img/") || url.pathname.includes("/icons/") || url.pathname.includes("/sprites/");
+  const isArt = url.pathname.includes("/img/") || url.pathname.includes("/icons/") || url.pathname.includes("/sprites/") || url.pathname.includes("/dexmedia/");
   if (isArt) {
     /* art never changes: cache first so the arcade visit works offline */
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {

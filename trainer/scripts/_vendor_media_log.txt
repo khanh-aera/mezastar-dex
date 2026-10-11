@@ -1,0 +1,10 @@
+vendoring media for 301 species
+  0/301
+  40/301
+  80/301
+  120/301
+  160/301
+  200/301
+  240/301
+  280/301
+art 301 | anim 133 | cry 174 | fail 0 | total 23.7 MB

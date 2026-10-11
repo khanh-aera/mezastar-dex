@@ -20,7 +20,7 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;
 const TYPE_COLOR = {
   Normal:"#9299a1",Fire:"#ff7043",Water:"#42a5f5",Electric:"#ffee58",Grass:"#66bb6a",
   Ice:"#4dd0e1",Fighting:"#ec407a",Poison:"#ab47bc",Ground:"#d4b106",Flying:"#7986cb",
-  Psychic:"#ff7043",Bug:"#9ccc65",Rock:"#a1887f",Ghost:"#7e57c2",Dragon:"#5c6bc0",
+  Psychic:"#ba68c8",Bug:"#9ccc65",Rock:"#a1887f",Ghost:"#7e57c2",Dragon:"#5c6bc0",
   Dark:"#6d4c41",Steel:"#90a4ae",Fairy:"#f48fb1"
 };
 const GRAD = { "6":"linear-gradient(135deg,#ffd76a,#ff9d3c)", "5":"linear-gradient(135deg,#c7e6ff,#7fb2ff)", "4":"linear-gradient(135deg,#e2d1ff,#a97fff)", "3":"linear-gradient(135deg,#d8ffe0,#7fd99a)", "1":"linear-gradient(135deg,#eee,#bbb)" };
@@ -195,28 +195,30 @@ function renderGrid(){
 }
 
 /* ---------------- detail sheet ----------------
-   Rich sheet (v84): the card scan stays as identity, but the species gets the
-   mainline treatment - official artwork, animated sprite, cry playback, base
-   stat bars, abilities with flavor text, egg group + growth chips.
-   Hotlinked art/sprite/cry are PokeAPI CDN assets (free, versioned, no key):
-     artwork  raw.githubusercontent.com/PokeAPI/sprites .../official-artwork/<dex>.png
-     cry      raw.githubusercontent.com/PokeAPI/cries  .../latest/<dex>.ogg
-   They degrade silently (onerror) so offline use still shows the card scan. */
+   Rich sheet (v85): ALL media is vendored into /dexmedia/ in this repo -
+   artwork .webp, animated sprite .gif, cry .m4a (ogg does not play on iOS).
+   No hotlinks: raw.githubusercontent.com was unreachable on his mobile ISP,
+   which is why "the pokemon info is not show". The sheet is themed per type
+   (game-dex feel): background glow, colored stat bars, dex number watermark. */
+const STAT_COLOR = v => v >= 110 ? "#4dd0e1" : v >= 80 ? "#7fd99a" : v >= 50 ? "#ffd76a" : "#ff8a5c";
 window.openTag = function(id){
   const t = resolveTag(id);
   if (!t) return;
   const l = loreFor(t);
   const forms = (l && l.forms || []).map(f => `
     <button class="formchip ${f.mega ? "mega" : ""} ${f.gmax ? "gmax" : ""}" data-form="${esc(f.id)}">${esc(f.name)}</button>`).join("");
-  const sprite = spriteFor(l);
+  const sprite = l && l.slug ? `../island/sprites/${l.slug}.gif` : "";
   const dex = l && l.dex;
-  const artwork = dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png` : "";
-  const cry = dex ? `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${dex}.ogg` : "";
+  const artwork = dex ? `../dexmedia/art/${dex}.webp` : "";
+  const anim = dex ? `../dexmedia/anim/${dex}.gif` : "";
+  const cry = dex ? `../dexmedia/cry/${dex}.m4a` : "";
+  const mainType = (t.types || [])[0];
+  const tint = TYPE_COLOR[mainType] || "#7fb2ff";
   const BST = l && l.baseStats ? l.baseStats.hp + l.baseStats.atk + l.baseStats.def + l.baseStats.spa + l.baseStats.spd + l.baseStats.spe : 0;
   const statBar = (label, v, max) => `
     <div class="statrow"><span class="statlabel">${label}</span>
       <span class="statval">${v}</span>
-      <div class="statbar"><i style="width:${Math.min(100, Math.round(v / max * 100))}%"></i></div>
+      <div class="statbar"><i style="width:${Math.min(100, Math.round(v / max * 100))}%;background:${STAT_COLOR(v)}"></i></div>
     </div>`;
   const statsBlock = l && l.baseStats ? `
     <div class="ssect">📊 Base stats <span class="bst">BST ${BST}</span></div>
@@ -236,15 +238,16 @@ window.openTag = function(id){
     l.eggGroups && l.eggGroups.length ? `🥚 ${l.eggGroups.map(esc).join(", ")}` : "",
     l.growthRate ? `📈 ${esc(l.growthRate)} growth` : "",
     l.habitat ? `🌍 ${esc(l.habitat)}` : "",
-    l.legendary ? "🌟 Legendary" : "",
-    l.mythical ? "✨ Mythical" : "",
-  ].filter(Boolean).join("") : "";
+    l.legendary ? `🌟 Legendary` : "",
+    l.mythical ? `✨ Mythical` : "",
+  ].filter(Boolean).map(c => `<span>${c}</span>`).join("") : "";
   $(`#modal`).innerHTML = `
-    <div class="sheet">
+    <div class="sheet" style="--tint:${tint}">
       <button class="xbtn" id="x">✕</button>
-      <div class="heroart" style="background:${GRAD[String(t.grade)] || GRAD["3"]}">
+      <div class="dexnum">#${dex ?? "???"}</div>
+      <div class="heroart" style="background:linear-gradient(160deg, ${tint}33 0%, transparent 55%), ${GRAD[String(t.grade)] || GRAD["3"]}">
         ${artwork ? `<img class="artmain" src="${artwork}" alt="${esc(t.name)}" onerror="this.style.display='none'">` : ""}
-        ${sprite ? `<img class="artsprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : ""}
+        ${anim ? `<img class="artsprite" src="${anim}" alt="" onerror="this.src='${sprite}';this.onerror=()=>this.style.display='none'">` : (sprite ? `<img class="artsprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : "")}
         ${cry ? `<button class="crybtn" id="cryBtn" title="Nghe tiếng kêu">🔊</button>` : ""}
         <img class="artscan" src="${artFor(t)}" alt="" onerror="this.style.display='none'">
       </div>
@@ -279,7 +282,7 @@ window.openTag = function(id){
         ${t.moves && t.moves.length ? `<div><b>Move</b><div class="bp">${(Array.isArray(t.moves) ? t.moves.map(m => m.name || m).join(" · ") : t.moves)}</div></div>` : ""}
       </div>
 
-      <div class="ssrc">Nguồn: PE/grade/tier là Mezastar (sheet + đo máy) · artwork/sprite/tiếng kêu/stats/lore là mainline qua PokeAPI (<i>wiki-community</i>, hotlink CDN).</div>
+      <div class="ssrc">Nguồn: PE/grade/tier là Mezastar (sheet + đo máy) · artwork/sprite/tiếng kêu/stats/lore là mainline qua PokeAPI (<i>wiki-community</i>), media tự host trong repo.</div>
     </div>`;
   $("#scrim").classList.add("on");
   document.body.style.overflow = "hidden";

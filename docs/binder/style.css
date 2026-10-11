@@ -118,30 +118,38 @@ body{
   display:none; z-index:50; padding:16px; overflow-y:auto }
 .scrim.on{ display:flex; align-items:flex-start; justify-content:center }
 .modal{ width:100%; max-width:560px }
+/* v85 game-dex theming: --tint is the Pokemon's primary type color, set inline
+   by openTag. The sheet border, section markers and stat bars all take it. */
 .sheet{ background:#121830; border:1px solid var(--line); border-radius:20px; padding:20px; position:relative;
-  animation:fadein .18s ease }
-.xbtn{ position:absolute; top:12px; right:12px; width:32px; height:32px; border-radius:50%;
-  border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--txt); cursor:pointer; font-size:14px; z-index:2 }
-/* v84 hero art band: official artwork floats over a grade-colored gradient,
-   the animated island sprite plays beside it, card scan sits small as provenance */
+  animation:fadein .18s ease; overflow:hidden }
+.sheet::before{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(420px 260px at 85% -40px, color-mix(in srgb, var(--tint, #7fb2ff) 22%, transparent), transparent 70%) }
+.dexnum{ position:absolute; top:6px; right:14px; z-index:1; font-family:Chakra Petch; font-weight:700;
+  font-size:44px; color:color-mix(in srgb, var(--tint, #7fb2ff) 30%, transparent); letter-spacing:1px;
+  text-shadow:0 2px 0 rgba(0,0,0,.25); pointer-events:none }
+.xbtn{ position:absolute; top:12px; left:12px; margin-left:46px; width:32px; height:32px; border-radius:50%;
+  border:1px solid var(--line); background:rgba(10,14,28,.55); color:var(--txt); cursor:pointer; font-size:14px; z-index:3 }
+/* v84 hero art band: official artwork floats over a type-tinted gradient,
+   the animated sprite plays beside it, card scan sits small as provenance */
 .heroart{ position:relative; margin:-20px -20px 14px; padding:26px 20px 18px; border-radius:20px 20px 0 0;
-  display:flex; align-items:center; justify-content:center; gap:18px; min-height:150px; overflow:hidden }
-.heroart::after{ content:""; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.16), transparent 62%) }
-.artmain{ width:150px; height:150px; object-fit:contain; position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:center; gap:18px; min-height:158px; overflow:hidden }
+.heroart::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.18), transparent 62%) }
+.artmain{ width:170px; height:170px; object-fit:contain; position:relative; z-index:1;
   filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)); animation:floaty 3.2s ease-in-out infinite }
 .artsprite{ width:64px; height:64px; object-fit:contain; position:relative; z-index:1;
   image-rendering:pixelated; opacity:.95; filter:drop-shadow(0 4px 8px rgba(0,0,0,.4)) }
 .artscan{ position:absolute; right:10px; bottom:8px; width:52px; height:auto; border-radius:8px;
   opacity:.5; box-shadow:0 3px 10px rgba(0,0,0,.4); z-index:1 }
-.crybtn{ position:absolute; top:10px; left:10px; z-index:2; width:38px; height:38px; border-radius:50%;
+.crybtn{ position:absolute; top:10px; left:10px; z-index:3; width:38px; height:38px; border-radius:50%;
   border:1px solid rgba(255,255,255,.35); background:rgba(0,0,0,.35); color:#fff; font-size:16px; cursor:pointer }
 .crybtn:active{ transform:scale(.92) }
 @keyframes floaty{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-7px) } }
-.smeta{ flex:1; min-width:0 }
+.smeta{ flex:1; min-width:0; position:relative; z-index:1 }
 .sgrade{ color:var(--gold); font-size:12px; letter-spacing:1px }
 .sgrade span{ color:var(--dim) }
-.sname{ font-family:Chakra Petch; font-size:24px; font-weight:700; line-height:1.15 }
+.sname{ font-family:Chakra Petch; font-size:24px; font-weight:700; line-height:1.15;
+  text-shadow:0 1px 0 rgba(0,0,0,.4) }
 .sid{ font-size:12px; color:var(--dim); margin:3px 0 6px }
 .spills{ display:flex; gap:5px }
 .sdex{ font-size:11px; color:var(--dim); margin-top:6px }
@@ -151,15 +159,17 @@ body{
 .slore{ margin-top:14px; padding:12px 14px; background:rgba(255,255,255,.04); border-left:3px solid var(--gold);
   border-radius:10px; font-size:13.5px; line-height:1.65; color:#d5dcef; font-style:italic }
 .slore.dim{ font-style:normal; color:var(--dim) }
-.ssect{ margin-top:14px; font-family:Chakra Petch; font-size:13px; color:var(--gold) }
+.ssect{ margin-top:14px; font-family:Chakra Petch; font-size:13px; color:var(--gold); position:relative; z-index:1 }
+.ssect::before{ content:""; display:inline-block; width:8px; height:8px; border-radius:2px;
+  background:var(--tint, #7fb2ff); margin-right:7px; transform:rotate(45deg) }
 .bst{ float:right; color:var(--dim); font-size:11px; letter-spacing:.5px }
-.stats{ margin-top:8px; display:flex; flex-direction:column; gap:5px }
+.stats{ margin-top:8px; display:flex; flex-direction:column; gap:5px; position:relative; z-index:1 }
 .statrow{ display:grid; grid-template-columns:56px 34px 1fr; align-items:center; gap:8px }
 .statlabel{ font-size:11px; color:var(--dim) }
 .statval{ font-size:11.5px; font-weight:600; text-align:right; font-variant-numeric:tabular-nums }
-.statbar{ height:7px; border-radius:99px; background:rgba(255,255,255,.07); overflow:hidden }
-.statbar i{ display:block; height:100%; border-radius:99px;
-  background:linear-gradient(90deg,#7fd99a,#ffd76a,#ff8a5c) }
+.statbar{ height:8px; border-radius:99px; background:rgba(255,255,255,.07); overflow:hidden;
+  border:1px solid rgba(0,0,0,.35) }
+.statbar i{ display:block; height:100%; border-radius:99px; transition:width .5s ease }
 .abils{ margin-top:8px; display:flex; flex-direction:column; gap:7px }
 .abil{ background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:10px; padding:9px 12px }
 .abil b{ font-size:13px }
@@ -215,10 +225,11 @@ footer a{ color:var(--gold) }
   .grid{ grid-template-columns:repeat(auto-fill,minmax(126px,1fr)) }
   .shead{ flex-wrap:wrap }
   /* rich sheet on a phone */
-  .heroart{ min-height:128px; padding:22px 14px 14px }
-  .artmain{ width:118px; height:118px }
+  .heroart{ min-height:132px; padding:22px 14px 14px }
+  .artmain{ width:132px; height:132px }
   .artsprite{ width:52px; height:52px }
   .artscan{ width:44px }
+  .dexnum{ font-size:36px }
   .sname{ font-size:21px }
   .sheet{ padding:16px }
   .statrow{ grid-template-columns:48px 30px 1fr }
