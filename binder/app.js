@@ -194,7 +194,14 @@ function renderGrid(){
   }).join("") : `<div class="empty">Không có tag nào khớp.</div>`;
 }
 
-/* ---------------- detail sheet ---------------- */
+/* ---------------- detail sheet ----------------
+   Rich sheet (v84): the card scan stays as identity, but the species gets the
+   mainline treatment - official artwork, animated sprite, cry playback, base
+   stat bars, abilities with flavor text, egg group + growth chips.
+   Hotlinked art/sprite/cry are PokeAPI CDN assets (free, versioned, no key):
+     artwork  raw.githubusercontent.com/PokeAPI/sprites .../official-artwork/<dex>.png
+     cry      raw.githubusercontent.com/PokeAPI/cries  .../latest/<dex>.ogg
+   They degrade silently (onerror) so offline use still shows the card scan. */
 window.openTag = function(id){
   const t = resolveTag(id);
   if (!t) return;
@@ -202,25 +209,59 @@ window.openTag = function(id){
   const forms = (l && l.forms || []).map(f => `
     <button class="formchip ${f.mega ? "mega" : ""} ${f.gmax ? "gmax" : ""}" data-form="${esc(f.id)}">${esc(f.name)}</button>`).join("");
   const sprite = spriteFor(l);
-  $("#modal").innerHTML = `
+  const dex = l && l.dex;
+  const artwork = dex ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png` : "";
+  const cry = dex ? `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${dex}.ogg` : "";
+  const BST = l && l.baseStats ? l.baseStats.hp + l.baseStats.atk + l.baseStats.def + l.baseStats.spa + l.baseStats.spd + l.baseStats.spe : 0;
+  const statBar = (label, v, max) => `
+    <div class="statrow"><span class="statlabel">${label}</span>
+      <span class="statval">${v}</span>
+      <div class="statbar"><i style="width:${Math.min(100, Math.round(v / max * 100))}%"></i></div>
+    </div>`;
+  const statsBlock = l && l.baseStats ? `
+    <div class="ssect">📊 Base stats <span class="bst">BST ${BST}</span></div>
+    <div class="stats">
+      ${statBar("HP", l.baseStats.hp, 255)}${statBar("Attack", l.baseStats.atk, 190)}
+      ${statBar("Defense", l.baseStats.def, 250)}${statBar("Sp.Atk", l.baseStats.spa, 194)}
+      ${statBar("Sp.Def", l.baseStats.spd, 250)}${statBar("Speed", l.baseStats.spe, 200)}
+    </div>` : "";
+  const abilBlock = l && l.abilities && l.abilities.length ? `
+    <div class="ssect">✨ Abilities</div>
+    <div class="abils">${l.abilities.map(a => `
+      <div class="abil ${a.hidden ? "hiddenab" : ""}">
+        <b>${esc(a.name)}</b>${a.hidden ? ` <span class="hiddentag">hidden</span>` : ""}
+        ${a.flavor ? `<div class="abilflavor">${esc(a.flavor)}</div>` : ""}
+      </div>`).join("")}</div>` : "";
+  const breedChips = l ? [
+    l.eggGroups && l.eggGroups.length ? `🥚 ${l.eggGroups.map(esc).join(", ")}` : "",
+    l.growthRate ? `📈 ${esc(l.growthRate)} growth` : "",
+    l.habitat ? `🌍 ${esc(l.habitat)}` : "",
+    l.legendary ? "🌟 Legendary" : "",
+    l.mythical ? "✨ Mythical" : "",
+  ].filter(Boolean).join("") : "";
+  $(`#modal`).innerHTML = `
     <div class="sheet">
       <button class="xbtn" id="x">✕</button>
-      <div class="shead">
-        <div class="sart" style="background:${GRAD[String(t.grade)] || GRAD["3"]}">
-          ${artFor(t) ? `<img src="${artFor(t)}" alt="${esc(t.name)}">` : ""}
-        </div>
-        <div class="smeta">
-          <div class="sgrade">${GRADE_STARS(t.grade)} <span>${esc((t.tier || "").replace(" Pokémon", ""))}</span></div>
-          <div class="sname">${esc(t.name)}</div>
-          <div class="sid">${esc(t.id)} · PE ${t.pe ?? "?"}</div>
-          <div class="spills">${(t.types || []).map(pill).join("")}</div>
-          ${l ? `<div class="sdex">dex #${l.dex} · Gen ${l.gen} · ${esc(l.genus || "")}</div>` : ""}
-          ${l && l.height ? `<div class="sdex">${l.height} m · ${l.weight} kg</div>` : ""}
-        </div>
-        ${sprite ? `<img class="ssprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : ""}
+      <div class="heroart" style="background:${GRAD[String(t.grade)] || GRAD["3"]}">
+        ${artwork ? `<img class="artmain" src="${artwork}" alt="${esc(t.name)}" onerror="this.style.display='none'">` : ""}
+        ${sprite ? `<img class="artsprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : ""}
+        ${cry ? `<button class="crybtn" id="cryBtn" title="Nghe tiếng kêu">🔊</button>` : ""}
+        <img class="artscan" src="${artFor(t)}" alt="" onerror="this.style.display='none'">
+      </div>
+      <div class="smeta">
+        <div class="sgrade">${GRADE_STARS(t.grade)} <span>${esc((t.tier || "").replace(" Pokémon", ""))}</span></div>
+        <div class="sname">${esc(t.name)}</div>
+        <div class="sid">${esc(t.id)} · PE ${t.pe ?? "?"}</div>
+        <div class="spills">${(t.types || []).map(pill).join("")}</div>
+        ${l ? `<div class="sdex">dex #${l.dex} · Gen ${l.gen} · ${esc(l.genus || "")}</div>` : ""}
+        ${l && l.height ? `<div class="sdex">${l.height} m · ${l.weight} kg</div>` : ""}
+        ${breedChips ? `<div class="breedchips">${breedChips}</div>` : ""}
       </div>
 
       ${l && l.lore ? `<div class="slore">“${esc(l.lore)}”</div>` : `<div class="slore dim">Chưa có lore mainline cho thẻ này.</div>`}
+
+      ${statsBlock}
+      ${abilBlock}
 
       ${forms ? `<div class="ssect">🔄 Forms (${(l.forms || []).length})</div><div class="formrow">${forms}</div>` : ""}
 
@@ -238,11 +279,22 @@ window.openTag = function(id){
         ${t.moves && t.moves.length ? `<div><b>Move</b><div class="bp">${(Array.isArray(t.moves) ? t.moves.map(m => m.name || m).join(" · ") : t.moves)}</div></div>` : ""}
       </div>
 
-      <div class="ssrc">Nguồn: số PE/grade/tier là Mezastar (sheet + đo máy) · dex/lore/form/tiến hoá là mainline qua PokeAPI (<i>wiki-community</i>).</div>
+      <div class="ssrc">Nguồn: PE/grade/tier là Mezastar (sheet + đo máy) · artwork/sprite/tiếng kêu/stats/lore là mainline qua PokeAPI (<i>wiki-community</i>, hotlink CDN).</div>
     </div>`;
   $("#scrim").classList.add("on");
   document.body.style.overflow = "hidden";
   $("#x").onclick = closeModal;
+  const cb = $("#cryBtn");
+  if (cb) cb.onclick = () => {
+    try {
+      let a = document.getElementById("cryAudio");
+      if (!a){
+        a = document.createElement("audio"); a.id = "cryAudio";
+        a.src = cry; a.preload = "none"; document.body.appendChild(a);
+      }
+      a.currentTime = 0; a.play().catch(() => {});
+    } catch(e){}
+  };
   $("#modal").querySelectorAll("[data-goto]").forEach(b => b.onclick = () => {
     const slug = b.dataset.goto;
     /* jump to an owned tag with that species; if he doesn't own any form of it,

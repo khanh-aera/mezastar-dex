@@ -121,10 +121,23 @@ body{
 .sheet{ background:#121830; border:1px solid var(--line); border-radius:20px; padding:20px; position:relative;
   animation:fadein .18s ease }
 .xbtn{ position:absolute; top:12px; right:12px; width:32px; height:32px; border-radius:50%;
-  border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--txt); cursor:pointer; font-size:14px }
-.shead{ display:flex; gap:14px; align-items:flex-start }
-.sart{ border-radius:14px; padding:10px; flex-shrink:0 }
-.sart img{ width:120px; height:120px; object-fit:contain; display:block }
+  border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--txt); cursor:pointer; font-size:14px; z-index:2 }
+/* v84 hero art band: official artwork floats over a grade-colored gradient,
+   the animated island sprite plays beside it, card scan sits small as provenance */
+.heroart{ position:relative; margin:-20px -20px 14px; padding:26px 20px 18px; border-radius:20px 20px 0 0;
+  display:flex; align-items:center; justify-content:center; gap:18px; min-height:150px; overflow:hidden }
+.heroart::after{ content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.16), transparent 62%) }
+.artmain{ width:150px; height:150px; object-fit:contain; position:relative; z-index:1;
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)); animation:floaty 3.2s ease-in-out infinite }
+.artsprite{ width:64px; height:64px; object-fit:contain; position:relative; z-index:1;
+  image-rendering:pixelated; opacity:.95; filter:drop-shadow(0 4px 8px rgba(0,0,0,.4)) }
+.artscan{ position:absolute; right:10px; bottom:8px; width:52px; height:auto; border-radius:8px;
+  opacity:.5; box-shadow:0 3px 10px rgba(0,0,0,.4); z-index:1 }
+.crybtn{ position:absolute; top:10px; left:10px; z-index:2; width:38px; height:38px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.35); background:rgba(0,0,0,.35); color:#fff; font-size:16px; cursor:pointer }
+.crybtn:active{ transform:scale(.92) }
+@keyframes floaty{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-7px) } }
 .smeta{ flex:1; min-width:0 }
 .sgrade{ color:var(--gold); font-size:12px; letter-spacing:1px }
 .sgrade span{ color:var(--dim) }
@@ -132,11 +145,27 @@ body{
 .sid{ font-size:12px; color:var(--dim); margin:3px 0 6px }
 .spills{ display:flex; gap:5px }
 .sdex{ font-size:11px; color:var(--dim); margin-top:6px }
-.ssprite{ width:72px; height:72px; object-fit:contain; opacity:.9; image-rendering:auto; flex-shrink:0 }
+.breedchips{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px }
+.breedchips span{ font-size:10.5px; background:rgba(255,255,255,.07); border:1px solid var(--line);
+  padding:3px 9px; border-radius:999px; color:#cfd6ea }
 .slore{ margin-top:14px; padding:12px 14px; background:rgba(255,255,255,.04); border-left:3px solid var(--gold);
   border-radius:10px; font-size:13.5px; line-height:1.65; color:#d5dcef; font-style:italic }
 .slore.dim{ font-style:normal; color:var(--dim) }
 .ssect{ margin-top:14px; font-family:Chakra Petch; font-size:13px; color:var(--gold) }
+.bst{ float:right; color:var(--dim); font-size:11px; letter-spacing:.5px }
+.stats{ margin-top:8px; display:flex; flex-direction:column; gap:5px }
+.statrow{ display:grid; grid-template-columns:56px 34px 1fr; align-items:center; gap:8px }
+.statlabel{ font-size:11px; color:var(--dim) }
+.statval{ font-size:11.5px; font-weight:600; text-align:right; font-variant-numeric:tabular-nums }
+.statbar{ height:7px; border-radius:99px; background:rgba(255,255,255,.07); overflow:hidden }
+.statbar i{ display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg,#7fd99a,#ffd76a,#ff8a5c) }
+.abils{ margin-top:8px; display:flex; flex-direction:column; gap:7px }
+.abil{ background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:10px; padding:9px 12px }
+.abil b{ font-size:13px }
+.abil.hiddenab{ border-style:dashed }
+.hiddentag{ font-size:9.5px; background:rgba(126,87,194,.25); color:#d1c4ff; padding:1px 7px; border-radius:99px; vertical-align:2px }
+.abilflavor{ font-size:12px; color:var(--dim); line-height:1.55; margin-top:3px }
 .formrow{ display:flex; gap:6px; flex-wrap:wrap; margin-top:7px }
 .formchip{ padding:6px 12px; border-radius:999px; border:1px solid var(--line);
   background:rgba(255,255,255,.05); color:var(--txt); font-size:12px; cursor:pointer }
@@ -152,6 +181,14 @@ body{
 .beats b{ font-size:12px; color:var(--dim); display:block; margin-bottom:3px }
 .bp{ display:flex; gap:5px; flex-wrap:wrap; font-size:13px }
 .ssrc{ margin-top:14px; font-size:10.5px; color:var(--dim); line-height:1.5 }
+
+/* MOBILE TAP FIX: without touch-action:manipulation, a fast second tap on a card
+   falls into the browser's double-tap-to-zoom heuristic and the click never
+   fires - "some pokemon tap in but the pop up is not open". Applies to every
+   tappable element in the app. */
+html{ touch-action:manipulation }
+button, .tcard, .formchip, .evolink, .chip, .btn, .crybtn, .tabbtn{ touch-action:manipulation }
+.tcard{ -webkit-tap-highlight-color:transparent }
 
 footer{ margin-top:26px; text-align:center; font-size:11px; color:var(--dim); line-height:1.8 }
 footer a{ color:var(--gold) }
@@ -177,4 +214,12 @@ footer a{ color:var(--gold) }
   .hname{ font-size:21px }
   .grid{ grid-template-columns:repeat(auto-fill,minmax(126px,1fr)) }
   .shead{ flex-wrap:wrap }
+  /* rich sheet on a phone */
+  .heroart{ min-height:128px; padding:22px 14px 14px }
+  .artmain{ width:118px; height:118px }
+  .artsprite{ width:52px; height:52px }
+  .artscan{ width:44px }
+  .sname{ font-size:21px }
+  .sheet{ padding:16px }
+  .statrow{ grid-template-columns:48px 30px 1fr }
 }

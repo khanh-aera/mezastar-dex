@@ -51,6 +51,15 @@ FILES = [
     "pokemon_abilities.csv",
     "items.csv",
     "moves.csv",
+    # rich-sheet additions (v84): base stats per form, ability names + flavor,
+    # egg groups and growth rate for the breeding/training blurb
+    "pokemon_stats.csv",
+    "stats.csv",
+    "ability_names.csv",
+    "ability_flavor_text.csv",
+    "pokemon_egg_groups.csv",
+    "egg_groups.csv",
+    "growth_rates.csv",
 ]
 
 EN = "9"  # PokeAPI language_id / local_language_id for English
@@ -115,6 +124,24 @@ forms = fetch("pokemon_forms.csv")
 abilities = fetch("pokemon_abilities.csv")
 items = fetch("items.csv")
 moves = fetch("moves.csv")
+# --- rich-sheet inputs (v84) ---
+stats_table = {s["id"]: s["identifier"] for s in fetch("stats.csv")}
+pokemon_stats = fetch("pokemon_stats.csv")
+ability_names = {a["ability_id"]: a["name"]
+                 for a in fetch("ability_names.csv") if a["local_language_id"] == EN}
+# ability flavor: newest English entry per ability (same newest-wins rule as flavor)
+_ability_flavor = {}
+for r in fetch("ability_flavor_text.csv"):
+    if r["language_id"] != EN:
+        continue
+    aid = r["ability_id"]
+    prev = _ability_flavor.get(aid)
+    if prev is None or int(r["version_group_id"]) > prev[0]:
+        _ability_flavor[aid] = (int(r["version_group_id"]), clean_flavor(r["flavor_text"]))
+ability_flavor = {k: v[1] for k, v in _ability_flavor.items()}
+egg_group_names = {e["id"]: e["identifier"] for e in fetch("egg_groups.csv")}
+pokemon_egg_groups = fetch("pokemon_egg_groups.csv")
+growth_rates = {g["id"]: g["identifier"] for g in fetch("growth_rates.csv")}
 
 by_identifier = {s["identifier"]: s for s in species}
 species_id_of = {p["id"]: p["species_id"] for p in pokemon}
@@ -176,6 +203,21 @@ for a in abilities:
     if sid is None:
         continue
     abilities_by_species.setdefault(sid, []).append(a)
+
+# base stats: key by default-form pokemon id -> species (battle stats live per FORM;
+# the default form is the right one for an encyclopedia sheet)
+stats_by_species = {}
+for ps in pokemon_stats:
+    pid = ps["pokemon_id"]
+    sid = species_id_of.get(pid)
+    if sid is None or not ps["base_stat"]:
+        continue
+    stats_by_species.setdefault(sid, {})[stats_table.get(ps["stat_id"], "")] = int(ps["base_stat"])
+
+egg_groups_by_species = {}
+for peg in pokemon_egg_groups:
+    egg_groups_by_species.setdefault(peg["species_id"], []).append(
+        egg_group_names.get(peg["egg_group_id"], ""))
 
 # the default (base) form of each species carries height/weight
 default_pokemon_by_species = {}
@@ -284,6 +326,34 @@ def build_entry(tag):
     out["legendary"] = sp.get("is_legendary") == "1"
     out["mythical"] = sp.get("is_mythical") == "1"
     out["baby"] = sp.get("is_baby") == "1"
+    # rich-sheet additions (v84): base stats, abilities with flavor, egg groups,
+    # growth rate - the numbers a trainer actually asks about
+    bs = stats_by_species.get(sid)
+    if bs:
+        out["baseStats"] = {
+            "hp": bs.get("hp", 0), "atk": bs.get("attack", 0),
+            "def": bs.get("defense", 0), "spa": bs.get("special-attack", 0),
+            "spd": bs.get("special-defense", 0), "spe": bs.get("speed", 0),
+        }
+    abil, seen_ab = [], set()
+    for a in abilities_by_species.get(sid, []):
+        aid = a["ability_id"]
+        if aid in seen_ab:   # the table repeats abilities across games; keep one
+            continue
+        seen_ab.add(aid)
+        abil.append({
+            "name": (ability_names.get(aid) or "").replace("-", " "),
+            "hidden": a["is_hidden"] == "1",
+            "flavor": ability_flavor.get(aid, ""),
+        })
+    if abil:
+        out["abilities"] = abil
+    eg = egg_groups_by_species.get(sid)
+    if eg:
+        out["eggGroups"] = [g.replace("-", " ") for g in eg]
+    gr = sp.get("growth_rate_id") or ""
+    if gr:
+        out["growthRate"] = growth_rates.get(gr, "").replace("-", " ")
     flavor = best_flavor.get(sid)
     if flavor:
         out["lore"] = flavor[1]
