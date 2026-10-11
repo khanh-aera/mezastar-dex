@@ -209,9 +209,14 @@ window.openTag = function(id){
     <button class="formchip ${f.mega ? "mega" : ""} ${f.gmax ? "gmax" : ""}" data-form="${esc(f.id)}">${esc(f.name)}</button>`).join("");
   const sprite = l && l.slug ? `../island/sprites/${l.slug}.gif` : "";
   const dex = l && l.dex;
+  /* self-hosted first; jsDelivr mirrors the same repo files and is reachable in VN
+     even when GitHub Pages lags serving brand-new paths */
   const artwork = dex ? `../dexmedia/art/${dex}.webp` : "";
   const anim = dex ? `../dexmedia/anim/${dex}.gif` : "";
   const cry = dex ? `../dexmedia/cry/${dex}.m4a` : "";
+  const artworkAlt = dex ? `https://cdn.jsdelivr.net/gh/khanh-aera/mezastar-dex@main/docs/dexmedia/art/${dex}.webp` : "";
+  const animAlt = dex ? `https://cdn.jsdelivr.net/gh/khanh-aera/mezastar-dex@main/docs/dexmedia/anim/${dex}.gif` : "";
+  const cryAlt = dex ? `https://cdn.jsdelivr.net/gh/khanh-aera/mezastar-dex@main/docs/dexmedia/cry/${dex}.m4a` : "";
   const mainType = (t.types || [])[0];
   const tint = TYPE_COLOR[mainType] || "#7fb2ff";
   const BST = l && l.baseStats ? l.baseStats.hp + l.baseStats.atk + l.baseStats.def + l.baseStats.spa + l.baseStats.spd + l.baseStats.spe : 0;
@@ -246,8 +251,8 @@ window.openTag = function(id){
       <button class="xbtn" id="x">✕</button>
       <div class="dexnum">#${dex ?? "???"}</div>
       <div class="heroart" style="background:linear-gradient(160deg, ${tint}33 0%, transparent 55%), ${GRAD[String(t.grade)] || GRAD["3"]}">
-        ${artwork ? `<img class="artmain" src="${artwork}" alt="${esc(t.name)}" onerror="this.style.display='none'">` : ""}
-        ${anim ? `<img class="artsprite" src="${anim}" alt="" onerror="this.src='${sprite}';this.onerror=()=>this.style.display='none'">` : (sprite ? `<img class="artsprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : "")}
+        ${artwork ? `<img class="artmain" src="${artwork}" alt="${esc(t.name)}" onerror="this.onerror=()=>this.style.display='none';this.src='${artworkAlt}'">` : ""}
+        ${anim ? `<img class="artsprite" src="${anim}" alt="" onerror="this.onerror=()=>{this.onerror=()=>this.style.display='none';this.src='${sprite}'};this.src='${animAlt}'">` : (sprite ? `<img class="artsprite" src="${sprite}" alt="" onerror="this.style.display='none'">` : "")}
         ${cry ? `<button class="crybtn" id="cryBtn" title="Nghe tiếng kêu">🔊</button>` : ""}
         <img class="artscan" src="${artFor(t)}" alt="" onerror="this.style.display='none'">
       </div>
@@ -293,7 +298,8 @@ window.openTag = function(id){
       let a = document.getElementById("cryAudio");
       if (!a){
         a = document.createElement("audio"); a.id = "cryAudio";
-        a.src = cry; a.preload = "none"; document.body.appendChild(a);
+        a.src = cry; a.preload = "none"; a.onerror = () => { a.src = cryAlt; };
+        document.body.appendChild(a);
       }
       a.currentTime = 0; a.play().catch(() => {});
     } catch(e){}
