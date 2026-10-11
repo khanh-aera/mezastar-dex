@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MEZASTAR BINDER · Home</title>
+<meta name="description" content="Kho Meza Tag của Khanh: tiến hoá, form, lore - cập nhật từ app battle.">
+<meta name="theme-color" content="#080b17">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Binder">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=83">
+</head>
+<body>
+<div class="bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grain"></div>
+
+<!-- boot veil: visible until data resolves, carries the reason if it fails -->
+<div class="bootveil" id="bootVeil" role="status" aria-live="polite">
+  <div class="bootcard">
+    <div class="bootball"><span class="bootspin"></span></div>
+    <div class="boottitle">Đang mở binder…</div>
+    <div class="bootsub" id="bootSub">roster · pool · dex lore</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="top glass">
+    <div class="titles">
+      <h1>Mezastar <em>Binder</em></h1>
+      <div class="sub">Khanh Ngo An · Stardust V3 · máy VN</div>
+    </div>
+    <div class="statrow">
+      <div class="stat"><b id="sCount">–</b><span>Tags</span></div>
+      <div class="stat"><b id="sPe">–</b><span>Total PE</span></div>
+      <div class="stat"><b id="sV3">–</b><span>V3</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="on" data-tab="home">🏠 Home</button>
+    <button data-tab="binder">📇 My Binder</button>
+  </nav>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section class="panel on" id="p-home">
+      <div class="hero glass" id="heroCard"></div>
+      <div class="newsgrid" id="newsGrid"></div>
+      <div class="lore glass" id="loreCard"></div>
+      <div class="recent glass" id="recentCard"></div>
+    </section>
+
+    <!-- ============ MY BINDER ============ -->
+    <section class="panel" id="p-binder">
+      <div class="tools glass">
+        <input class="search" id="q" placeholder="Tìm theo tên, số dex hoặc type…" autocomplete="off">
+        <button class="btn act" id="sortBtn" data-sort="pe">PE ↓</button>
+        <button class="btn" id="sortName" data-sort="name">A to Z</button>
+        <button class="btn" id="sortDex" data-sort="dex"># Dex</button>
+      </div>
+      <div class="chips" id="gradeChips"></div>
+      <div class="grid" id="grid"><div class="spin"></div></div>
+    </section>
+  </main>
+
+  <footer>
+    Số liệu Mezastar: PE / grade / gimmick · lore &amp; tiến hoá: PokeAPI (mainline)
+    <br><a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">mezastar-dex</a> · chơi tại <a href="../play/">/play/</a>
+  </footer>
+</div>
+
+<!-- detail sheet -->
+<div class="scrim" id="scrim"><div class="modal" id="modal"></div></div>
+
+<script src="app.js?v=83"></script>
+</body>
+</html>

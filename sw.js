@@ -1,9 +1,11 @@
 /* Mezastar Binder service worker. Bump VERSION whenever the site changes. */
-const VERSION = "mezastar-v82";
+const VERSION = "mezastar-v83";
 const SHELL = ["./", "index.html", "assets/style.css", "assets/app.js",
   "data/roster.json","data/support.json", "data/bosses.json", "data/typechart.json", "data/pool.json",
   "data/stats_allsets.json", "data/move_ar.json", "data/ar_wheel.json",
   "island/data/sprites.json", "island/data/pokedex.json",
+  "binder/index.html", "binder/app.js", "binder/style.css",
+  "data/dex_lore.json",
   "play/index.html", "play/app.js", "play/play.css",
   "play/play-core.css",
   "play/icons/icon-192.png",

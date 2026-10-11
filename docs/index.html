@@ -25,9 +25,6 @@
 <div class="wrap">
 
   <header class="top glass" id="appbar">
-    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
     <div class="titles">
       <h1>Mezastar Binder</h1>
       <div class="sub">Khanh Ngo An · Stardust Version 2 · Vietnam machines</div>
@@ -39,29 +36,9 @@
     </div>
   </header>
 
-  <nav class="tabs">
-      <button class="on" data-tab="binder">My Binder</button>
-      <button data-tab="load">Main Roster</button>
-      <button data-tab="battle">Battle</button>
-      <button data-tab="stats">Stats</button>
-      <button data-tab="tickets">🎫 Support</button>
-    </nav>
+  <nav class="tabs" hidden></nav>
 
-  <div class="scrim navscrim" id="navScrim"></div>
-  <nav class="drawer" id="drawer" aria-hidden="true">
-    <div class="dhead">
-      <img class="dbolt" src="icons/bolt-transparent.png" alt="">
-      <div><div class="dname">Mezastar Binder</div><div class="dsub">Stardust V2 · Vietnam</div></div>
-    </div>
-    <button class="dlink on" data-tab="binder"><span class="di">📇</span> My Binder</button>
-    <button class="dlink" data-tab="load"><span class="di">🏆</span> Main Roster</button>
-    <button class="dlink" data-tab="battle"><span class="di">⚔️</span> Battle Mode</button>
-        <button class="dlink" data-tab="stats"><span class="di">📊</span> Stats</button>
-        <button class="dlink" data-tab="tickets"><span class="di">🎫</span> Support Tickets</button>
-        <div class="dsect">Quick bosses</div>
-    <div class="dchips" id="drawerChips"></div>
-    <div class="dfoot">Personal binder · data on <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">GitHub</a><br>Stardust V2 only · built by Hermes</div>
-  </nav>
+
 
   <!-- ============ BINDER ============ -->
   <section class="panel on" id="p-binder">
@@ -81,48 +58,9 @@
     <div class="grid" id="grid"><div class="spin"></div></div>
   </section>
 
-  <!-- ============ MAIN ROSTER ============ -->
-  <section class="panel" id="p-load">
-    <div id="loadout"><div class="spin"></div></div>
-  </section>
-
-  <!-- ============ BATTLE MODE ============ -->
-    <section class="panel" id="p-battle">
-      <div class="bhead" id="battleHead"></div>
-      <div class="battlefoes" id="battleFoes"></div>
-      <div id="battleBox"><div class="empty">Loading…</div></div>
-    </section>
-  <!-- ============ STATS & TOOLS ============ -->
-    <section class="panel" id="p-stats">
-      <div class="hint" id="tipLine" style="margin-bottom:12px"></div>
-      <div id="statsBox"></div>
-    </section>
-
-    <!-- ============ SUPPORT TICKETS ============ -->
-    <section class="panel" id="p-tickets">
-      <div class="tools glass">
-        <input class="search" id="tq" placeholder="Search support Pokemon, move or set…" autocomplete="off">
-        <div class="btn-group" id="ticketFilters">
-          <button class="btn act" data-f="all">All</button>
-          <button class="btn" data-f="club">Club</button>
-          <button class="btn" data-f="pamphlet">Pamphlet</button>
-          <button class="btn" data-f="magazine">Magazine</button>
-          <button class="btn" data-f="multi">Repeated</button>
-        </div>
-      </div>
-      <div class="hint" id="ticketCount"></div>
-      <p class="supnote">
-        Every Support Pokemon Ticket released for Pokemon Mezastar, verified against the Bulbapedia
-        set records for all 19 expansion sets. Scan a QR to jump back to that Pokemon here.
-        <b>The real ticket codes are unique per member or per magazine copy and were never published</b>,
-        so these QR codes open this Dex instead — get the real ticket from the Mezastar Club or a promo pamphlet.
-      </p>
-      <div class="grid supgrid" id="tgrid"><div class="spin"></div></div>
-    </section>
-
     <footer>
-    Personal binder build · Stardust Version 2 only · art from the official Mezastar tag sheets<br>
-    <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">mezastar-dex</a> · type chart: mainline multipliers
+    My Binder · Stardust V3 · app chơi tại <a href="play/">/play/</a> · binder dài tại <a href="binder/">/binder/</a><br>
+    <a href="https://github.com/khanh-aera/mezastar-dex" target="_blank" rel="noopener">mezastar-dex</a> · art from the official Mezastar tag sheets
   </footer>
 </div>
 

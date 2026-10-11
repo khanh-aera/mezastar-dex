@@ -1961,19 +1961,17 @@ function setDrawer(open){
   $("#burgerBtn").setAttribute("aria-expanded", open ? "true" : "false");
   $("#drawer").setAttribute("aria-hidden", open ? "false" : "true");
 }
-$("#burgerBtn").onclick = () => setDrawer(!$("#drawer").classList.contains("open"));
-$("#navScrim").onclick = () => setDrawer(false);
+/* v83: burger + drawer removed with the four tabs */
+const _bb = $("#burgerBtn"); if (_bb) _bb.onclick = () => setDrawer(false);
+const _ns = $("#navScrim"); if (_ns) _ns.onclick = () => setDrawer(false);
 document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeModal(); setDrawer(false); } });
 function tab(name){
+  /* v83: My Binder is the only tab; any stray tab() call pins to it */
+  name = "binder";
   state.tab = name;
   window.scrollTo(0, 0);
   document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
-  document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
   document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + name));
-  if (name === "stats") renderStats();
-  if (name === "battle") renderBattle();
-  if (name === "load") renderLoadout();
-  if (name === "tickets") renderTickets();
 }
 document.querySelectorAll("nav.tabs button").forEach(b => b.onclick = () => tab(b.dataset.tab));
 document.querySelectorAll(".drawer .dlink[data-tab]").forEach(b => b.onclick = () => { tab(b.dataset.tab); setDrawer(false); });
@@ -1988,7 +1986,7 @@ $("#sortDense").onclick = () => { state.sort = "dense"; $("#sortDense").classLis
 
 
 /* hunt list removed v53 - #bq gone */
-$("#tq").oninput = e => { renderTickets(); };
+const _tq = $("#tq"); if (_tq) _tq.oninput = e => { renderTickets(); };
 document.querySelectorAll("#ticketFilters .btn").forEach(b => b.onclick = () => {
   window.ticketFilter = b.dataset.f;
   document.querySelectorAll("#ticketFilters .btn").forEach(x => x.classList.toggle("act", x === b));
@@ -1997,6 +1995,17 @@ $("#cmpGo").onclick = () => openCompareModal();
 $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
 
 (async function init(){
+  /* v83: the four extra tabs moved out. The root page is My Binder only.
+     74 physical QR codes scan to this URL with ?support=<slug>, so honour the
+     deep link by handing off to /binder/ which now owns the support cards -
+     a 302-style client redirect, then STOP loading this app entirely. */
+  {
+    const qslug = new URLSearchParams(location.search).get("support");
+    if (qslug){
+      location.replace("binder/?support=" + encodeURIComponent(qslug));
+      return;
+    }
+  }
   try{
     const [ro, po, bo, tc, sst, mar, arw, spr, px, sup] = await Promise.all([
           fetch("data/roster.json").then(r => r.json()),
@@ -2024,17 +2033,18 @@ $("#cmpClear").onclick = () => { SEL.clear(); renderGrid(); };
     $("#sType").textContent = [...new Set(ROSTER.flatMap(x => x.types))].length;
     const quick = ["Lugia","Ho-Oh","Solgaleo","Lunala","Eternatus","Zygarde","Greninja","Keldeo","Zeraora","Grimmsnarl","Tyranitar","Chandelure"];
             document.body.classList.toggle("dim", !!SETTINGS.dim);
-        renderChips(); renderGrid(); renderLoadout();
-        renderSquad(); renderStats();
-        /* support tab: lazy data + QR deep link (?support=slug) */
-        const slug = new URLSearchParams(location.search).get("support");
-        if (slug){ tab("tickets"); }
-        await loadSupport();
-        if (slug){ renderTickets(); supFocus(slug); }
-        // translate ticket filter buttons
-        document.querySelectorAll("#ticketFilters .btn[data-f]").forEach(b => {
-          const key = b.dataset.f; if (!b.textContent.trim()) b.textContent = t(key);
-        });
+        renderChips(); renderGrid();
+        /* v83: loadout/squad/stats/tickets panels are gone from the page;
+           only render them if their mount points exist (keeps the functions
+           intact for any future tab resurrection). */
+        if ($("#loadout")) renderLoadout();
+        if ($("#squadBox")) renderSquad();
+        if ($("#statsBox")) renderStats();
+        if ($("#tgrid")){
+          await loadSupport();
+          const slug = new URLSearchParams(location.search).get("support");
+          if (slug){ renderTickets(); supFocus(slug); }
+        }
       }catch(err){
         document.querySelectorAll(".spin").forEach(s => s.outerHTML = `<div class="empty">Could not load the binder data: ${err.message}</div>`);
       }

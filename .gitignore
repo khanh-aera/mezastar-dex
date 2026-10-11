@@ -6,3 +6,5 @@ docs/server.log
 nul
 tunnel.log
 docs/server.log
+
+trainer/scripts/_pokeapi_cache/
